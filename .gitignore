@@ -328,3 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+DepiBelle/DepiBelle.Android/google-services.json
+DepiBelle/DepiBelle/Configuration/AuthenticationServiceConstants.cs
+DepiBelle/DepiBelle/Configuration/DataServiceConstants.cs
