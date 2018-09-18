@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
+             xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
+             Title="Depi Belle"
+             x:Class="DepiBelle.Views.HomeView">
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        <Style x:Key="MainContainer" TargetType="FlexLayout">
+            <Setter Property="Direction" Value="Column"/>
+            <Setter Property="JustifyContent" Value="Center"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+        </Style>
+        <Style x:Key="MainContent" TargetType="AbsoluteLayout">
+            <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkColor}"/>
+            <Setter Property="FlexLayout.Grow" Value="1"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <FlexLayout Style="{StaticResource MainContainer}">
+            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
+            <AbsoluteLayout  Style="{StaticResource MainContent}">
+                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,0.8">
+                    <Image Source="body.png" HorizontalOptions="End"/>
+                </StackLayout>
+                <FlexLayout BackgroundColor="Transparent" Direction="Row" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <FlexLayout FlexLayout.Basis="35.6%" BackgroundColor="Transparent">
+                        
+                    </FlexLayout>
+                    <FlexLayout FlexLayout.Basis="64.4%" JustifyContent="End" BackgroundColor="Transparent" Direction="Column">
+                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="25%">
+                            <Button Text="Cabeza" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
+                            <BoxView BackgroundColor="Transparent" FlexLayout.Basis="32%"/>
+                        </FlexLayout>
+                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="25%">
+                            <Button Text="Brazo" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
+                            <Button Text="Torso" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
+                            <Button Text="Brazo" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
+                            <BoxView BackgroundColor="Transparent" FlexLayout.Basis="9%"/>
+                        </FlexLayout>
+                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="15%">
+                            <Button Text="Pelvis" FlexLayout.Basis="60%" BackgroundColor="Transparent"/>
+                            <BoxView BackgroundColor="Transparent" FlexLayout.Basis="22%"/>
+                        </FlexLayout>
+                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="30%">
+                            <Button Text="Piernas" FlexLayout.Basis="57%" BackgroundColor="Transparent"/>
+                            <BoxView BackgroundColor="Transparent" FlexLayout.Basis="25%"/>
+                        </FlexLayout>
+                    </FlexLayout>
+                </FlexLayout>
+            </AbsoluteLayout>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

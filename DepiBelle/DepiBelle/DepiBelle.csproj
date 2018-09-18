@@ -11,5 +11,34 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Splat" Version="5.0.2" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+    <Folder Include="Services\Navigation\" />
+    <Folder Include="Services\Modal\" />
+    <Folder Include="Services\Dialog\" />
+    <Folder Include="ViewModels\Modals\" />
+    <Folder Include="Views\Modals\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Managers\Application\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\Authentication\" />
+    <Folder Include="Services\Data\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Extensions\Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\HomeView.cs" />
+    <Compile Remove="Models\Sale.cs" />
   </ItemGroup>
 </Project>

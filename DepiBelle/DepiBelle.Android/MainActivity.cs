@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Firebase.Auth;
 
 namespace DepiBelle.Droid
 {
@@ -18,8 +19,29 @@ namespace DepiBelle.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            ResolveDependencies();
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this));
+        }
+
+        private void ResolveDependencies()
+        {
+            AndroidDependencyContainer.RegisterDependencies();
+            DependencyContainer.RegisterDependencies();
+        }
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else
+            {
+                // Do something if there are not any pages in the `PopupStack`
+            }
         }
     }
 }

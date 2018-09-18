@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using DepiBelle.Services.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,11 +9,13 @@ namespace DepiBelle
 {
     public partial class App : Application
     {
+        private INavigationService _navigationService;
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
+            _navigationService.InitializeAsync();
         }
 
         protected override void OnStart()
