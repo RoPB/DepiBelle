@@ -41,4 +41,7 @@
     <Compile Remove="Views\HomeView.cs" />
     <Compile Remove="Models\Sale.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="DesignTimeData.json" />
+  </ItemGroup>
 </Project>

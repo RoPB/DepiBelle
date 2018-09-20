@@ -3,19 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:local="clr-namespace:DepiBelle;assembly=DepiBelle" 
+             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              Title="Depi Belle"
              x:Class="DepiBelle.Views.HomeView">
-             <!--viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"-->
     <ContentPage.Resources>
         <ResourceDictionary>
-           <!--<converters:InverseBoolConverter x:Key="InverseBoolConverter"/>-->
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
             <Style x:Key="MainContainer" TargetType="FlexLayout">
                 <Setter Property="Direction" Value="Column"/>
                 <Setter Property="JustifyContent" Value="Center"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
             </Style>
             <Style x:Key="MainContent" TargetType="AbsoluteLayout">
-                 <!--<Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>-->
+                <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkColor}"/>
                 <Setter Property="FlexLayout.Grow" Value="1"/>
             </Style>
@@ -23,32 +24,39 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource MainContainer}">
-           <!--<ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>-->
+           <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
            <AbsoluteLayout  Style="{StaticResource MainContent}">
-                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.01,-1,-1">
+                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,-1,-1">
                     <Image Source="body.png" />
                 </StackLayout>
-                <FlexLayout BackgroundColor="Transparent" Direction="Row" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                    <FlexLayout FlexLayout.Basis="35.6%" BackgroundColor="Transparent">
-                        
-                    </FlexLayout>
+                <FlexLayout Direction="Column" JustifyContent="Start" AlignItems="Start"  BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <Frame  Margin="10,20,0,10" Padding="30" CornerRadius="80" BackgroundColor="#80FFFFFF" WidthRequest="220" HeightRequest="150">
+                        <StackLayout>
+                            <Label FontSize="30" Text="Bienvenido"/>
+                            <Label FontSize="20" Text="Selecciona de mi cuerpo"/>
+                            <Label FontSize="20" Text="Tus zonas de depilacion"/>
+                            <Label FontSize="10" Text="DEPI BELLE" HorizontalOptions="Center" VerticalOptions="End"/>
+                        </StackLayout>
+                    </Frame>
+                </FlexLayout>
+                <FlexLayout JustifyContent="End" BackgroundColor="Transparent" Direction="Row" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.4,0,1,1">
                     <FlexLayout FlexLayout.Basis="64.4%" JustifyContent="End" BackgroundColor="Transparent" Direction="Column">
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="25%">
-                            <Button Text="Cabeza" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="32%"/>
                         </FlexLayout>
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="25%">
-                            <Button Text="Brazo" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
-                            <Button Text="Torso" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
-                            <Button Text="Brazo" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="Transparent"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="9%"/>
                         </FlexLayout>
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="15%">
-                            <Button Text="{Binding Name}" FlexLayout.Basis="60%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="60%" BackgroundColor="Transparent"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="22%"/>
                         </FlexLayout>
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="30%">
-                            <Button Text="Piernas" FlexLayout.Basis="57%" BackgroundColor="Transparent"/>
+                            <Button Text="" FlexLayout.Basis="57%" BackgroundColor="Transparent"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="25%"/>
                         </FlexLayout>
                     </FlexLayout>
