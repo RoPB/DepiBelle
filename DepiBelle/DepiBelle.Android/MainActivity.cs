@@ -22,9 +22,11 @@ namespace DepiBelle.Droid
             ResolveDependencies();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
-            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this));
+            //LoadApplication(new App());
+            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
+                                                                           new UXDivers.Gorilla.Config("Good Gorilla")));
         }
+                                                                            
 
         private void ResolveDependencies()
         {

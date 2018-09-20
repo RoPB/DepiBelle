@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DepiBelle.App">
-    <Application.Resources>
-        
-        <Color x:Key="PrimaryLightColor">#7A4983</Color>
-        <Color x:Key="PrimaryDarkColor">#441F51</Color>
-        <Color x:Key="White">#FFFF</Color>
-        
-        <Style TargetType="ActivityIndicator">
-            <Setter Property="WidthRequest" Value="40"/>
-            <Setter Property="HeightRequest" Value="40"/>
-        </Style>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="DepiBelle.App">
+     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryLightColor">#7A4983</Color>
+            <Color x:Key="PrimaryDarkColor">#441F51</Color>
+            <Color x:Key="White">#FFFF</Color>
+            
+            <Style TargetType="ActivityIndicator">
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
