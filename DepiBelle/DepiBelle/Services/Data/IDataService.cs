@@ -17,5 +17,7 @@ namespace DepiBelle.Services.Data
 
         Task<bool> Remove(string id, string token = null);
 
+        Task<bool> RemoveAll(string token = null);
+
     }
 }

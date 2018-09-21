@@ -1,5 +1,8 @@
 ﻿using System;
 using DepiBelle.Managers.Application;
+using DepiBelle.Models;
+using DepiBelle.Services.Data;
+using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Modal;
 using DepiBelle.Services.Navigation;
@@ -17,12 +20,16 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
             Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
 
+            Locator.CurrentMutable.Register(() => new LocalDataService<int>(), typeof(ILocalDataService<KeyValue<int>>));
+
             //Managers
             Locator.CurrentMutable.RegisterConstant(new ApplicationManager(), typeof(IApplicationManager));
 
             //ViewModels
             Locator.CurrentMutable.RegisterLazySingleton(() => new HomeTabbedViewModel());
-            Locator.CurrentMutable.RegisterLazySingleton(() => new HomeViewModel());
+            Locator.CurrentMutable.RegisterLazySingleton(() => new PromotionsViewModel());
+            Locator.CurrentMutable.RegisterLazySingleton(() => new BodySelectionViewModel());
+            Locator.CurrentMutable.RegisterLazySingleton(() => new PurchaseViewModel());
 
 
         }

@@ -156,6 +156,40 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             }
         }
 
+        public override async Task<bool> RemoveAll(string token = null)
+        {
+            try
+            {
+                token = _authenticationService.Token;
+                return await base.RemoveAll(token);
+            }
+            catch (FirebaseException fe)
+            {
+                if (fe.StatusCode.Equals(System.Net.HttpStatusCode.Unauthorized))
+                {
+                    try
+                    {
+                        await _authenticationService.RefreshSession();
+
+                        return await base.RemoveAll(token);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    throw fe;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

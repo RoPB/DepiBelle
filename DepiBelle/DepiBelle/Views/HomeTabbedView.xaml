@@ -8,13 +8,13 @@
             Title="Depi Belle"
             x:Class="DepiBelle.Views.HomeTabbedView">
             
-            <views:HomeView Title="Promos" 
+            <views:BodySelection Title="Promos" 
                             Icon="outline_accessibility_new_white.png"
                             />
-            <views:HomeView Title="Cuerpo" 
+            <views:BodySelection Title="Cuerpo" 
                             Icon="outline_accessibility_new_white.png"
                             />
-            <views:HomeView Title="Pago"  
+            <views:BodySelection Title="Pago"  
                             Icon="outline_accessibility_new_white.png"
                             plugin:TabBadge.BadgeText="2"
                             />

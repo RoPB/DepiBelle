@@ -137,6 +137,11 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             }
         }
 
+        public virtual Task<bool> RemoveAll(string token = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual bool Subscribe(Action<T> action, string token = null)
         {
             try
@@ -167,6 +172,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
             return item;
         }
+
 
     }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:local="clr-namespace:DepiBelle;assembly=DepiBelle" 
-             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              NavigationPage.HasNavigationBar="false"
-             x:Class="DepiBelle.Views.HomeView">
+             x:Class="DepiBelle.Views.BodySelection">
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
