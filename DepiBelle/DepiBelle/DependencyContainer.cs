@@ -21,6 +21,7 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new ApplicationManager(), typeof(IApplicationManager));
 
             //ViewModels
+            Locator.CurrentMutable.RegisterLazySingleton(() => new HomeTabbedViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new HomeViewModel());
 
 

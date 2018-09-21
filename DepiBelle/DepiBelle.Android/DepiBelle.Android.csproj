@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -75,6 +74,9 @@
     </PackageReference>
     <PackageReference Include="UXDivers.GorillaPlayer.SDK">
       <Version>1.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Badge">
+      <Version>2.1.0-pre.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +111,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\body.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\outline_accessibility_new_white.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

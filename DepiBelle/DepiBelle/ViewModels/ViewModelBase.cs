@@ -81,12 +81,12 @@ namespace DepiBelle.ViewModels
             ModalService = ModalService ?? DependencyContainer.Resolve<IModalService>();
         }
 
-        public virtual Task InitializeAsync(object navigationData)
+        public virtual Task InitializeAsync(object navigationData=null)
         {
             return Task.FromResult(false);
         }
 
-        public virtual Task Refresh()
+        public virtual Task Refresh(object navigationData=null)
         {
             return Task.FromResult(false);
         }

@@ -7,7 +7,10 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Firebase.Auth;
+using Xamarin.Forms;
+using Plugin.Badge.Droid;
 
+[assembly: ExportRenderer(typeof(TabbedPage), typeof(BadgedTabbedPageRenderer))]
 namespace DepiBelle.Droid
 {
     [Activity(Label = "DepiBelle", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -22,10 +25,10 @@ namespace DepiBelle.Droid
             ResolveDependencies();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            //LoadApplication(new App());
-            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
-                                                                           new UXDivers.Gorilla.Config("Good Gorilla").
-                                                                           RegisterAssembly(typeof(DepiBelle.App).Assembly)));
+            LoadApplication(new App());
+            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
+            //                                                              new UXDivers.Gorilla.Config("Good Gorilla").
+            //                                                                RegisterAssembly(typeof(DepiBelle.App).Assembly)));
         }
                                                                             
 
