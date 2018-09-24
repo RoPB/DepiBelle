@@ -7,11 +7,9 @@ namespace DepiBelle.Models
     {
         public int number { get; set; }
 
-        public int disccount { get; set; } = 0;
-
         public List<Offer> offers { get; set; } = new List<Offer>();
 
-        public Promotion promotion { get; set; }
+        public List<Promotion> promotions { get; set; } = new List<Promotion>();
 
     }
 }
