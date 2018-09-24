@@ -5,7 +5,6 @@ using DepiBelle.Models;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Utilities;
-using Plugin.Settings;
 
 namespace DepiBelle.ViewModels
 {
@@ -13,17 +12,18 @@ namespace DepiBelle.ViewModels
     {
 
         private IDataService<Order> _ordersDataService;
-        private ILocalDataService<KeyValue<int>> _localDataService;
+        private ILocalDataService _localDataService;
 
         public PurchaseViewModel()
         {
             IsLoading = true;
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataService<Order>>();
-            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService<KeyValue<int>>>();
+            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
         }
 
         public override async Task InitializeAsync(object navigationData = null)
         {
+            await AddOrders();
             IsLoading = false;
         }
 
@@ -37,25 +37,36 @@ namespace DepiBelle.ViewModels
         private async Task AddOrders()
         {
 
-            var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new Config() { Uri = DataServiceConstants.URI, Key = $"{DataServiceConstants.ORDERS}/{key}" });
-            await AddOrder(key);
-            await AddOrder(key);
-            await AddOrder(key);
+            var date = DateConverter.ShortDate(DateTime.Now);
+            _ordersDataService.Initialize(new Config() { Uri = DataServiceConstants.URI, Key = $"{DataServiceConstants.ORDERS}/{date}" });
+
+            await AddOrder(date);
+            await AddOrder(date);
+            await AddOrder(date);
         }
 
-        private async Task AddOrder(string key)
+        private async Task AddOrder(string date)
         {
-            var localFileKey = DataServiceConstants.ORDERS;
-            var number = 0;
-            if (!CrossSettings.Current.Contains(key, localFileKey))
-                CrossSettings.Current.Clear(localFileKey);//all other days
-            else
-                number = CrossSettings.Current.GetValueOrDefault(key, 0, localFileKey);
+            var key = DataServiceConstants.ORDERS;
 
-            CrossSettings.Current.AddOrUpdateValue(key, ++number, localFileKey);
+            var localDataOrder = new LocalDataOrder();
+            localDataOrder.date = date;
+            localDataOrder.lastNumber = 0;
 
-            await _ordersDataService.AddOrReplace(new Order() { number = number });
+            var isAnyLocalOrderSaved = await _localDataService.Contains(key);
+
+            if (isAnyLocalOrderSaved){
+                localDataOrder = await _localDataService.Get<LocalDataOrder>(key);
+                if (localDataOrder.date.Equals(date))
+                    ++localDataOrder.lastNumber;
+                else
+                    await _localDataService.Remove(key);
+            }
+
+
+            await _localDataService.AddOrReplace<LocalDataOrder>(key, localDataOrder);
+
+            await _ordersDataService.AddOrReplace(new Order() { number = localDataOrder.lastNumber });
         }
 
     }
