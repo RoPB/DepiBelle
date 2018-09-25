@@ -20,10 +20,10 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new NavigationService(), typeof(INavigationService));
             Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
             Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
-            #if DEBUG
-            Locator.CurrentMutable.RegisterConstant(new ConfigServiceDev(), typeof(IConfigService));
-            #elif RELEASE
+            #if PRODUCTION
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceProd(), typeof(IConfigService));
+            #else
+            Locator.CurrentMutable.RegisterConstant(new ConfigServiceDev(), typeof(IConfigService));
             #endif
             Locator.CurrentMutable.Register(() => new LocalDataService(), typeof(ILocalDataService));
            
