@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 namespace DepiBelle.Models
 {
     //TODO entities must inherith from this class
-    public class Entity
+    public class EntityBase
     {
         [JsonIgnore]
-        public string id { get; set; }
+        public string Id { get; set; }
 
     }
 }

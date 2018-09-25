@@ -3,14 +3,16 @@ using Newtonsoft.Json;
 
 namespace DepiBelle.Models
 {
-    public class Offer : Entity
+    public class Offer : EntityBase
     {
-        public string name
+        [JsonProperty("name")]
+        public string Name
         {
             get;
             set;
         }
-        public double price
+        [JsonProperty("price")]
+        public double Price
         {
             get;
             set;
@@ -20,15 +22,15 @@ namespace DepiBelle.Models
         //serialization wont serialize category 
         //but deserialization will load category
         [JsonIgnore]
-        public string category
+        public string Category
         {
             get;
             set;
         }
         [JsonProperty("category")]
-        private string categorySetter
+        private string CategorySetter
         {
-            set { category = value; }
+            set { Category = value; }
         }
 
     }

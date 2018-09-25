@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 {
-    public class FirebaseDataService<T> : IDataService<T> where T : Entity
+    public class FirebaseDataService<T> : IDataService<T> where T : EntityBase
     {
 
         private DataServiceConfig Config { get; set; }
@@ -81,7 +81,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
                 var serviceItem = await client.Child($"{Key}/{id}").OnceSingleAsync<T>();
 
-                serviceItem.id = id;
+                serviceItem.Id = id;
 
                 return serviceItem;
 
@@ -107,7 +107,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
                 else
 
-                    await client.Child($"{Key}/{item.id}").PutAsync(JsonConvert.SerializeObject(item));
+                    await client.Child($"{Key}/{item.Id}").PutAsync(JsonConvert.SerializeObject(item));
 
                 return true;
 
@@ -168,7 +168,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
 
             var item = firebaseObject.Object;
-            item.id = firebaseObject.Key;
+            item.Id = firebaseObject.Key;
 
             return item;
         }

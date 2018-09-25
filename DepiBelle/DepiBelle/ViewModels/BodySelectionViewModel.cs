@@ -6,6 +6,7 @@ using System.Windows.Input;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
+using DepiBelle.Services.Navigation;
 using DepiBelle.ViewModels.Modals;
 using Xamarin.Forms;
 
@@ -14,6 +15,7 @@ namespace DepiBelle.ViewModels
     public class BodySelectionViewModel : ViewModelBase
     {
         private IConfigService _configService;
+        private INavigationService _navigationService;
         private IDataService<Offer> _offersDataService;
 
         private List<Offer> _headOffers = new List<Offer>();
@@ -32,6 +34,7 @@ namespace DepiBelle.ViewModels
             BodyPartSelectionCommand = new Command<string>(async (string bodyPart) => await BodyPartSelection(bodyPart));
 
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
+            _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
             _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataService<Offer>>();
             _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
         }
@@ -53,31 +56,41 @@ namespace DepiBelle.ViewModels
             await Task.Run(() => 
             {
 
-                _headOffers.AddRange(offers.Where(o => o.category.Contains(Constants.Constants.CATEGORY_HEAD)).ToList());
-                _bodyOffers.AddRange(offers.Where(o => o.category.Contains(Constants.Constants.CATEGORY_BODY)).ToList());
-                _pelvisOffers.AddRange(offers.Where(o => o.category.Contains(Constants.Constants.CATEGORY_PELVIS)).ToList());
-                _armOffers.AddRange(offers.Where(o => o.category.Contains(Constants.Constants.CATEGORY_ARM)).ToList());
-                _legOffers.AddRange(offers.Where(o => o.category.Contains(Constants.Constants.CATEGORY_LEG)).ToList());
+                _headOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_HEAD)).ToList());
+                _bodyOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_BODY)).ToList());
+                _pelvisOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_PELVIS)).ToList());
+                _armOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_ARM)).ToList());
+                _legOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_LEG)).ToList());
 
             });
         }
 
         private async Task BodyPartSelection(string bodyPart)
         {
-            await Task.Run(() =>
-            {
-                if (bodyPart.Equals(Constants.Constants.CATEGORY_HEAD))
-                    ItemsAddedEventHandler.Invoke(this, 1);
-                else if (bodyPart.Equals(Constants.Constants.CATEGORY_BODY))
-                    ItemsAddedEventHandler.Invoke(this, 1);
-                else if (bodyPart.Equals(Constants.Constants.CATEGORY_PELVIS))
-                    ItemsAddedEventHandler.Invoke(this, 1);
-                else if (bodyPart.Equals(Constants.Constants.CATEGORY_ARM))
-                    ItemsAddedEventHandler.Invoke(this, 1);
-                else if (bodyPart.Equals(Constants.Constants.CATEGORY_LEG))
-                    ItemsAddedEventHandler.Invoke(this, 10);
+            List<Offer> offersList = null;
 
-            });
+            if (bodyPart.Equals(Constants.Constants.CATEGORY_HEAD))
+            {
+                offersList=_headOffers;
+            }
+            else if (bodyPart.Equals(Constants.Constants.CATEGORY_BODY))
+            {
+                offersList = _bodyOffers;
+            }
+            else if (bodyPart.Equals(Constants.Constants.CATEGORY_PELVIS))
+            {
+                offersList = _pelvisOffers;
+            }
+            else if (bodyPart.Equals(Constants.Constants.CATEGORY_ARM))
+            {
+                offersList = _armOffers;
+            }
+            else if (bodyPart.Equals(Constants.Constants.CATEGORY_LEG))
+            {
+                offersList = _legOffers;
+            }
+
+            await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
         }
     }
 }

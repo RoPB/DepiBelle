@@ -7,10 +7,13 @@
             <Color x:Key="PrimaryLightColor">#7A4983</Color>
             <Color x:Key="PrimaryDarkColor">#441F51</Color>
             <Color x:Key="White">#FFFF</Color>
-            
             <Style TargetType="ActivityIndicator">
                 <Setter Property="WidthRequest" Value="40"/>
                 <Setter Property="HeightRequest" Value="40"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

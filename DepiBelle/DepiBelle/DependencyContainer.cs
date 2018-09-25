@@ -35,6 +35,7 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterLazySingleton(() => new PromotionsViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new BodySelectionViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PurchaseViewModel());
+            Locator.CurrentMutable.RegisterLazySingleton(() => new PartSelectionViewModel());
 
 
         }

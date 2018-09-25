@@ -1,0 +1,15 @@
+﻿{
+  "PartSelectionView.xaml": {
+    "IsLoading": false,
+    "Offers": [
+      {
+        "Name": "Bozo",
+        "Price": "$90"
+      },
+      {
+        "Name": "Narinas",
+        "Price": "$180"
+      }
+    ]
+  }
+}

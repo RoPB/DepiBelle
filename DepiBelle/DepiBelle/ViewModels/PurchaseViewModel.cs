@@ -60,23 +60,23 @@ namespace DepiBelle.ViewModels
         {
             var key = Constants.Constants.LOCAL_DATA_ORDER_KEY;
 
-            var localDataOrder = new LocalDataOrder();
-            localDataOrder.date = date;
-            localDataOrder.lastNumber = 0;
+            var localDataOrder = new DataOrder();
+            localDataOrder.Date = date;
+            localDataOrder.LastNumber = 0;
 
             var isAnyLocalOrderSaved = await _localDataService.Contains(key);
 
             if (isAnyLocalOrderSaved){
-                localDataOrder = await _localDataService.Get<LocalDataOrder>(key);
-                if (localDataOrder.date.Equals(date))
-                    ++localDataOrder.lastNumber;
+                localDataOrder = await _localDataService.Get<DataOrder>(key);
+                if (localDataOrder.Date.Equals(date))
+                    ++localDataOrder.LastNumber;
                 else
                     await _localDataService.Remove(key);
             }
 
-            await _localDataService.AddOrReplace<LocalDataOrder>(key, localDataOrder);
+            await _localDataService.AddOrReplace<DataOrder>(key, localDataOrder);
 
-            await _ordersDataService.AddOrReplace(new Order() { number = localDataOrder.lastNumber });
+            await _ordersDataService.AddOrReplace(new Order() { Number = localDataOrder.LastNumber });
         }
 
     }

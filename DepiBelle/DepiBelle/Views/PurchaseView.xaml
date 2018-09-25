@@ -6,6 +6,6 @@
              xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PurchaseView">
     <ContentPage.Content>
-        <Label>Purchase</Label>
+        <Label>PURCHASE</Label>
     </ContentPage.Content>
 </ContentPage>
