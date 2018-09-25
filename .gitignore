@@ -334,4 +334,5 @@ DepiBelle/DepiBelle/Configuration/DataServiceConstants.cs
 
 DepiBelle/DepiBelle/Services/Config/ConfigServiceBase.cs
 DepiBelle/DepiBelle/Services/Config/ConfigServiceDev.cs
+DepiBelle/DepiBelle/Services/Config/ConfigServiceProd.cs
 DepiBelle/DepiBelle/Services/Config/IConfigService.cs
