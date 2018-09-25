@@ -1,126 +1,254 @@
 {
-  "offers": {
-    "A": {
-      "name": "bozo",
-      "price": 90,
-      "category": "cabeza"
+  "dev":{
+    "offers": {
+      "A": {
+        "name": "bozo",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "B": {
+        "name": "ceja",
+        "price": 130,
+        "category": "cabeza"
+      },
+      "C": {
+        "name": "entrecejas",
+        "price": 50,
+        "category": "cabeza"
+      },
+      "D": {
+        "name": "narinas",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "E": {
+        "name": "patillas",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "F": {
+        "name": "menton",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "Q": {
+        "name": "abdomen completo",
+        "price": 230,
+        "category": "torso"
+      },
+      "P": {
+        "name": "tira ombligo",
+        "price": 140,
+        "category": "torso"
+      },
+      "R": {
+        "name": "baja espalda",
+        "price": 150,
+        "category": "torso"
+      },
+      "S": {
+        "name": "espalda completa",
+        "price": 230,
+        "category": "torso"
+      },
+      "G": {
+        "name": "axilas",
+        "price": 140,
+        "category": "brazo/torso"
+      },
+      "N": {
+        "name": "brazo completo",
+        "price": 250,
+        "category": "brazo"
+      },
+      "O": {
+        "name": "medio brazo",
+        "price": 200,
+        "category": "brazo"
+      },
+      "I": {
+        "name": "cavado completo (s tira)",
+        "price": 320,
+        "category": "pelvis"
+      },
+      "J": {
+        "name": "tira de ano",
+        "price": 140,
+        "category": "pelvis"
+      },
+      "K": {
+        "name": "gluteos",
+        "price": 150,
+        "category": "pelvis"
+      },
+      "H": {
+        "name": "bikini",
+        "price": 150,
+        "category": "pelvis"
+      },
+      "L": {
+        "name": "media pierna",
+        "price": 260,
+        "category": "pierna"
+      },
+      "M": {
+        "name": "pierna entera (c bikini)",
+        "price": 390,
+        "category": "pierna"
+      },
+      "T": {
+        "name": "empeine",
+        "price": 100,
+        "category": "pierna"
+      }
     },
-    "B": {
-      "name": "ceja",
-      "price": 130,
-      "category": "cabeza"
-    },
-    "C": {
-      "name": "entrecejas",
-      "price": 50,
-      "category": "cabeza"
-    },
-    "D": {
-      "name": "narinas",
-      "price": 90,
-      "category": "cabeza"
-    },
-    "E": {
-      "name": "patillas",
-      "price": 90,
-      "category": "cabeza"
-    },
-    "F": {
-      "name": "menton",
-      "price": 90,
-      "category": "cabeza"
-    },
-    "Q": {
-      "name": "abdomen completo",
-      "price": 230,
-      "category": "torso"
-    },
-    "P": {
-      "name": "tira ombligo",
-      "price": 140,
-      "category": "torso"
-    },
-    "R": {
-      "name": "baja espalda",
-      "price": 150,
-      "category": "torso"
-    },
-    "S": {
-      "name": "espalda completa",
-      "price": 230,
-      "category": "torso"
-    },
-    "G": {
-      "name": "axilas",
-      "price": 140,
-      "category": "brazo/torso"
-    },
-    "N": {
-      "name": "brazo completo",
-      "price": 250,
-      "category": "brazo"
-    },
-    "O": {
-      "name": "medio brazo",
-      "price": 200,
-      "category": "brazo"
-    },
-    "I": {
-      "name": "cavado completo (s tira)",
-      "price": 320,
-      "category": "pelvis"
-    },
-    "J": {
-      "name": "tira de ano",
-      "price": 140,
-      "category": "pelvis"
-    },
-    "K": {
-      "name": "gluteos",
-      "price": 150,
-      "category": "pelvis"
-    },
-    "H": {
-      "name": "bikini",
-      "price": 150,
-      "category": "pelvis"
-    },
-    "L": {
-      "name": "media pierna",
-      "price": 260,
-      "category": "pierna"
-    },
-    "M": {
-      "name": "pierna entera (c bikini)",
-      "price": 390,
-      "category": "pierna"
-    },
-    "T": {
-      "name": "empeine",
-      "price": 100,
-      "category": "pierna"
+    "promotions": {
+      "P1": {
+        "name": "promo 1",
+        "price": 450,
+        "description": "Pierna Entera + Cavado"
+      },
+      "P2": {
+        "name": "promo 2",
+        "price": 550,
+        "description": "Pierna Entera + Cavado + Tiro de Cola"
+      },
+      "P3": {
+        "name": "promo 3",
+        "price": 390,
+        "description": "Media Pierna + Bikini"
+      },
+      "P4": {
+        "name": "promo 4",
+        "price": 850,
+        "description": "Cuerpo Entero"
+      }
     }
   },
-  "promotions": {
-    "P1": {
-      "name": "promo 1",
-      "price": 450,
-      "description": "Pierna Entera + Cavado"
+  "production": {
+    "offers": {
+      "A": {
+        "name": "bozo",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "B": {
+        "name": "ceja",
+        "price": 130,
+        "category": "cabeza"
+      },
+      "C": {
+        "name": "entrecejas",
+        "price": 50,
+        "category": "cabeza"
+      },
+      "D": {
+        "name": "narinas",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "E": {
+        "name": "patillas",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "F": {
+        "name": "menton",
+        "price": 90,
+        "category": "cabeza"
+      },
+      "Q": {
+        "name": "abdomen completo",
+        "price": 230,
+        "category": "torso"
+      },
+      "P": {
+        "name": "tira ombligo",
+        "price": 140,
+        "category": "torso"
+      },
+      "R": {
+        "name": "baja espalda",
+        "price": 150,
+        "category": "torso"
+      },
+      "S": {
+        "name": "espalda completa",
+        "price": 230,
+        "category": "torso"
+      },
+      "G": {
+        "name": "axilas",
+        "price": 140,
+        "category": "brazo/torso"
+      },
+      "N": {
+        "name": "brazo completo",
+        "price": 250,
+        "category": "brazo"
+      },
+      "O": {
+        "name": "medio brazo",
+        "price": 200,
+        "category": "brazo"
+      },
+      "I": {
+        "name": "cavado completo (s tira)",
+        "price": 320,
+        "category": "pelvis"
+      },
+      "J": {
+        "name": "tira de ano",
+        "price": 140,
+        "category": "pelvis"
+      },
+      "K": {
+        "name": "gluteos",
+        "price": 150,
+        "category": "pelvis"
+      },
+      "H": {
+        "name": "bikini",
+        "price": 150,
+        "category": "pelvis"
+      },
+      "L": {
+        "name": "media pierna",
+        "price": 260,
+        "category": "pierna"
+      },
+      "M": {
+        "name": "pierna entera (c bikini)",
+        "price": 390,
+        "category": "pierna"
+      },
+      "T": {
+        "name": "empeine",
+        "price": 100,
+        "category": "pierna"
+      }
     },
-    "P2": {
-      "name": "promo 2",
-      "price": 550,
-      "description": "Pierna Entera + Cavado + Tiro de Cola"
-    },
-    "P3": {
-      "name": "promo 3",
-      "price": 390,
-      "description": "Media Pierna + Bikini"
-    },
-    "P4": {
-      "name": "promo 4",
-      "price": 850,
-      "description": "Cuerpo Entero"
+    "promotions": {
+      "P1": {
+        "name": "promo 1",
+        "price": 450,
+        "description": "Pierna Entera + Cavado"
+      },
+      "P2": {
+        "name": "promo 2",
+        "price": 550,
+        "description": "Pierna Entera + Cavado + Tiro de Cola"
+      },
+      "P3": {
+        "name": "promo 3",
+        "price": 390,
+        "description": "Media Pierna + Bikini"
+      },
+      "P4": {
+        "name": "promo 4",
+        "price": 850,
+        "description": "Cuerpo Entero"
+      }
     }
   }
 }
