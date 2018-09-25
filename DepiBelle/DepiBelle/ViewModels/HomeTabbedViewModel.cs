@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DepiBelle.Configuration;
 using DepiBelle.Managers.Application;
+using DepiBelle.Services.Config;
 
 namespace DepiBelle.ViewModels
 {
 	public class HomeTabbedViewModel:ViewModelBase
     {
+        private IConfigService _configService;
         private IApplicationManager _applicationMananger;
 
         private PromotionsViewModel _promotionsViewModel;
@@ -16,6 +17,7 @@ namespace DepiBelle.ViewModels
         public HomeTabbedViewModel()
         {
              IsLoading = true;
+            _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
             _promotionsViewModel = _promotionsViewModel ?? DependencyContainer.Resolve<PromotionsViewModel>();
             _bodySelectionViewModel = _bodySelectionViewModel ?? DependencyContainer.Resolve<BodySelectionViewModel>();
@@ -24,7 +26,7 @@ namespace DepiBelle.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            await _applicationMananger.Login(AuthenticationServiceConstants.USER, AuthenticationServiceConstants.PASSWORD);
+            await _applicationMananger.Login(_configService.User, _configService.Password);
             await _promotionsViewModel.InitializeAsync();
             await _bodySelectionViewModel.InitializeAsync();
             await _purchaseViewModel.InitializeAsync();

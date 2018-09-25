@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DepiBelle.Configuration;
 using DepiBelle.Models;
+using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Utilities;
@@ -11,12 +11,14 @@ namespace DepiBelle.ViewModels
 	public class PurchaseViewModel:ViewModelBase
     {
 
+        private IConfigService _configService;
         private IDataService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
         public PurchaseViewModel()
         {
             IsLoading = true;
+            _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
         }
@@ -30,7 +32,7 @@ namespace DepiBelle.ViewModels
         private async Task GetOrders()
         {
             var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new Config() { Uri = DataServiceConstants.URI, Key = $"{DataServiceConstants.ORDERS}/{key}" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{key}" });
             var orders = await _ordersDataService.GetAll();
         }
 
@@ -38,7 +40,7 @@ namespace DepiBelle.ViewModels
         {
 
             var date = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new Config() { Uri = DataServiceConstants.URI, Key = $"{DataServiceConstants.ORDERS}/{date}" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
 
             await AddOrder(date);
             await AddOrder(date);
@@ -47,7 +49,7 @@ namespace DepiBelle.ViewModels
 
         private async Task AddOrder(string date)
         {
-            var key = DataServiceConstants.ORDERS;
+            var key = Constants.Constants.LOCAL_DATA_ORDER_KEY;
 
             var localDataOrder = new LocalDataOrder();
             localDataOrder.date = date;

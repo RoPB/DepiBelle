@@ -1,7 +1,7 @@
 ﻿using System;
 namespace DepiBelle.Models
 {
-    public class Config
+    public class DataServiceConfig
     {
         public string Uri
         {
@@ -9,12 +9,6 @@ namespace DepiBelle.Models
             set;
         }
         public string Key
-        {
-            get;
-            set;
-        }
-
-        public bool IsDictionary
         {
             get;
             set;

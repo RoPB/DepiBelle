@@ -12,12 +12,12 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
     public class FirebaseDataService<T> : IDataService<T> where T : Entity
     {
 
-        private Config Config { get; set; }
+        private DataServiceConfig Config { get; set; }
         protected string Uri { get { return Config.Uri; } }
         protected string Key { get { return Config.Key; } }
 
 
-        public bool Initialize(Config config)
+        public bool Initialize(DataServiceConfig config)
         {
             if (Config == null)
                 Config = config;

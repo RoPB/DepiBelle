@@ -33,15 +33,18 @@
     <Folder Include="Models\" />
     <Folder Include="Services\Authentication\" />
     <Folder Include="Services\Data\" />
-    <Folder Include="Configuration\" />
     <Folder Include="Utilities\" />
     <Folder Include="Extensions\" />
     <Folder Include="Extensions\Converters\" />
     <Folder Include="Services\Data\LocalData\" />
+    <Folder Include="Services\Config\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />
     <Compile Remove="Models\Sale.cs" />
+    <Compile Remove="Configuration\AuthenticationServiceConstants.cs" />
+    <Compile Remove="Configuration\DataServiceConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="DesignTimeData.json" />

@@ -7,7 +7,7 @@ namespace DepiBelle.Services.Data
 {
     public interface IDataService<T> where T : Entity
     {
-        bool Initialize(Config config);
+        bool Initialize(DataServiceConfig config);
 
         Task<List<T>> GetAll(string token = null);
 
