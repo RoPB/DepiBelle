@@ -22,6 +22,9 @@ namespace DepiBelle.ViewModels
             _promotionsViewModel = _promotionsViewModel ?? DependencyContainer.Resolve<PromotionsViewModel>();
             _bodySelectionViewModel = _bodySelectionViewModel ?? DependencyContainer.Resolve<BodySelectionViewModel>();
             _purchaseViewModel = _purchaseViewModel ?? DependencyContainer.Resolve<PurchaseViewModel>();
+
+            _promotionsViewModel.ItemsAddedEventHandler += _purchaseViewModel.ItemsAddedHandler;
+            _bodySelectionViewModel.ItemsAddedEventHandler += _purchaseViewModel.ItemsAddedHandler;
         }
 
         public override async Task InitializeAsync(object navigationData)
@@ -32,5 +35,6 @@ namespace DepiBelle.ViewModels
             await _purchaseViewModel.InitializeAsync();
             IsLoading = false;
         }
+
     }
 }

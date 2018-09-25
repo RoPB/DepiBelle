@@ -4,5 +4,12 @@ namespace DepiBelle.Constants
     public static class Constants
     {
         public static readonly string LOCAL_DATA_ORDER_KEY = "LASTORDER";
+
+        public static readonly string CATEGORY_HEAD = "cabeza";
+        public static readonly string CATEGORY_BODY = "torso";
+        public static readonly string CATEGORY_PELVIS = "pelvis";
+        public static readonly string CATEGORY_ARM = "brazo";
+        public static readonly string CATEGORY_LEG = "pierna";
+
     }
 }

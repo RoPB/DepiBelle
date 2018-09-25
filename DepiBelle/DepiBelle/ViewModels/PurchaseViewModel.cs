@@ -15,6 +15,10 @@ namespace DepiBelle.ViewModels
         private IDataService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
+        private string _itemsAdded = "";
+
+        public string ItemsAdded { get { return _itemsAdded; } set { SetPropertyValue(ref _itemsAdded, value); } }
+
         public PurchaseViewModel()
         {
             IsLoading = true;
@@ -25,8 +29,13 @@ namespace DepiBelle.ViewModels
 
         public override async Task InitializeAsync(object navigationData = null)
         {
-            await AddOrders();
             IsLoading = false;
+        }
+
+
+        public void ItemsAddedHandler(object sender, int itemsAdded)
+        {
+            ItemsAdded = ""+itemsAdded;
         }
 
         private async Task GetOrders()
@@ -64,7 +73,6 @@ namespace DepiBelle.ViewModels
                 else
                     await _localDataService.Remove(key);
             }
-
 
             await _localDataService.AddOrReplace<LocalDataOrder>(key, localDataOrder);
 

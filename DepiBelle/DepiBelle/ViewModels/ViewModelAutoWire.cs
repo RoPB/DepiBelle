@@ -33,6 +33,7 @@ namespace DepiBelle.ViewModels
             var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
             var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
 
+
             var viewModelType = Type.GetType(viewModelName);
             if (viewModelType == null)
             {

@@ -11,6 +11,8 @@ namespace DepiBelle.ViewModels
         private IConfigService _configService;
         private IDataService<Promotion> _promotionsDataService;
 
+        public EventHandler<int> ItemsAddedEventHandler { get; set; }
+
         public PromotionsViewModel()
         {
             IsLoading = true;

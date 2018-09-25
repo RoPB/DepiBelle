@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace DepiBelle.Views
 {
-    public partial class BodySelection : ContentPage
+    public partial class BodySelectionView : ContentPage
     {
-        public BodySelection()
+        public BodySelectionView()
         {
             InitializeComponent();
         }

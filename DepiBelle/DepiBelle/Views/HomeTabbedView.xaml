@@ -6,17 +6,18 @@
             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
             xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions" 
             Title="Depi Belle"
-            x:Class="DepiBelle.Views.HomeTabbedView">
+            x:Class="DepiBelle.Views.HomeTabbedView"
+            x:Name="HomeTabbedPage">
             
-            <views:BodySelection Title="Promos" 
+            <views:PromotionsView Title="Promos" 
                             Icon="outline_accessibility_new_white.png"
                             />
-            <views:BodySelection Title="Cuerpo" 
+            <views:BodySelectionView Title="Cuerpo" 
                             Icon="outline_accessibility_new_white.png"
                             />
-            <views:BodySelection Title="Pago"  
+            <views:PurchaseView Title="Pago"  
                             Icon="outline_accessibility_new_white.png"
-                            plugin:TabBadge.BadgeText="2"
+                            plugin:TabBadge.BadgeText="{Binding ItemsAdded}"
                             />
           
 </TabbedPage>
