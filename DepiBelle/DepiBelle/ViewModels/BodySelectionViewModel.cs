@@ -90,7 +90,9 @@ namespace DepiBelle.ViewModels
                 offersList = _legOffers;
             }
 
-            await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
+            //await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
+
+            await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
         }
     }
 }

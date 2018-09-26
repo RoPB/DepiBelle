@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DepiBelle.Models;
 using DepiBelle.Services.Data;
 using Firebase.Database;
+using Firebase.Database.Streaming;
 using Newtonsoft.Json;
 
 namespace DepiBelle.Droid.Services.GoogleFirebase.Data
@@ -12,6 +13,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
     public class FirebaseDataService<T> : IDataService<T> where T : EntityBase
     {
 
+        private IDisposable _subscriptor;
         private DataServiceConfig Config { get; set; }
         protected string Uri { get { return Config.Uri; } }
         protected string Key { get { return Config.Key; } }
@@ -142,21 +144,42 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             throw new NotImplementedException();
         }
 
-        public virtual bool Subscribe(Action<T> action, string token = null)
+
+        public virtual Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null)
         {
             try
             {
-                var items = new List<T>();
-
-                var client = CreateClient(token);
-
-                client.Child(Key).AsObservable<T>().Subscribe(elem =>
+                if (_subscriptor == null)
                 {
-                    action.Invoke(GetItem(elem));
-                });
+                    var items = new List<T>();
 
-                return true;
+                    var client = CreateClient(token);
 
+                    _subscriptor = client.Child(Key).AsObservable<T>().Subscribe(elem =>
+                    {
+                        var type = elem.EventType.Equals(FirebaseEventType.Delete)?SubscriptionEventType.Delete: SubscriptionEventType.InsertOrUpdate;
+
+                        action.Invoke(new ServiceSubscriberEventParam<T>(){ Item = GetItem(elem), Type= type });
+                    });
+                }
+
+                return Task.Run(() => true);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Task<bool> UnSubscribe()
+        {
+            try
+            {
+                if(_subscriptor!=null)
+                    _subscriptor.Dispose();
+
+                return Task.Run(() => true);
             }
             catch (Exception ex)
             {

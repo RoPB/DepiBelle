@@ -190,6 +190,40 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             }
         }
 
+        public override async Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null){
+
+            try
+            {
+                token = _authenticationService.Token;
+                return await base.Subscribe(action,token);
+            }
+            catch (FirebaseException fe)
+            {
+                if (fe.StatusCode.Equals(System.Net.HttpStatusCode.Unauthorized))
+                {
+                    try
+                    {
+                        await _authenticationService.RefreshSession();
+
+                        return await base.Subscribe(action,token);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    throw fe;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }

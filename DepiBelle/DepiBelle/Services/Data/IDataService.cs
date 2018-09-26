@@ -19,5 +19,9 @@ namespace DepiBelle.Services.Data
 
         Task<bool> RemoveAll(string token = null);
 
+        Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null);
+
+        Task<bool> UnSubscribe();
+
     }
 }

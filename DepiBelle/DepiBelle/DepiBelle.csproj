@@ -55,7 +55,7 @@
     <Folder Include="Extensions\Controls\" />
     <Folder Include="Models\Bindable\" />
     <Folder Include="Models\LocalData\" />
-    <Folder Include="Models\Service\" />
+    <Folder Include="Models\DataService\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />
