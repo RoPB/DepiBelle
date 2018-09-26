@@ -26,6 +26,8 @@ namespace DepiBelle.ViewModels
         {
             await Task.Run(() =>
             {
+                IsLoading = true;
+
                 var param = navigationData as List<Offer>;
 
                 Offers = new ObservableCollection<OfferListItem>();

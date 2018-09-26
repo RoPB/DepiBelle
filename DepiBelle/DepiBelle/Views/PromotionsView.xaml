@@ -3,8 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
+             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PromotionsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <Style x:Key="MainContainer" TargetType="FlexLayout">
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="JustifyContent" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+            </Style>
+            <Style x:Key="MainContent" TargetType="StackLayout">
+                <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="FlexLayout.Grow" Value="1"/>
+            </Style>
+            <Style x:Key="List" TargetType="controls:CustomListView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
+            </Style>
+            <Style x:Key="ListContent" TargetType="FlexLayout">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Label>PROMOTIONS</Label>
+        <FlexLayout Style="{StaticResource MainContainer}">
+           <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
+           <StackLayout  Style="{StaticResource MainContent}">
+                <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Promotions}">
+                    <controls:CustomListView.Header>
+                        
+                    </controls:CustomListView.Header>
+                     <controls:CustomListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
+                                        <Label Text="{Binding Name}" FontSize="35"/>
+                                        <Label Text="{Binding Description}" FontSize="25"/>
+                                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
+                                            <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
+                                            <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>
+                                            <Button Text="AGREGAR" 
+                                                IsVisible="{Binding Added,Converter={StaticResource InverseBoolConverter}}"
+                                                BackgroundColor="{StaticResource PrimaryLightColor}" 
+                                                TextColor="{StaticResource White}"
+                                                CornerRadius="20"
+                                                HorizontalOptions="EndAndExpand"/>
+                                            <Button Text="QUITAR" 
+                                                IsVisible="{Binding Added}"
+                                                BackgroundColor="Silver" 
+                                                TextColor="{StaticResource White}"
+                                                CornerRadius="20"
+                                                HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </ViewCell>
+                        </DataTemplate>
+                     </controls:CustomListView.ItemTemplate>
+                </controls:CustomListView>
+           </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

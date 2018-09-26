@@ -28,5 +28,22 @@
         "Added": false
       }
     ]
+  },
+  "PromotionsView.xaml": {
+    "IsLoading": false,
+    "Promotions": [
+      {
+        "Name": "PROMO 1",
+        "Price": "90",
+        "Description": "Pierna Entera + Cavado",
+        "Added": true
+      },
+      {
+        "Name": "PROMO 2",
+        "Price": "90",
+        "Description": "Pierna Entera + Cavado",
+        "Added": true
+      }
+    ]
   }
 }

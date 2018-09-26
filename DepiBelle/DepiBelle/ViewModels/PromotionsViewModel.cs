@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
@@ -10,6 +12,14 @@ namespace DepiBelle.ViewModels
     {
         private IConfigService _configService;
         private IDataService<Promotion> _promotionsDataService;
+
+        private ObservableCollection<PromotionListItem> _promotions;
+
+        public ObservableCollection<PromotionListItem> Promotions
+        {
+            get { return _promotions; }
+            set { SetPropertyValue(ref _promotions, value); }
+        }
 
         public EventHandler<int> ItemsAddedEventHandler { get; set; }
 
@@ -23,8 +33,14 @@ namespace DepiBelle.ViewModels
 
         public override async Task InitializeAsync(object navigationData=null)
         {
-            //var promotions = await _promotionsDataService.GetAll();
-            IsLoading = true;
+
+            var promotions = await _promotionsDataService.GetAll();
+
+            Promotions = new ObservableCollection<PromotionListItem>();
+
+            promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Name = p.Name, Description = p.Description, Price = p.Price }));
+
+            IsLoading = false;
         }
 
     }
