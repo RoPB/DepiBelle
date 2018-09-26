@@ -177,8 +177,11 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             try
             {
                 if(_subscriptor!=null)
+                {
                     _subscriptor.Dispose();
-
+                    _subscriptor = null;
+                }
+                    
                 return Task.Run(() => true);
             }
             catch (Exception ex)

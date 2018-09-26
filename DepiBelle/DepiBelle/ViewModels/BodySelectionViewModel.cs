@@ -44,6 +44,7 @@ namespace DepiBelle.ViewModels
             //await _offersDataService.Remove("A");
             //await _offersDataService.AddOrReplace(new Offer(){id="saracatanga",name="papada",price=100},false);
             //var offer = await _offersDataService.Get("A");
+            //await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
 
             var offers = await _offersDataService.GetAll();
             await ClasificateOrders(offers);
@@ -90,9 +91,7 @@ namespace DepiBelle.ViewModels
                 offersList = _legOffers;
             }
 
-            //await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
-
-            await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
+            await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
         }
     }
 }
