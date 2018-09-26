@@ -28,5 +28,11 @@ namespace DepiBelle.Models
             set;
         }
 
+        public bool Added
+        {
+            get;
+            set;
+        }
+
     }
 }

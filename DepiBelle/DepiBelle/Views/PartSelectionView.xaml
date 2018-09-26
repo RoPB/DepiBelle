@@ -33,16 +33,50 @@
         <FlexLayout Style="{StaticResource MainContainer}">
            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
            <StackLayout  Style="{StaticResource MainContent}">
+                <FlexLayout Padding="5" JustifyContent="Center" Direction="Column" HeightRequest="40" BackgroundColor="{StaticResource PrimaryLightColor}">
+                        <Label Text="Total" FlexLayout.AlignSelf="End" TextColor="{StaticResource White}"/>
+                        <Label Text="$0" FlexLayout.AlignSelf="End" TextColor="{StaticResource White}"/>
+                </FlexLayout>
                 <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Offers}">
                     <controls:CustomListView.Header>
-                        <Grid HeightRequest="40" BackgroundColor="Silver"/>
+                        
                     </controls:CustomListView.Header>
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
                                 <ViewCell>
                                     <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
                                         <Label Text="{Binding Name}" FontSize="35"/>
-                                        <Label Text="{Binding Price}" FlexLayout.AlignSelf="End" FontSize="25"/>
+                                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
+                                            <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
+                                            <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>
+                                            <AbsoluteLayout Margin="10,0">
+                                                <BoxView HeightRequest="1" Color="Silver" 
+                                                         HorizontalOptions="EndAndExpand" 
+                                                         AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                                         AbsoluteLayout.LayoutBounds="0,0.5,-1,-1"/>
+                                                <Label AbsoluteLayout.LayoutFlags="PositionProportional" 
+                                                       AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+                                                    <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="$" TextColor="Silver"></Span>
+                                                                <Span Text="{Binding Price}" TextColor="Silver"></Span>
+                                                            </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </AbsoluteLayout>
+                                            <Button Text="AGREGAR" 
+                                                IsVisible="{Binding Added,Converter={StaticResource InverseBoolConverter}}"
+                                                BackgroundColor="{StaticResource PrimaryLightColor}" 
+                                                TextColor="{StaticResource White}"
+                                                CornerRadius="20"
+                                                HorizontalOptions="EndAndExpand"/>
+                                            <Button Text="QUITAR" 
+                                                IsVisible="{Binding Added}"
+                                                BackgroundColor="Silver" 
+                                                TextColor="{StaticResource White}"
+                                                CornerRadius="20"
+                                                HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
                                     </FlexLayout>
                                 </ViewCell>
                         </DataTemplate>

@@ -4,11 +4,28 @@
     "Offers": [
       {
         "Name": "Bozo",
-        "Price": "$90"
+        "Price": "90",
+        "Added": true
       },
       {
         "Name": "Narinas",
-        "Price": "$180"
+        "Price": "90",
+        "Added": false
+      },
+      {
+        "Name": "Bozo",
+        "Price": "90",
+        "Added": true
+      },
+      {
+        "Name": "Narinas",
+        "Price": "90",
+        "Added": false
+      },
+      {
+        "Name": "Narinas",
+        "Price": "90",
+        "Added": false
       }
     ]
   }
