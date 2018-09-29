@@ -4,9 +4,15 @@
              x:Class="DepiBelle.App">
      <Application.Resources>
         <ResourceDictionary>
+            
+            <!-- COLORS -->
             <Color x:Key="PrimaryLightColor">#7A4983</Color>
             <Color x:Key="PrimaryDarkColor">#441F51</Color>
             <Color x:Key="White">#FFFF</Color>
+            
+            <!-- FONTS -->
+            <OnPlatform x:Key="Journal" x:TypeArguments="x:String" Android="fonts/Journal.ttf#Journal" />
+            
             <Style TargetType="ActivityIndicator">
                 <Setter Property="WidthRequest" Value="40"/>
                 <Setter Property="HeightRequest" Value="40"/>
@@ -15,6 +21,7 @@
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}"/>
             </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

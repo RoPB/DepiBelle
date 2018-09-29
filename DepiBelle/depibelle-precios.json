@@ -104,22 +104,22 @@
     },
     "promotions": {
       "P1": {
-        "name": "promo 1",
+        "name": "Promo 1",
         "price": 450,
         "description": "Pierna Entera + Cavado"
       },
       "P2": {
-        "name": "promo 2",
+        "name": "Promo 2",
         "price": 550,
         "description": "Pierna Entera + Cavado + Tiro de Cola"
       },
       "P3": {
-        "name": "promo 3",
+        "name": "Promo 3",
         "price": 390,
         "description": "Media Pierna + Bikini"
       },
       "P4": {
-        "name": "promo 4",
+        "name": "Promo 4",
         "price": 850,
         "description": "Cuerpo Entero"
       }
@@ -230,22 +230,22 @@
     },
     "promotions": {
       "P1": {
-        "name": "promo 1",
+        "name": "Promo 1",
         "price": 450,
         "description": "Pierna Entera + Cavado"
       },
       "P2": {
-        "name": "promo 2",
+        "name": "Promo 2",
         "price": 550,
         "description": "Pierna Entera + Cavado + Tiro de Cola"
       },
       "P3": {
-        "name": "promo 3",
+        "name": "Promo 3",
         "price": 390,
         "description": "Media Pierna + Bikini"
       },
       "P4": {
-        "name": "promo 4",
+        "name": "Promo 4",
         "price": 850,
         "description": "Cuerpo Entero"
       }
