@@ -42,21 +42,21 @@
                 <FlexLayout JustifyContent="End" BackgroundColor="Transparent" Direction="Row" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.4,0,1,1">
                     <FlexLayout FlexLayout.Basis="50%" JustifyContent="End" BackgroundColor="Transparent" Direction="Column">
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="20%">
-                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="#80FFFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="cabeza"/>
+                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="cabeza"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="32%"/>
                         </FlexLayout>
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="25%">
-                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="#80FFFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="brazo"/>
-                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="#80AAFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="torso"/>
-                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="#80FFFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="brazo"/>
+                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="brazo"/>
+                            <Button Text="" FlexLayout.Basis="45%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="torso"/>
+                            <Button Text="" FlexLayout.Basis="27%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="brazo"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="9%"/>
                         </FlexLayout>
                         <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="10%">
-                            <Button Text="" FlexLayout.Basis="60%" BackgroundColor="#80BBFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="pelvis"/>
+                            <Button Text="" FlexLayout.Basis="60%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="pelvis"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="22%"/>
                         </FlexLayout>
-                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="45%">
-                            <Button Text="" FlexLayout.Basis="57%" BackgroundColor="#80AAFFFF" Command="{Binding BodyPartSelectionCommand}" CommandParameter="pierna"/>
+                        <FlexLayout JustifyContent="End" Direction="Row" FlexLayout.Basis="40%">
+                            <Button Text="" FlexLayout.Basis="57%" BackgroundColor="Transparent" Command="{Binding BodyPartSelectionCommand}" CommandParameter="pierna"/>
                             <BoxView BackgroundColor="Transparent" FlexLayout.Basis="25%"/>
                         </FlexLayout>
                     </FlexLayout>
