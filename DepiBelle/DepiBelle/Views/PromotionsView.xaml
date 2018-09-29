@@ -41,8 +41,8 @@
                         <DataTemplate>
                                 <ViewCell>
                                     <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
-                                        <Label Text="{Binding Name}" FontSize="35"/>
-                                        <Label Text="{Binding Description}" FontFamily="{StaticResource Journal}" FontSize="35"/>
+                                        <Label Text="{Binding Name}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
+                                        <Label Text="{Binding Description}" FontFamily="{StaticResource Journal-Regular}" FontSize="35"/>
                                         <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
                                             <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
                                             <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>

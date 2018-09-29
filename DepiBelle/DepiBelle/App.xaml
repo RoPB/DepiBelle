@@ -11,7 +11,10 @@
             <Color x:Key="White">#FFFF</Color>
             
             <!-- FONTS -->
-            <OnPlatform x:Key="Journal" x:TypeArguments="x:String" Android="fonts/Journal.ttf#Journal" />
+            <OnPlatform x:Key="Journal-Regular" x:TypeArguments="x:String" Android="fonts/Journal-Regular.ttf#Journal-Regular" />
+            <OnPlatform x:Key="Museo-Regular" x:TypeArguments="x:String" Android="fonts/Museo-Regular.otf#Museo-Regular" />
+            <OnPlatform x:Key="Museo-Bold" x:TypeArguments="x:String" Android="fonts/Museo-Bold.otf#Museo-Bold" />
+            <OnPlatform x:Key="Museo-Bolder" x:TypeArguments="x:String" Android="fonts/Museo-Bolder.otf#Museo-Bolder" />
             
             <Style TargetType="ActivityIndicator">
                 <Setter Property="WidthRequest" Value="40"/>
