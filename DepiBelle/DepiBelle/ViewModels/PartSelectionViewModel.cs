@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DepiBelle.Models;
+using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
 {
     public class PartSelectionViewModel : ViewModelBase
     {
+        private static List<string> _selectedOffers = new List<string>();
         private ObservableCollection<OfferListItem> _offers;
+
+        public ICommand OfferSelectedCommand { get; set; }
 
         public ObservableCollection<OfferListItem> Offers
         {
@@ -19,8 +24,10 @@ namespace DepiBelle.ViewModels
 
         public PartSelectionViewModel()
         {
+            OfferSelectedCommand = new Command<OfferListItem>(async (offer) => await OfferSelected(offer));
             IsLoading = true;
         }
+
 
         public override async Task InitializeAsync(object navigationData = null)
         {
@@ -37,6 +44,11 @@ namespace DepiBelle.ViewModels
                 IsLoading = false;
             });
 
+        }
+
+        private async Task OfferSelected(OfferListItem offer)
+        {
+            offer.IsSelected = !offer.IsSelected;
         }
 
     }

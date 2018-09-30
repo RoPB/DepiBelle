@@ -5,7 +5,8 @@
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
-             x:Class="DepiBelle.Views.PromotionsView">
+             x:Class="DepiBelle.Views.PromotionsView"
+             x:Name="Promotions">
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
@@ -47,17 +48,21 @@
                                             <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
                                             <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>
                                             <Button Text="AGREGAR" 
-                                                IsVisible="{Binding Added,Converter={StaticResource InverseBoolConverter}}"
+                                                IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
                                                 BackgroundColor="{StaticResource PrimaryLightColor}" 
                                                 TextColor="{StaticResource White}"
                                                 CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"/>
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding Source={x:Reference Promotions},Path=BindingContext.PromotionSelectedCommand}"
+                                                CommandParameter="{Binding .}"/>
                                             <Button Text="QUITAR" 
-                                                IsVisible="{Binding Added}"
+                                                IsVisible="{Binding IsSelected}"
                                                 BackgroundColor="Silver" 
                                                 TextColor="{StaticResource White}"
                                                 CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"/>
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding Source={x:Reference Promotions},Path=BindingContext.PromotionSelectedCommand}"
+                                                CommandParameter="{Binding .}"/>
                                         </StackLayout>
                                     </FlexLayout>
                                 </ViewCell>

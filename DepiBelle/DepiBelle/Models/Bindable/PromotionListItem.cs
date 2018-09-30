@@ -18,10 +18,5 @@ namespace DepiBelle.Models
             get;
             set;
         }
-        public bool Added
-        {
-            get;
-            set;
-        }
     }
 }

@@ -6,6 +6,7 @@ namespace DepiBelle.Models
 {
     public class BindableBase : INotifyPropertyChanged
     {
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         protected void RaisePropertyChanged([CallerMemberName] string propertyName = "")
         {

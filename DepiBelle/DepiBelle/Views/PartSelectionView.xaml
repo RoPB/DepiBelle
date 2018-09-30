@@ -5,7 +5,8 @@
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
-             x:Class="DepiBelle.Views.PartSelectionView">
+             x:Class="DepiBelle.Views.PartSelectionView"
+             x:Name="PartSelection">
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
@@ -45,7 +46,7 @@
                         <DataTemplate>
                                 <ViewCell>
                                     <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
-                                        <Label Text="{Binding Name}" FontSize="35"/>
+                                        <Label Text="{Binding Name}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
                                         <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
                                             <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
                                             <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>
@@ -65,17 +66,21 @@
                                                 </Label>
                                             </AbsoluteLayout>
                                             <Button Text="AGREGAR" 
-                                                IsVisible="{Binding Added,Converter={StaticResource InverseBoolConverter}}"
+                                                IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
                                                 BackgroundColor="{StaticResource PrimaryLightColor}" 
                                                 TextColor="{StaticResource White}"
                                                 CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"/>
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding Source={x:Reference PartSelection},Path=BindingContext.OfferSelectedCommand}"
+                                                CommandParameter="{Binding .}"/>
                                             <Button Text="QUITAR" 
-                                                IsVisible="{Binding Added}"
+                                                IsVisible="{Binding IsSelected}"
                                                 BackgroundColor="Silver" 
                                                 TextColor="{StaticResource White}"
                                                 CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"/>
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding Source={x:Reference PartSelection},Path=BindingContext.OfferSelectedCommand}"
+                                                CommandParameter="{Binding .}"/>
                                         </StackLayout>
                                     </FlexLayout>
                                 </ViewCell>
