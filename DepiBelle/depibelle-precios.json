@@ -2,102 +2,102 @@
   "dev":{
     "offers": {
       "A": {
-        "name": "bozo",
+        "name": "Bozo",
         "price": 90,
         "category": "cabeza"
       },
       "B": {
-        "name": "ceja",
+        "name": "Ceja",
         "price": 130,
         "category": "cabeza"
       },
       "C": {
-        "name": "entrecejas",
+        "name": "Entrecejas",
         "price": 50,
         "category": "cabeza"
       },
       "D": {
-        "name": "narinas",
+        "name": "Narinas",
         "price": 90,
         "category": "cabeza"
       },
       "E": {
-        "name": "patillas",
+        "name": "Patillas",
         "price": 90,
         "category": "cabeza"
       },
       "F": {
-        "name": "menton",
+        "name": "Menton",
         "price": 90,
         "category": "cabeza"
       },
       "Q": {
-        "name": "abdomen completo",
+        "name": "Abdomen completo",
         "price": 230,
         "category": "torso"
       },
       "P": {
-        "name": "tira ombligo",
+        "name": "Tira ombligo",
         "price": 140,
         "category": "torso"
       },
       "R": {
-        "name": "baja espalda",
+        "name": "Baja espalda",
         "price": 150,
         "category": "torso"
       },
       "S": {
-        "name": "espalda completa",
+        "name": "Espalda completa",
         "price": 230,
         "category": "torso"
       },
       "G": {
-        "name": "axilas",
+        "name": "Axilas",
         "price": 140,
         "category": "brazo/torso"
       },
       "N": {
-        "name": "brazo completo",
+        "name": "Brazo completo",
         "price": 250,
         "category": "brazo"
       },
       "O": {
-        "name": "medio brazo",
+        "name": "Medio brazo",
         "price": 200,
         "category": "brazo"
       },
       "I": {
-        "name": "cavado completo (s tira)",
+        "name": "Cavado completo (s tira)",
         "price": 320,
         "category": "pelvis"
       },
       "J": {
-        "name": "tira de ano",
+        "name": "Tira de ano",
         "price": 140,
         "category": "pelvis"
       },
       "K": {
-        "name": "gluteos",
+        "name": "Gluteos",
         "price": 150,
         "category": "pelvis"
       },
       "H": {
-        "name": "bikini",
+        "name": "Bikini",
         "price": 150,
         "category": "pelvis"
       },
       "L": {
-        "name": "media pierna",
+        "name": "Media pierna",
         "price": 260,
         "category": "pierna"
       },
       "M": {
-        "name": "pierna entera (c bikini)",
+        "name": "Pierna entera (c bikini)",
         "price": 390,
         "category": "pierna"
       },
       "T": {
-        "name": "empeine",
+        "name": "Empeine",
         "price": 100,
         "category": "pierna"
       }
@@ -128,102 +128,102 @@
   "production": {
     "offers": {
       "A": {
-        "name": "bozo",
+        "name": "Bozo",
         "price": 90,
         "category": "cabeza"
       },
       "B": {
-        "name": "ceja",
+        "name": "Ceja",
         "price": 130,
         "category": "cabeza"
       },
       "C": {
-        "name": "entrecejas",
+        "name": "Entrecejas",
         "price": 50,
         "category": "cabeza"
       },
       "D": {
-        "name": "narinas",
+        "name": "Narinas",
         "price": 90,
         "category": "cabeza"
       },
       "E": {
-        "name": "patillas",
+        "name": "Patillas",
         "price": 90,
         "category": "cabeza"
       },
       "F": {
-        "name": "menton",
+        "name": "Menton",
         "price": 90,
         "category": "cabeza"
       },
       "Q": {
-        "name": "abdomen completo",
+        "name": "Abdomen completo",
         "price": 230,
         "category": "torso"
       },
       "P": {
-        "name": "tira ombligo",
+        "name": "Tira ombligo",
         "price": 140,
         "category": "torso"
       },
       "R": {
-        "name": "baja espalda",
+        "name": "Baja espalda",
         "price": 150,
         "category": "torso"
       },
       "S": {
-        "name": "espalda completa",
+        "name": "Espalda completa",
         "price": 230,
         "category": "torso"
       },
       "G": {
-        "name": "axilas",
+        "name": "Axilas",
         "price": 140,
         "category": "brazo/torso"
       },
       "N": {
-        "name": "brazo completo",
+        "name": "Brazo completo",
         "price": 250,
         "category": "brazo"
       },
       "O": {
-        "name": "medio brazo",
+        "name": "Medio brazo",
         "price": 200,
         "category": "brazo"
       },
       "I": {
-        "name": "cavado completo (s tira)",
+        "name": "Cavado completo (s tira)",
         "price": 320,
         "category": "pelvis"
       },
       "J": {
-        "name": "tira de ano",
+        "name": "Tira de ano",
         "price": 140,
         "category": "pelvis"
       },
       "K": {
-        "name": "gluteos",
+        "name": "Gluteos",
         "price": 150,
         "category": "pelvis"
       },
       "H": {
-        "name": "bikini",
+        "name": "Bikini",
         "price": 150,
         "category": "pelvis"
       },
       "L": {
-        "name": "media pierna",
+        "name": "Media pierna",
         "price": 260,
         "category": "pierna"
       },
       "M": {
-        "name": "pierna entera (c bikini)",
+        "name": "Pierna entera (c bikini)",
         "price": 390,
         "category": "pierna"
       },
       "T": {
-        "name": "empeine",
+        "name": "Empeine",
         "price": 100,
         "category": "pierna"
       }
