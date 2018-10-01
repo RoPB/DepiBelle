@@ -65,6 +65,7 @@ namespace DepiBelle.ViewModels
         private async Task PromotionSelected(PromotionListItem promotion)
         {
             promotion.IsSelected = !promotion.IsSelected;
+            ItemsAddedEventHandler.Invoke(this, promotion.IsSelected);
         }
 
     }

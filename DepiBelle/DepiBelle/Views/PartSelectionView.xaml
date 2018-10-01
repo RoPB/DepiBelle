@@ -34,10 +34,6 @@
         <FlexLayout Style="{StaticResource MainContainer}">
            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
            <StackLayout  Style="{StaticResource MainContent}">
-                <FlexLayout Padding="5" JustifyContent="Center" Direction="Column" HeightRequest="40" BackgroundColor="{StaticResource PrimaryLightColor}">
-                        <Label Text="Total" FlexLayout.AlignSelf="End" TextColor="{StaticResource White}"/>
-                        <Label Text="$0" FlexLayout.AlignSelf="End" TextColor="{StaticResource White}"/>
-                </FlexLayout>
                 <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Offers}">
                     <controls:CustomListView.Header>
                         
