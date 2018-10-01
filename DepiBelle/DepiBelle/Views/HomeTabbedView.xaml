@@ -10,14 +10,14 @@
             x:Name="HomeTabbedPage">
             
             <views:PromotionsView Title="Promos" 
-                            Icon="outline_accessibility_new_white.png"
+                            Icon="ic_offer.png"
                             />
             <views:BodySelectionView Title="Cuerpo" 
-                            Icon="outline_accessibility_new_white.png"
+                            Icon="ic_body.png"
                             />
-            <views:PurchaseView Title="Pago"  
-                            Icon="outline_accessibility_new_white.png"
-                            plugin:TabBadge.BadgeText="{Binding ItemsAdded}"
+            <views:PurchaseView Title="Compra"  
+                            Icon="ic_cart.png"
+                            plugin:TabBadge.BadgeText="{Binding StrItemsAdded}"
                             />
           
 </TabbedPage>

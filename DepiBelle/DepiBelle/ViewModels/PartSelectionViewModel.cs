@@ -14,6 +14,7 @@ namespace DepiBelle.ViewModels
         private ObservableCollection<OfferListItem> _offers;
 
         public ICommand OfferSelectedCommand { get; set; }
+        public EventHandler<bool> ItemsAddedEventHandler { get; set; }
 
         public ObservableCollection<OfferListItem> Offers
         {
@@ -39,7 +40,13 @@ namespace DepiBelle.ViewModels
 
                 Offers = new ObservableCollection<OfferListItem>();
 
-                param.ForEach(o => Offers.Add(new OfferListItem() { Name = o.Name, Price = o.Price }));
+                param.ForEach(o => Offers.Add(new OfferListItem()
+                {
+                    Id = o.Id,
+                    Name = o.Name,
+                    Price = o.Price,
+                    IsSelected = _selectedOffers.Contains(o.Id)
+                }));
 
                 IsLoading = false;
             });
@@ -49,6 +56,17 @@ namespace DepiBelle.ViewModels
         private async Task OfferSelected(OfferListItem offer)
         {
             offer.IsSelected = !offer.IsSelected;
+            if (offer.IsSelected)
+            {
+                _selectedOffers.Add(offer.Id);
+                ItemsAddedEventHandler.Invoke(this, true);
+            }
+            else
+            {
+                _selectedOffers.Remove(offer.Id);
+                ItemsAddedEventHandler.Invoke(this, false);
+            }
+
         }
 
     }

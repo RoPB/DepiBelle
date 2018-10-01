@@ -23,7 +23,7 @@ namespace DepiBelle.Extensions
 
         #endregion
 
-        public CustomListView() : base(ListViewCachingStrategy.RecycleElement)
+        public CustomListView()// : base(ListViewCachingStrategy.RecycleElement)
         {
 
             this.ItemSelected += CustomListView_ItemSelected;

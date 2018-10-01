@@ -6,6 +6,7 @@ using System.Windows.Input;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
+using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Navigation;
 using DepiBelle.ViewModels.Modals;
 using Xamarin.Forms;
@@ -16,6 +17,7 @@ namespace DepiBelle.ViewModels
     {
         private IConfigService _configService;
         private INavigationService _navigationService;
+        private IDialogService _dialogService;
         private IDataService<Offer> _offersDataService;
 
         private List<Offer> _headOffers = new List<Offer>();
@@ -25,7 +27,7 @@ namespace DepiBelle.ViewModels
         private List<Offer> _legOffers = new List<Offer>();
 
         public ICommand BodyPartSelectionCommand { get; set; }
-        public EventHandler<int> ItemsAddedEventHandler { get; set; } 
+        public EventHandler<bool> ItemsAddedEventHandler { get; set; }
 
         public BodySelectionViewModel()
         {
@@ -35,6 +37,7 @@ namespace DepiBelle.ViewModels
 
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
+            _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataService<Offer>>();
             _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
         }
@@ -45,16 +48,29 @@ namespace DepiBelle.ViewModels
             //await _offersDataService.AddOrReplace(new Offer(){id="saracatanga",name="papada",price=100},false);
             //var offer = await _offersDataService.Get("A");
             //await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
+            try
+            {
 
-            var offers = await _offersDataService.GetAll();
-            await ClasificateOrders(offers);
+                var offers = await _offersDataService.GetAll();
+                await ClasificateOrders(offers);
 
-            IsLoading = false;
+
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowAlertAsync("Se produjo un problema en la descarga de datos (OFERTAS)", "ERROR", "OK");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+
+
         }
 
         private async Task ClasificateOrders(List<Offer> offers)
         {
-            await Task.Run(() => 
+            await Task.Run(() =>
             {
 
                 _headOffers.AddRange(offers.Where(o => o.Category.Contains(Constants.Constants.CATEGORY_HEAD)).ToList());
@@ -72,7 +88,7 @@ namespace DepiBelle.ViewModels
 
             if (bodyPart.Equals(Constants.Constants.CATEGORY_HEAD))
             {
-                offersList=_headOffers;
+                offersList = _headOffers;
             }
             else if (bodyPart.Equals(Constants.Constants.CATEGORY_BODY))
             {
@@ -91,7 +107,8 @@ namespace DepiBelle.ViewModels
                 offersList = _legOffers;
             }
 
-            await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
+            var partSelectionViewModel = await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
+            (partSelectionViewModel as PartSelectionViewModel).ItemsAddedEventHandler = ItemsAddedEventHandler;
         }
     }
 }

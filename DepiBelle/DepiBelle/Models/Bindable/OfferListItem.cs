@@ -3,6 +3,11 @@ namespace DepiBelle.Models
 {
     public class OfferListItem:BaseListItem
     {
+        public string Id
+        {
+            get;
+            set;
+        }
 
         public string Name
         {

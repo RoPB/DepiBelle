@@ -3,6 +3,12 @@ namespace DepiBelle.Models
 {
     public class PromotionListItem:BaseListItem
     {
+        public string Id
+        {
+            get;
+            set;
+        }
+
         public string Name
         {
             get;

@@ -15,9 +15,10 @@ namespace DepiBelle.ViewModels
         private IDataService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
-        private string _itemsAdded = "";
+        private string _strItemsAdded = "";
+        private int _itemsAdded = 0;
 
-        public string ItemsAdded { get { return _itemsAdded; } set { SetPropertyValue(ref _itemsAdded, value); } }
+        public string StrItemsAdded { get { return _strItemsAdded; } set { SetPropertyValue(ref _strItemsAdded, value); } }
 
         public PurchaseViewModel()
         {
@@ -33,9 +34,10 @@ namespace DepiBelle.ViewModels
         }
 
 
-        public void ItemsAddedHandler(object sender, int itemsAdded)
+        public void ItemsAddedHandler(object sender, bool itemAdded)
         {
-            ItemsAdded = ""+itemsAdded;
+            _itemsAdded += itemAdded?1:-1;
+            StrItemsAdded = _itemsAdded==0?string.Empty:""+_itemsAdded;
         }
 
         private async Task GetOrders()

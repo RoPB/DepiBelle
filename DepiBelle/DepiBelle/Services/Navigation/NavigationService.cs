@@ -15,12 +15,12 @@ namespace DepiBelle.Services.Navigation
             await NavigateToAsync<HomeTabbedViewModel>();
         }
 
-        public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
+        public Task<ViewModelBase> NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
         {
             return InternalNavigateToAsync(typeof(TViewModel), null);
         }
 
-        public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
+        public Task<ViewModelBase> NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
         {
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
         }
@@ -32,7 +32,7 @@ namespace DepiBelle.Services.Navigation
             await (navigationPage.CurrentPage.BindingContext as ViewModelBase).Refresh();
         }
 
-        private async Task InternalNavigateToAsync(Type viewModelType, object parameter)
+        private async Task<ViewModelBase> InternalNavigateToAsync(Type viewModelType, object parameter)
         {
             Page page = CreatePage(viewModelType, parameter);
             object viewModel = DependencyContainer.Resolve(viewModelType);
@@ -60,6 +60,8 @@ namespace DepiBelle.Services.Navigation
                 await baseViewModel.InitializeAsync(parameter);
             else
                 await baseViewModel.Refresh();
+
+            return baseViewModel;
         }
 
         private Page CreatePage(Type viewModelType, object parameter)

@@ -120,7 +120,15 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\body.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\outline_accessibility_new_white.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_body.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_cart.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
+using DepiBelle.Services.Dialog;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
@@ -14,6 +15,7 @@ namespace DepiBelle.ViewModels
     {
         private IConfigService _configService;
         private IDataService<Promotion> _promotionsDataService;
+        private IDialogService _dialogService;
 
         private ObservableCollection<PromotionListItem> _promotions;
 
@@ -25,27 +27,39 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _promotions, value); }
         }
 
-        public EventHandler<int> ItemsAddedEventHandler { get; set; }
+        public EventHandler<bool> ItemsAddedEventHandler { get; set; }
 
         public PromotionsViewModel()
         {
             IsLoading = true;
             PromotionSelectedCommand = new Command<PromotionListItem>(async (promotion) => await PromotionSelected(promotion));
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
+            _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataService<Promotion>>();
             _promotionsDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Promotions });
         }
 
-        public override async Task InitializeAsync(object navigationData=null)
+        public override async Task InitializeAsync(object navigationData = null)
         {
+            try
+            {
 
-            var promotions = await _promotionsDataService.GetAll();
+                var promotions = await _promotionsDataService.GetAll();
 
-            Promotions = new ObservableCollection<PromotionListItem>();
+                Promotions = new ObservableCollection<PromotionListItem>();
 
-            promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Name = p.Name, Description = p.Description, Price = p.Price }));
+                promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Id = p.Id, Name = p.Name, Description = p.Description, Price = p.Price }));
 
-            IsLoading = false;
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowAlertAsync("Se produjo un problema en la descarga de datos (PROMOCIONES)", "ERROR", "OK");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+
         }
 
         private async Task PromotionSelected(PromotionListItem promotion)
