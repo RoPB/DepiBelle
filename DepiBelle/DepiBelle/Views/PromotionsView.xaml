@@ -38,31 +38,7 @@
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
                                 <ViewCell>
-                                    <listDataTemplate:PromotionListDataTemplate />
-                                    <!--<FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
-                                        <Label Text="{Binding Name}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
-                                        <Label Text="{Binding Description}" FontFamily="{StaticResource Journal-Regular}" FontSize="35"/>
-                                        <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
-                                            <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
-                                            <Label Text="{Binding Price}" FontSize="25" VerticalOptions="Center"/>
-                                            <Button Text="AGREGAR" 
-                                                IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
-                                                BackgroundColor="{StaticResource PrimaryLightColor}" 
-                                                TextColor="{StaticResource White}"
-                                                CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"
-                                                Command="{Binding Source={x:Reference Promotions},Path=BindingContext.PromotionSelectedCommand}"
-                                                CommandParameter="{Binding .}"/>
-                                            <Button Text="QUITAR" 
-                                                IsVisible="{Binding IsSelected}"
-                                                BackgroundColor="Silver" 
-                                                TextColor="{StaticResource White}"
-                                                CornerRadius="20"
-                                                HorizontalOptions="EndAndExpand"
-                                                Command="{Binding Source={x:Reference Promotions},Path=BindingContext.PromotionSelectedCommand}"
-                                                CommandParameter="{Binding .}"/>
-                                        </StackLayout>
-                                    </FlexLayout>-->
+                                    <listDataTemplate:PromotionListDataTemplate/>
                                 </ViewCell>
                         </DataTemplate>
                      </controls:CustomListView.ItemTemplate>

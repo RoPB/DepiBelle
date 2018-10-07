@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PurchaseView">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,6 +35,30 @@
         <FlexLayout Style="{StaticResource MainContainer}">
             <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
             <StackLayout Style="{StaticResource MainContent}">
+                <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Promotions}">
+                    <controls:CustomListView.Header>
+                        <Label Text="Promociones"/>
+                    </controls:CustomListView.Header>
+                     <controls:CustomListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <listDataTemplate:PromotionListDataTemplate/>
+                                </ViewCell>
+                        </DataTemplate>
+                     </controls:CustomListView.ItemTemplate>
+                </controls:CustomListView>
+                <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Offers}">
+                    <controls:CustomListView.Header>
+                        <Label Text="Ofertas"/>
+                    </controls:CustomListView.Header>
+                     <controls:CustomListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <listDataTemplate:OfferListDataTemplate/>
+                                </ViewCell>
+                        </DataTemplate>
+                     </controls:CustomListView.ItemTemplate>
+                </controls:CustomListView>
             </StackLayout>
         </FlexLayout>
     </ContentPage.Content>

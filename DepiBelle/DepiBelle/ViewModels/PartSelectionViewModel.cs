@@ -46,7 +46,8 @@ namespace DepiBelle.ViewModels
                     Id = o.Id,
                     Name = o.Name,
                     Price = o.Price,
-                    IsSelected = _selectedOffers.Contains(o.Id)
+                    IsSelected = _selectedOffers.Contains(o.Id),
+                    OnSelectedCommand = OfferSelectedCommand
                 }));
 
                 IsLoading = false;
