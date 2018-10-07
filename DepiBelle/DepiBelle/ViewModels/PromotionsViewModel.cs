@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
@@ -27,7 +28,7 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _promotions, value); }
         }
 
-        public EventHandler<bool> ItemsAddedEventHandler { get; set; }
+        public EventHandler<AffordableItem<Promotion>> ItemsAddedEventHandler { get; set; }
 
         public PromotionsViewModel()
         {
@@ -65,7 +66,17 @@ namespace DepiBelle.ViewModels
         private async Task PromotionSelected(PromotionListItem promotion)
         {
             promotion.IsSelected = !promotion.IsSelected;
-            ItemsAddedEventHandler.Invoke(this, promotion.IsSelected);
+
+            var affordableItem = new AffordableItem<Promotion>()
+            {
+                Added = promotion.IsSelected,
+                Item = new Promotion(promotion.Id,
+                                     promotion.Name,
+                                     promotion.Description,
+                                     promotion.Price)
+            };
+
+            ItemsAddedEventHandler.Invoke(this, affordableItem);
         }
 
     }

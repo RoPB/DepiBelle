@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Models.EventArgs;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
@@ -14,7 +15,7 @@ namespace DepiBelle.ViewModels
         private ObservableCollection<OfferListItem> _offers;
 
         public ICommand OfferSelectedCommand { get; set; }
-        public EventHandler<bool> ItemsAddedEventHandler { get; set; }
+        public EventHandler<AffordableItem<Offer>> ItemsAddedEventHandler { get; set; }
 
         public ObservableCollection<OfferListItem> Offers
         {
@@ -56,16 +57,22 @@ namespace DepiBelle.ViewModels
         private async Task OfferSelected(OfferListItem offer)
         {
             offer.IsSelected = !offer.IsSelected;
+
+
+            var affordableItem = new AffordableItem<Offer>()
+            {
+                Added = offer.IsSelected,
+                Item = new Offer(offer.Id,
+                                 offer.Name,
+                                 offer.Price)
+            };
+
             if (offer.IsSelected)
-            {
                 _selectedOffers.Add(offer.Id);
-                ItemsAddedEventHandler.Invoke(this, true);
-            }
             else
-            {
                 _selectedOffers.Remove(offer.Id);
-                ItemsAddedEventHandler.Invoke(this, false);
-            }
+
+            ItemsAddedEventHandler.Invoke(this, affordableItem);
 
         }
 

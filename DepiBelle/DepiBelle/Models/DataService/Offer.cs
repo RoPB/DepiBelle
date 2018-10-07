@@ -33,5 +33,16 @@ namespace DepiBelle.Models
             set { Category = value; }
         }
 
+        public Offer()
+        {
+
+        }
+
+        public Offer(string id, string name, double price) : base(id)
+        {
+            this.Name = name;
+            this.Price = price;
+        }
+
     }
 }

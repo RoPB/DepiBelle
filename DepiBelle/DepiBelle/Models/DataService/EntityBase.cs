@@ -9,5 +9,13 @@ namespace DepiBelle.Models
         [JsonIgnore]
         public string Id { get; set; }
 
+        public EntityBase(){
+
+        }
+
+        public EntityBase(string id){
+            this.Id = id;
+        }
+
     }
 }

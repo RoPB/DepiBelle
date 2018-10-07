@@ -23,7 +23,7 @@ namespace DepiBelle.ViewModels
             _bodySelectionViewModel = _bodySelectionViewModel ?? DependencyContainer.Resolve<BodySelectionViewModel>();
             _purchaseViewModel = _purchaseViewModel ?? DependencyContainer.Resolve<PurchaseViewModel>();
 
-            _promotionsViewModel.ItemsAddedEventHandler += _purchaseViewModel.ItemsAddedHandler;
+            _promotionsViewModel.ItemsAddedEventHandler +=_purchaseViewModel.ItemsAddedHandler;
             _bodySelectionViewModel.ItemsAddedEventHandler += _purchaseViewModel.ItemsAddedHandler;
         }
 

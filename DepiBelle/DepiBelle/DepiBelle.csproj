@@ -57,6 +57,8 @@
     <Folder Include="Models\LocalData\" />
     <Folder Include="Models\DataService\" />
     <Folder Include="Extensions\Behaviors\" />
+    <Folder Include="Models\EventArgs\" />
+    <Folder Include="Views\ListDataTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

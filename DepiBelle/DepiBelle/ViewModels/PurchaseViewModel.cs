@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using DepiBelle.Models;
+using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
@@ -34,10 +36,19 @@ namespace DepiBelle.ViewModels
         }
 
 
-        public void ItemsAddedHandler(object sender, bool itemAdded)
+        public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
         {
-            _itemsAdded += itemAdded?1:-1;
-            StrItemsAdded = _itemsAdded==0?string.Empty:""+_itemsAdded;
+            HandleItemAdded(itemAdded.Added);
+        }
+
+        public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
+        {
+            HandleItemAdded(itemAdded.Added);
+        }
+
+        private void HandleItemAdded(bool added){
+            _itemsAdded += added ? 1 : -1;
+            StrItemsAdded = _itemsAdded == 0 ? string.Empty : "" + _itemsAdded;
         }
 
         private async Task GetOrders()

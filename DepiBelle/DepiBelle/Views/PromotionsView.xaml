@@ -5,6 +5,7 @@
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PromotionsView"
              x:Name="Promotions">
     <ContentPage.Resources>
@@ -24,10 +25,6 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="HasUnevenRows" Value="True"/>
             </Style>
-            <Style x:Key="ListContent" TargetType="FlexLayout">
-                <Setter Property="Margin" Value="30"/>
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -41,7 +38,11 @@
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
                                 <ViewCell>
-                                    <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
+                                    <listDataTemplate:PromotionListDataTemplate 
+                                        BindingContext="{Binding .}"
+                                        Jojo="1"
+                                        ParentBindingContext="{Binding Source={x:Reference Promotions},Path=BindingContext}"/>
+                                    <!--<FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
                                         <Label Text="{Binding Name}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
                                         <Label Text="{Binding Description}" FontFamily="{StaticResource Journal-Regular}" FontSize="35"/>
                                         <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
@@ -64,7 +65,7 @@
                                                 Command="{Binding Source={x:Reference Promotions},Path=BindingContext.PromotionSelectedCommand}"
                                                 CommandParameter="{Binding .}"/>
                                         </StackLayout>
-                                    </FlexLayout>
+                                    </FlexLayout>-->
                                 </ViewCell>
                         </DataTemplate>
                      </controls:CustomListView.ItemTemplate>
