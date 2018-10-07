@@ -28,6 +28,19 @@
                 <Setter Property="Margin" Value="30" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
+            <DataTemplate x:Key="offerDataTemplate">
+               <ViewCell>
+                   <listDataTemplate:OfferListDataTemplate/>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="promotionDataTemplate">
+                <ViewCell>
+                   <listDataTemplate:PromotionListDataTemplate/>
+                </ViewCell>
+            </DataTemplate>
+            <listDataTemplate:AffordableDataTemplateSelector x:Key="affordableDataTemplateSelector"
+                OfferDataTemplate="{StaticResource offerDataTemplate}"
+                PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -35,33 +48,10 @@
             <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
             <ScrollView Style="{StaticResource MainContent}">
                 <StackLayout>
-                    <controls:CustomListView Style="{StaticResource List}"  ItemsSource="{Binding Promotions}">
-                        <controls:CustomListView.Header>
-                            <StackLayout HorizontalOptions="Fill" BackgroundColor="Silver">
-                                <Label Text="Promociones"/>
-                            </StackLayout>
-                        </controls:CustomListView.Header>
-                         <controls:CustomListView.ItemTemplate>
-                            <DataTemplate>
-                                    <ViewCell>
-                                        <listDataTemplate:PromotionListDataTemplate/>
-                                    </ViewCell>
-                            </DataTemplate>
-                         </controls:CustomListView.ItemTemplate>
-                    </controls:CustomListView>
-                    <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Offers}">
-                        <controls:CustomListView.Header>
-                            <StackLayout HorizontalOptions="Fill" BackgroundColor="Silver">
-                                <Label Text="Ofertas"/>
-                            </StackLayout>
-                        </controls:CustomListView.Header>
-                         <controls:CustomListView.ItemTemplate>
-                            <DataTemplate>
-                                    <ViewCell>
-                                        <listDataTemplate:OfferListDataTemplate/>
-                                    </ViewCell>
-                            </DataTemplate>
-                         </controls:CustomListView.ItemTemplate>
+                    <controls:CustomListView 
+                        Style="{StaticResource List}"  
+                        ItemsSource="{Binding AffordableItems}"
+                        ItemTemplate="{StaticResource affordableDataTemplateSelector}">
                     </controls:CustomListView>
                 </StackLayout>
               </ScrollView>

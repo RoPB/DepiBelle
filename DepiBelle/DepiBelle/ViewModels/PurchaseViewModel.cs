@@ -65,14 +65,14 @@ namespace DepiBelle.ViewModels
         {
             HandleItemAdded(itemAdded.Added);
             var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, OfferSelectedCommand);
-            Promotions.Add(promotion);
+            AffordableItems.Add(promotion);
         }
 
         public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
         {
             HandleItemAdded(itemAdded.Added);
             var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
-            Offers.Add(offer);
+            AffordableItems.Add(offer);
         }
 
         private void HandleItemAdded(bool added)
