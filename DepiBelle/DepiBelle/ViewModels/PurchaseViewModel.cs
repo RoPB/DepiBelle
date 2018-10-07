@@ -73,8 +73,12 @@ namespace DepiBelle.ViewModels
 
         private void LoadAffordableItems(){
             AffordableItems.Clear();
-            AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
-            AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
+            if(_promotions.Count>0)
+                AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
+            if(_offers.Count>0)
+                AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
+
+            //TODO: sino mostrar que el carrito ta vacio
         }
 
         private void HandleItemAdded(bool added)
