@@ -4,15 +4,15 @@ using System.Collections.ObjectModel;
 
 namespace DepiBelle.Models.Bindable
 {
-    public class AffordableItemsCollection<T>:ObservableCollection<T>
+    public class AffordableItemsGrouped:ObservableCollection<BaseListItem>
     {
         public string Name { get; set; }
 
-        public AffordableItemsCollection(string name, List<T> affordableItems)
+        public AffordableItemsGrouped(string name, List<BaseListItem> affordableItems)
         {
             this.Name = name;
             if (affordableItems != null)
-                foreach (T item in affordableItems)
+                foreach (BaseListItem item in affordableItems)
                     Items.Add(item);
         }
     }

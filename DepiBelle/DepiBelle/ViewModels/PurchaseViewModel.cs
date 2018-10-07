@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Models.Bindable;
 using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -21,27 +23,15 @@ namespace DepiBelle.ViewModels
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
 
-        private ObservableCollection<BaseListItem> _affordableItems = new ObservableCollection<BaseListItem>();
-        public ObservableCollection<BaseListItem> AffordableItems
+        private ObservableCollection<AffordableItemsGrouped> _affordableItems = new ObservableCollection<AffordableItemsGrouped>();
+        public ObservableCollection<AffordableItemsGrouped> AffordableItems
         {
             get { return _affordableItems; }
             set { SetPropertyValue(ref _affordableItems, value); }
         }
 
-        private ObservableCollection<PromotionListItem> _promotions = new ObservableCollection<PromotionListItem>();
-        private ObservableCollection<OfferListItem> _offers = new ObservableCollection<OfferListItem>();
-
-        public ObservableCollection<PromotionListItem> Promotions
-        {
-            get { return _promotions; }
-            set { SetPropertyValue(ref _promotions, value); }
-        }
-
-        public ObservableCollection<OfferListItem> Offers
-        {
-            get { return _offers; }
-            set { SetPropertyValue(ref _offers, value); }
-        }
+        private List<BaseListItem> _promotions = new List<BaseListItem>();
+        private List<BaseListItem> _offers = new List<BaseListItem>();
 
         public ICommand PromotionSelectedCommand { get; set; }
         public ICommand OfferSelectedCommand { get; set; }
@@ -64,15 +54,27 @@ namespace DepiBelle.ViewModels
         public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
         {
             HandleItemAdded(itemAdded.Added);
+
             var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, OfferSelectedCommand);
-            AffordableItems.Add(promotion);
+            _promotions.Add(promotion);
+
+            LoadAffordableItems();
         }
 
         public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
         {
             HandleItemAdded(itemAdded.Added);
+
             var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
-            AffordableItems.Add(offer);
+            _offers.Add(offer);
+
+            LoadAffordableItems();
+        }
+
+        private void LoadAffordableItems(){
+            AffordableItems.Clear();
+            AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
+            AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
         }
 
         private void HandleItemAdded(bool added)

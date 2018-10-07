@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true" 
-             xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
-             xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" 
-             xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
-             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
-             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
-             x:Class="DepiBelle.Views.PurchaseView">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" viewModelBase:ViewModelAutoWire.AutoWireViewModel="true" xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" x:Class="DepiBelle.Views.PurchaseView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
@@ -29,18 +21,16 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
             <DataTemplate x:Key="offerDataTemplate">
-               <ViewCell>
-                   <listDataTemplate:OfferListDataTemplate/>
+                <ViewCell>
+                    <listDataTemplate:OfferListDataTemplate />
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="promotionDataTemplate">
                 <ViewCell>
-                   <listDataTemplate:PromotionListDataTemplate/>
+                    <listDataTemplate:PromotionListDataTemplate />
                 </ViewCell>
             </DataTemplate>
-            <listDataTemplate:AffordableDataTemplateSelector x:Key="affordableDataTemplateSelector"
-                OfferDataTemplate="{StaticResource offerDataTemplate}"
-                PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
+            <listDataTemplate:AffordableDataTemplateSelector x:Key="affordableDataTemplateSelector" OfferDataTemplate="{StaticResource offerDataTemplate}" PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -48,13 +38,19 @@
             <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
             <ScrollView Style="{StaticResource MainContent}">
                 <StackLayout>
-                    <controls:CustomListView 
-                        Style="{StaticResource List}"  
-                        ItemsSource="{Binding AffordableItems}"
-                        ItemTemplate="{StaticResource affordableDataTemplateSelector}">
+                    <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding AffordableItems}" ItemTemplate="{StaticResource affordableDataTemplateSelector}" IsGroupingEnabled="true">
+                        <controls:CustomListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout HorizontalOptions="Fill" BackgroundColor="{StaticResource PrimaryDarkColor}">
+                                        <Label Text="{Binding Name}" TextColor="{StaticResource White}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:CustomListView.GroupHeaderTemplate>
                     </controls:CustomListView>
                 </StackLayout>
-              </ScrollView>
+            </ScrollView>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
