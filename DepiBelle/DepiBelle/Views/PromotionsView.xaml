@@ -38,10 +38,7 @@
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
                                 <ViewCell>
-                                    <listDataTemplate:PromotionListDataTemplate 
-                                        BindingContext="{Binding .}"
-                                        Jojo="1"
-                                        ParentBindingContext="{Binding Source={x:Reference Promotions},Path=BindingContext}"/>
+                                    <listDataTemplate:PromotionListDataTemplate />
                                     <!--<FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
                                         <Label Text="{Binding Name}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
                                         <Label Text="{Binding Description}" FontFamily="{StaticResource Journal-Regular}" FontSize="35"/>

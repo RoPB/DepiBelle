@@ -49,7 +49,7 @@ namespace DepiBelle.ViewModels
 
                 Promotions = new ObservableCollection<PromotionListItem>();
 
-                promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Id = p.Id, Name = p.Name, Description = p.Description, Price = p.Price }));
+                promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Id = p.Id, Name = p.Name, Description = p.Description, Price = p.Price, OnSelectedCommand= PromotionSelectedCommand }));
 
             }
             catch (Exception ex)

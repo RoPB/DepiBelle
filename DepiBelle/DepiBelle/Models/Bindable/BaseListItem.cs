@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+
 namespace DepiBelle.Models
 {
     public class BaseListItem:BindableBase
@@ -9,6 +11,12 @@ namespace DepiBelle.Models
         {
             get { return _isSelected; }
             set{ _isSelected = value; RaisePropertyChanged(); }
+        }
+
+        public ICommand OnSelectedCommand
+        {
+            get;
+            set;
         }
     }
 }

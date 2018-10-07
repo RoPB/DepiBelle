@@ -24,7 +24,7 @@
                     TextColor="{StaticResource White}"
                     CornerRadius="20"
                     HorizontalOptions="EndAndExpand"
-                    Command="{Binding ParentBindingContext.PromotionSelectedCommand}"
+                    Command="{Binding OnSelectedCommand}"
                     CommandParameter="{Binding .}"/>
                 <Button Text="QUITAR" 
                     IsVisible="{Binding IsSelected}"
@@ -32,7 +32,7 @@
                     TextColor="{StaticResource White}"
                     CornerRadius="20"
                     HorizontalOptions="EndAndExpand"
-                    Command="{Binding ParentBindingContext.PromotionSelectedCommand}"
+                    Command="{Binding OnSelectedCommand}"
                     CommandParameter="{Binding .}"/>
             </StackLayout>
         </FlexLayout>
