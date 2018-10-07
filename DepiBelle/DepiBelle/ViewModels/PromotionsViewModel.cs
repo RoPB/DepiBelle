@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
@@ -8,6 +9,7 @@ using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
+using DepiBelle.Utilities;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
@@ -20,13 +22,13 @@ namespace DepiBelle.ViewModels
 
         private ObservableCollection<PromotionListItem> _promotions;
 
-        public ICommand PromotionSelectedCommand { get; set; }
-
         public ObservableCollection<PromotionListItem> Promotions
         {
             get { return _promotions; }
             set { SetPropertyValue(ref _promotions, value); }
         }
+
+        public ICommand PromotionSelectedCommand { get; set; }
 
         public EventHandler<AffordableItem<Promotion>> ItemsAddedEventHandler { get; set; }
 
@@ -46,10 +48,11 @@ namespace DepiBelle.ViewModels
             {
 
                 var promotions = await _promotionsDataService.GetAll();
+                promotions = promotions.OrderBy(p => p.Name).ToList();
 
                 Promotions = new ObservableCollection<PromotionListItem>();
 
-                promotions.ForEach(p => Promotions.Add(new PromotionListItem() { Id = p.Id, Name = p.Name, Description = p.Description, Price = p.Price, OnSelectedCommand= PromotionSelectedCommand }));
+                promotions.ForEach(p => Promotions.Add(ListItemMapper.GetPromotionListItem(p,false,PromotionSelectedCommand)));
 
             }
             catch (Exception ex)

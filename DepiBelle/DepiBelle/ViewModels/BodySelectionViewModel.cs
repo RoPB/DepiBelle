@@ -28,6 +28,7 @@ namespace DepiBelle.ViewModels
         private List<Offer> _legOffers = new List<Offer>();
 
         public ICommand BodyPartSelectionCommand { get; set; }
+
         public EventHandler<AffordableItem<Offer>> ItemsAddedEventHandler { get; set; }
 
         public BodySelectionViewModel()

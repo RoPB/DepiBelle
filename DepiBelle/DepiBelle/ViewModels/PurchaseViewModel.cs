@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DepiBelle.Models;
 using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
@@ -10,7 +11,7 @@ using DepiBelle.Utilities;
 
 namespace DepiBelle.ViewModels
 {
-	public class PurchaseViewModel:ViewModelBase
+    public class PurchaseViewModel : ViewModelBase
     {
 
         private IConfigService _configService;
@@ -19,6 +20,31 @@ namespace DepiBelle.ViewModels
 
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
+
+        private ObservableCollection<BaseListItem> _affordableItems = new ObservableCollection<BaseListItem>();
+        public ObservableCollection<BaseListItem> AffordableItems
+        {
+            get { return _affordableItems; }
+            set { SetPropertyValue(ref _affordableItems, value); }
+        }
+
+        private ObservableCollection<PromotionListItem> _promotions = new ObservableCollection<PromotionListItem>();
+        private ObservableCollection<OfferListItem> _offers = new ObservableCollection<OfferListItem>();
+
+        public ObservableCollection<PromotionListItem> Promotions
+        {
+            get { return _promotions; }
+            set { SetPropertyValue(ref _promotions, value); }
+        }
+
+        public ObservableCollection<OfferListItem> Offers
+        {
+            get { return _offers; }
+            set { SetPropertyValue(ref _offers, value); }
+        }
+
+        public ICommand PromotionSelectedCommand { get; set; }
+        public ICommand OfferSelectedCommand { get; set; }
 
         public string StrItemsAdded { get { return _strItemsAdded; } set { SetPropertyValue(ref _strItemsAdded, value); } }
 
@@ -35,18 +61,22 @@ namespace DepiBelle.ViewModels
             IsLoading = false;
         }
 
+        public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
+        {
+            HandleItemAdded(itemAdded.Added);
+            var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, OfferSelectedCommand);
+            Promotions.Add(promotion);
+        }
 
         public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
         {
             HandleItemAdded(itemAdded.Added);
+            var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
+            Offers.Add(offer);
         }
 
-        public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
+        private void HandleItemAdded(bool added)
         {
-            HandleItemAdded(itemAdded.Added);
-        }
-
-        private void HandleItemAdded(bool added){
             _itemsAdded += added ? 1 : -1;
             StrItemsAdded = _itemsAdded == 0 ? string.Empty : "" + _itemsAdded;
         }
@@ -79,7 +109,8 @@ namespace DepiBelle.ViewModels
 
             var isAnyLocalOrderSaved = await _localDataService.Contains(key);
 
-            if (isAnyLocalOrderSaved){
+            if (isAnyLocalOrderSaved)
+            {
                 localDataOrder = await _localDataService.Get<DataOrder>(key);
                 if (localDataOrder.Date.Equals(date))
                     ++localDataOrder.LastNumber;
