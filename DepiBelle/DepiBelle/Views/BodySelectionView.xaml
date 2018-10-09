@@ -14,6 +14,7 @@
                 <Setter Property="Direction" Value="Column"/>
                 <Setter Property="JustifyContent" Value="Center"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="MainContent" TargetType="AbsoluteLayout">
                 <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>

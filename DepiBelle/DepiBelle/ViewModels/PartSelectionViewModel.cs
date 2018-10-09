@@ -51,6 +51,11 @@ namespace DepiBelle.ViewModels
 
         }
 
+        public static void OfferRemoved(string offerId)
+        {
+            _selectedOffers.Remove(offerId);
+        }
+
         private async Task OfferSelected(OfferListItem offer)
         {
             offer.IsSelected = !offer.IsSelected;

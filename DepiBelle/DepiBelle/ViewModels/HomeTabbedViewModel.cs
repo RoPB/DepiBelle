@@ -25,6 +25,10 @@ namespace DepiBelle.ViewModels
 
             _promotionsViewModel.ItemsAddedEventHandler +=_purchaseViewModel.ItemsAddedHandler;
             _bodySelectionViewModel.ItemsAddedEventHandler += _purchaseViewModel.ItemsAddedHandler;
+
+            _purchaseViewModel.PromotionRemoved += _promotionsViewModel.PromotionRemovedHandler;
+            _purchaseViewModel.OfferRemoved += _bodySelectionViewModel.OfferRemovedHandler;
+
         }
 
         public override async Task InitializeAsync(object navigationData)

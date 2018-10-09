@@ -70,6 +70,11 @@ namespace DepiBelle.ViewModels
 
         }
 
+        public void OfferRemovedHandler(object sender, string offerId)
+        {
+            PartSelectionViewModel.OfferRemoved(offerId);
+        }
+
         private async Task ClasificateOrders(List<Offer> offers)
         {
             await Task.Run(() =>

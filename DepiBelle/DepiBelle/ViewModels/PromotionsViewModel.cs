@@ -66,6 +66,11 @@ namespace DepiBelle.ViewModels
 
         }
 
+        public void PromotionRemovedHandler(object sender, string promotionId)
+        {
+            Promotions.First(p => p.Id == promotionId).IsSelected = false;
+        }
+
         private async Task PromotionSelected(PromotionListItem promotion)
         {
             promotion.IsSelected = !promotion.IsSelected;

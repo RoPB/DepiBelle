@@ -9,6 +9,7 @@
             <Color x:Key="PrimaryLightColor">#7A4983</Color>
             <Color x:Key="PrimaryDarkColor">#441F51</Color>
             <Color x:Key="White">#FFFF</Color>
+            <Color x:Key="Grey">#dddfdf</Color>
             
             <!-- FONTS -->
             <OnPlatform x:Key="Journal-Regular" x:TypeArguments="x:String" Android="fonts/Journal-Regular.ttf#Journal-Regular" />

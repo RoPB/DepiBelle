@@ -7,6 +7,8 @@
                 <Setter Property="Direction" Value="Column" />
                 <Setter Property="JustifyContent" Value="Center" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="MainContent" TargetType="ScrollView">
                 <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}" />
@@ -36,14 +38,15 @@
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource MainContainer}">
             <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
+            <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource Grey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyAffordableItemAdded}"/>
             <ScrollView Style="{StaticResource MainContent}">
                 <StackLayout>
                     <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding AffordableItems}" ItemTemplate="{StaticResource affordableDataTemplateSelector}" IsGroupingEnabled="true">
                         <controls:CustomListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout HorizontalOptions="Fill" BackgroundColor="{StaticResource PrimaryDarkColor}">
-                                        <Label Text="{Binding Name}" TextColor="{StaticResource White}" />
+                                    <StackLayout Padding="10" HorizontalOptions="Fill" BackgroundColor="{StaticResource Grey}">
+                                        <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryDarkColor}" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

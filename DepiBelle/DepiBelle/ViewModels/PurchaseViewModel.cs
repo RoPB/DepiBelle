@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
@@ -10,6 +11,7 @@ using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Utilities;
+using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
 {
@@ -22,6 +24,9 @@ namespace DepiBelle.ViewModels
 
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
+        private List<BaseListItem> _promotions = new List<BaseListItem>();
+        private List<BaseListItem> _offers = new List<BaseListItem>();
+        private bool _isNoAnyAffordableItemAdded = false;
 
         private ObservableCollection<AffordableItemsGrouped> _affordableItems = new ObservableCollection<AffordableItemsGrouped>();
         public ObservableCollection<AffordableItemsGrouped> AffordableItems
@@ -30,11 +35,16 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _affordableItems, value); }
         }
 
-        private List<BaseListItem> _promotions = new List<BaseListItem>();
-        private List<BaseListItem> _offers = new List<BaseListItem>();
+        public bool IsNoAnyAffordableItemAdded
+        {
+            get { return _isNoAnyAffordableItemAdded; }
+            set { SetPropertyValue(ref _isNoAnyAffordableItemAdded, value); }
+        }
 
         public ICommand PromotionSelectedCommand { get; set; }
         public ICommand OfferSelectedCommand { get; set; }
+        public EventHandler<string> PromotionRemoved { get; set; }
+        public EventHandler<string> OfferRemoved { get; set; }
 
         public string StrItemsAdded { get { return _strItemsAdded; } set { SetPropertyValue(ref _strItemsAdded, value); } }
 
@@ -44,47 +54,84 @@ namespace DepiBelle.ViewModels
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
+            PromotionSelectedCommand = new Command<PromotionListItem>(PromotionSelected);
+            OfferSelectedCommand = new Command<OfferListItem>(OfferSelected);
         }
 
         public override async Task InitializeAsync(object navigationData = null)
         {
             IsLoading = false;
+            IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
         }
+
+        void PromotionSelected(PromotionListItem promotion)
+        {
+            _promotions.Remove(promotion);
+            HandleItemsAddedBadge(false);
+            LoadAffordableItems();
+            PromotionRemoved.Invoke(this, promotion.Id);
+
+        }
+
+        void OfferSelected(OfferListItem offer)
+        {
+            _offers.Remove(offer);
+            HandleItemsAddedBadge(false);
+            LoadAffordableItems();
+            OfferRemoved.Invoke(this, offer.Id);
+        }
+
 
         public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
         {
-            HandleItemAdded(itemAdded.Added);
+            HandleItemsAddedBadge(itemAdded.Added);
 
-            var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, OfferSelectedCommand);
-            _promotions.Add(promotion);
+            if (itemAdded.Added)
+            {
+                var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, PromotionSelectedCommand);
+                _promotions.Add(promotion);
+            }
+            else
+                _promotions.RemoveAll(p => ((PromotionListItem)p).Id == itemAdded.Item.Id);
 
             LoadAffordableItems();
         }
 
         public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
         {
-            HandleItemAdded(itemAdded.Added);
+            HandleItemsAddedBadge(itemAdded.Added);
 
-            var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
-            _offers.Add(offer);
+            if (itemAdded.Added)
+            {
+                var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
+                _offers.Add(offer);
+            }
+            else
+                _offers.RemoveAll(o => ((OfferListItem)o).Id == itemAdded.Item.Id);
 
             LoadAffordableItems();
         }
 
-        private void LoadAffordableItems(){
-            AffordableItems.Clear();
-            if(_promotions.Count>0)
-                AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
-            if(_offers.Count>0)
-                AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
 
-            //TODO: sino mostrar que el carrito ta vacio
-        }
-
-        private void HandleItemAdded(bool added)
+        void HandleItemsAddedBadge(bool added)
         {
             _itemsAdded += added ? 1 : -1;
             StrItemsAdded = _itemsAdded == 0 ? string.Empty : "" + _itemsAdded;
+        }
+
+        private void LoadAffordableItems()
+        {
+            AffordableItems.Clear();
+
+            _promotions = _promotions.OrderBy(p => ((PromotionListItem)p).Name).ToList();
+            _offers = _offers.OrderBy(o => ((OfferListItem)o).Name).ToList();
+
+            if (_promotions.Count > 0)
+                AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
+            if (_offers.Count > 0)
+                AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
+
+            IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
         }
 
         private async Task GetOrders()
