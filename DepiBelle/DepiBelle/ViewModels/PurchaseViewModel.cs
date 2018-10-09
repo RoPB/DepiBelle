@@ -64,24 +64,6 @@ namespace DepiBelle.ViewModels
             IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
         }
 
-        void PromotionSelected(PromotionListItem promotion)
-        {
-            _promotions.Remove(promotion);
-            HandleItemsAddedBadge(false);
-            LoadAffordableItems();
-            PromotionRemoved.Invoke(this, promotion.Id);
-
-        }
-
-        void OfferSelected(OfferListItem offer)
-        {
-            _offers.Remove(offer);
-            HandleItemsAddedBadge(false);
-            LoadAffordableItems();
-            OfferRemoved.Invoke(this, offer.Id);
-        }
-
-
         public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
         {
             HandleItemsAddedBadge(itemAdded.Added);
@@ -112,8 +94,24 @@ namespace DepiBelle.ViewModels
             LoadAffordableItems();
         }
 
+        private void PromotionSelected(PromotionListItem promotion)
+        {
+            _promotions.Remove(promotion);
+            HandleItemsAddedBadge(false);
+            LoadAffordableItems();
+            PromotionRemoved.Invoke(this, promotion.Id);
 
-        void HandleItemsAddedBadge(bool added)
+        }
+
+        private void OfferSelected(OfferListItem offer)
+        {
+            _offers.Remove(offer);
+            HandleItemsAddedBadge(false);
+            LoadAffordableItems();
+            OfferRemoved.Invoke(this, offer.Id);
+        }
+
+        private void HandleItemsAddedBadge(bool added)
         {
             _itemsAdded += added ? 1 : -1;
             StrItemsAdded = _itemsAdded == 0 ? string.Empty : "" + _itemsAdded;
@@ -133,6 +131,9 @@ namespace DepiBelle.ViewModels
 
             IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
         }
+
+
+
 
         private async Task GetOrders()
         {
