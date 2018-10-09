@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 {
-    public class FirebaseDataService<T> : IDataService<T> where T : EntityBase
+    public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase
     {
 
         private IDisposable _subscriptor;
@@ -30,7 +30,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         private bool IsServiceInitialized()
         {
             if (Config == null)
-                throw new Exception("Have to Initialize Data Service");
+                throw new Exception("Have to Initialize Collection Data Service");
 
             return true;
         }

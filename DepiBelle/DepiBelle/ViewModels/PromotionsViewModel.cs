@@ -17,7 +17,7 @@ namespace DepiBelle.ViewModels
     public class PromotionsViewModel : ViewModelBase
     {
         private IConfigService _configService;
-        private IDataService<Promotion> _promotionsDataService;
+        private IDataCollectionService<Promotion> _promotionsDataService;
         private IDialogService _dialogService;
 
         private ObservableCollection<PromotionListItem> _promotions;
@@ -38,7 +38,7 @@ namespace DepiBelle.ViewModels
             PromotionSelectedCommand = new Command<PromotionListItem>(async (promotion) => await PromotionSelected(promotion));
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
-            _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataService<Promotion>>();
+            _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataCollectionService<Promotion>>();
             _promotionsDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Promotions });
         }
 

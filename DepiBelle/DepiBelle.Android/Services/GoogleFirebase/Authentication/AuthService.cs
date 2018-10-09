@@ -5,7 +5,7 @@ using Firebase.Auth;
 
 namespace DepiBelle.Droid.Services.GoogleFirebase.Authentication
 {
-    public class FirebaseAuthService : IAuthenticationService
+    public class AuthService : IAuthenticationService
     {
         private FirebaseAuthProvider App { get; set; }
 

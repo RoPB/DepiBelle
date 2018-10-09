@@ -19,7 +19,7 @@ namespace DepiBelle.ViewModels
         private IConfigService _configService;
         private INavigationService _navigationService;
         private IDialogService _dialogService;
-        private IDataService<Offer> _offersDataService;
+        private IDataCollectionService<Offer> _offersDataService;
 
         private List<Offer> _headOffers = new List<Offer>();
         private List<Offer> _bodyOffers = new List<Offer>();
@@ -40,7 +40,7 @@ namespace DepiBelle.ViewModels
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
-            _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataService<Offer>>();
+            _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Offer>>();
             _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
         }
 

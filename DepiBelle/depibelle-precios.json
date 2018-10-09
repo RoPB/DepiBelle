@@ -1,6 +1,6 @@
 {
   "dev":{
-    "configs": {
+    "config": {
       "disscount": 60
     },
     "offers": {
@@ -129,7 +129,7 @@
     }
   },
   "production": {
-    "configs": {
+    "config": {
       "disscount": 0
     },
     "offers": {

@@ -19,7 +19,7 @@ namespace DepiBelle.ViewModels
     {
 
         private IConfigService _configService;
-        private IDataService<Order> _ordersDataService;
+        private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
         private string _strItemsAdded = "";
@@ -52,7 +52,7 @@ namespace DepiBelle.ViewModels
         {
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
-            _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataService<Order>>();
+            _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
             PromotionSelectedCommand = new Command<PromotionListItem>(PromotionSelected);
             OfferSelectedCommand = new Command<OfferListItem>(OfferSelected);

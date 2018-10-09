@@ -93,9 +93,11 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AndroidDependencyContainer.cs" />
-    <Compile Include="Services\GoogleFirebase\Authentication\FirebaseAuthService.cs" />
-    <Compile Include="Services\GoogleFirebase\Data\FirebaseDataService.cs" />
-    <Compile Include="Services\GoogleFirebase\Data\FirebaseSecuredDataService.cs" />
+    <Compile Include="Services\GoogleFirebase\Authentication\AuthService.cs" />
+    <Compile Include="Services\GoogleFirebase\Data\DataCollectionService.cs" />
+    <Compile Include="Services\GoogleFirebase\Data\DataCollectionSecuredService.cs" />
+    <Compile Include="Services\GoogleFirebase\Data\DataQueryService.cs" />
+    <Compile Include="Services\GoogleFirebase\Data\DataQuerySecuredService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -7,11 +7,11 @@ using DepiBelle.Models;
 
 namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 {
-    public class FirebaseSecuredDataService<T> : FirebaseDataService<T> where T : EntityBase
+    public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase
     {
         private IAuthenticationService _authenticationService;
 
-        public FirebaseSecuredDataService()
+        public DataCollectionSecuredService()
         {
 
             _authenticationService = _authenticationService ?? DependencyContainer.Resolve<IAuthenticationService>();
