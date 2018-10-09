@@ -1,5 +1,8 @@
 {
   "dev":{
+    "configs": {
+      "disscount": 60
+    },
     "offers": {
       "A": {
         "name": "Bozo",
@@ -126,6 +129,9 @@
     }
   },
   "production": {
+    "configs": {
+      "disscount": 0
+    },
     "offers": {
       "A": {
         "name": "Bozo",
