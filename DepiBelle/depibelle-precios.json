@@ -1,7 +1,7 @@
 {
   "dev":{
     "config": {
-      "disscount": 60
+      "discount": 60
     },
     "offers": {
       "A": {
@@ -130,7 +130,7 @@
   },
   "production": {
     "config": {
-      "disscount": 0
+      "discount": 0
     },
     "offers": {
       "A": {

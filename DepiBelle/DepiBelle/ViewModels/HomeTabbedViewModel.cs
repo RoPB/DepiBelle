@@ -44,7 +44,7 @@ namespace DepiBelle.ViewModels
             var config = await _dataQueryConfigService.Get();
 
             await _promotionsViewModel.InitializeAsync();
-            await _bodySelectionViewModel.InitializeAsync();
+            await _bodySelectionViewModel.InitializeAsync(config);
             await _purchaseViewModel.InitializeAsync();
             IsLoading = false;
         }

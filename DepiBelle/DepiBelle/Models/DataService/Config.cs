@@ -5,8 +5,8 @@ namespace DepiBelle.Models.DataService
 {
     public class Config
     {
-        [JsonProperty("disscount")]
-        public int Disscount
+        [JsonProperty("discount")]
+        public int Discount
         {
             get;
             set;

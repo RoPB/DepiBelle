@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Models.DataService;
 using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -26,6 +27,20 @@ namespace DepiBelle.ViewModels
         private List<Offer> _pelvisOffers = new List<Offer>();
         private List<Offer> _armOffers = new List<Offer>();
         private List<Offer> _legOffers = new List<Offer>();
+
+        private bool _showDiscount;
+        private int _disccount;
+
+        public bool ShowDiscount
+        {
+            get { return _showDiscount; }
+            set { SetPropertyValue(ref _showDiscount, value); }
+        }
+        public int Disccount
+        {
+            get { return _disccount; }
+            set { SetPropertyValue(ref _disccount, value); }
+        }
 
         public ICommand BodyPartSelectionCommand { get; set; }
 
@@ -52,6 +67,13 @@ namespace DepiBelle.ViewModels
             //await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
             try
             {
+
+                var config = navigationData as Config;
+
+                if (config != null)
+                {
+                    Disccount = config.Discount;
+                }
 
                 var offers = await _offersDataService.GetAll();
                 await ClasificateOrders(offers);
