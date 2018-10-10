@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace DepiBelle.Views.ListDataTemplates
 {
-    public class AffordableDataTemplateSelector : DataTemplateSelector
+    public class PurchasableDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate OfferDataTemplate { get; set; }
         public DataTemplate PromotionDataTemplate { get; set; }

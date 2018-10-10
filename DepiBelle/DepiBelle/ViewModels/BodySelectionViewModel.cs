@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
 using DepiBelle.Models.DataService;
-using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
@@ -44,7 +43,7 @@ namespace DepiBelle.ViewModels
 
         public ICommand BodyPartSelectionCommand { get; set; }
 
-        public EventHandler<AffordableItem<Offer>> ItemsAddedEventHandler { get; set; }
+        public EventHandler<CartItem<Offer>> ItemsAddedEventHandler { get; set; }
 
         public BodySelectionViewModel()
         {

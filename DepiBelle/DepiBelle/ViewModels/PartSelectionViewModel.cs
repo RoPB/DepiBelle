@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
-using DepiBelle.Models.EventArgs;
 using DepiBelle.Utilities;
 using Xamarin.Forms;
 
@@ -25,7 +24,7 @@ namespace DepiBelle.ViewModels
 
         public ICommand OfferSelectedCommand { get; set; }
 
-        public EventHandler<AffordableItem<Offer>> ItemsAddedEventHandler { get; set; }
+        public EventHandler<CartItem<Offer>> ItemsAddedEventHandler { get; set; }
 
         public PartSelectionViewModel()
         {
@@ -64,13 +63,13 @@ namespace DepiBelle.ViewModels
             offer.IsSelected = !offer.IsSelected;
 
 
-            var affordableItem = new AffordableItem<Offer>()
+            var cartItem = new CartItem<Offer>()
             {
                 Added = offer.IsSelected,
                 Discount = offer.Discount,
                 Item = new Offer(offer.Id,
-                                 offer.Name,
-                                 offer.Price)
+                                 offer.Price,
+                                 offer.Name)
             };
 
             if (offer.IsSelected)
@@ -78,7 +77,7 @@ namespace DepiBelle.ViewModels
             else
                 _selectedOffers.Remove(offer.Id);
 
-            ItemsAddedEventHandler.Invoke(this, affordableItem);
+            ItemsAddedEventHandler.Invoke(this, cartItem);
 
         }
 

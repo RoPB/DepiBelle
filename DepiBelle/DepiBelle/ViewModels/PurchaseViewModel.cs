@@ -5,8 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
-using DepiBelle.Models.Bindable;
-using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
@@ -26,27 +24,27 @@ namespace DepiBelle.ViewModels
         private int _itemsAdded = 0;
         private List<BaseListItem> _promotions = new List<BaseListItem>();
         private List<BaseListItem> _offers = new List<BaseListItem>();
-        private bool _isNoAnyAffordableItemAdded = false;
-        private string _total;
+        private bool _isNoAnyPurchasableItemAdded = false;
+        private double _total;
 
-        private ObservableCollection<AffordableItemsGrouped> _affordableItems = new ObservableCollection<AffordableItemsGrouped>();
-        public ObservableCollection<AffordableItemsGrouped> AffordableItems
+        private ObservableCollection<CartItemsGrouped> _purchasableItems = new ObservableCollection<CartItemsGrouped>();
+        public ObservableCollection<CartItemsGrouped> PurchasableItems
         {
-            get { return _affordableItems; }
-            set { SetPropertyValue(ref _affordableItems, value); }
+            get { return _purchasableItems; }
+            set { SetPropertyValue(ref _purchasableItems, value); }
         }
 
 
-        public string Total
+        public double Total
         {
             get { return _total; }
             set { SetPropertyValue(ref _total, value); }
         }
 
-        public bool IsNoAnyAffordableItemAdded
+        public bool IsNoAnyPurchasableItemAdded
         {
-            get { return _isNoAnyAffordableItemAdded; }
-            set { SetPropertyValue(ref _isNoAnyAffordableItemAdded, value); }
+            get { return _isNoAnyPurchasableItemAdded; }
+            set { SetPropertyValue(ref _isNoAnyPurchasableItemAdded, value); }
         }
 
         public ICommand PromotionSelectedCommand { get; set; }
@@ -69,10 +67,10 @@ namespace DepiBelle.ViewModels
         public override async Task InitializeAsync(object navigationData = null)
         {
             IsLoading = false;
-            IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
+            IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
         }
 
-        public void ItemsAddedHandler(object sender, AffordableItem<Promotion> itemAdded)
+        public void ItemsAddedHandler(object sender, CartItem<Promotion> itemAdded)
         {
             HandleItemsAddedBadge(itemAdded.Added);
 
@@ -84,10 +82,10 @@ namespace DepiBelle.ViewModels
             else
                 _promotions.RemoveAll(p => ((PromotionListItem)p).Id == itemAdded.Item.Id);
 
-            LoadAffordableItems();
+            LoadPurchasableItems();
         }
 
-        public void ItemsAddedHandler(object sender, AffordableItem<Offer> itemAdded)
+        public void ItemsAddedHandler(object sender, CartItem<Offer> itemAdded)
         {
             HandleItemsAddedBadge(itemAdded.Added);
 
@@ -99,14 +97,14 @@ namespace DepiBelle.ViewModels
             else
                 _offers.RemoveAll(o => ((OfferListItem)o).Id == itemAdded.Item.Id);
 
-            LoadAffordableItems();
+            LoadPurchasableItems();
         }
 
         private void PromotionSelected(PromotionListItem promotion)
         {
             _promotions.Remove(promotion);
             HandleItemsAddedBadge(false);
-            LoadAffordableItems();
+            LoadPurchasableItems();
             PromotionRemoved.Invoke(this, promotion.Id);
 
         }
@@ -115,7 +113,7 @@ namespace DepiBelle.ViewModels
         {
             _offers.Remove(offer);
             HandleItemsAddedBadge(false);
-            LoadAffordableItems();
+            LoadPurchasableItems();
             OfferRemoved.Invoke(this, offer.Id);
         }
 
@@ -125,21 +123,24 @@ namespace DepiBelle.ViewModels
             StrItemsAdded = _itemsAdded == 0 ? string.Empty : "" + _itemsAdded;
         }
 
-        private void LoadAffordableItems()
+        private void LoadPurchasableItems()
         {
-            AffordableItems.Clear();
+            PurchasableItems.Clear();
 
             _promotions = _promotions.OrderBy(p => ((PromotionListItem)p).Name).ToList();
             _offers = _offers.OrderBy(o => ((OfferListItem)o).Name).ToList();
 
             if (_promotions.Count > 0)
-                AffordableItems.Add(new AffordableItemsGrouped("Promociones", _promotions));
+                PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
             if (_offers.Count > 0)
-                AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
+                PurchasableItems.Add(new CartItemsGrouped("Cuerpo", _offers));
 
-            Total = "$1500";
 
-            IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
+            Total = 0;
+            _promotions.ForEach(p => Total += ((PromotionListItem)p).Price);
+            _offers.ForEach(o => Total += ((OfferListItem)o).PriceToShow);
+
+            IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
 
         }
 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
-using DepiBelle.Models.EventArgs;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
@@ -30,7 +29,7 @@ namespace DepiBelle.ViewModels
 
         public ICommand PromotionSelectedCommand { get; set; }
 
-        public EventHandler<AffordableItem<Promotion>> ItemsAddedEventHandler { get; set; }
+        public EventHandler<CartItem<Promotion>> ItemsAddedEventHandler { get; set; }
 
         public PromotionsViewModel()
         {
@@ -75,16 +74,16 @@ namespace DepiBelle.ViewModels
         {
             promotion.IsSelected = !promotion.IsSelected;
 
-            var affordableItem = new AffordableItem<Promotion>()
+            var cartItem = new CartItem<Promotion>()
             {
                 Added = promotion.IsSelected,
                 Item = new Promotion(promotion.Id,
+                                     promotion.Price,
                                      promotion.Name,
-                                     promotion.Description,
-                                     promotion.Price)
+                                     promotion.Description)
             };
 
-            ItemsAddedEventHandler.Invoke(this, affordableItem);
+            ItemsAddedEventHandler.Invoke(this, cartItem);
         }
 
     }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace DepiBelle.Models
 {
-    public class Promotion : EntityBase
+    public class Promotion : Purchasable
     {
 
         [JsonProperty("name")]
@@ -18,23 +18,11 @@ namespace DepiBelle.Models
             get;
             set;
         }
-        [JsonProperty("price")]
-        public double Price
-        {
-            get;
-            set;
-        }
 
-        public Promotion()
-        {
-
-        }
-
-        public Promotion(string id, string name, string description, double price) : base(id)
+        public Promotion(string id, double price, string name, string description) : base(id,price)
         {
             this.Name = name;
             this.Description = description;
-            this.Price = price;
         }
     }
 }

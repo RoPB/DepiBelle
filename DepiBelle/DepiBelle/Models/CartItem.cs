@@ -1,7 +1,7 @@
 ﻿using System;
-namespace DepiBelle.Models.EventArgs
+namespace DepiBelle.Models
 {
-    public class AffordableItem<T>
+    public class CartItem<T> where T : Purchasable
     {
         public bool Added
         {

@@ -10,7 +10,7 @@
                 <Setter Property="FlexLayout.Grow" Value="1"/>
             </Style>
             <Style x:Key="MainContent" TargetType="FlexLayout">
-                <Setter Property="IsVisible" Value="{Binding IsNoAnyAffordableItemAdded,Converter={StaticResource InverseBoolConverter}}" />
+                <Setter Property="IsVisible" Value="{Binding IsNoAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="FlexLayout.Grow" Value="1"/>
             </Style>
@@ -31,7 +31,7 @@
                     <listDataTemplate:PromotionListDataTemplate />
                 </ViewCell>
             </DataTemplate>
-            <listDataTemplate:AffordableDataTemplateSelector x:Key="affordableDataTemplateSelector" OfferDataTemplate="{StaticResource offerDataTemplate}" PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
+            <listDataTemplate:PurchasableDataTemplateSelector x:Key="purchasableDataTemplateSelector" OfferDataTemplate="{StaticResource offerDataTemplate}" PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -42,8 +42,8 @@
                     <StackLayout Style="{StaticResource MainContent}">
                         <controls:CustomListView SeparatorColor="{StaticResource Grey}" 
                                                  Style="{StaticResource List}" 
-                                                 ItemsSource="{Binding AffordableItems}" 
-                                                 ItemTemplate="{StaticResource affordableDataTemplateSelector}" 
+                                                 ItemsSource="{Binding PurchasableItems}" 
+                                                 ItemTemplate="{StaticResource purchasableDataTemplateSelector}" 
                                                  IsGroupingEnabled="true">
                             <controls:CustomListView.GroupHeaderTemplate>
                                 <DataTemplate>
@@ -59,13 +59,17 @@
              </FlexLayout>
              <StackLayout Orientation="Horizontal" 
                           Padding="20"
-                          IsVisible="{Binding IsNoAnyAffordableItemAdded,Converter={StaticResource InverseBoolConverter}}"
+                          IsVisible="{Binding IsNoAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}"
                           BackgroundColor="{StaticResource PrimaryDarkColor}">
-                    <Label Text="Total" 
+                    <Label Text="Total"
                            TextColor="{StaticResource White}" 
                            FontFamily="{StaticResource Museo-Bold}" FontSize="35" VerticalOptions="Center"/>
-                    <Label HorizontalOptions="CenterAndExpand" Text="{Binding Total}" FontAttributes="Bold" 
-                           TextColor="{StaticResource White}" FontSize="25" VerticalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center">
+                        <Label Text="$" FontAttributes="Bold" 
+                               TextColor="{StaticResource White}" FontSize="25"/>
+                        <Label Text="{Binding Total}" FontAttributes="Bold" 
+                               TextColor="{StaticResource White}" FontSize="25"/>
+                    </StackLayout>
                     <Button 
                         HorizontalOptions="End"
                         VerticalOptions="Center"
