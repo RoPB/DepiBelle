@@ -38,10 +38,10 @@
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource MainContainer}">
             <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
-            <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource Grey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyAffordableItemAdded}"/>
+            <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyAffordableItemAdded}"/>
             <ScrollView Style="{StaticResource MainContent}">
                 <StackLayout>
-                    <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding AffordableItems}" ItemTemplate="{StaticResource affordableDataTemplateSelector}" IsGroupingEnabled="true">
+                    <controls:CustomListView SeparatorColor="{StaticResource Grey}" Style="{StaticResource List}" ItemsSource="{Binding AffordableItems}" ItemTemplate="{StaticResource affordableDataTemplateSelector}" IsGroupingEnabled="true">
                         <controls:CustomListView.GroupHeaderTemplate>
                             <DataTemplate>
                                 <ViewCell>
