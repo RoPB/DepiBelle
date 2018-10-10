@@ -1,8 +1,10 @@
 ﻿using System;
 using DepiBelle.Managers.Application;
 using DepiBelle.Models;
+using DepiBelle.Models.DataService;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
+using DepiBelle.Services.Data.DataQuery;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Modal;
@@ -20,6 +22,7 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new NavigationService(), typeof(INavigationService));
             Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
             Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
+            Locator.CurrentMutable.RegisterConstant(new DataQuerySecuredService<Config>(), typeof(IDataQueryService<Config>));
             #if PRODUCTION
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceProd(), typeof(IConfigService));
             #else

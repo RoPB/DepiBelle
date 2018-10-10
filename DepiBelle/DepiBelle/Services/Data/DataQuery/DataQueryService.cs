@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DepiBelle.Models;
+using DepiBelle.Models.Exceptions;
 using DepiBelle.Services.Data;
+using Newtonsoft.Json;
 
-namespace DepiBelle.Droid.Services.GoogleFirebase.Data
+namespace DepiBelle.Services.Data.DataQuery
 {
     public class DataQueryService<T> : IDataQueryService<T>
     {
@@ -29,17 +32,34 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             return true;
         }
 
-        public virtual Task<T> Get(string token = null)
+        public virtual async Task<T> Get(string token = null)
         {
             try
             {
-                throw new NotImplementedException();
+                IsServiceInitialized();
+
+                var auth = token != null ? $"?auth={token}" : string.Empty;
+
+                var client = new HttpClient();
+                HttpResponseMessage response = await client.GetAsync(Config.Uri + Config.Key + "/.json" + auth);
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string serialized = await response.Content.ReadAsStringAsync();
+
+                    T result = await Task.Run(() =>
+                        JsonConvert.DeserializeObject<T>(serialized));
+
+                    return result;
+                }
+                else throw new NotAuthorizedException();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
 
     }
 }

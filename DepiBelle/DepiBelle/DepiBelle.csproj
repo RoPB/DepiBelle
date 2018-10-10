@@ -59,6 +59,8 @@
     <Folder Include="Extensions\Behaviors\" />
     <Folder Include="Models\EventArgs\" />
     <Folder Include="Views\ListDataTemplates\" />
+    <Folder Include="Models\Exceptions\" />
+    <Folder Include="Services\Data\DataQuery\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

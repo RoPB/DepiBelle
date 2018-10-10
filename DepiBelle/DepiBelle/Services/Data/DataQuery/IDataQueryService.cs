@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using DepiBelle.Models;
 
-namespace DepiBelle.Services.Data
+namespace DepiBelle.Services.Data.DataQuery
 {
     public interface IDataQueryService<T>
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Firebase.Database;
+using DepiBelle.Models.Exceptions;
 using DepiBelle.Services.Authentication;
 
-namespace DepiBelle.Droid.Services.GoogleFirebase.Data
+namespace DepiBelle.Services.Data.DataQuery
 {
     public class DataQuerySecuredService<T>:DataQueryService<T>
     {
@@ -24,24 +24,18 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                 var item = await base.Get(token);
                 return item;
             }
-            catch (FirebaseException fe)
+            catch (NotAuthorizedException)
             {
-                if (fe.StatusCode.Equals(System.Net.HttpStatusCode.Unauthorized))
-                {
-                    try
-                    {
-                        await _authenticationService.RefreshSession();
 
-                        return await base.Get(_authenticationService.Token);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-                else
+                try
                 {
-                    throw fe;
+                    await _authenticationService.RefreshSession();
+
+                    return await base.Get(_authenticationService.Token);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
 
             }

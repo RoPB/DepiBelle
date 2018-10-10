@@ -96,8 +96,6 @@
     <Compile Include="Services\GoogleFirebase\Authentication\AuthService.cs" />
     <Compile Include="Services\GoogleFirebase\Data\DataCollectionService.cs" />
     <Compile Include="Services\GoogleFirebase\Data\DataCollectionSecuredService.cs" />
-    <Compile Include="Services\GoogleFirebase\Data\DataQueryService.cs" />
-    <Compile Include="Services\GoogleFirebase\Data\DataQuerySecuredService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
