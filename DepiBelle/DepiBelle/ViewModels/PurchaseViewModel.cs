@@ -27,12 +27,20 @@ namespace DepiBelle.ViewModels
         private List<BaseListItem> _promotions = new List<BaseListItem>();
         private List<BaseListItem> _offers = new List<BaseListItem>();
         private bool _isNoAnyAffordableItemAdded = false;
+        private string _total;
 
         private ObservableCollection<AffordableItemsGrouped> _affordableItems = new ObservableCollection<AffordableItemsGrouped>();
         public ObservableCollection<AffordableItemsGrouped> AffordableItems
         {
             get { return _affordableItems; }
             set { SetPropertyValue(ref _affordableItems, value); }
+        }
+
+
+        public string Total
+        {
+            get { return _total; }
+            set { SetPropertyValue(ref _total, value); }
         }
 
         public bool IsNoAnyAffordableItemAdded
@@ -129,7 +137,10 @@ namespace DepiBelle.ViewModels
             if (_offers.Count > 0)
                 AffordableItems.Add(new AffordableItemsGrouped("Cuerpo", _offers));
 
+            Total = "$1500";
+
             IsNoAnyAffordableItemAdded = AffordableItems.Count == 0;
+
         }
 
 
