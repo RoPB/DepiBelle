@@ -29,17 +29,17 @@ namespace DepiBelle.ViewModels
         private List<Offer> _legOffers = new List<Offer>();
 
         private bool _showDiscount;
-        private int _disccount;
+        private int _discount;
 
         public bool ShowDiscount
         {
             get { return _showDiscount; }
             set { SetPropertyValue(ref _showDiscount, value); }
         }
-        public int Disccount
+        public int Discount
         {
-            get { return _disccount; }
-            set { SetPropertyValue(ref _disccount, value); }
+            get { return _discount; }
+            set { SetPropertyValue(ref _discount, value); }
         }
 
         public ICommand BodyPartSelectionCommand { get; set; }
@@ -72,13 +72,13 @@ namespace DepiBelle.ViewModels
 
                 if (config != null)
                 {
-                    Disccount = config.Discount;
+                    Discount = config.Discount;
                 }
+
+                ShowDiscount = Discount > 0;
 
                 var offers = await _offersDataService.GetAll();
                 await ClasificateOrders(offers);
-
-
             }
             catch (Exception ex)
             {
@@ -136,7 +136,9 @@ namespace DepiBelle.ViewModels
                 offersList = _legOffers;
             }
 
-            var partSelectionViewModel = await _navigationService.NavigateToAsync<PartSelectionViewModel>(offersList);
+            var navigationParam = new PartSelectionNavigationParam() { Offers = offersList, Discount = _discount };
+
+            var partSelectionViewModel = await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);
             (partSelectionViewModel as PartSelectionViewModel).ItemsAddedEventHandler = ItemsAddedEventHandler;
         }
     }

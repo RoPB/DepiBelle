@@ -39,12 +39,15 @@ namespace DepiBelle.ViewModels
             {
                 IsLoading = true;
 
-                var param = navigationData as List<Offer>;
-                param = param.OrderBy(o => o.Name).ToList();
+                var param = navigationData as PartSelectionNavigationParam;
+                var offers = param.Offers;
+                var discount = param.Discount;
+
+                offers = offers.OrderBy(o => o.Name).ToList();
 
                 Offers = new ObservableCollection<OfferListItem>();
 
-                param.ForEach(o => Offers.Add(ListItemMapper.GetOfferListItem(o, _selectedOffers.Contains(o.Id), OfferSelectedCommand)));
+                offers.ForEach(o => Offers.Add(ListItemMapper.GetOfferListItem(o, discount, _selectedOffers.Contains(o.Id), OfferSelectedCommand)));
 
                 IsLoading = false;
             });
@@ -64,6 +67,7 @@ namespace DepiBelle.ViewModels
             var affordableItem = new AffordableItem<Offer>()
             {
                 Added = offer.IsSelected,
+                Discount = offer.Discount,
                 Item = new Offer(offer.Id,
                                  offer.Name,
                                  offer.Price)

@@ -21,16 +21,20 @@ namespace DepiBelle.Models
             set;
         }
 
-        public bool ShowPriceWithDisccount
+        public int Discount
         {
             get;
             set;
         }
 
-        public double PriceWithDisccount
+        public double PriceToShow
         {
-            get;
-            set;
+            get { return HasDiscount ? Price * ((double)Discount / 100) : Price; }
+        }
+
+        public bool HasDiscount
+        {
+            get { return Discount > 0; }
         }
 
     }

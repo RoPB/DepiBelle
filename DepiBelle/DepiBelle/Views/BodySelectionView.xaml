@@ -39,6 +39,12 @@
                             <Label FontSize="10" Text="DEPI BELLE" HorizontalOptions="Center" VerticalOptions="End"/>
                         </StackLayout>
                     </Frame>
+                    <BoxView BackgroundColor="Transparent" FlexLayout.Grow="1"/>
+                    <StackLayout Margin="20" FlexLayout.AlignSelf="Center" IsVisible="{Binding ShowDiscount}" Orientation="Horizontal" Spacing="2">
+                        <Label Text="{Binding Discount}" FontSize="70" TextColor="{StaticResource White}"/>
+                        <Label Text="% Off" FontSize="70" TextColor="{StaticResource White}"/>
+                    </StackLayout>
+                    <BoxView BackgroundColor="Transparent" FlexLayout.Grow="1"/>
                 </FlexLayout>
                 <FlexLayout JustifyContent="End" BackgroundColor="Transparent" Direction="Row" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.4,0,1,1">
                     <FlexLayout FlexLayout.Basis="50%" JustifyContent="End" BackgroundColor="Transparent" Direction="Column">

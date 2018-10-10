@@ -85,7 +85,7 @@ namespace DepiBelle.ViewModels
 
             if (itemAdded.Added)
             {
-                var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, true, OfferSelectedCommand);
+                var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, itemAdded.Discount, true, OfferSelectedCommand);
                 _offers.Add(offer);
             }
             else

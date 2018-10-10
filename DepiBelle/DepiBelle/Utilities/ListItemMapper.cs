@@ -6,7 +6,7 @@ namespace DepiBelle.Utilities
 {
     public static class ListItemMapper
     {
-        public static OfferListItem GetOfferListItem(Offer offer, bool IsSelected, ICommand OnSelectedCommand)
+        public static OfferListItem GetOfferListItem(Offer offer, int discount, bool isSelected, ICommand onSelectedCommand)
         {
 
             return new OfferListItem()
@@ -14,12 +14,13 @@ namespace DepiBelle.Utilities
                 Id = offer.Id,
                 Name = offer.Name,
                 Price = offer.Price,
-                IsSelected = IsSelected,
-                OnSelectedCommand = OnSelectedCommand
+                IsSelected = isSelected,
+                OnSelectedCommand = onSelectedCommand,
+                Discount = discount
             };
         }
 
-        public static PromotionListItem GetPromotionListItem(Promotion promotion, bool IsSelected, ICommand OnSelectedCommand)
+        public static PromotionListItem GetPromotionListItem(Promotion promotion, bool isSelected, ICommand onSelectedCommand)
         {
 
             return new PromotionListItem()
@@ -28,8 +29,8 @@ namespace DepiBelle.Utilities
                 Name = promotion.Name,
                 Description = promotion.Description,
                 Price = promotion.Price,
-                IsSelected = IsSelected,
-                OnSelectedCommand = OnSelectedCommand
+                IsSelected = isSelected,
+                OnSelectedCommand = onSelectedCommand
             };
         }
     }

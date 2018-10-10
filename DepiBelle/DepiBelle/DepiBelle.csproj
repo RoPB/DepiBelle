@@ -61,6 +61,7 @@
     <Folder Include="Views\ListDataTemplates\" />
     <Folder Include="Models\Exceptions\" />
     <Folder Include="Services\Data\DataQuery\" />
+    <Folder Include="Models\Navigation\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

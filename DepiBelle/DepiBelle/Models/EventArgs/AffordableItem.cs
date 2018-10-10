@@ -9,6 +9,12 @@ namespace DepiBelle.Models.EventArgs
             set;
         }
 
+        public int Discount
+        {
+            get;
+            set;
+        }
+
         public T Item
         {
             get;
