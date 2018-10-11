@@ -138,8 +138,8 @@ namespace DepiBelle.ViewModels
 
             Total = 0;
 
-            _promotions.ForEach(p => Total += p.PriceWithDisccount);
-            _offers.ForEach(o => Total += o.PriceWithDisccount);
+            _promotions.ForEach(p => Total += p.SellPrice);
+            _offers.ForEach(o => Total += o.SellPrice);
 
             IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
 

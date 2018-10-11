@@ -17,7 +17,7 @@
             <Label Text="{Binding Description}" FontFamily="{StaticResource Journal-Regular}" FontSize="35"/>
             <StackLayout HorizontalOptions="StartAndExpand" Margin="0,3,0,0" Orientation="Horizontal" Spacing="0">
                 <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
-                <Label Text="{Binding PriceWithDisccount}" FontSize="25" VerticalOptions="Center"/>
+                <Label Text="{Binding SellPrice}" FontSize="25" VerticalOptions="Center"/>
                 <Button Text="AGREGAR" 
                     IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
                     BackgroundColor="{StaticResource PrimaryLightColor}" 

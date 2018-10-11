@@ -27,7 +27,7 @@ namespace DepiBelle.Models
             set;
         }
 
-        public double PriceWithDisccount
+        public double SellPrice
         {
             get { return HasDiscount ? Price * ((double)Discount / 100) : Price; }
         }
