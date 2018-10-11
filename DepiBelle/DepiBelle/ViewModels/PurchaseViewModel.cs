@@ -22,8 +22,8 @@ namespace DepiBelle.ViewModels
 
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
-        private List<BaseListItem> _promotions = new List<BaseListItem>();
-        private List<BaseListItem> _offers = new List<BaseListItem>();
+        private List<PurchasableListItem> _promotions = new List<PurchasableListItem>();
+        private List<PurchasableListItem> _offers = new List<PurchasableListItem>();
         private bool _isNoAnyPurchasableItemAdded = false;
         private double _total;
 
@@ -80,7 +80,7 @@ namespace DepiBelle.ViewModels
                 _promotions.Add(promotion);
             }
             else
-                _promotions.RemoveAll(p => ((PromotionListItem)p).Id == itemAdded.Item.Id);
+                _promotions.RemoveAll(p => p.Id == itemAdded.Item.Id);
 
             LoadPurchasableItems();
         }
@@ -95,7 +95,7 @@ namespace DepiBelle.ViewModels
                 _offers.Add(offer);
             }
             else
-                _offers.RemoveAll(o => ((OfferListItem)o).Id == itemAdded.Item.Id);
+                _offers.RemoveAll(o => o.Id == itemAdded.Item.Id);
 
             LoadPurchasableItems();
         }
@@ -127,8 +127,8 @@ namespace DepiBelle.ViewModels
         {
             PurchasableItems.Clear();
 
-            _promotions = _promotions.OrderBy(p => ((PromotionListItem)p).Name).ToList();
-            _offers = _offers.OrderBy(o => ((OfferListItem)o).Name).ToList();
+            _promotions = _promotions.OrderBy(p => p.Name).ToList();
+            _offers = _offers.OrderBy(o => o.Name).ToList();
 
             if (_promotions.Count > 0)
                 PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
@@ -137,14 +137,13 @@ namespace DepiBelle.ViewModels
 
 
             Total = 0;
-            _promotions.ForEach(p => Total += ((PromotionListItem)p).Price);
-            _offers.ForEach(o => Total += ((OfferListItem)o).PriceToShow);
+
+            _promotions.ForEach(p => Total += p.PriceWithDisccount);
+            _offers.ForEach(o => Total += o.PriceWithDisccount);
 
             IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
 
         }
-
-
 
 
         private async Task GetOrders()
