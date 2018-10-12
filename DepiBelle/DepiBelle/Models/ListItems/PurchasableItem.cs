@@ -1,7 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace DepiBelle.Models
 {
-    public class PurchasableListItem:BaseListItem
+    public class PurchasableItem:BaseListItem
     {
         public string Id
         {
@@ -9,13 +11,13 @@ namespace DepiBelle.Models
             set;
         }
 
-        public double Price
+        public string Name
         {
             get;
             set;
         }
 
-        public string Name
+        public double Price
         {
             get;
             set;
@@ -32,6 +34,7 @@ namespace DepiBelle.Models
             get { return HasDiscount ? Price * ((double)Discount / 100) : Price; }
         }
 
+        [JsonIgnore]
         public bool HasDiscount
         {
             get { return Discount > 0; }

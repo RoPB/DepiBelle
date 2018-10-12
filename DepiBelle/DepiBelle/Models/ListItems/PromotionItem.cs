@@ -1,7 +1,8 @@
 ﻿using System;
+
 namespace DepiBelle.Models
 {
-    public class PromotionListItem:PurchasableListItem
+    public class PromotionItem:PurchasableItem
     {
         public string Description
         {

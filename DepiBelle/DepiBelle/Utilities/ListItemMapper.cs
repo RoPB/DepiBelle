@@ -6,10 +6,10 @@ namespace DepiBelle.Utilities
 {
     public static class ListItemMapper
     {
-        public static OfferListItem GetOfferListItem(Offer offer, int discount, bool isSelected, ICommand onSelectedCommand)
+        public static OfferItem GetOfferListItem(Offer offer, int discount, bool isSelected, ICommand onSelectedCommand)
         {
 
-            return new OfferListItem()
+            return new OfferItem()
             {
                 Id = offer.Id,
                 Name = offer.Name,
@@ -20,10 +20,10 @@ namespace DepiBelle.Utilities
             };
         }
 
-        public static PromotionListItem GetPromotionListItem(Promotion promotion, bool isSelected, ICommand onSelectedCommand)
+        public static PromotionItem GetPromotionListItem(Promotion promotion, bool isSelected, ICommand onSelectedCommand)
         {
 
-            return new PromotionListItem()
+            return new PromotionItem()
             {
                 Id = promotion.Id,
                 Name = promotion.Name,

@@ -5,12 +5,6 @@ namespace DepiBelle.Models
 {
     public class Offer : Purchasable
     {
-        [JsonProperty("name")]
-        public string Name
-        {
-            get;
-            set;
-        }
 
         //this two properties so 
         //serialization wont serialize category 
@@ -27,9 +21,9 @@ namespace DepiBelle.Models
             set { Category = value; }
         }
 
-        public Offer(string id, double price, string name) : base(id,price)
+        public Offer(string id, double price, string name) : base(id, name, price)
         {
-            this.Name = name;
+
         }
 
     }

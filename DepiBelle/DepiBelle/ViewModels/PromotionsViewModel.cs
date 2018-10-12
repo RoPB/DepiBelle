@@ -19,9 +19,9 @@ namespace DepiBelle.ViewModels
         private IDataCollectionService<Promotion> _promotionsDataService;
         private IDialogService _dialogService;
 
-        private ObservableCollection<PromotionListItem> _promotions;
+        private ObservableCollection<PromotionItem> _promotions;
 
-        public ObservableCollection<PromotionListItem> Promotions
+        public ObservableCollection<PromotionItem> Promotions
         {
             get { return _promotions; }
             set { SetPropertyValue(ref _promotions, value); }
@@ -34,7 +34,7 @@ namespace DepiBelle.ViewModels
         public PromotionsViewModel()
         {
             IsLoading = true;
-            PromotionSelectedCommand = new Command<PromotionListItem>(async (promotion) => await PromotionSelected(promotion));
+            PromotionSelectedCommand = new Command<PromotionItem>(async (promotion) => await PromotionSelected(promotion));
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataCollectionService<Promotion>>();
@@ -49,7 +49,7 @@ namespace DepiBelle.ViewModels
                 var promotions = await _promotionsDataService.GetAll();
                 promotions = promotions.OrderBy(p => p.Name).ToList();
 
-                Promotions = new ObservableCollection<PromotionListItem>();
+                Promotions = new ObservableCollection<PromotionItem>();
 
                 promotions.ForEach(p => Promotions.Add(ListItemMapper.GetPromotionListItem(p,false,PromotionSelectedCommand)));
 
@@ -70,7 +70,7 @@ namespace DepiBelle.ViewModels
             Promotions.First(p => p.Id == promotionId).IsSelected = false;
         }
 
-        private async Task PromotionSelected(PromotionListItem promotion)
+        private async Task PromotionSelected(PromotionItem promotion)
         {
             promotion.IsSelected = !promotion.IsSelected;
 

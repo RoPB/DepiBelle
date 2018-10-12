@@ -14,9 +14,9 @@ namespace DepiBelle.ViewModels
     {
         private static List<string> _selectedOffers = new List<string>();
 
-        private ObservableCollection<OfferListItem> _offers;
+        private ObservableCollection<OfferItem> _offers;
 
-        public ObservableCollection<OfferListItem> Offers
+        public ObservableCollection<OfferItem> Offers
         {
             get { return _offers; }
             set { SetPropertyValue(ref _offers, value); }
@@ -28,7 +28,7 @@ namespace DepiBelle.ViewModels
 
         public PartSelectionViewModel()
         {
-            OfferSelectedCommand = new Command<OfferListItem>(async (offer) => await OfferSelected(offer));
+            OfferSelectedCommand = new Command<OfferItem>(async (offer) => await OfferSelected(offer));
             IsLoading = true;
         }
 
@@ -44,7 +44,7 @@ namespace DepiBelle.ViewModels
 
                 offers = offers.OrderBy(o => o.Name).ToList();
 
-                Offers = new ObservableCollection<OfferListItem>();
+                Offers = new ObservableCollection<OfferItem>();
 
                 offers.ForEach(o => Offers.Add(ListItemMapper.GetOfferListItem(o, discount, _selectedOffers.Contains(o.Id), OfferSelectedCommand)));
 
@@ -58,7 +58,7 @@ namespace DepiBelle.ViewModels
             _selectedOffers.Remove(offerId);
         }
 
-        private async Task OfferSelected(OfferListItem offer)
+        private async Task OfferSelected(OfferItem offer)
         {
             offer.IsSelected = !offer.IsSelected;
 

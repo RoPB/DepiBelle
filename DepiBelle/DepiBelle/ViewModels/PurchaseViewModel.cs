@@ -22,8 +22,8 @@ namespace DepiBelle.ViewModels
 
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
-        private List<PurchasableListItem> _promotions = new List<PurchasableListItem>();
-        private List<PurchasableListItem> _offers = new List<PurchasableListItem>();
+        private List<PurchasableItem> _promotions = new List<PurchasableItem>();
+        private List<PurchasableItem> _offers = new List<PurchasableItem>();
         private bool _isNoAnyPurchasableItemAdded = false;
         private double _total;
 
@@ -49,6 +49,7 @@ namespace DepiBelle.ViewModels
 
         public ICommand PromotionSelectedCommand { get; set; }
         public ICommand OfferSelectedCommand { get; set; }
+        public ICommand ConfirmPurchaseCommand { get; set; }
         public EventHandler<string> PromotionRemoved { get; set; }
         public EventHandler<string> OfferRemoved { get; set; }
 
@@ -60,8 +61,9 @@ namespace DepiBelle.ViewModels
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
-            PromotionSelectedCommand = new Command<PromotionListItem>(PromotionSelected);
-            OfferSelectedCommand = new Command<OfferListItem>(OfferSelected);
+            PromotionSelectedCommand = new Command<PromotionItem>(PromotionSelected);
+            OfferSelectedCommand = new Command<OfferItem>(OfferSelected);
+            ConfirmPurchaseCommand = new Command(ConfirmPurchase);
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -100,7 +102,7 @@ namespace DepiBelle.ViewModels
             LoadPurchasableItems();
         }
 
-        private void PromotionSelected(PromotionListItem promotion)
+        private void PromotionSelected(PromotionItem promotion)
         {
             _promotions.Remove(promotion);
             HandleItemsAddedBadge(false);
@@ -109,7 +111,7 @@ namespace DepiBelle.ViewModels
 
         }
 
-        private void OfferSelected(OfferListItem offer)
+        private void OfferSelected(OfferItem offer)
         {
             _offers.Remove(offer);
             HandleItemsAddedBadge(false);
@@ -142,6 +144,11 @@ namespace DepiBelle.ViewModels
             _offers.ForEach(o => Total += o.SellPrice);
 
             IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
+
+        }
+
+        private void ConfirmPurchase()
+        {
 
         }
 

@@ -5,13 +5,7 @@ namespace DepiBelle.Models
 {
     public class Promotion : Purchasable
     {
-
-        [JsonProperty("name")]
-        public string Name
-        {
-            get;
-            set;
-        }
+    
         [JsonProperty("description")]
         public string Description
         {
@@ -19,9 +13,8 @@ namespace DepiBelle.Models
             set;
         }
 
-        public Promotion(string id, double price, string name, string description) : base(id,price)
+        public Promotion(string id, double price, string name, string description) : base(id,name,price)
         {
-            this.Name = name;
             this.Description = description;
         }
     }

@@ -11,7 +11,7 @@ namespace DepiBelle.Views.ListDataTemplates
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (item is OfferListItem)
+            if (item is OfferItem)
                 return OfferDataTemplate;
             else
                 return PromotionDataTemplate;

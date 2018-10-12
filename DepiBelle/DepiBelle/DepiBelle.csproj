@@ -31,6 +31,7 @@
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.2.2" />
     <PackageReference Include="Plugin.Badge" Version="2.1.0-pre.2" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.6.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

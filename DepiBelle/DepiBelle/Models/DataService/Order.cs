@@ -10,10 +10,10 @@ namespace DepiBelle.Models
         public int Number { get; set; }
 
         [JsonProperty("offers")]
-        public List<Offer> Offers { get; set; } = new List<Offer>();
+        public List<PurchasableItem> Offers { get; set; } = new List<PurchasableItem>();
 
         [JsonProperty("promotions")]
-        public List<Promotion> Promotions { get; set; } = new List<Promotion>();
+        public List<PurchasableItem> Promotions { get; set; } = new List<PurchasableItem>();
 
     }
 }
