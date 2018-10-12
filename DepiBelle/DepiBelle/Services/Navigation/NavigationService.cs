@@ -15,12 +15,7 @@ namespace DepiBelle.Services.Navigation
             await NavigateToAsync<HomeTabbedViewModel>();
         }
 
-        public Task<ViewModelBase> NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
-        {
-            return InternalNavigateToAsync(typeof(TViewModel), null);
-        }
-
-        public Task<ViewModelBase> NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase
+        public Task<ViewModelBase> NavigateToAsync<TViewModel>(object parameter=null) where TViewModel : ViewModelBase
         {
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
         }

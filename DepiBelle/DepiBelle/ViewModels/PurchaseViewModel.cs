@@ -163,6 +163,9 @@ namespace DepiBelle.ViewModels
             _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
             order.Number = await GetOrderNumber(date);
             await _ordersDataService.AddOrReplace(order);
+
+            DependencyContainer.Refresh();
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
         }
 
         private async Task<int> GetOrderNumber(string date)
@@ -188,6 +191,7 @@ namespace DepiBelle.ViewModels
             return localDataOrder.LastNumber;
         }
 
+        //NO SE ESTA USANDO
         private async Task GetOrders()
         {
             var key = DateConverter.ShortDate(DateTime.Now);

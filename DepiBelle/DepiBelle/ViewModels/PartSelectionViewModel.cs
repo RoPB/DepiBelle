@@ -12,7 +12,6 @@ namespace DepiBelle.ViewModels
 {
     public class PartSelectionViewModel : ViewModelBase
     {
-        private static List<string> _selectedOffers = new List<string>();
 
         private ObservableCollection<OfferItem> _offers;
 
@@ -39,6 +38,7 @@ namespace DepiBelle.ViewModels
                 IsLoading = true;
 
                 var param = navigationData as PartSelectionNavigationParam;
+                var _selectedOffers = param.SelectedOffers;
                 var offers = param.Offers;
                 var discount = param.Discount;
 
@@ -51,11 +51,6 @@ namespace DepiBelle.ViewModels
                 IsLoading = false;
             });
 
-        }
-
-        public static void OfferRemoved(string offerId)
-        {
-            _selectedOffers.Remove(offerId);
         }
 
         private async Task OfferSelected(OfferItem offer)
@@ -71,11 +66,6 @@ namespace DepiBelle.ViewModels
                                  offer.Price,
                                  offer.Name)
             };
-
-            if (offer.IsSelected)
-                _selectedOffers.Add(offer.Id);
-            else
-                _selectedOffers.Remove(offer.Id);
 
             ItemsAddedEventHandler.Invoke(this, cartItem);
 

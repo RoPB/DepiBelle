@@ -66,7 +66,7 @@
                     </StackLayout>
              </FlexLayout>
              <StackLayout Orientation="Horizontal" 
-                          Padding="20"
+                          Padding="30,20"
                           IsVisible="{Binding IsNoAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}"
                           BackgroundColor="{StaticResource PrimaryDarkColor}">
                     <Label Text="Total"

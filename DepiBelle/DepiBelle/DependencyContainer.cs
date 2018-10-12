@@ -21,24 +21,33 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
             Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
             Locator.CurrentMutable.RegisterConstant(new DataQuerySecuredService<Config>(), typeof(IDataQueryService<Config>));
-            #if PRODUCTION
+#if PRODUCTION
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceProd(), typeof(IConfigService));
-            #else
+#else
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceDev(), typeof(IConfigService));
-            #endif
+#endif
             Locator.CurrentMutable.Register(() => new LocalDataService(), typeof(ILocalDataService));
-           
+
             //Managers
             Locator.CurrentMutable.RegisterConstant(new ApplicationManager(), typeof(IApplicationManager));
 
             //ViewModels
+            RegisterViewModelDependencies();
+        }
+
+        public static void Refresh()
+        {
+            RegisterViewModelDependencies();
+        }
+
+        private static void RegisterViewModelDependencies()
+        {
+
             Locator.CurrentMutable.RegisterLazySingleton(() => new HomeTabbedViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PromotionsViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new BodySelectionViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PurchaseViewModel());
             Locator.CurrentMutable.Register(() => new PartSelectionViewModel());
-
-
         }
 
         public static T Resolve<T>()

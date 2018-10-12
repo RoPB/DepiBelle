@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using DepiBelle.ViewModels;
 using Xamarin.Forms;
 
 namespace DepiBelle.Views
@@ -11,6 +11,5 @@ namespace DepiBelle.Views
         {
             InitializeComponent();
         }
-
     }
 }

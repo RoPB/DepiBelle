@@ -19,6 +19,7 @@ namespace DepiBelle.ViewModels
         private IDialogService _dialogService;
         private IDataCollectionService<Offer> _offersDataService;
 
+        private List<string> _selectedOffers = new List<string>();
         private List<Offer> _headOffers = new List<Offer>();
         private List<Offer> _bodyOffers = new List<Offer>();
         private List<Offer> _pelvisOffers = new List<Offer>();
@@ -91,7 +92,7 @@ namespace DepiBelle.ViewModels
 
         public void OfferRemovedHandler(object sender, string offerId)
         {
-            PartSelectionViewModel.OfferRemoved(offerId);
+            _selectedOffers.Remove(offerId);
         }
 
         private async Task ClasificateOrders(List<Offer> offers)
@@ -133,10 +134,23 @@ namespace DepiBelle.ViewModels
                 offersList = _legOffers;
             }
 
-            var navigationParam = new PartSelectionNavigationParam() { Offers = offersList, Discount = _discount };
+            var navigationParam = new PartSelectionNavigationParam() { SelectedOffers = _selectedOffers, Offers = offersList, Discount = _discount };
 
             var partSelectionViewModel = await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);
-            (partSelectionViewModel as PartSelectionViewModel).ItemsAddedEventHandler = ItemsAddedEventHandler;
+            (partSelectionViewModel as PartSelectionViewModel).ItemsAddedEventHandler +=Handle_ItemsAddedEventHandler;;
+
         }
+
+
+        void Handle_ItemsAddedEventHandler(object sender, CartItem<Offer> e)
+        {
+            if (e.Added)
+                _selectedOffers.Add(e.Item.Id);
+            else
+                _selectedOffers.Remove(e.Item.Id);
+
+            ItemsAddedEventHandler.Invoke(this,e);
+        }
+
     }
 }
