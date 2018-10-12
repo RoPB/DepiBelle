@@ -15,5 +15,8 @@ namespace DepiBelle.Models
         [JsonProperty("promotions")]
         public List<PurchasableItem> Promotions { get; set; } = new List<PurchasableItem>();
 
+        [JsonProperty("total")]
+        public double Total { get; set; }
+
     }
 }

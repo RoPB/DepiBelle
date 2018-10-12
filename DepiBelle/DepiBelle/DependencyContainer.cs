@@ -1,9 +1,7 @@
 ﻿using System;
 using DepiBelle.Managers.Application;
 using DepiBelle.Models;
-using DepiBelle.Models.DataService;
 using DepiBelle.Services.Config;
-using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.DataQuery;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Services.Dialog;

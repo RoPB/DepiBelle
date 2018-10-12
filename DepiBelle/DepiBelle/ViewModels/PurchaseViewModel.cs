@@ -63,7 +63,7 @@ namespace DepiBelle.ViewModels
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
             PromotionSelectedCommand = new Command<PromotionItem>(PromotionSelected);
             OfferSelectedCommand = new Command<OfferItem>(OfferSelected);
-            ConfirmPurchaseCommand = new Command(ConfirmPurchase);
+            ConfirmPurchaseCommand = new Command(async () => await ConfirmPurchase());
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -147,31 +147,25 @@ namespace DepiBelle.ViewModels
 
         }
 
-        private void ConfirmPurchase()
+        private async Task ConfirmPurchase()
         {
+            var order = new Order();
+            order.Offers = _offers;
+            order.Promotions = _promotions;
+            order.Total = Total;
 
+            await UploadOrder(order);
         }
 
-
-        private async Task GetOrders()
+        private async Task UploadOrder(Order order)
         {
-            var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{key}" });
-            var orders = await _ordersDataService.GetAll();
-        }
-
-        private async Task AddOrders()
-        {
-
             var date = DateConverter.ShortDate(DateTime.Now);
             _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
-
-            await AddOrder(date);
-            await AddOrder(date);
-            await AddOrder(date);
+            order.Number = await GetOrderNumber(date);
+            await _ordersDataService.AddOrReplace(order);
         }
 
-        private async Task AddOrder(string date)
+        private async Task<int> GetOrderNumber(string date)
         {
             var key = Constants.Constants.LOCAL_DATA_ORDER_KEY;
 
@@ -191,9 +185,17 @@ namespace DepiBelle.ViewModels
             }
 
             await _localDataService.AddOrReplace<DataOrder>(key, localDataOrder);
-
-            await _ordersDataService.AddOrReplace(new Order() { Number = localDataOrder.LastNumber });
+            return localDataOrder.LastNumber;
         }
+
+        private async Task GetOrders()
+        {
+            var key = DateConverter.ShortDate(DateTime.Now);
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{key}" });
+            var orders = await _ordersDataService.GetAll();
+        }
+
+
 
     }
 }

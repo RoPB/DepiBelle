@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
-using DepiBelle.Models.DataService;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Navigation;
-using DepiBelle.ViewModels.Modals;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Newtonsoft.Json;
 
 namespace DepiBelle.Models
 {
@@ -7,6 +8,7 @@ namespace DepiBelle.Models
     {
         private bool _isSelected = false;
 
+        [JsonIgnore]
         public bool IsSelected
         {
             get { return _isSelected; }

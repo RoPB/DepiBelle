@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" viewModelBase:ViewModelAutoWire.AutoWireViewModel="true" xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" x:Class="DepiBelle.Views.PurchaseView">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
+             xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle"
+             xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" 
+             xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
+             x:Class="DepiBelle.Views.PurchaseView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
@@ -76,6 +84,7 @@
                         Text="CONFIRMAR" 
                         BackgroundColor="{StaticResource White}" 
                         TextColor="{StaticResource PrimaryLightColor}"
+                        Command="{Binding ConfirmPurchaseCommand}"
                         CornerRadius="20"/>
             </StackLayout>
         </FlexLayout>
