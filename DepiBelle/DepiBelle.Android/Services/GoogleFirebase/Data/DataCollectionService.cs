@@ -24,6 +24,8 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             if (Config == null)
                 Config = config;
 
+            Task.Run(async () => await UnSubscribe());
+
             return true;
         }
 

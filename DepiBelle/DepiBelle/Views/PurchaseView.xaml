@@ -18,12 +18,13 @@
                 <Setter Property="FlexLayout.Grow" Value="1"/>
             </Style>
             <Style x:Key="MainContent" TargetType="FlexLayout">
-                <Setter Property="IsVisible" Value="{Binding IsNoAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}" />
+                <Setter Property="IsVisible" Value="{Binding IsAnyPurchasableItemAdded}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="FlexLayout.Grow" Value="1"/>
             </Style>
             <Style x:Key="List" TargetType="controls:CustomListView">
                 <Setter Property="HasUnevenRows" Value="true" />
+                <Setter Property="SeparatorColor" Value="{StaticResource Grey}" />
             </Style>
             <Style x:Key="ListContent" TargetType="FlexLayout">
                 <Setter Property="Margin" Value="30" />
@@ -43,31 +44,32 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <FlexLayout Direction="Column" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <FlexLayout JustifyContent="Center" Direction="Column" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <FlexLayout Style="{StaticResource MainContainer}">
                 <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
-                <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyPurchasableItemAdded}"/>
-                    <StackLayout Style="{StaticResource MainContent}">
-                        <controls:CustomListView SeparatorColor="{StaticResource Grey}" 
-                                                 Style="{StaticResource List}" 
-                                                 ItemsSource="{Binding PurchasableItems}" 
-                                                 ItemTemplate="{StaticResource purchasableDataTemplateSelector}" 
-                                                 IsGroupingEnabled="true">
-                            <controls:CustomListView.GroupHeaderTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Padding="10" HorizontalOptions="Fill" BackgroundColor="{StaticResource LightGrey}">
-                                            <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryDarkColor}" />
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </controls:CustomListView.GroupHeaderTemplate>
-                        </controls:CustomListView>
-                    </StackLayout>
+                <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" 
+                       FlexLayout.AlignSelf="Center" 
+                       IsVisible="{Binding IsAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}"/>
+                <StackLayout Style="{StaticResource MainContent}">
+                    <controls:CustomListView Style="{StaticResource List}" 
+                                             ItemsSource="{Binding PurchasableItems}" 
+                                             ItemTemplate="{StaticResource purchasableDataTemplateSelector}" 
+                                             IsGroupingEnabled="true">
+                        <controls:CustomListView.GroupHeaderTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" HorizontalOptions="Fill" BackgroundColor="{StaticResource LightGrey}">
+                                        <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryDarkColor}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:CustomListView.GroupHeaderTemplate>
+                    </controls:CustomListView>
+                </StackLayout>
              </FlexLayout>
              <StackLayout Orientation="Horizontal" 
                           Padding="30,20"
-                          IsVisible="{Binding IsNoAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}"
+                          IsVisible="{Binding IsAnyPurchasableItemAdded}"
                           BackgroundColor="{StaticResource PrimaryDarkColor}">
                     <Label Text="Total"
                            TextColor="{StaticResource White}" 

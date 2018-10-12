@@ -20,6 +20,7 @@ namespace DepiBelle.ViewModels
         private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
+        private bool _uploadingOrder;
         private string _strItemsAdded = "";
         private int _itemsAdded = 0;
         private List<PurchasableItem> _promotions = new List<PurchasableItem>();
@@ -41,7 +42,7 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _total, value); }
         }
 
-        public bool IsNoAnyPurchasableItemAdded
+        public bool IsAnyPurchasableItemAdded
         {
             get { return _isNoAnyPurchasableItemAdded; }
             set { SetPropertyValue(ref _isNoAnyPurchasableItemAdded, value); }
@@ -58,6 +59,8 @@ namespace DepiBelle.ViewModels
         public PurchaseViewModel()
         {
             IsLoading = true;
+            IsAnyPurchasableItemAdded = PurchasableItems.Count > 0;
+            _uploadingOrder = false;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
@@ -69,7 +72,6 @@ namespace DepiBelle.ViewModels
         public override async Task InitializeAsync(object navigationData = null)
         {
             IsLoading = false;
-            IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
         }
 
         public void ItemsAddedHandler(object sender, CartItem<Promotion> itemAdded)
@@ -143,7 +145,7 @@ namespace DepiBelle.ViewModels
             _promotions.ForEach(p => Total += p.SellPrice);
             _offers.ForEach(o => Total += o.SellPrice);
 
-            IsNoAnyPurchasableItemAdded = PurchasableItems.Count == 0;
+            IsAnyPurchasableItemAdded = PurchasableItems.Count > 0;
 
         }
 
@@ -159,13 +161,28 @@ namespace DepiBelle.ViewModels
 
         private async Task UploadOrder(Order order)
         {
-            var date = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
-            order.Number = await GetOrderNumber(date);
-            await _ordersDataService.AddOrReplace(order);
+            try
+            {
+                if (!_uploadingOrder)
+                {
+                    _uploadingOrder = true;
+                    var date = DateConverter.ShortDate(DateTime.Now);
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
+                    order.Number = await GetOrderNumber(date);
+                    await _ordersDataService.AddOrReplace(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DialogService.ShowAlertAsync("Se produjo un error al procesar la orden. Intente nuevamente", "Error", "ACEPTAR");
+            }
+            finally
+            {
+                _uploadingOrder = false;
+                DependencyContainer.Refresh();
+                await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+            }
 
-            DependencyContainer.Refresh();
-            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
         }
 
         private async Task<int> GetOrderNumber(string date)
