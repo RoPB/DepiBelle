@@ -18,7 +18,7 @@
                 <Label Text="$"  FontSize="25" VerticalOptions="Center"/>
                 <Label Text="{Binding SellPrice}" FontSize="25" VerticalOptions="Center"/>
                 <AbsoluteLayout Margin="10,0" IsVisible="{Binding HasDiscount}">
-                    <BoxView HeightRequest="1" Color="Silver" 
+                    <BoxView HeightRequest="1" Color="{StaticResource DarkGrey}" 
                              HorizontalOptions="EndAndExpand" 
                              AbsoluteLayout.LayoutFlags="PositionProportional" 
                              AbsoluteLayout.LayoutBounds="0,0.5,-1,-1"/>
@@ -26,8 +26,8 @@
                            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
                         <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="$" TextColor="Silver"></Span>
-                                    <Span Text="{Binding Price}" TextColor="Silver"></Span>
+                                    <Span Text="$" TextColor="{StaticResource DarkGrey}"></Span>
+                                    <Span Text="{Binding Price}" TextColor="{StaticResource DarkGrey}"></Span>
                                 </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -42,7 +42,7 @@
                     CommandParameter="{Binding .}"/>
                 <Button Text="QUITAR" 
                     IsVisible="{Binding IsSelected}"
-                    BackgroundColor="Silver" 
+                    BackgroundColor="{StaticResource DarkGrey}" 
                     TextColor="{StaticResource White}"
                     CornerRadius="20"
                     HorizontalOptions="EndAndExpand"

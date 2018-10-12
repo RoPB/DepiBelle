@@ -9,7 +9,8 @@
             <Color x:Key="PrimaryLightColor">#7A4983</Color>
             <Color x:Key="PrimaryDarkColor">#441F51</Color>
             <Color x:Key="White">#FFFF</Color>
-            <Color x:Key="Grey">#dddfdf</Color>
+            <Color x:Key="LightGrey">#f8f8f8</Color>
+            <Color x:Key="Grey">#c1c1c1</Color>
             <Color x:Key="DarkGrey">#888888</Color>
             
             <!-- FONTS -->

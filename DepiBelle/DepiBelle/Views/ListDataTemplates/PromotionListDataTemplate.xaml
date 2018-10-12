@@ -28,7 +28,7 @@
                     CommandParameter="{Binding .}"/>
                 <Button Text="QUITAR" 
                     IsVisible="{Binding IsSelected}"
-                    BackgroundColor="Silver" 
+                    BackgroundColor="{StaticResource DarkGrey}" 
                     TextColor="{StaticResource White}"
                     CornerRadius="20"
                     HorizontalOptions="EndAndExpand"

@@ -38,7 +38,7 @@
         <FlexLayout Direction="Column" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <FlexLayout Style="{StaticResource MainContainer}">
                 <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
-                <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyAffordableItemAdded}"/>
+                <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" FlexLayout.AlignSelf="Center" IsVisible="{Binding IsNoAnyPurchasableItemAdded}"/>
                     <StackLayout Style="{StaticResource MainContent}">
                         <controls:CustomListView SeparatorColor="{StaticResource Grey}" 
                                                  Style="{StaticResource List}" 
@@ -48,7 +48,7 @@
                             <controls:CustomListView.GroupHeaderTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Padding="10" HorizontalOptions="Fill" BackgroundColor="{StaticResource Grey}">
+                                        <StackLayout Padding="10" HorizontalOptions="Fill" BackgroundColor="{StaticResource LightGrey}">
                                             <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryDarkColor}" />
                                         </StackLayout>
                                     </ViewCell>
