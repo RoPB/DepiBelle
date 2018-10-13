@@ -9,6 +9,7 @@ using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
 using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Utilities;
+using DepiBelle.ViewModels.Modals;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
@@ -166,6 +167,7 @@ namespace DepiBelle.ViewModels
                 if (!_uploadingOrder)
                 {
                     _uploadingOrder = true;
+                    await ModalService.PushAsync<ConfirmationModalViewModel>();
                     var date = DateConverter.ShortDate(DateTime.Now);
                     _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
                     order.Number = await GetOrderNumber(date);
@@ -174,7 +176,7 @@ namespace DepiBelle.ViewModels
             }
             catch (Exception ex)
             {
-                await DialogService.ShowAlertAsync("Se produjo un error al procesar la orden. Intente nuevamente", "Error", "ACEPTAR");
+                //await DialogService.ShowAlertAsync("Se produjo un error al procesar la orden. Intente nuevamente", "Error", "ACEPTAR");
             }
             finally
             {

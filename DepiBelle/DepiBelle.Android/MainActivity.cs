@@ -9,6 +9,7 @@ using Android.OS;
 using Firebase.Auth;
 using Xamarin.Forms;
 using Plugin.Badge.Droid;
+using Lottie.Forms.Droid;
 
 [assembly: ExportRenderer(typeof(TabbedPage), typeof(BadgedTabbedPageRenderer))]
 namespace DepiBelle.Droid
@@ -25,6 +26,7 @@ namespace DepiBelle.Droid
             ResolveDependencies();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AnimationViewRenderer.Init();
             LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
             //                                                               new UXDivers.Gorilla.Config("Good Gorilla").

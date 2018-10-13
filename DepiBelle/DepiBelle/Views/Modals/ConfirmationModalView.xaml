@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:modalViewModelBase="clr-namespace:DepiBelle.ViewModels.Modals;assembly=DepiBelle"
+             modalViewModelBase:ModalViewModelAutoWire.AutoWireViewModel="True"
+             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="DepiBelle.Views.Modals.ConfirmationModalView">
+    <popup:PopupPage.Content>
+        <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <controls:AnimationViewCustom
+                x:Name="LottieView"
+                Animation="Loading.json"
+                Loop="false"
+                AutoPlay="true"
+                WidthRequest="400" HeightRequest="400"
+                FlexLayout.AlignSelf="Center"/>
+        </FlexLayout>
+    </popup:PopupPage.Content>
+</popup:PopupPage>

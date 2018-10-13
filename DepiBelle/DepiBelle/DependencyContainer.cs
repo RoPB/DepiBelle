@@ -8,6 +8,7 @@ using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Modal;
 using DepiBelle.Services.Navigation;
 using DepiBelle.ViewModels;
+using DepiBelle.ViewModels.Modals;
 using Splat;
 
 namespace DepiBelle
@@ -33,6 +34,9 @@ namespace DepiBelle
 
             //ViewModels
             RegisterViewModelDependencies();
+
+            //ModalViewModels
+            Locator.CurrentMutable.RegisterLazySingleton(() => new ConfirmationModalViewModel());
         }
 
         public static void Refresh()
