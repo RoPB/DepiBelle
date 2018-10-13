@@ -76,9 +76,9 @@
                            FontFamily="{StaticResource Museo-Bold}" FontSize="35" VerticalOptions="Center"/>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center">
                         <Label Text="$" FontAttributes="Bold" 
-                               TextColor="{StaticResource White}" FontSize="25"/>
+                               TextColor="{StaticResource White}" FontSize="40"/>
                         <Label Text="{Binding Total}" FontAttributes="Bold" 
-                               TextColor="{StaticResource White}" FontSize="25"/>
+                               TextColor="{StaticResource White}" FontSize="40"/>
                     </StackLayout>
                     <Button 
                         HorizontalOptions="End"
