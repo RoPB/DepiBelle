@@ -15,23 +15,21 @@
                             Direction="Column"
                             BackgroundColor="Transparent"
                             Margin="30">
-                            <!--<controls:AnimationViewCustom
+                            <controls:AnimationViewCustom
                                 x:Name="LottieView"
                                 Animation="Loading.json"
                                 IsVisible="{Binding IsAnimationVisible}"
                                 PlayCommand="{Binding PlayAnimationCommand}"
-                                WidthRequest="400" HeightRequest="400"
-                                FlexLayout.AlignSelf="Center"/>-->
-                    
-                            <StackLayout Spacing="5">
-                                <Label Text="Nombre u Apodo" TextColor="{StaticResource DarkGrey}"/>
-                                 <Entry/>
+                                WidthRequest="150" HeightRequest="150"
+                                FlexLayout.AlignSelf="Center"/>
+                            <StackLayout Spacing="5" FlexLayout.AlignSelf="Center">
+                                <Label Text="Viviana" FontSize="35" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Tu numero es el" FontSize="40" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="1" FontSize="75" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
-                             
-                             <Button Text="CONFIRMAR" 
-                                BackgroundColor="{StaticResource PrimaryLightColor}" 
-                                TextColor="{StaticResource White}"
-                                CornerRadius="20"/>
+                            <StackLayout Spacing="5" FlexLayout.AlignSelf="Center">
+                                <Label Text="Gracias por confiar en nosotros" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
                 </FlexLayout>
             </Frame>
         </FlexLayout>

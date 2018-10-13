@@ -10,6 +10,7 @@ namespace DepiBelle.ViewModels.Modals
     {
         private bool _isAnimationVisible;
 
+        private Func<Task> AfterCloseModal;
         public ICommand PlayAnimationCommand { get; set; }
         public bool IsAnimationVisible
         {
@@ -17,16 +18,26 @@ namespace DepiBelle.ViewModels.Modals
             set { SetPropertyValue(ref _isAnimationVisible, value); }
         }
 
+
         public ConfirmationModalViewModel(){
             IsLoading = true;
         }
 
         public override async Task InitializeAsync(object parameter=null)
         {
-            //IsAnimationVisible = true;
-            //PlayAnimationCommand.Execute(new LottieProgress(){Loop=true,From=0.5f,To=1});
 
+            AfterCloseModal = parameter as Func<Task>;
             IsLoading = false;
+            CloseModalCommand = new Command(async () =>
+            {
+                PlayAnimationCommand.Execute(new LottieProgress() { Loop = false, From = 0.5f, To = 1 });
+                await CloseModal();
+                await AfterCloseModal.Invoke();
+            });
+
+            IsAnimationVisible = true;
+            PlayAnimationCommand.Execute(new LottieProgress() { Loop = false, From = 0, To = 1});//true 0.5f
+
         }
 
     }

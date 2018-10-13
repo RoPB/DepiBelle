@@ -28,7 +28,7 @@ namespace DepiBelle.Extensions
 
             if (!IsPlaying){
                 Loop = lottieProgress.Loop;
-                this.PlayProgressSegment(lottieProgress.From, lottieProgress.To);//Play();
+                this.PlayProgressSegment(lottieProgress.From, lottieProgress.To);
             }
 
         }
