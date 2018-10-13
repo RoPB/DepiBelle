@@ -4,30 +4,39 @@
              xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:modalViewModelBase="clr-namespace:DepiBelle.ViewModels.Modals;assembly=DepiBelle"
              modalViewModelBase:ModalViewModelAutoWire.AutoWireViewModel="True"
+             xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              x:Class="DepiBelle.Views.Modals.ConfirmationModalView">
+    <popup:PopupPage.Resources>
+        <ResourceDictionary>
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            </ResourceDictionary>
+    </popup:PopupPage.Resources>
     <popup:PopupPage.Content>
         <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-           
             <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="75,75">
                 <FlexLayout JustifyContent="SpaceAround" 
                             Direction="Column"
                             BackgroundColor="Transparent"
                             Margin="30">
-                            <controls:AnimationViewCustom
-                                x:Name="LottieView"
-                                Animation="Loading.json"
-                                IsVisible="{Binding IsAnimationVisible}"
-                                PlayCommand="{Binding PlayAnimationCommand}"
-                                WidthRequest="150" HeightRequest="150"
-                                FlexLayout.AlignSelf="Center"/>
                             <StackLayout Spacing="5" FlexLayout.AlignSelf="Center">
-                                <Label Text="Viviana" FontSize="35" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="Tu numero es el" FontSize="40" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="1" FontSize="75" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <controls:AnimationViewCustom
+                                    x:Name="LottieView"
+                                    Animation="Loading.json"
+                                    IsVisible="true"
+                                    PlayCommand="{Binding PlayAnimationCommand}"
+                                    WidthRequest="150" HeightRequest="150"
+                                    FlexLayout.AlignSelf="Center"/>
+                                <Label IsVisible="{Binding Processing}" Text="Procesando orden" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label IsVisible="{Binding Processing,Converter={StaticResource InverseBoolConverter}}" Text="Listo! a depilarse" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
-                            <StackLayout Spacing="5" FlexLayout.AlignSelf="Center">
+                            <StackLayout IsVisible="{Binding Processing,Converter={StaticResource InverseBoolConverter}}" Spacing="5" FlexLayout.AlignSelf="Center">
+                                <Label Text="{Binding Name}" FontSize="35" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Tu numero es el" FontSize="40" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Number}" FontSize="75" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <StackLayout IsVisible="{Binding Processing,Converter={StaticResource InverseBoolConverter}}" Spacing="5" FlexLayout.AlignSelf="Center">
                                 <Label Text="Gracias por confiar en nosotros" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                 </FlexLayout>

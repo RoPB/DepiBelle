@@ -26,11 +26,8 @@ namespace DepiBelle.Extensions
         {
             var lottieProgress = param as LottieProgress;
 
-            if (!IsPlaying){
-                Loop = lottieProgress.Loop;
-                this.PlayProgressSegment(lottieProgress.From, lottieProgress.To);
-            }
-
+            Loop = lottieProgress.Loop;
+            this.PlayProgressSegment(lottieProgress.From, lottieProgress.To);
         }
 
 

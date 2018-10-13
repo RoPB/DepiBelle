@@ -156,6 +156,7 @@ namespace DepiBelle.ViewModels
             order.Offers = _offers;
             order.Promotions = _promotions;
             order.Total = Total;
+            order.Name = "Viviana";
 
             await UploadOrder(order);
         }
@@ -163,6 +164,7 @@ namespace DepiBelle.ViewModels
         private async Task UploadOrder(Order order)
         {
             var error = false;
+            ModalViewModelBase viewModel = null;
 
             try
             {
@@ -170,7 +172,8 @@ namespace DepiBelle.ViewModels
                 {
                     _uploadingOrder = true;
 
-                    var viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>() as ConfirmationModalViewModel;
+                    Func<Task> afterCloseModalFunction = OrderCompleted;
+                    viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
                     var date = DateConverter.ShortDate(DateTime.Now);
                     _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
@@ -186,16 +189,25 @@ namespace DepiBelle.ViewModels
             }
             finally
             {
-                if(_uploadingOrder)
+                if (_uploadingOrder)
                 {
-                    if(!error)
+                    if (!error)
                     {
-                        DependencyContainer.Refresh();
-                        await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+                        viewModel.CloseModalCommand.Execute(order);
                     }
-                    _uploadingOrder = false;
+                    else
+                    {
+                        viewModel.CloseModalCommand.Execute(null);
+                    }
                 }
             }
+        }
+
+        private async Task OrderCompleted()
+        {
+            _uploadingOrder = false;
+            DependencyContainer.Refresh();
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
         }
 
         private async Task<int> GetOrderNumber(string date)
