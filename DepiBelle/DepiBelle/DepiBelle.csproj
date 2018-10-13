@@ -62,6 +62,7 @@
     <Folder Include="Models\Exceptions\" />
     <Folder Include="Services\Data\DataQuery\" />
     <Folder Include="Models\Navigation\" />
+    <Folder Include="Models\Lottie\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

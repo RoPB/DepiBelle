@@ -12,8 +12,8 @@
             <controls:AnimationViewCustom
                 x:Name="LottieView"
                 Animation="Loading.json"
-                Loop="false"
-                AutoPlay="true"
+                IsVisible="{Binding IsAnimationVisible}"
+                PlayCommand="{Binding PlayAnimationCommand}"
                 WidthRequest="400" HeightRequest="400"
                 FlexLayout.AlignSelf="Center"/>
         </FlexLayout>

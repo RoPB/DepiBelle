@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using DepiBelle.Models.Lottie;
 using Lottie.Forms;
 using Xamarin.Forms;
 
@@ -23,8 +24,15 @@ namespace DepiBelle.Extensions
 
         private void PlayAnimation(object param = null)
         {
-            if (!IsPlaying)
-                Play();
+            var lottieProgress = param as LottieProgress;
+
+            if (!IsPlaying){
+                Loop = lottieProgress.Loop;
+                this.PlayProgressSegment(lottieProgress.From, lottieProgress.To);//Play();
+            }
+
         }
+
+
     }
 }

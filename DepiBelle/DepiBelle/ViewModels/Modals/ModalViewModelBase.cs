@@ -82,7 +82,7 @@ namespace DepiBelle.ViewModels.Modals
             CloseModalCommand = new Command(async () => await CloseModal());
         }
 
-        public virtual Task InitializeAsync(object parameter)
+        public virtual Task InitializeAsync(object parameter=null)
         {
             return Task.FromResult(false);
         }
