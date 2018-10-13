@@ -36,7 +36,7 @@ namespace DepiBelle
             RegisterViewModelDependencies();
 
             //ModalViewModels
-            Locator.CurrentMutable.RegisterLazySingleton(() => new ConfirmationModalViewModel());
+            Locator.CurrentMutable.Register(() => new ConfirmationModalViewModel());
         }
 
         public static void Refresh()

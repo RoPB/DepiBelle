@@ -9,13 +9,31 @@
              x:Class="DepiBelle.Views.Modals.ConfirmationModalView">
     <popup:PopupPage.Content>
         <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <controls:AnimationViewCustom
-                x:Name="LottieView"
-                Animation="Loading.json"
-                IsVisible="{Binding IsAnimationVisible}"
-                PlayCommand="{Binding PlayAnimationCommand}"
-                WidthRequest="400" HeightRequest="400"
-                FlexLayout.AlignSelf="Center"/>
+           
+            <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="75,75">
+                <FlexLayout JustifyContent="SpaceAround" 
+                            Direction="Column"
+                            BackgroundColor="Transparent"
+                            Margin="30">
+                            <!--<controls:AnimationViewCustom
+                                x:Name="LottieView"
+                                Animation="Loading.json"
+                                IsVisible="{Binding IsAnimationVisible}"
+                                PlayCommand="{Binding PlayAnimationCommand}"
+                                WidthRequest="400" HeightRequest="400"
+                                FlexLayout.AlignSelf="Center"/>-->
+                    
+                            <StackLayout Spacing="5">
+                                <Label Text="Nombre u Apodo" TextColor="{StaticResource DarkGrey}"/>
+                                 <Entry/>
+                            </StackLayout>
+                             
+                             <Button Text="CONFIRMAR" 
+                                BackgroundColor="{StaticResource PrimaryLightColor}" 
+                                TextColor="{StaticResource White}"
+                                CornerRadius="20"/>
+                </FlexLayout>
+            </Frame>
         </FlexLayout>
     </popup:PopupPage.Content>
 </popup:PopupPage>

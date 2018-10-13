@@ -17,15 +17,16 @@ namespace DepiBelle.ViewModels.Modals
             set { SetPropertyValue(ref _isAnimationVisible, value); }
         }
 
-        public ConfirmationModalViewModel()
-        {
-
+        public ConfirmationModalViewModel(){
+            IsLoading = true;
         }
 
         public override async Task InitializeAsync(object parameter=null)
         {
-            _isAnimationVisible = true;
-            PlayAnimationCommand.Execute(new LottieProgress(){Loop=true,From=0.5f,To=1});
+            //IsAnimationVisible = true;
+            //PlayAnimationCommand.Execute(new LottieProgress(){Loop=true,From=0.5f,To=1});
+
+            IsLoading = false;
         }
 
     }

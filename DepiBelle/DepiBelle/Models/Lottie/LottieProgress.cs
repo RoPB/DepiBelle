@@ -3,6 +3,7 @@ namespace DepiBelle.Models.Lottie
 {
     public class LottieProgress
     {
+
         public float From
         {
             get;

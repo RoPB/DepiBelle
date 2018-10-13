@@ -36,7 +36,7 @@ namespace DepiBelle.Models
         [JsonProperty("sellPrice")]
         public double SellPrice
         {
-            get { return HasDiscount ? Price * ((double)Discount / 100) : Price; }
+            get { return HasDiscount ? Price - ((double)Discount * Price  / 100) : Price; }
         }
 
         [JsonIgnore]

@@ -10,17 +10,17 @@ namespace DepiBelle.Services.Modal
 {
     public class ModalService : IModalService
     {
-        public Task PushAsync<TModalViewModel>() where TModalViewModel : ModalViewModelBase
+        public Task<ModalViewModelBase> PushAsync<TModalViewModel>() where TModalViewModel : ModalViewModelBase
         {
             return InternalPushAsync(typeof(TModalViewModel));
         }
 
-        public Task PushAsync<TModalViewModel>(object parameter) where TModalViewModel : ModalViewModelBase
+        public Task<ModalViewModelBase> PushAsync<TModalViewModel>(object parameter) where TModalViewModel : ModalViewModelBase
         {
             return InternalPushAsync(typeof(TModalViewModel), parameter);
         }
 
-        public Task PushAsync<TModalViewModel>(Func<object, Task> func) where TModalViewModel : ModalViewModelBase
+        public Task<ModalViewModelBase> PushAsync<TModalViewModel>(Func<object, Task> func) where TModalViewModel : ModalViewModelBase
         {
             return InternalPushAsync(typeof(TModalViewModel), func);
         }
@@ -35,11 +35,14 @@ namespace DepiBelle.Services.Modal
             await PopupNavigation.Instance.PopAllAsync();
         }
 
-        private async Task InternalPushAsync(Type modalViewModelType, object parameter = null)
+        private async Task<ModalViewModelBase> InternalPushAsync(Type modalViewModelType, object parameter = null)
         {
             PopupPage popupPage = CreatePopupPage(modalViewModelType);
             await PopupNavigation.Instance.PushAsync(popupPage);
-            await (popupPage.BindingContext as ModalViewModelBase).InitializeAsync(parameter);
+            var modalViewModel = (popupPage.BindingContext as ModalViewModelBase);
+            await modalViewModel.InitializeAsync(parameter);
+
+            return modalViewModel;
         }
 
         private Type GetPageTypeForModalViewModel(Type modalViewModelType)

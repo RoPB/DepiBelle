@@ -162,29 +162,40 @@ namespace DepiBelle.ViewModels
 
         private async Task UploadOrder(Order order)
         {
+            var error = false;
+
             try
             {
                 if (!_uploadingOrder)
                 {
                     _uploadingOrder = true;
-                    await ModalService.PushAsync<ConfirmationModalViewModel>();
+
+                    var viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>() as ConfirmationModalViewModel;
+
                     var date = DateConverter.ShortDate(DateTime.Now);
                     _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
                     order.Number = await GetOrderNumber(date);
+
                     await _ordersDataService.AddOrReplace(order);
+
                 }
             }
             catch (Exception ex)
             {
-                //await DialogService.ShowAlertAsync("Se produjo un error al procesar la orden. Intente nuevamente", "Error", "ACEPTAR");
+                error = true;
             }
             finally
             {
-                _uploadingOrder = false;
-                DependencyContainer.Refresh();
-                await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+                if(_uploadingOrder)
+                {
+                    if(!error)
+                    {
+                        DependencyContainer.Refresh();
+                        await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+                    }
+                    _uploadingOrder = false;
+                }
             }
-
         }
 
         private async Task<int> GetOrderNumber(string date)
