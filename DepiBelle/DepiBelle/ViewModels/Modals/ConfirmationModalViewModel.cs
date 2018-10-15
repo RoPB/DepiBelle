@@ -14,7 +14,7 @@ namespace DepiBelle.ViewModels.Modals
         private string _name;
         private int _number;
 
-        private Func<Task> AfterCloseModal;
+        private Func<bool, Task> AfterCloseModal;
         public ICommand PlayAnimationCommand { get; set; }
 
 
@@ -45,7 +45,7 @@ namespace DepiBelle.ViewModels.Modals
         public override async Task InitializeAsync(object parameter = null)
         {
 
-            AfterCloseModal = parameter as Func<Task>;
+            AfterCloseModal = parameter as Func<bool, Task>;
 
             CloseModalCommand = new Command<Order>(async (order) =>
             {
@@ -59,7 +59,7 @@ namespace DepiBelle.ViewModels.Modals
                 }
 
                 await CloseModal();
-                await AfterCloseModal.Invoke();
+                await AfterCloseModal.Invoke(order==null);
             });
 
             PlayAnimationCommand.Execute(new LottieProgress() { Loop = true, From = 0, To = 0.5f });

@@ -26,7 +26,7 @@ namespace DepiBelle.ViewModels
         private int _itemsAdded = 0;
         private List<PurchasableItem> _promotions = new List<PurchasableItem>();
         private List<PurchasableItem> _offers = new List<PurchasableItem>();
-        private bool _isNoAnyPurchasableItemAdded = false;
+        private bool _showMainContent = false;
         private double _total;
 
         private ObservableCollection<CartItemsGrouped> _purchasableItems = new ObservableCollection<CartItemsGrouped>();
@@ -43,10 +43,10 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _total, value); }
         }
 
-        public bool IsAnyPurchasableItemAdded
+        public bool ShowMainContent
         {
-            get { return _isNoAnyPurchasableItemAdded; }
-            set { SetPropertyValue(ref _isNoAnyPurchasableItemAdded, value); }
+            get { return _showMainContent; }
+            set { SetPropertyValue(ref _showMainContent, value); }
         }
 
         public ICommand PromotionSelectedCommand { get; set; }
@@ -60,7 +60,7 @@ namespace DepiBelle.ViewModels
         public PurchaseViewModel()
         {
             IsLoading = true;
-            IsAnyPurchasableItemAdded = PurchasableItems.Count > 0;
+            ShowMainContent = PurchasableItems.Count > 0;
             _uploadingOrder = false;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
@@ -146,7 +146,7 @@ namespace DepiBelle.ViewModels
             _promotions.ForEach(p => Total += p.SellPrice);
             _offers.ForEach(o => Total += o.SellPrice);
 
-            IsAnyPurchasableItemAdded = PurchasableItems.Count > 0;
+            ShowMainContent = PurchasableItems.Count > 0;
 
         }
 
@@ -171,8 +171,9 @@ namespace DepiBelle.ViewModels
                 if (!_uploadingOrder)
                 {
                     _uploadingOrder = true;
+                    IsLoading = true;
 
-                    Func<Task> afterCloseModalFunction = OrderCompleted;
+                    Func<bool, Task> afterCloseModalFunction = OrderCompleted;
                     viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
                     var date = DateConverter.ShortDate(DateTime.Now);
@@ -203,11 +204,19 @@ namespace DepiBelle.ViewModels
             }
         }
 
-        private async Task OrderCompleted()
+        private async Task OrderCompleted(bool error)
         {
-            _uploadingOrder = false;
-            DependencyContainer.Refresh();
-            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+            if (!error)
+            {
+                DependencyContainer.Refresh();
+                await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+            }
+            else
+            {
+                _uploadingOrder = false;
+                IsLoading = false;
+            }
+
         }
 
         private async Task<int> GetOrderNumber(string date)
@@ -231,6 +240,7 @@ namespace DepiBelle.ViewModels
 
             await _localDataService.AddOrReplace<DataOrder>(key, localDataOrder);
             return localDataOrder.LastNumber;
+
         }
 
         //NO SE ESTA USANDO

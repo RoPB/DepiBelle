@@ -16,11 +16,11 @@
                 <Setter Property="JustifyContent" Value="Center" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="FlexLayout.Grow" Value="1"/>
+                <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}" />
             </Style>
             <Style x:Key="MainContent" TargetType="FlexLayout">
-                <Setter Property="IsVisible" Value="{Binding IsAnyPurchasableItemAdded}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
-                <Setter Property="FlexLayout.Grow" Value="1"/>
+                <Setter Property="IsVisible" Value="{Binding ShowMainContent}" />
             </Style>
             <Style x:Key="List" TargetType="controls:CustomListView">
                 <Setter Property="HasUnevenRows" Value="true" />
@@ -44,12 +44,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <FlexLayout JustifyContent="Center" Direction="Column" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <FlexLayout JustifyContent="Center"
+                    Direction="Column" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource White}">
+            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
             <FlexLayout Style="{StaticResource MainContainer}">
-                <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true" />
                 <Label Text="No ha seleccionado que comprar" TextColor="{StaticResource DarkGrey}" 
                        FlexLayout.AlignSelf="Center" 
-                       IsVisible="{Binding IsAnyPurchasableItemAdded,Converter={StaticResource InverseBoolConverter}}"/>
+                       IsVisible="{Binding ShowMainContent,Converter={StaticResource InverseBoolConverter}}"/>
                 <StackLayout Style="{StaticResource MainContent}">
                     <controls:CustomListView Style="{StaticResource List}" 
                                              ItemsSource="{Binding PurchasableItems}" 
@@ -65,30 +67,31 @@
                             </DataTemplate>
                         </controls:CustomListView.GroupHeaderTemplate>
                     </controls:CustomListView>
-                </StackLayout>
-             </FlexLayout>
-             <StackLayout Orientation="Horizontal" 
+                     <StackLayout 
+                          Orientation="Horizontal" 
                           Padding="30,20"
-                          IsVisible="{Binding IsAnyPurchasableItemAdded}"
                           BackgroundColor="{StaticResource PrimaryDarkColor}">
-                    <Label Text="Total"
-                           TextColor="{StaticResource White}" 
-                           FontFamily="{StaticResource Museo-Bold}" FontSize="35" VerticalOptions="Center"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center">
-                        <Label Text="$" FontAttributes="Bold" 
-                               TextColor="{StaticResource White}" FontSize="40"/>
-                        <Label Text="{Binding Total}" FontAttributes="Bold" 
-                               TextColor="{StaticResource White}" FontSize="40"/>
+                            <Label Text="Total"
+                                   TextColor="{StaticResource White}" 
+                                   FontFamily="{StaticResource Museo-Bold}" FontSize="35" VerticalOptions="Center"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center">
+                                <Label Text="$" FontAttributes="Bold" 
+                                       TextColor="{StaticResource White}" FontSize="40"/>
+                                <Label Text="{Binding Total}" FontAttributes="Bold" 
+                                       TextColor="{StaticResource White}" FontSize="40"/>
+                            </StackLayout>
+                            <Button 
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Text="CONFIRMAR" 
+                                BackgroundColor="{StaticResource White}" 
+                                TextColor="{StaticResource PrimaryLightColor}"
+                                Command="{Binding ConfirmPurchaseCommand}"
+                                CornerRadius="20"/>
                     </StackLayout>
-                    <Button 
-                        HorizontalOptions="End"
-                        VerticalOptions="Center"
-                        Text="CONFIRMAR" 
-                        BackgroundColor="{StaticResource White}" 
-                        TextColor="{StaticResource PrimaryLightColor}"
-                        Command="{Binding ConfirmPurchaseCommand}"
-                        CornerRadius="20"/>
-            </StackLayout>
+                </StackLayout>
+               
+             </FlexLayout>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
