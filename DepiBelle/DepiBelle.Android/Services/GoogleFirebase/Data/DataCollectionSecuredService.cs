@@ -22,8 +22,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                token = _authenticationService.Token;
-                var items = await base.GetAll(token);
+                var items = await base.GetAll(_authenticationService.Token);
                 return items;
             }
             catch (FirebaseException fe)
@@ -57,8 +56,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                token = _authenticationService.Token;
-                var item = await base.Get(id, token);
+                var item = await base.Get(id, _authenticationService.Token);
                 return item;
             }
             catch (FirebaseException fe)
@@ -92,8 +90,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                token = _authenticationService.Token;
-                return await base.AddOrReplace(item, autoKey, token);
+                return await base.AddOrReplace(item, autoKey, _authenticationService.Token);
             }
             catch (FirebaseException fe)
             {
@@ -103,7 +100,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                     {
                         await _authenticationService.RefreshSession();
 
-                        return await base.AddOrReplace(item, autoKey, token);
+                        return await base.AddOrReplace(item, autoKey, _authenticationService.Token);
                     }
                     catch (Exception ex)
                     {
@@ -126,8 +123,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                token = _authenticationService.Token;
-                return await base.Remove(id, token);
+                return await base.Remove(id, _authenticationService.Token);
             }
             catch (FirebaseException fe)
             {
@@ -137,7 +133,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                     {
                         await _authenticationService.RefreshSession();
 
-                        return await base.Remove(id, token);
+                        return await base.Remove(id, _authenticationService.Token);
                     }
                     catch (Exception ex)
                     {
@@ -160,8 +156,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                token = _authenticationService.Token;
-                return await base.RemoveAll(token);
+                return await base.RemoveAll(_authenticationService.Token);
             }
             catch (FirebaseException fe)
             {
@@ -171,7 +166,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                     {
                         await _authenticationService.RefreshSession();
 
-                        return await base.RemoveAll(token);
+                        return await base.RemoveAll(_authenticationService.Token);
                     }
                     catch (Exception ex)
                     {
@@ -190,12 +185,12 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
             }
         }
 
-        public override async Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null){
+        public override async Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null)
+        {
 
             try
             {
-                token = _authenticationService.Token;
-                return await base.Subscribe(action,token);
+                return await base.Subscribe(action, _authenticationService.Token);
             }
             catch (FirebaseException fe)
             {
@@ -205,7 +200,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                     {
                         await _authenticationService.RefreshSession();
 
-                        return await base.Subscribe(action,token);
+                        return await base.Subscribe(action, _authenticationService.Token);
                     }
                     catch (Exception ex)
                     {

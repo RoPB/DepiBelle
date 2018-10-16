@@ -20,8 +20,7 @@ namespace DepiBelle.Services.Data.DataQuery
         {
             try
             {
-                token = _authenticationService.Token;
-                var item = await base.Get(token);
+                var item = await base.Get(_authenticationService.Token);
                 return item;
             }
             catch (NotAuthorizedException)
