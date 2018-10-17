@@ -75,8 +75,8 @@ namespace DepiBelle.ViewModels
             _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
 
-            _cartPromotionManager.ItemAddedEventHandler += ItemsAddedHandler;
-            _cartOfferManager.ItemAddedEventHandler += ItemsAddedHandler;
+            _cartPromotionManager.ItemAdded += ItemsAddedHandler;
+            _cartOfferManager.ItemAdded += ItemsAddedHandler;
 
         }
 

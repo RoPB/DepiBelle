@@ -5,7 +5,7 @@ namespace DepiBelle.Services.Notification
 {
     public interface ICartNotificationService<T> where T : Purchasable
     {
-        EventHandler<CartItem<T>> ItemAddedEventHandler { get; set; }
+        EventHandler<CartItem<T>> ItemAdded { get; set; }
 
         EventHandler<string> ItemRemoved { get; set; }
 

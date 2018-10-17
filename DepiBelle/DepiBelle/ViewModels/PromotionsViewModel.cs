@@ -87,7 +87,7 @@ namespace DepiBelle.ViewModels
                                      promotion.Description)
             };
 
-            _cartPromotionManager.ItemAddedEventHandler.Invoke(this, cartItem);
+            _cartPromotionManager.ItemAdded.Invoke(this, cartItem);
         }
 
     }

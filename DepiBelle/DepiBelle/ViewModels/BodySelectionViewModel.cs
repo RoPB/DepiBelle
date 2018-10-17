@@ -153,7 +153,7 @@ namespace DepiBelle.ViewModels
             else
                 _selectedOffers.Remove(e.Item.Id);
 
-            _cartOfferManager.ItemAddedEventHandler.Invoke(this, e);
+            _cartOfferManager.ItemAdded.Invoke(this, e);
         }
 
     }
