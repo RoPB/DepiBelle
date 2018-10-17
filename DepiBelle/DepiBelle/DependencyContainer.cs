@@ -47,6 +47,8 @@ namespace DepiBelle
         private static void RegisterViewModelDependencies()
         {
 
+
+            Locator.CurrentMutable.RegisterLazySingleton(() => new WelcomeViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new HomeTabbedViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PromotionsViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new BodySelectionViewModel());

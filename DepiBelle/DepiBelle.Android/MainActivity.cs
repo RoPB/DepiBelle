@@ -27,7 +27,7 @@ namespace DepiBelle.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AnimationViewRenderer.Init();
-            LoadApplication(new App());
+            //LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
             //                                                               new UXDivers.Gorilla.Config("Good Gorilla").
             //                                                               RegisterAssembly(typeof(DepiBelle.App).Assembly)));

@@ -27,12 +27,27 @@ namespace DepiBelle.Services.Modal
 
         public async Task PopAsync()
         {
-            await PopupNavigation.Instance.PopAsync();
+            try
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         public async Task PopAllAsync()
         {
-            await PopupNavigation.Instance.PopAllAsync();
+            try
+            {
+                await PopupNavigation.Instance.PopAllAsync();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private async Task<ModalViewModelBase> InternalPushAsync(Type modalViewModelType, object parameter = null)
