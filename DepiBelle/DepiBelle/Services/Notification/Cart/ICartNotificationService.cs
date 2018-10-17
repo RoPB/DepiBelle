@@ -1,9 +1,9 @@
 ﻿using System;
 using DepiBelle.Models;
 
-namespace DepiBelle.Managers.Cart
+namespace DepiBelle.Services.Notification
 {
-    public interface ICartManager<T> where T : Purchasable
+    public interface ICartNotificationService<T> where T : Purchasable
     {
         EventHandler<CartItem<T>> ItemAddedEventHandler { get; set; }
 

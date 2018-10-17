@@ -63,7 +63,8 @@
     <Folder Include="Services\Data\DataQuery\" />
     <Folder Include="Models\Navigation\" />
     <Folder Include="Models\Lottie\" />
-    <Folder Include="Managers\Cart\" />
+    <Folder Include="Services\Notification\" />
+    <Folder Include="Services\Notification\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

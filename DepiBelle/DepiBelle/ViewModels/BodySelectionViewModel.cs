@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DepiBelle.Managers.Cart;
+using DepiBelle.Services.Notification;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -20,7 +20,7 @@ namespace DepiBelle.ViewModels
         private IDialogService _dialogService;
         private IDataCollectionService<Offer> _offersDataService;
 
-        private ICartManager<Offer> _cartOfferManager;
+        private ICartNotificationService<Offer> _cartOfferManager;
 
         private List<string> _selectedOffers = new List<string>();
         private List<Offer> _headOffers = new List<Offer>();
@@ -57,7 +57,7 @@ namespace DepiBelle.ViewModels
             _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Offer>>();
             _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
 
-            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartManager<Offer>>();
+            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
             _cartOfferManager.ItemRemoved += OfferRemovedHandler;
         }
 

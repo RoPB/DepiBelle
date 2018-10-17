@@ -1,6 +1,6 @@
 ﻿using System;
 using DepiBelle.Managers.Application;
-using DepiBelle.Managers.Cart;
+using DepiBelle.Services.Notification;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data.DataQuery;
@@ -62,8 +62,8 @@ namespace DepiBelle
 
         private static void RegisterRefreshableManagersDependencies()
         {
-            Locator.CurrentMutable.RegisterConstant(new CartManager<Promotion>(), typeof(ICartManager<Promotion>));
-            Locator.CurrentMutable.RegisterConstant(new CartManager<Offer>(), typeof(ICartManager<Offer>));
+            Locator.CurrentMutable.RegisterConstant(new CartNotificationService<Promotion>(), typeof(ICartNotificationService<Promotion>));
+            Locator.CurrentMutable.RegisterConstant(new CartNotificationService<Offer>(), typeof(ICartNotificationService<Offer>));
 
         }
 

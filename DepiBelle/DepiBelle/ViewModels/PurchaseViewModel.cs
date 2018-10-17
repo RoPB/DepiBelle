@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using DepiBelle.Managers.Cart;
+using DepiBelle.Services.Notification;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -22,8 +22,8 @@ namespace DepiBelle.ViewModels
         private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
 
-        private ICartManager<Promotion> _cartPromotionManager;
-        private ICartManager<Offer> _cartOfferManager;
+        private ICartNotificationService<Promotion> _cartPromotionManager;
+        private ICartNotificationService<Offer> _cartOfferManager;
 
         private bool _uploadingOrder;
         private string _strItemsAdded = "";
@@ -72,8 +72,8 @@ namespace DepiBelle.ViewModels
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
 
-            _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartManager<Promotion>>();
-            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartManager<Offer>>();
+            _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
+            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
 
             _cartPromotionManager.ItemAddedEventHandler += ItemsAddedHandler;
             _cartOfferManager.ItemAddedEventHandler += ItemsAddedHandler;
