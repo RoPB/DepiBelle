@@ -76,7 +76,9 @@ namespace DepiBelle.ViewModels
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
 
             _cartPromotionManager.ItemAdded += PromotionAddedHandler;
+            _cartPromotionManager.ItemRemoved += PromotionRemovedHandler;
             _cartOfferManager.ItemAdded += OfferAddedHandler;
+            _cartOfferManager.ItemRemoved += OfferRemovedHandler;
 
         }
 
@@ -87,32 +89,49 @@ namespace DepiBelle.ViewModels
 
         public void PromotionAddedHandler(object sender, CartItem<Promotion> itemAdded)
         {
-            HandleItemsAddedBadge(itemAdded.Added);
+            HandleItemsAddedBadge(true);
 
-            if (itemAdded.Added)
-            {
-                var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, PromotionSelectedCommand);
-                _promotions.Add(promotion);
-            }
-            else
-                _promotions.RemoveAll(p => p.Id == itemAdded.Item.Id);
+            var promotion = ListItemMapper.GetPromotionListItem(itemAdded.Item, true, PromotionSelectedCommand);
+            _promotions.Add(promotion);
 
             LoadPurchasableItems();
         }
 
+        public void PromotionRemovedHandler(object sender, string promotionId)
+        {
+            if (sender != this)
+            {
+                HandleItemsAddedBadge(false);
+
+                _promotions.RemoveAll(p => p.Id == promotionId);
+
+                LoadPurchasableItems();
+            }
+
+        }
+
+
         public void OfferAddedHandler(object sender, CartItem<Offer> itemAdded)
         {
-            HandleItemsAddedBadge(itemAdded.Added);
+            HandleItemsAddedBadge(true);
 
-            if (itemAdded.Added)
-            {
-                var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, itemAdded.Discount, true, OfferSelectedCommand);
-                _offers.Add(offer);
-            }
-            else
-                _offers.RemoveAll(o => o.Id == itemAdded.Item.Id);
+            var offer = ListItemMapper.GetOfferListItem(itemAdded.Item, itemAdded.Discount, true, OfferSelectedCommand);
+            _offers.Add(offer);
 
             LoadPurchasableItems();
+        }
+
+        public void OfferRemovedHandler(object sender, string offerId)
+        {
+            if (sender != this)
+            {
+                HandleItemsAddedBadge(false);
+
+                _offers.RemoveAll(o => o.Id == offerId);
+
+                LoadPurchasableItems();
+            }
+
         }
 
         private void PromotionSelected(PromotionItem promotion)

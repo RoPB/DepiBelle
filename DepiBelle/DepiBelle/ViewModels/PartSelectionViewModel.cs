@@ -59,18 +59,21 @@ namespace DepiBelle.ViewModels
         {
             offer.IsSelected = !offer.IsSelected;
 
-
-            var cartItem = new CartItem<Offer>()
+            if (offer.IsSelected)
             {
-                Added = offer.IsSelected,
-                Discount = offer.Discount,
-                Item = new Offer(offer.Id,
+                var cartItem = new CartItem<Offer>()
+                {
+                    Added = offer.IsSelected,
+                    Discount = offer.Discount,
+                    Item = new Offer(offer.Id,
                                  offer.Price,
                                  offer.Name)
-            };
+                };
 
-            _cartOfferManager.ItemAdded.Invoke(this, cartItem);
-
+                _cartOfferManager.ItemAdded.Invoke(this, cartItem);
+            }
+            else
+                _cartOfferManager.ItemRemoved(this,offer.Id);
         }
 
     }

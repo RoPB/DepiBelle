@@ -78,16 +78,22 @@ namespace DepiBelle.ViewModels
         {
             promotion.IsSelected = !promotion.IsSelected;
 
-            var cartItem = new CartItem<Promotion>()
+            if (promotion.IsSelected)
             {
-                Added = promotion.IsSelected,
-                Item = new Promotion(promotion.Id,
-                                     promotion.Price,
-                                     promotion.Name,
-                                     promotion.Description)
-            };
+                var cartItem = new CartItem<Promotion>()
+                {
+                    Added = promotion.IsSelected,
+                    Item = new Promotion(promotion.Id,
+                                  promotion.Price,
+                                  promotion.Name,
+                                  promotion.Description)
+                };
 
-            _cartPromotionManager.ItemAdded.Invoke(this, cartItem);
+                _cartPromotionManager.ItemAdded.Invoke(this, cartItem);
+            }
+            else
+                _cartPromotionManager.ItemRemoved(this, promotion.Id);
+
         }
 
     }

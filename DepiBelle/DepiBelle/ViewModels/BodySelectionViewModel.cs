@@ -95,11 +95,6 @@ namespace DepiBelle.ViewModels
 
         }
 
-        public void OfferRemovedHandler(object sender, string offerId)
-        {
-            _selectedOffers.Remove(offerId);
-        }
-
         private async Task ClasificateOrders(List<Offer> offers)
         {
             await Task.Run(() =>
@@ -148,10 +143,12 @@ namespace DepiBelle.ViewModels
 
         private void OfferAddedHandler(object sender, CartItem<Offer> e)
         {
-            if (e.Added)
-                _selectedOffers.Add(e.Item.Id);
-            else
-                _selectedOffers.Remove(e.Item.Id);
+            _selectedOffers.Add(e.Item.Id);
+        }
+
+        public void OfferRemovedHandler(object sender, string offerId)
+        {
+            _selectedOffers.Remove(offerId);
         }
 
     }
