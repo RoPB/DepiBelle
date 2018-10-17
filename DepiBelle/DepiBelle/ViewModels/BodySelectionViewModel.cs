@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DepiBelle.Managers.Cart;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -18,6 +19,8 @@ namespace DepiBelle.ViewModels
         private INavigationService _navigationService;
         private IDialogService _dialogService;
         private IDataCollectionService<Offer> _offersDataService;
+
+        private ICartManager<Offer> _cartOfferManager;
 
         private List<string> _selectedOffers = new List<string>();
         private List<Offer> _headOffers = new List<Offer>();
@@ -42,8 +45,6 @@ namespace DepiBelle.ViewModels
 
         public ICommand BodyPartSelectionCommand { get; set; }
 
-        public EventHandler<CartItem<Offer>> ItemsAddedEventHandler { get; set; }
-
         public BodySelectionViewModel()
         {
             IsLoading = true;
@@ -55,6 +56,9 @@ namespace DepiBelle.ViewModels
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Offer>>();
             _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
+
+            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartManager<Offer>>();
+            _cartOfferManager.ItemRemoved += OfferRemovedHandler;
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -149,7 +153,7 @@ namespace DepiBelle.ViewModels
             else
                 _selectedOffers.Remove(e.Item.Id);
 
-            ItemsAddedEventHandler.Invoke(this,e);
+            _cartOfferManager.ItemAddedEventHandler.Invoke(this, e);
         }
 
     }

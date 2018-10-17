@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DepiBelle.Managers.Cart;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -20,6 +21,9 @@ namespace DepiBelle.ViewModels
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
+
+        private ICartManager<Promotion> _cartPromotionManager;
+        private ICartManager<Offer> _cartOfferManager;
 
         private bool _uploadingOrder;
         private string _strItemsAdded = "";
@@ -52,8 +56,6 @@ namespace DepiBelle.ViewModels
         public ICommand PromotionSelectedCommand { get; set; }
         public ICommand OfferSelectedCommand { get; set; }
         public ICommand ConfirmPurchaseCommand { get; set; }
-        public EventHandler<string> PromotionRemoved { get; set; }
-        public EventHandler<string> OfferRemoved { get; set; }
 
         public string StrItemsAdded { get { return _strItemsAdded; } set { SetPropertyValue(ref _strItemsAdded, value); } }
 
@@ -62,12 +64,20 @@ namespace DepiBelle.ViewModels
             IsLoading = true;
             ShowMainContent = PurchasableItems.Count > 0;
             _uploadingOrder = false;
-            _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
-            _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
-            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
             PromotionSelectedCommand = new Command<PromotionItem>(PromotionSelected);
             OfferSelectedCommand = new Command<OfferItem>(OfferSelected);
             ConfirmPurchaseCommand = new Command(async () => await ConfirmPurchase());
+
+            _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
+            _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
+            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
+
+            _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartManager<Promotion>>();
+            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartManager<Offer>>();
+
+            _cartPromotionManager.ItemAddedEventHandler += ItemsAddedHandler;
+            _cartOfferManager.ItemAddedEventHandler += ItemsAddedHandler;
+
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -110,7 +120,7 @@ namespace DepiBelle.ViewModels
             _promotions.Remove(promotion);
             HandleItemsAddedBadge(false);
             LoadPurchasableItems();
-            PromotionRemoved.Invoke(this, promotion.Id);
+            _cartPromotionManager.ItemRemoved.Invoke(this, promotion.Id);
 
         }
 
@@ -119,7 +129,7 @@ namespace DepiBelle.ViewModels
             _offers.Remove(offer);
             HandleItemsAddedBadge(false);
             LoadPurchasableItems();
-            OfferRemoved.Invoke(this, offer.Id);
+            _cartOfferManager.ItemRemoved.Invoke(this, offer.Id);
         }
 
         private void HandleItemsAddedBadge(bool added)

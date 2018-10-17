@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DepiBelle.Managers.Cart;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
@@ -19,6 +20,8 @@ namespace DepiBelle.ViewModels
         private IDataCollectionService<Promotion> _promotionsDataService;
         private IDialogService _dialogService;
 
+        private ICartManager<Promotion> _cartPromotionManager;
+
         private ObservableCollection<PromotionItem> _promotions;
 
         public ObservableCollection<PromotionItem> Promotions
@@ -29,8 +32,6 @@ namespace DepiBelle.ViewModels
 
         public ICommand PromotionSelectedCommand { get; set; }
 
-        public EventHandler<CartItem<Promotion>> ItemsAddedEventHandler { get; set; }
-
         public PromotionsViewModel()
         {
             IsLoading = true;
@@ -39,6 +40,9 @@ namespace DepiBelle.ViewModels
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataCollectionService<Promotion>>();
             _promotionsDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Promotions });
+
+            _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartManager<Promotion>>();
+            _cartPromotionManager.ItemRemoved += PromotionRemovedHandler;
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -83,7 +87,7 @@ namespace DepiBelle.ViewModels
                                      promotion.Description)
             };
 
-            ItemsAddedEventHandler.Invoke(this, cartItem);
+            _cartPromotionManager.ItemAddedEventHandler.Invoke(this, cartItem);
         }
 
     }

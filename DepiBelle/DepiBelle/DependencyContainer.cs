@@ -1,5 +1,6 @@
 ﻿using System;
 using DepiBelle.Managers.Application;
+using DepiBelle.Managers.Cart;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data.DataQuery;
@@ -29,11 +30,14 @@ namespace DepiBelle
 #endif
             Locator.CurrentMutable.Register(() => new LocalDataService(), typeof(ILocalDataService));
 
+            //ViewModels
+            RegisterRefreshableViewModelDependencies();
+            Locator.CurrentMutable.Register(() => new PartSelectionViewModel());
+
             //Managers
+            RegisterRefreshableManagersDependencies();
             Locator.CurrentMutable.RegisterConstant(new ApplicationManager(), typeof(IApplicationManager));
 
-            //ViewModels
-            RegisterViewModelDependencies();
 
             //ModalViewModels
             Locator.CurrentMutable.Register(() => new ConfirmationModalViewModel());
@@ -41,19 +45,26 @@ namespace DepiBelle
 
         public static void Refresh()
         {
-            RegisterViewModelDependencies();
+            RegisterRefreshableViewModelDependencies();
+            RegisterRefreshableManagersDependencies();
         }
 
-        private static void RegisterViewModelDependencies()
+        private static void RegisterRefreshableViewModelDependencies()
         {
-
 
             Locator.CurrentMutable.RegisterLazySingleton(() => new WelcomeViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new HomeTabbedViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PromotionsViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new BodySelectionViewModel());
             Locator.CurrentMutable.RegisterLazySingleton(() => new PurchaseViewModel());
-            Locator.CurrentMutable.Register(() => new PartSelectionViewModel());
+
+        }
+
+        private static void RegisterRefreshableManagersDependencies()
+        {
+            Locator.CurrentMutable.RegisterConstant(new CartManager<Promotion>(), typeof(ICartManager<Promotion>));
+            Locator.CurrentMutable.RegisterConstant(new CartManager<Offer>(), typeof(ICartManager<Offer>));
+
         }
 
         public static T Resolve<T>()
