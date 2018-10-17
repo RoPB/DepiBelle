@@ -75,8 +75,8 @@ namespace DepiBelle.ViewModels
             _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
 
-            _cartPromotionManager.ItemAdded += ItemsAddedHandler;
-            _cartOfferManager.ItemAdded += ItemsAddedHandler;
+            _cartPromotionManager.ItemAdded += PromotionAddedHandler;
+            _cartOfferManager.ItemAdded += OfferAddedHandler;
 
         }
 
@@ -85,7 +85,7 @@ namespace DepiBelle.ViewModels
             IsLoading = false;
         }
 
-        public void ItemsAddedHandler(object sender, CartItem<Promotion> itemAdded)
+        public void PromotionAddedHandler(object sender, CartItem<Promotion> itemAdded)
         {
             HandleItemsAddedBadge(itemAdded.Added);
 
@@ -100,7 +100,7 @@ namespace DepiBelle.ViewModels
             LoadPurchasableItems();
         }
 
-        public void ItemsAddedHandler(object sender, CartItem<Offer> itemAdded)
+        public void OfferAddedHandler(object sender, CartItem<Offer> itemAdded)
         {
             HandleItemsAddedBadge(itemAdded.Added);
 

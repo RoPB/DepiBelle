@@ -12,40 +12,37 @@
     </ContentPage.Resources>    
     <ContentPage.Content>
          <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="75,75">
-                <FlexLayout JustifyContent="SpaceAround" 
-                            Direction="Column"
-                            BackgroundColor="Transparent"
-                            AlignItems="Center"
-                            Margin="30">
-                            <StackLayout Spacing="5">
-                                <Label Text="Bienvenido" 
-                                       FontSize="30" 
-                                       TextColor="{StaticResource PrimaryDarkColor}" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="A" 
-                                       FontSize="30" 
-                                       TextColor="{StaticResource PrimaryDarkColor}" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="Depi Belle" 
-                                       FontSize="40" 
-                                       TextColor="{StaticResource PrimaryDarkColor}" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                            </StackLayout>
-                            <StackLayout  Spacing="5" FlexLayout.AlignSelf="Center">
-                                <Label Text="{Binding Name, Mode=OneWayToSource}" 
-                                       FontSize="35" 
-                                       TextColor="{StaticResource PrimaryDarkColor}" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                            </StackLayout>
-                            <Button Text="CONTINUAR" 
-                                BackgroundColor="{StaticResource DarkGrey}" 
-                                TextColor="{StaticResource White}"
-                                CornerRadius="20"
-                                HorizontalOptions="EndAndExpand"
-                                Command="{Binding OnSelectedCommand}"/>
-                </FlexLayout>
-            </Frame>
+
+            <FlexLayout JustifyContent="SpaceAround" 
+                        Direction="Column"
+                        BackgroundColor="{StaticResource White}"
+                        AlignItems="Center"
+                        FlexLayout.Grow="1"
+                        Padding="30">
+                        <StackLayout Spacing="5">
+                            <Label Text="Bienvenido" 
+                                   FontSize="30" 
+                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                            <Label Text="A" 
+                                   FontSize="30" 
+                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                            <Label Text="Depi Belle" 
+                                   FontSize="40" 
+                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                        </StackLayout>
+                        <StackLayout  Spacing="5" FlexLayout.AlignSelf="Center">
+                            <Label Text="{Binding Name, Mode=OneWayToSource}" 
+                                   FontSize="35" 
+                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                        </StackLayout>
+                        <Button Text="CONTINUAR" 
+                            BackgroundColor="{StaticResource DarkGrey}" 
+                            TextColor="{StaticResource White}"
+                            CornerRadius="20"
+                            HorizontalOptions="EndAndExpand"
+                            Command="{Binding OnSelectedCommand}"/>
+            </FlexLayout>
+
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

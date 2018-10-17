@@ -59,6 +59,7 @@ namespace DepiBelle.ViewModels
 
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
             _cartOfferManager.ItemRemoved += OfferRemovedHandler;
+            _cartOfferManager.ItemAdded += OfferAddedHandler;
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -140,20 +141,17 @@ namespace DepiBelle.ViewModels
 
             var navigationParam = new PartSelectionNavigationParam() { SelectedOffers = _selectedOffers, Offers = offersList, Discount = _discount };
 
-            var partSelectionViewModel = await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);
-            (partSelectionViewModel as PartSelectionViewModel).ItemsAddedEventHandler +=Handle_ItemsAddedEventHandler;;
+            await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);
 
         }
 
 
-        void Handle_ItemsAddedEventHandler(object sender, CartItem<Offer> e)
+        private void OfferAddedHandler(object sender, CartItem<Offer> e)
         {
             if (e.Added)
                 _selectedOffers.Add(e.Item.Id);
             else
                 _selectedOffers.Remove(e.Item.Id);
-
-            _cartOfferManager.ItemAdded.Invoke(this, e);
         }
 
     }

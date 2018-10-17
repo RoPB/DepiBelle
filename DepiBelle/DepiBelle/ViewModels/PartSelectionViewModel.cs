@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Services.Notification;
 using DepiBelle.Utilities;
 using Xamarin.Forms;
 
@@ -12,7 +13,7 @@ namespace DepiBelle.ViewModels
 {
     public class PartSelectionViewModel : ViewModelBase
     {
-
+        private ICartNotificationService<Offer> _cartOfferManager;
         private ObservableCollection<OfferItem> _offers;
 
         public ObservableCollection<OfferItem> Offers
@@ -23,12 +24,13 @@ namespace DepiBelle.ViewModels
 
         public ICommand OfferSelectedCommand { get; set; }
 
-        public EventHandler<CartItem<Offer>> ItemsAddedEventHandler { get; set; }
+
 
         public PartSelectionViewModel()
         {
             OfferSelectedCommand = new Command<OfferItem>(async (offer) => await OfferSelected(offer));
             IsLoading = true;
+            _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
         }
 
         public override async Task InitializeAsync(object navigationData = null)
@@ -67,7 +69,7 @@ namespace DepiBelle.ViewModels
                                  offer.Name)
             };
 
-            ItemsAddedEventHandler.Invoke(this, cartItem);
+            _cartOfferManager.ItemAdded.Invoke(this, cartItem);
 
         }
 
