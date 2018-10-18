@@ -8,41 +8,59 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:LengthValidatorConverter x:Key="LengthValidatorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>    
     <ContentPage.Content>
-         <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{StaticResource PrimaryDarkColor}">
+            <!--<Image Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiw1yf-c0gjYo55XO-rIb0qjGPAJXFESWO5f8k0_-fBn21Ma0otA"
+                   AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"/>-->
+            
+            <StackLayout BackgroundColor="Transparent" Padding="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <FlexLayout JustifyContent="SpaceAround" 
                         Direction="Column"
-                        BackgroundColor="{StaticResource White}"
-                        AlignItems="Center"
-                        FlexLayout.Grow="1"
-                        Padding="30">
-                        <StackLayout Spacing="5">
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="5" FlexLayout.AlignSelf="Center" BackgroundColor="Transparent">
                             <Label Text="Bienvenido" 
                                    FontSize="30" 
-                                   TextColor="{StaticResource PrimaryDarkColor}" />
-                            <Label Text="A" 
+                                   TextColor="{StaticResource White}" 
+                                   HorizontalOptions="Center"/>
+                            <Label Text="a" 
                                    FontSize="30" 
-                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                                   TextColor="{StaticResource White}" 
+                                   HorizontalOptions="Center"/>
                             <Label Text="Depi Belle" 
                                    FontSize="40" 
-                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                                   TextColor="{StaticResource White}" 
+                                   HorizontalOptions="Center"/>
                         </StackLayout>
-                        <StackLayout  Spacing="5" FlexLayout.AlignSelf="Center">
-                            <Label Text="{Binding Name, Mode=OneWayToSource}" 
-                                   FontSize="35" 
-                                   TextColor="{StaticResource PrimaryDarkColor}" />
+                        <StackLayout  Spacing="2" BackgroundColor="Transparent">
+                            <Label Text="Nombre" 
+                                   FontSize="20" 
+                                   TextColor="{StaticResource White}" />
+                            <Entry x:Name="EntryName" Text="{Binding Name, Mode=TwoWay}" 
+                                   FontSize="20" 
+                                   TextColor="{StaticResource White}" />
                         </StackLayout>
                         <Button Text="CONTINUAR" 
-                            BackgroundColor="{StaticResource DarkGrey}" 
-                            TextColor="{StaticResource White}"
-                            CornerRadius="20"
-                            HorizontalOptions="EndAndExpand"
-                            Command="{Binding OnSelectedCommand}"/>
+                                BackgroundColor="{StaticResource PrimaryLightColor}" 
+                                TextColor="{StaticResource White}"
+                                CornerRadius="20"
+                                Command="{Binding ContinueCommand}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                                                 Binding="{Binding Source={x:Reference EntryName},
+                                                                   Path=Text.Length,     
+                                                                   Converter={StaticResource LengthValidatorConverter}}"
+                                                 Value="False">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                        </Button>
             </FlexLayout>
-
-        </FlexLayout>
+        </StackLayout>
+        </AbsoluteLayout>
+        
     </ContentPage.Content>
 </ContentPage>

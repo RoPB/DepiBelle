@@ -17,7 +17,7 @@ namespace DepiBelle.ViewModels
 {
     public class PurchaseViewModel : ViewModelBase
     {
-
+        private string _userName;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
@@ -84,6 +84,7 @@ namespace DepiBelle.ViewModels
 
         public override async Task InitializeAsync(object navigationData = null)
         {
+            _userName = navigationData as string;
             IsLoading = false;
         }
 
@@ -185,7 +186,7 @@ namespace DepiBelle.ViewModels
             order.Offers = _offers;
             order.Promotions = _promotions;
             order.Total = Total;
-            order.Name = "Viviana";
+            order.Name = _userName;
 
             await UploadOrder(order);
         }
@@ -238,7 +239,7 @@ namespace DepiBelle.ViewModels
             if (!error)
             {
                 DependencyContainer.Refresh();
-                await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+                await NavigationService.NavigateToAsync<WelcomeViewModel>();
             }
             else
             {

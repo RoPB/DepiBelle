@@ -63,7 +63,6 @@ namespace DepiBelle.ViewModels
             {
                 var cartItem = new CartItem<Offer>()
                 {
-                    Added = offer.IsSelected,
                     Discount = offer.Discount,
                     Item = new Offer(offer.Id,
                                  offer.Price,
