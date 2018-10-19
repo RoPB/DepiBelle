@@ -10,5 +10,7 @@ namespace DepiBelle.Models
         public List<Offer> Offers { get; set; }
 
         public int Discount { get; set; }
+
+        public string Title { get; set; }
     }
 }

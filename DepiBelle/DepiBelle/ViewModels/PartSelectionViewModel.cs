@@ -15,6 +15,7 @@ namespace DepiBelle.ViewModels
     {
         private ICartNotificationService<Offer> _cartOfferManager;
         private ObservableCollection<OfferItem> _offers;
+        private string _title;
 
         public ObservableCollection<OfferItem> Offers
         {
@@ -24,7 +25,11 @@ namespace DepiBelle.ViewModels
 
         public ICommand OfferSelectedCommand { get; set; }
 
-
+        public string Title
+        {
+            get { return _title; }
+            set { SetPropertyValue(ref _title, value); }
+        }
 
         public PartSelectionViewModel()
         {
@@ -43,8 +48,11 @@ namespace DepiBelle.ViewModels
                 var _selectedOffers = param.SelectedOffers;
                 var offers = param.Offers;
                 var discount = param.Discount;
+                var title = $"{param.Title.First().ToString().ToUpper()}{param.Title.Substring(1)}";
 
                 offers = offers.OrderBy(o => o.Name).ToList();
+
+                Title = title;
 
                 Offers = new ObservableCollection<OfferItem>();
 

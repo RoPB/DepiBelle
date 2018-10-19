@@ -112,29 +112,39 @@ namespace DepiBelle.ViewModels
         private async Task BodyPartSelection(string bodyPart)
         {
             List<Offer> offersList = null;
+            var title = string.Empty;
 
             if (bodyPart.Equals(Constants.Constants.CATEGORY_HEAD))
             {
                 offersList = _headOffers;
+                title = Constants.Constants.CATEGORY_HEAD;
             }
             else if (bodyPart.Equals(Constants.Constants.CATEGORY_BODY))
             {
                 offersList = _bodyOffers;
+                title = Constants.Constants.CATEGORY_BODY;
             }
             else if (bodyPart.Equals(Constants.Constants.CATEGORY_PELVIS))
             {
                 offersList = _pelvisOffers;
+                title = Constants.Constants.CATEGORY_PELVIS;
             }
             else if (bodyPart.Equals(Constants.Constants.CATEGORY_ARM))
             {
                 offersList = _armOffers;
+                title = Constants.Constants.CATEGORY_ARM;
             }
             else if (bodyPart.Equals(Constants.Constants.CATEGORY_LEG))
             {
                 offersList = _legOffers;
+                title = Constants.Constants.CATEGORY_LEG;
             }
 
-            var navigationParam = new PartSelectionNavigationParam() { SelectedOffers = _selectedOffers, Offers = offersList, Discount = _discount };
+            var navigationParam = new PartSelectionNavigationParam() { 
+                SelectedOffers = _selectedOffers,
+                Offers = offersList, 
+                Discount = _discount,
+                Title=title};
 
             await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);
 
