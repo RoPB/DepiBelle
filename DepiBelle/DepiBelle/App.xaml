@@ -18,6 +18,9 @@
             <OnPlatform x:Key="Museo-Regular" x:TypeArguments="x:String" Android="fonts/Museo-Regular.otf#Museo-Regular" />
             <OnPlatform x:Key="Museo-Bold" x:TypeArguments="x:String" Android="fonts/Museo-Bold.otf#Museo-Bold" />
             <OnPlatform x:Key="Museo-Bolder" x:TypeArguments="x:String" Android="fonts/Museo-Bolder.otf#Museo-Bolder" />
+            <OnPlatform x:Key="Raleway-Regular" x:TypeArguments="x:String" iOS="Raleway-Regular" Android="fonts/Raleway-Regular.ttf#Raleway-Regular" />
+            <OnPlatform x:Key="Raleway-SemiBold" x:TypeArguments="x:String" iOS="Raleway-SemiBold" Android="fonts/Raleway-SemiBold.ttf#Raleway-SemiBold" />
+            <OnPlatform x:Key="Raleway-Bold" x:TypeArguments="x:String" iOS="Raleway-Bold" Android="fonts/Raleway-Bold.ttf#Raleway-Bold" />
             
             <Style TargetType="ActivityIndicator">
                 <Setter Property="WidthRequest" Value="40"/>
@@ -26,6 +29,13 @@
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}"/>
+                <Setter Property="FontFamily" Value="{StaticResource Raleway-Regular}"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource Raleway-SemiBold}"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource Raleway-Regular}"/>
             </Style>
             
         </ResourceDictionary>

@@ -19,12 +19,15 @@ namespace DepiBelle.Droid
             base.OnCreate(savedInstanceState);
             ResolveDependencies();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AnimationViewRenderer.Init();
             LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
-            //                                                               new UXDivers.Gorilla.Config("Good Gorilla").
-            //                                                               RegisterAssembly(typeof(DepiBelle.App).Assembly)));
+            //                                                               new UXDivers.Gorilla.Config("Good Gorilla")
+            //                                                                .RegisterAssembly(typeof(FFImageLoading.Forms.CachedImage).Assembly)
+            //                                                                .RegisterAssembly(typeof(FFImageLoading.Svg.Forms.SvgCachedImage).Assembly)
+            //                                                                .RegisterAssembly(typeof(DepiBelle.App).Assembly)));
         }
                                                                             
 

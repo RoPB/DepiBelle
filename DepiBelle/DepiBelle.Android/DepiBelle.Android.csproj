@@ -157,6 +157,11 @@
     <AndroidAsset Include="Assets\fonts\Museo-Bolder.otf" />
     <AndroidAsset Include="Assets\fonts\Museo-Regular.otf" />
     <AndroidAsset Include="Assets\Loading.json" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Bold.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Light.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Medium.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-SemiBold.ttf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

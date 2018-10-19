@@ -4,6 +4,7 @@
              viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle"
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle"
              x:Class="DepiBelle.Views.WelcomeView">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,37 +13,26 @@
         </ResourceDictionary>
     </ContentPage.Resources>    
     <ContentPage.Content>
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{StaticResource PrimaryDarkColor}">
-            <!--<Image Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiw1yf-c0gjYo55XO-rIb0qjGPAJXFESWO5f8k0_-fBn21Ma0otA"
-                   AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"/>-->
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{StaticResource White}">
             
             <StackLayout BackgroundColor="Transparent" Padding="30" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <FlexLayout JustifyContent="SpaceAround" 
+                <FlexLayout JustifyContent="SpaceAround" 
                         Direction="Column"
                         BackgroundColor="Transparent"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <StackLayout Spacing="5" FlexLayout.AlignSelf="Center" BackgroundColor="Transparent">
-                            <Label Text="Bienvenido" 
+                        
+                        <StackLayout Spacing="10" FlexLayout.AlignSelf="Center" BackgroundColor="Transparent">
+                            <controls:SvgImage Source="logo" WidthRequest="400" HeightRequest="200"/>
+                            <Label Text="Te damos la Bienvenida" 
                                    FontSize="30" 
-                                   TextColor="{StaticResource White}" 
-                                   HorizontalOptions="Center"/>
-                            <Label Text="a" 
-                                   FontSize="30" 
-                                   TextColor="{StaticResource White}" 
-                                   HorizontalOptions="Center"/>
-                            <Label Text="Depi Belle" 
-                                   FontSize="40" 
-                                   TextColor="{StaticResource White}" 
+                                   TextColor="{StaticResource PrimaryDarkColor}" 
                                    HorizontalOptions="Center"/>
                         </StackLayout>
-                        <StackLayout  Spacing="2" BackgroundColor="Transparent">
-                            <Label Text="Nombre" 
+                        <Entry x:Name="EntryName" Text="{Binding Name, Mode=TwoWay}" 
                                    FontSize="20" 
-                                   TextColor="{StaticResource White}" />
-                            <Entry x:Name="EntryName" Text="{Binding Name, Mode=TwoWay}" 
-                                   FontSize="20" 
-                                   TextColor="{StaticResource White}" />
-                        </StackLayout>
+                                   Placeholder="Nombre"
+                                   PlaceholderColor="{StaticResource Grey}"
+                                   TextColor="{StaticResource PrimaryDarkColor}" />
                         <Button Text="CONTINUAR" 
                                 BackgroundColor="{StaticResource PrimaryLightColor}" 
                                 TextColor="{StaticResource White}"

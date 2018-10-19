@@ -32,6 +32,8 @@
     <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.2.2" />
     <PackageReference Include="Plugin.Badge" Version="2.1.0-pre.2" />
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.6.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -65,6 +67,8 @@
     <Folder Include="Models\Lottie\" />
     <Folder Include="Services\Notification\" />
     <Folder Include="Services\Notification\Cart\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />
@@ -74,5 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="DesignTimeData.json" />
+    <None Remove="Assets\Images\logo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\logo.svg" />
   </ItemGroup>
 </Project>
