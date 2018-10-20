@@ -31,14 +31,13 @@
                     <Image Source="body.png" HeightRequest="900"/>
                 </StackLayout>
                 <FlexLayout Direction="Column" JustifyContent="Start" AlignItems="Start"  BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                    <Frame  Margin="10,20,0,10" Padding="30" CornerRadius="80" BackgroundColor="#80FFFFFF" WidthRequest="220" HeightRequest="150">
+                    <!--<Frame  Margin="10,20,0,10" Padding="30" CornerRadius="80" BackgroundColor="#80FFFFFF" WidthRequest="220" HeightRequest="150">
                         <StackLayout>
-                            <Label FontSize="30" Text="Bienvenido"/>
                             <Label FontSize="20" Text="Selecciona de mi cuerpo"/>
                             <Label FontSize="20" Text="Tus zonas de depilacion"/>
                             <Label FontSize="10" Text="DEPI BELLE" HorizontalOptions="Center" VerticalOptions="End"/>
                         </StackLayout>
-                    </Frame>
+                    </Frame>-->
                     <BoxView BackgroundColor="Transparent" FlexLayout.Grow="1"/>
                     <StackLayout Margin="20" FlexLayout.AlignSelf="Center" IsVisible="{Binding ShowDiscount}" Orientation="Horizontal" Spacing="2">
                         <Label Text="{Binding Discount}" FontSize="70" TextColor="{StaticResource White}"/>

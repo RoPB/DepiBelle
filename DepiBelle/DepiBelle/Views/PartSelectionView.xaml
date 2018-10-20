@@ -7,8 +7,10 @@
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PartSelectionView"
-             Title="{Binding Title}"
              x:Name="PartSelection">
+    <NavigationPage.TitleView>
+      <Label Text="{Binding Title}" TextColor="{StaticResource White}"/>
+    </NavigationPage.TitleView>
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>

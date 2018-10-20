@@ -5,9 +5,12 @@
             xmlns:views="clr-namespace:DepiBelle.Views;assembly=DepiBelle" 
             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
             xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions" 
-            Title="Depi Belle"
             x:Class="DepiBelle.Views.HomeTabbedView"
             x:Name="HomeTabbedPage">
+    
+            <NavigationPage.TitleView>
+                <Label Text="Depi Belle" TextColor="{StaticResource White}"/>
+            </NavigationPage.TitleView>
             
             <views:PromotionsView Title="Promos" 
                             Icon="ic_offer.png"

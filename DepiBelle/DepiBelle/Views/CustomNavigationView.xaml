@@ -3,7 +3,4 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle"
                 x:Class="DepiBelle.Views.CustomNavigationView">
-    <!--<NavigationPage.TitleView>
-       <controls:SvgImage Source="logo" WidthRequest="50" HeightRequest="25"/>
-    </NavigationPage.TitleView>-->
 </NavigationPage>
