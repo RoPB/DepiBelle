@@ -336,3 +336,8 @@ DepiBelle/DepiBelle/Services/Config/ConfigServiceBase.cs
 DepiBelle/DepiBelle/Services/Config/ConfigServiceDev.cs
 DepiBelle/DepiBelle/Services/Config/ConfigServiceProd.cs
 DepiBelle/DepiBelle/Services/Config/IConfigService.cs
+DepiBelle/DepiBelleDepi.Android/google-services.json
+DepiBelle/DepiBelleDepi/Services/Config/ConfigServiceBase.cs
+DepiBelle/DepiBelleDepi/Services/Config/ConfigServiceDev.cs
+DepiBelle/DepiBelleDepi/Services/Config/ConfigServiceProd.cs
+DepiBelle/DepiBelleDepi/Services/Config/IConfigService.cs

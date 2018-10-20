@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Splat" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\DataService\" />
+    <Folder Include="Services\Data\" />
+    <Folder Include="Services\Authentication\" />
+    <Folder Include="Views\Modals\" />
+    <Folder Include="Views\ListDataTemplate\" />
+    <Folder Include="ViewModels\Modals\" />
+    <Folder Include="Services\Navigation\" />
+    <Folder Include="Services\Dialog\" />
+    <Folder Include="Services\Modal\" />
+    <Folder Include="Services\Config\" />
+    <Folder Include="Models\ListItems\" />
+  </ItemGroup>
+</Project>
