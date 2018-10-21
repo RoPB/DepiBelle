@@ -18,8 +18,16 @@ namespace DepiBelleDepi.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            ResolveDependencies();
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+        }
+
+        private void ResolveDependencies()
+        {
+            AndroidDependencyContainer.RegisterDependencies();
+            DependencyContainer.RegisterDependencies();
         }
     }
 }

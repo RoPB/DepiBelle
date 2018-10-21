@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace DepiBelleDepi.Views
 {
-    public partial class HomeView : ContentPage
+    public partial class OrdersView : ContentPage
     {
-        public HomeView()
+        public OrdersView()
         {
             InitializeComponent();
         }
