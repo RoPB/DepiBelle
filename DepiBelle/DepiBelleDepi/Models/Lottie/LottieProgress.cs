@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DepiBelle.Models
+namespace DepiBelleDepi.Models
 {
     public class LottieProgress
     {

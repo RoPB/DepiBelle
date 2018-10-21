@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -69,6 +69,12 @@
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Badge">
+      <Version>2.1.0-pre.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +108,16 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
+    <AndroidResource Include="Resources\drawable\body.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_body.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_cart.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_offer.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -113,6 +129,7 @@
     <Folder Include="Services\GoogleFirebase\" />
     <Folder Include="Services\GoogleFirebase\Authentication\" />
     <Folder Include="Services\GoogleFirebase\Data\" />
+    <Folder Include="Assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DepiBelleDepi\DepiBelleDepi.csproj">
@@ -122,6 +139,17 @@
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="google-services.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\fonts\Journal-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\Museo-Bold.otf" />
+    <AndroidAsset Include="Assets\fonts\Museo-Bolder.otf" />
+    <AndroidAsset Include="Assets\fonts\Museo-Regular.otf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Bold.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Light.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Medium.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\Raleway-SemiBold.ttf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

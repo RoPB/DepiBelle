@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Lottie.Forms.Droid;
 
 namespace DepiBelleDepi.Droid
 {
@@ -20,7 +21,9 @@ namespace DepiBelleDepi.Droid
             base.OnCreate(savedInstanceState);
             ResolveDependencies();
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AnimationViewRenderer.Init();
             LoadApplication(new App());
         }
 

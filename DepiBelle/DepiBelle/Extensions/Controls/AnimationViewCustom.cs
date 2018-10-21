@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using DepiBelle.Models.Lottie;
+using DepiBelle.Models;
 using Lottie.Forms;
 using Xamarin.Forms;
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
+             xmlns:viewModelBase="clr-namespace:DepiBelleDepi.ViewModels;assembly=DepiBelleDepi" 
+             xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplates;assembly=DepiBelleDepi" 
+             x:Class="DepiBelleDepi.Views.PartSelectionView"
+             x:Name="PartSelection">
+    <NavigationPage.TitleView>
+      <Label Text="{Binding Title}" TextColor="{StaticResource White}"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <Style x:Key="MainContainer" TargetType="FlexLayout">
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="JustifyContent" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="MainContent" TargetType="StackLayout">
+                <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="FlexLayout.Grow" Value="1"/>
+            </Style>
+            <Style x:Key="List" TargetType="controls:CustomListView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <FlexLayout Style="{StaticResource MainContainer}">
+           <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
+           <StackLayout  Style="{StaticResource MainContent}">
+                <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Offers}">
+                    <controls:CustomListView.Header>
+                        
+                    </controls:CustomListView.Header>
+                     <controls:CustomListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <listDataTemplate:OfferListDataTemplate/>
+                                </ViewCell>
+                        </DataTemplate>
+                     </controls:CustomListView.ItemTemplate>
+                </controls:CustomListView>
+           </StackLayout>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

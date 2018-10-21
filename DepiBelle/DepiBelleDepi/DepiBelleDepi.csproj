@@ -10,11 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Splat" Version="5.0.2" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
+    <PackageReference Include="Plugin.Badge" Version="2.1.0-pre.2" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.6.3" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -40,6 +45,15 @@
     <Folder Include="Managers\Application\" />
     <Folder Include="Services\Notification\" />
     <Folder Include="Services\Notification\Cart\" />
+    <Folder Include="Services\Data\DataQuery\" />
+    <Folder Include="Models\Exceptions\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Images\" />
+    <Folder Include="Models\Navigation\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Models\Lottie\" />
+    <Folder Include="Models\LocalData\" />
+    <Folder Include="Services\Data\LocalData\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ListDataTemplate\OfferListDataTemplate.xaml.cs">
@@ -50,5 +64,31 @@
       <DependentUpon>..\..\..\DepiBelle\Views\ListDataTemplates\Views\ListDataTemplates\PromotionListDataTemplate.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\BodySelectionView.xaml.cs">
+      <DependentUpon>..\..\DepiBelle\Views\Views\BodySelectionView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\HomeTabbedView.xaml.cs">
+      <DependentUpon>..\..\DepiBelle\Views\Views\HomeTabbedView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\PartSelectionView.xaml.cs">
+      <DependentUpon>..\..\DepiBelle\Views\Views\PartSelectionView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\PromotionsView.xaml.cs">
+      <DependentUpon>..\..\DepiBelle\Views\Views\PromotionsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\PurchaseView.xaml.cs">
+      <DependentUpon>..\..\DepiBelle\Views\Views\PurchaseView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Images\logo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\logo.svg" />
   </ItemGroup>
 </Project>

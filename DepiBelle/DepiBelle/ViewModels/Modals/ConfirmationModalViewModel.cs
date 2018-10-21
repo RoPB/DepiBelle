@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
-using DepiBelle.Models.Lottie;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels.Modals
