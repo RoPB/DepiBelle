@@ -12,7 +12,7 @@ namespace DepiBelleDepi.Services.Navigation
     {
         public async Task InitializeAsync()
         {
-            await NavigateToAsync<HomeTabbedViewModel>();
+            await NavigateToAsync<OrdersViewModel>();
         }
 
         public Task<ViewModelBase> NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase
@@ -32,7 +32,7 @@ namespace DepiBelleDepi.Services.Navigation
             Page page = CreatePage(viewModelType, parameter);
             object viewModel = DependencyContainer.Resolve(viewModelType);
 
-            if (viewModelType.Equals(typeof(HomeTabbedViewModel)))
+            if (viewModelType.Equals(typeof(OrdersViewModel)))
             {
                 Application.Current.MainPage = new CustomNavigationView(page);
             }
