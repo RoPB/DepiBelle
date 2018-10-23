@@ -32,7 +32,7 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _orders, value); }
         }
 
-        public int PendingOrders
+        public int PendingOrdersCount
         {
             get { return _pendingOrdersCount; }
             set { SetPropertyValue(ref _pendingOrdersCount, value); }
@@ -134,7 +134,7 @@ namespace DepiBelleDepi.ViewModels
             if (!_dicOrders.ContainsKey(order.Id))
             {
                 _dicOrders.Add(order.Id, order);
-                Orders.Add(GetOrderListItem(order));
+                Orders.Insert(0,GetOrderListItem(order));
             }
         }
 
@@ -196,8 +196,8 @@ namespace DepiBelleDepi.ViewModels
 
         private void UpdatePendingCount()
         {
-            PendingOrders = _pendingOrders.Count;
-            ShowPendingOrders = PendingOrders > 0;
+            PendingOrdersCount = _pendingOrders.Count;
+            ShowPendingOrders = PendingOrdersCount > 0;
         }
 
         private OrderItem GetOrderListItem(Order order)
