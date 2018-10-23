@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
-             x:Class="DepiBelleDepi.Views.ListDataTemplates.PromotionListDataTemplate">
+             x:Class="DepiBelleDepi.Views.ListDataTemplate.PromotionListDataTemplate">
     <ContentView.Resources>
         <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <Style x:Key="ListContent" TargetType="FlexLayout">

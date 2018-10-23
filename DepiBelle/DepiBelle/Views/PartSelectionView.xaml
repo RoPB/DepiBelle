@@ -5,7 +5,7 @@
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
-             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplates;assembly=DepiBelle" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelle.Views.ListDataTemplate;assembly=DepiBelle" 
              x:Class="DepiBelle.Views.PartSelectionView"
              x:Name="PartSelection">
     <NavigationPage.TitleView>

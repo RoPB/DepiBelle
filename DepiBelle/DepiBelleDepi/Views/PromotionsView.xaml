@@ -5,7 +5,7 @@
              xmlns:viewModelBase="clr-namespace:DepiBelleDepi.ViewModels;assembly=DepiBelleDepi" 
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
-             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplates;assembly=DepiBelleDepi" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.PromotionsView"
              x:Name="Promotions">
     <ContentPage.Resources>

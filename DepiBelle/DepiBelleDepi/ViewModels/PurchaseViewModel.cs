@@ -206,7 +206,7 @@ namespace DepiBelleDepi.ViewModels
                     //viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
                     var date = DateConverter.ShortDate(DateTime.Now);
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{date}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
                     order.Number = await GetOrderNumber(date);
 
                     await _ordersDataService.AddOrReplace(order);
@@ -276,7 +276,7 @@ namespace DepiBelleDepi.ViewModels
         private async Task GetOrders()
         {
             var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{key}" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{key}" });
             var orders = await _ordersDataService.GetAll();
         }
 

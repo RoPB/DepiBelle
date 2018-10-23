@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace DepiBelle.Views.ListDataTemplates
+namespace DepiBelle.Views.ListDataTemplate
 {
     public partial class PromotionListDataTemplate : ContentView
     {

@@ -3,7 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              xmlns:viewModelBase="clr-namespace:DepiBelleDepi.ViewModels;assembly=DepiBelleDepi" 
+             xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.OrdersView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <Style x:Key="MainContainer" TargetType="FlexLayout">
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="JustifyContent" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="MainContent" TargetType="StackLayout">
+                <Setter Property="IsVisible" Value="{Binding IsLoading,Converter={StaticResource InverseBoolConverter}}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+                <Setter Property="FlexLayout.Grow" Value="1"/>
+            </Style>
+            <Style x:Key="List" TargetType="controls:CustomListView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
+        <FlexLayout Style="{StaticResource MainContainer}">
+           <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
+           <StackLayout  Style="{StaticResource MainContent}">
+                <StackLayout 
+                          IsVisible="{Binding ShowPendingOrders}"
+                          Orientation="Horizontal" 
+                          Padding="30,20"
+                          BackgroundColor="{StaticResource PrimaryDarkColor}">
+                        <Label Text="Pendientes"
+                               TextColor="{StaticResource White}" 
+                               FontFamily="{StaticResource Museo-Bold}" FontSize="35" VerticalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center">
+                                   <Label Text="{Binding PendingOrdersCount}" FontAttributes="Bold" 
+                                   TextColor="{StaticResource White}" FontSize="40"/>
+                        </StackLayout>
+                        <Button 
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Text="CARGAR" 
+                            BackgroundColor="{StaticResource White}" 
+                            TextColor="{StaticResource PrimaryLightColor}"
+                            Command="{Binding AddPendingOrdersToMainListCommand}"
+                            CornerRadius="20"/>
+                </StackLayout>
+                <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Orders}">
+                     <controls:CustomListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <listDataTemplate:OrderListDataTemplate/>
+                                </ViewCell>
+                        </DataTemplate>
+                     </controls:CustomListView.ItemTemplate>
+                </controls:CustomListView>
+           </StackLayout>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

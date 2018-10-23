@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:DepiBelleDepi.Views;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
-             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplates;assembly=DepiBelleDepi" 
+             xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.PurchaseView">
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -2,7 +2,7 @@
 using DepiBelle.Models;
 using Xamarin.Forms;
 
-namespace DepiBelle.Views.ListDataTemplates
+namespace DepiBelle.Views.ListDataTemplate
 {
     public class PurchasableDataTemplateSelector : DataTemplateSelector
     {
