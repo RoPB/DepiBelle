@@ -12,6 +12,9 @@ namespace DepiBelle.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("time")]
+        public string Time { get; set; }
+
         [JsonProperty("offers")]
         public List<PurchasableItem> Offers { get; set; } = new List<PurchasableItem>();
 

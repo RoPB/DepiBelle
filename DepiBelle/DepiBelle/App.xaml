@@ -12,6 +12,7 @@
             <Color x:Key="LightGrey">#f8f8f8</Color>
             <Color x:Key="Grey">#c1c1c1</Color>
             <Color x:Key="DarkGrey">#888888</Color>
+            <Color x:Key="BlackColor">#2C3240</Color>
             
             <!-- FONTS -->
             <OnPlatform x:Key="Journal-Regular" x:TypeArguments="x:String" Android="fonts/Journal-Regular.ttf#Journal-Regular" />
