@@ -38,26 +38,12 @@
                             <Label Text="Indique su hora de reserva" FontSize="20"/>
                             <StackLayout Orientation="Horizontal" Spacing="2" 
                                          HorizontalOptions="CenterAndExpand" >
-                                <Entry x:Name="EntryHour"
-                                       Text="{Binding Hour, Mode=TwoWay}" 
-                                       FontSize="40" 
-                                       Placeholder="00"
-                                       PlaceholderColor="{StaticResource DarkGrey}"
-                                       TextColor="{StaticResource BlackColor}"
-                                       Keyboard="Telephone"
-                                       MaxLength="2"
-                                       ReturnType="Done"/>
-                                 <Label Text=":" FontSize="40"/>
-                                 <Entry
-                                       x:Name="EntryMinutes"
-                                       Text="{Binding Minutes, Mode=TwoWay}" 
-                                       FontSize="40" 
-                                       Placeholder="00"
-                                       PlaceholderColor="{StaticResource DarkGrey}"
-                                       TextColor="{StaticResource BlackColor}"
-                                       Keyboard="Telephone"
-                                       MaxLength="2"
-                                       ReturnType="Done"/>
+                                 <TimePicker
+                                    Time="{Binding CurrentTime,Mode=TwoWay}"
+                                    Format="HH:mm"
+                                    FontSize="40" 
+                                    TextColor="{StaticResource BlackColor}"
+                                   />
                             </StackLayout>
                         </StackLayout>
                         
@@ -74,14 +60,6 @@
                                                                        Path=Text.Length,     
                                                                        Converter={StaticResource LengthValidatorConverter}}"
                                                                        Value="True" />
-                                            <BindingCondition Binding="{Binding Source={x:Reference EntryHour},
-                                                                               Path=Text.Length,     
-                                                                               Converter={StaticResource LengthValidatorConverter}}"
-                                                                               Value="True" />
-                                            <BindingCondition Binding="{Binding Source={x:Reference EntryMinutes},
-                                                                               Path=Text.Length,     
-                                                                               Converter={StaticResource LengthValidatorConverter}}"
-                                                                               Value="True" />
                                         </MultiTrigger.Conditions>
                                         <Setter Property="IsEnabled" Value="True" />
                                     </MultiTrigger>

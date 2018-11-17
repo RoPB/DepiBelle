@@ -9,11 +9,8 @@ namespace DepiBelle.ViewModels
     public class WelcomeViewModel : ViewModelBase
     {
         private string _name;
-        private string _hour; 
-        private string _minutes;
-        private string _placeHolderHour;
-        private string _placeHolderMinutes;
         private bool _canContinue;
+        private TimeSpan _currentTime;
 
         public ICommand ContinueCommand { get; set; }
 
@@ -23,27 +20,10 @@ namespace DepiBelle.ViewModels
             set { SetPropertyValue(ref _name, value); }
         }
 
-        public string Hour
+        public TimeSpan CurrentTime
         {
-            get { return _hour; }
-            set { SetPropertyValue(ref _hour, value); }
-        }
-
-        public string Minutes
-        {
-            get { return _minutes; }
-            set { SetPropertyValue(ref _minutes, value); }
-        }
-
-        public string PlaceHolderHour
-        {
-            get { return _placeHolderHour; }
-            set { SetPropertyValue(ref _placeHolderHour, value); }
-        }
-        public string PlaceHolderMinutes
-        {
-            get { return _placeHolderMinutes; }
-            set { SetPropertyValue(ref _placeHolderMinutes, value); }
+            get { return _currentTime; }
+            set { SetPropertyValue(ref _currentTime, value); }
         }
 
         public bool CanContinue
@@ -64,13 +44,10 @@ namespace DepiBelle.ViewModels
                 //RESOLVE ISSUE: 
                 //Setting the name it fires the trigger of the continue button to set the value in IsEnabled=false
                 //Have to put Binding Name TwoWay
+                CurrentTime = DateTime.Now.TimeOfDay;
                 Name = "";
-                Hour = "";
-                Minutes = "";
                 CanContinue = false;
                 var dateNow = DateTime.Now;
-                PlaceHolderHour = $"{dateNow.Hour}";
-                PlaceHolderMinutes = $"{dateNow.Minute.ToString("00")}";
 
             }
             catch (Exception ex)
@@ -81,7 +58,7 @@ namespace DepiBelle.ViewModels
 
         private async Task Continue()
         {
-            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = $"{Hour}:{Minutes}" };
+            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = CurrentTime.ToString() };
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
         }
     }
