@@ -13,7 +13,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
-            <Label Text="{Binding Number}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
+            <Label Text="{Binding Time}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
             <Label Text="{Binding Name}" FontSize="25" VerticalOptions="Center"/>
         </FlexLayout>
    </ContentView.Content>
