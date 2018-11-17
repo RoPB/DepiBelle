@@ -79,8 +79,6 @@ namespace DepiBelleDepi.ViewModels
         {
             return Task.Run(() =>
             {
-                orders = orders.OrderBy(o => o.Number).ToList();
-
                 orders.ForEach(o =>
                 {
                     AddOrderToMainList(o);
@@ -202,7 +200,7 @@ namespace DepiBelleDepi.ViewModels
 
         private OrderItem GetOrderListItem(Order order)
         {
-            return new OrderItem() { Id = order.Id, Number = order.Number, Name = order.Name }; ;
+            return new OrderItem() { Id = order.Id, Time = order.Time, Name = order.Name }; ;
         }
     }
 }

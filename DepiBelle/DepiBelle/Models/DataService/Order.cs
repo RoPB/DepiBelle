@@ -6,8 +6,6 @@ namespace DepiBelle.Models
 {
     public class Order : EntityBase
     {
-        [JsonProperty("number")]
-        public int Number { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

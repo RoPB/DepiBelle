@@ -212,7 +212,6 @@ namespace DepiBelle.ViewModels
 
                     var date = DateConverter.ShortDate(DateTime.Now);
                     _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
-                    order.Number = await GetOrderNumber(date);
 
                     await _ordersDataService.AddOrReplace(order);
 
@@ -250,30 +249,6 @@ namespace DepiBelle.ViewModels
                 _uploadingOrder = false;
                 IsLoading = false;
             }
-
-        }
-
-        private async Task<int> GetOrderNumber(string date)
-        {
-            var key = Constants.Constants.LOCAL_DATA_ORDER_KEY;
-
-            var localDataOrder = new DataOrder();
-            localDataOrder.Date = date;
-            localDataOrder.LastNumber = 0;
-
-            var isAnyLocalOrderSaved = await _localDataService.Contains(key);
-
-            if (isAnyLocalOrderSaved)
-            {
-                localDataOrder = await _localDataService.Get<DataOrder>(key);
-                if (localDataOrder.Date.Equals(date))
-                    ++localDataOrder.LastNumber;
-                else
-                    await _localDataService.Remove(key);
-            }
-
-            await _localDataService.AddOrReplace<DataOrder>(key, localDataOrder);
-            return localDataOrder.LastNumber;
 
         }
 

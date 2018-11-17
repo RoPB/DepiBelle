@@ -11,7 +11,7 @@ namespace DepiBelle.ViewModels.Modals
 
         private bool _processing;
         private string _name;
-        private int _number;
+        private string _time;
 
         private Func<bool, Task> AfterCloseModal;
         public ICommand PlayAnimationCommand { get; set; }
@@ -29,10 +29,10 @@ namespace DepiBelle.ViewModels.Modals
             set { SetPropertyValue(ref _name, value); }
         }
 
-        public int Number
+        public string Time
         {
-            get { return _number; }
-            set { SetPropertyValue(ref _number, value); }
+            get { return _time; }
+            set { SetPropertyValue(ref _time, value); }
         }
 
 
@@ -50,7 +50,7 @@ namespace DepiBelle.ViewModels.Modals
             {
                 if (order != null)
                 {
-                    Number = order.Number;
+                    Time = order.Time;
                     Name = order.Name;
                     PlayAnimationCommand.Execute(new LottieProgress() { Loop = false, From = 0.5f, To = 1 });
                     Processing = false;

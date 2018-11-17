@@ -9,7 +9,7 @@ namespace DepiBelleDepi.Models
             set;
         }
 
-        public int Number
+        public string Time
         {
             get;
             set;

@@ -33,8 +33,8 @@
                             </StackLayout>
                             <StackLayout IsVisible="{Binding Processing,Converter={StaticResource InverseBoolConverter}}" Spacing="5" FlexLayout.AlignSelf="Center">
                                 <Label Text="{Binding Name}" FontSize="35" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="Tu numero es el" FontSize="40" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Number}" FontSize="75" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Te esperamos" FontSize="40" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Time}" FontSize="75" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                             <StackLayout IsVisible="{Binding Processing,Converter={StaticResource InverseBoolConverter}}" Spacing="5" FlexLayout.AlignSelf="Center">
                                 <Label Text="Gracias por confiar en nosotros" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
