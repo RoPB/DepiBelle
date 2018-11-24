@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,13 +49,14 @@ namespace DepiBelleDepi.ViewModels
         {
             try
             {
-
                 var promotions = await _promotionsDataService.GetAll();
                 promotions = promotions.OrderBy(p => p.Name).ToList();
 
                 Promotions = new ObservableCollection<PromotionItem>();
 
                 promotions.ForEach(p => Promotions.Add(ListItemMapper.GetPromotionListItem(p, false, PromotionSelectedCommand)));
+
+                HandlePromotionsAdded(navigationData as List<PurchasableItem>);
 
             }
             catch (Exception ex)
@@ -94,5 +96,18 @@ namespace DepiBelleDepi.ViewModels
 
         }
 
+        public async Task HandlePromotionsAdded(List<PurchasableItem> promotionsAdded)
+        {
+            if (promotionsAdded != null)
+            {
+                foreach (var promotionAdded in promotionsAdded)
+                {
+                    var promotionToAdd = Promotions.Where(p => p.Id == promotionAdded.Id).FirstOrDefault();
+                    if (promotionToAdd != null)
+                        await PromotionSelected(promotionToAdd);
+                }
+            }
+
+        }
     }
 }

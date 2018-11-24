@@ -70,8 +70,9 @@ namespace DepiBelleDepi.ViewModels
             //await _offersDataService.Subscribe((offer) => Console.Write(offer.Type.ToString()));
             try
             {
-
-                var config = navigationData as Config;
+                var param = navigationData as BodySelectionNavigationParam;
+                var config = param.Config;
+                var offersAdded = param.OffersAdded;
 
                 if (config != null)
                 {
@@ -82,6 +83,8 @@ namespace DepiBelleDepi.ViewModels
 
                 var offers = await _offersDataService.GetAll();
                 await ClasificateOrders(offers);
+
+                HandleOffersAdded(offers, offersAdded);
             }
             catch (Exception ex)
             {
@@ -161,6 +164,21 @@ namespace DepiBelleDepi.ViewModels
         public void OfferRemovedHandler(object sender, string offerId)
         {
             _selectedOffers.Remove(offerId);
+        }
+
+        public void HandleOffersAdded(List<Offer> offers, List<PurchasableItem> offersAdded)
+        {
+            if (offersAdded!=null)
+            {
+                foreach (var offerAdded in offersAdded)
+                {
+                    var offerToAdd = offers.Where(o => o.Id == offerAdded.Id).FirstOrDefault();
+                    if (offerToAdd != null)
+                        _cartOfferManager.ItemAdded(this, new CartItem<Offer>() { Item = offerToAdd, Discount = offerAdded.Discount });
+                }
+
+            }
+           
         }
 
     }

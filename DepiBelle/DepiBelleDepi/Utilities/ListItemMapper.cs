@@ -33,5 +33,18 @@ namespace DepiBelleDepi.Utilities
                 OnSelectedCommand = onSelectedCommand
             };
         }
+
+        public static OrderItem GetOrderListItem(Order order, ICommand onSelectedCommand)
+        {
+
+            return new OrderItem()
+            {
+                Id = order.Id,
+                Time = order.Time,
+                Name = order.Name,
+                OnSelectedCommand = onSelectedCommand
+            }; ;
+
+        }
     }
 }

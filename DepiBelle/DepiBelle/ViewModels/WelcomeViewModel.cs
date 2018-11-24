@@ -58,7 +58,7 @@ namespace DepiBelle.ViewModels
 
         private async Task Continue()
         {
-            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = CurrentTime.ToString() };
+            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = CurrentTime.ToString(@"hh\:mm") };
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
         }
     }

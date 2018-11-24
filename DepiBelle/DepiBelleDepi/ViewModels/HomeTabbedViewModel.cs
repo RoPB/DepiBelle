@@ -4,6 +4,7 @@ using DepiBelleDepi.Managers.Application;
 using DepiBelleDepi.Models;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data.DataQuery;
+using System.Linq;
 
 namespace DepiBelleDepi.ViewModels
 {
@@ -35,11 +36,14 @@ namespace DepiBelleDepi.ViewModels
             await _applicationMananger.Login(_configService.User, _configService.Password);
 
             _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Config });
-            var config = await _dataQueryConfigService.Get();
 
-            await _purchaseViewModel.InitializeAsync(navigationData);
-            await _promotionsViewModel.InitializeAsync();
-            await _bodySelectionViewModel.InitializeAsync(config);
+            var config = await _dataQueryConfigService.Get();
+            var order = navigationData as Order;
+            var bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = order.Offers };
+
+            await _purchaseViewModel.InitializeAsync(order);
+            await _promotionsViewModel.InitializeAsync(order.Promotions);
+            await _bodySelectionViewModel.InitializeAsync(bodySelectionNavigationParameter);
 
             IsLoading = false;
         }

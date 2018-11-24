@@ -16,8 +16,7 @@ namespace DepiBelleDepi.ViewModels
 {
     public class PurchaseViewModel : ViewModelBase
     {
-        private string _userName;
-        private string _time;
+        private Order _order;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
         private ILocalDataService _localDataService;
@@ -84,7 +83,7 @@ namespace DepiBelleDepi.ViewModels
 
         public override async Task InitializeAsync(object navigationData = null)
         {
-            _userName = navigationData as string;
+            _order = navigationData as Order;
             IsLoading = false;
         }
 
@@ -182,13 +181,7 @@ namespace DepiBelleDepi.ViewModels
 
         private async Task ConfirmPurchase()
         {
-            var order = new Order();
-            order.Offers = _offers;
-            order.Promotions = _promotions;
-            order.Total = Total;
-            order.Name = _userName;
-
-            await UploadOrder(order);
+            await UploadOrder(_order);
         }
 
         private async Task UploadOrder(Order order)
@@ -247,16 +240,6 @@ namespace DepiBelleDepi.ViewModels
             }
 
         }
-
-        //NO SE ESTA USANDO
-        private async Task GetOrders()
-        {
-            var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{key}" });
-            var orders = await _ordersDataService.GetAll();
-        }
-
-
 
     }
 }

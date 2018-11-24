@@ -45,6 +45,7 @@ namespace DepiBelleDepi.ViewModels
         }
 
         public ICommand AddPendingOrdersToMainListCommand { get; set; }
+        public ICommand OpenOrderCommand { get; set; }
 
         public OrdersViewModel()
         {
@@ -53,6 +54,7 @@ namespace DepiBelleDepi.ViewModels
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());
+            OpenOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem));
 
         }
 
@@ -132,7 +134,7 @@ namespace DepiBelleDepi.ViewModels
             if (!_dicOrders.ContainsKey(order.Id))
             {
                 _dicOrders.Add(order.Id, order);
-                Orders.Insert(0,GetOrderListItem(order));
+                Orders.Insert(0, GetOrderListItem(order));
             }
         }
 
@@ -200,7 +202,15 @@ namespace DepiBelleDepi.ViewModels
 
         private OrderItem GetOrderListItem(Order order)
         {
-            return new OrderItem() { Id = order.Id, Time = order.Time, Name = order.Name }; ;
+            return ListItemMapper.GetOrderListItem(order, OpenOrderCommand);
+        }
+
+        public async Task OpenOrder(OrderItem orderItem)
+        {
+
+            DependencyContainer.Refresh();
+            var order = _dicOrders[orderItem.Id];
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>(order);
         }
     }
 }
