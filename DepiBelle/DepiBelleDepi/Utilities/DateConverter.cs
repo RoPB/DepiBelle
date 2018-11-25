@@ -7,5 +7,11 @@ namespace DepiBelleDepi.Utilities
 
             return date.ToString("MM-dd-yyyy");
         }
+
+        public static string ShortTime(TimeSpan timeSpan)
+        {
+
+            return timeSpan.ToString(@"hh\:mm");
+        }
     }
 }

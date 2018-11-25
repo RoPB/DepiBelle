@@ -71,16 +71,10 @@ namespace DepiBelleDepi.ViewModels
             try
             {
                 var param = navigationData as BodySelectionNavigationParam;
-                var config = param.Config;
+
+                HandleDiscount(param);
+
                 var offersAdded = param.OffersAdded;
-
-                if (config != null)
-                {
-                    Discount = config.Discount;
-                }
-
-                ShowDiscount = Discount > 0;
-
                 var offers = await _offersDataService.GetAll();
                 await ClasificateOrders(offers);
 
@@ -96,6 +90,20 @@ namespace DepiBelleDepi.ViewModels
             }
 
 
+        }
+
+        private void HandleDiscount(BodySelectionNavigationParam param)
+        {
+            if (param.Config != null)
+            {
+                Discount = param.Config.Discount;
+            }
+            else if (param.OffersAdded != null && param.OffersAdded.Count > 0)
+            {
+                Discount = param.OffersAdded.First().Discount;
+            }
+
+            ShowDiscount = Discount > 0;
         }
 
         private async Task ClasificateOrders(List<Offer> offers)
@@ -168,7 +176,7 @@ namespace DepiBelleDepi.ViewModels
 
         public void HandleOffersAdded(List<Offer> offers, List<PurchasableItem> offersAdded)
         {
-            if (offersAdded!=null)
+            if (offersAdded != null)
             {
                 foreach (var offerAdded in offersAdded)
                 {
@@ -178,7 +186,7 @@ namespace DepiBelleDepi.ViewModels
                 }
 
             }
-           
+
         }
 
     }

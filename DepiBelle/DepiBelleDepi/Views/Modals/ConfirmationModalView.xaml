@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:modalViewModelBase="clr-namespace:DepiBelleDepi.ViewModels.Modals;assembly=DepiBelleDepi"
+             modalViewModelBase:ModalViewModelAutoWire.AutoWireViewModel="True"
+             xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="DepiBelleDepi.Views.Modals.ConfirmationModalView">
+    <popup:PopupPage.Resources>
+        <ResourceDictionary>
+          <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            </ResourceDictionary>
+    </popup:PopupPage.Resources>
+    <popup:PopupPage.Content>
+        <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="75,75">
+                <FlexLayout JustifyContent="SpaceAround" 
+                            Direction="Column"
+                            BackgroundColor="Transparent"
+                            Margin="30">
+                            <StackLayout Spacing="5" FlexLayout.AlignSelf="Center">
+                                <controls:AnimationViewCustom
+                                    x:Name="LottieView"
+                                    Animation="Loading.json"
+                                    IsVisible="true"
+                                    PlayCommand="{Binding PlayAnimationCommand}"
+                                    WidthRequest="150" HeightRequest="150"
+                                    FlexLayout.AlignSelf="Center"/>
+                                <Label IsVisible="{Binding Processing}" Text="Procesando orden" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                </FlexLayout>
+            </Frame>
+        </FlexLayout>
+    </popup:PopupPage.Content>
+</popup:PopupPage>

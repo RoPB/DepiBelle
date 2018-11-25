@@ -5,6 +5,8 @@ using DepiBelleDepi.Models;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data.DataQuery;
 using System.Linq;
+using System.Collections.Generic;
+using DepiBelleDepi.Utilities;
 
 namespace DepiBelleDepi.ViewModels
 {
@@ -37,12 +39,26 @@ namespace DepiBelleDepi.ViewModels
 
             _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Config });
 
-            var config = await _dataQueryConfigService.Get();
             var order = navigationData as Order;
-            var bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = order.Offers };
+            List<PurchasableItem> promotionsItem = null;
+            BodySelectionNavigationParam bodySelectionNavigationParameter = null;
+            PurchaseNavigationParam purchaseNavigationParam = null;
 
-            await _purchaseViewModel.InitializeAsync(order);
-            await _promotionsViewModel.InitializeAsync(order.Promotions);
+            if (order == null)
+            {
+                var config = await _dataQueryConfigService.Get();
+                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config };
+                purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay) };
+            }
+            else
+            {
+                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { OffersAdded = order.Offers };
+                promotionsItem = order.Promotions;
+                purchaseNavigationParam = new PurchaseNavigationParam() {Time = order.Time, Name = order.Name };
+            }
+
+            await _purchaseViewModel.InitializeAsync(purchaseNavigationParam);
+            await _promotionsViewModel.InitializeAsync(promotionsItem);
             await _bodySelectionViewModel.InitializeAsync(bodySelectionNavigationParameter);
 
             IsLoading = false;

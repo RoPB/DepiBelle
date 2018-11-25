@@ -105,9 +105,10 @@ namespace DepiBelleDepi.Droid.Services.GoogleFirebase.Data
                 var client = CreateClient(token);
 
                 if (autoKey)
-
+                {
+                    item.Id = string.Empty;
                     await client.Child(Key).PostAsync(JsonConvert.SerializeObject(item), true);
-
+                }
                 else
 
                     await client.Child($"{Key}/{item.Id}").PutAsync(JsonConvert.SerializeObject(item));

@@ -7,19 +7,19 @@ using System.Windows.Input;
 using DepiBelleDepi.Models;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data;
-using DepiBelleDepi.Services.Data.LocalData;
 using DepiBelleDepi.Services.Notification.Cart;
 using DepiBelleDepi.Utilities;
+using DepiBelleDepi.ViewModels.Modals;
 using Xamarin.Forms;
 
 namespace DepiBelleDepi.ViewModels
 {
     public class PurchaseViewModel : ViewModelBase
     {
-        private Order _order;
+        private string _userName;
+        private string _time;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
-        private ILocalDataService _localDataService;
 
         private ICartNotificationService<Promotion> _cartPromotionManager;
         private ICartNotificationService<Offer> _cartOfferManager;
@@ -69,7 +69,6 @@ namespace DepiBelleDepi.ViewModels
 
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
-            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
 
             _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
@@ -83,7 +82,11 @@ namespace DepiBelleDepi.ViewModels
 
         public override async Task InitializeAsync(object navigationData = null)
         {
-            _order = navigationData as Order;
+            var purchaseNavigationParam = navigationData as PurchaseNavigationParam;
+
+            _userName = purchaseNavigationParam.Name;
+            _time = purchaseNavigationParam.Time;
+
             IsLoading = false;
         }
 
@@ -181,13 +184,20 @@ namespace DepiBelleDepi.ViewModels
 
         private async Task ConfirmPurchase()
         {
-            await UploadOrder(_order);
+            var order = new Order();
+            order.Offers = _offers;
+            order.Promotions = _promotions;
+            order.Total = Total;
+            order.Name = _userName;
+            order.Time = _time;
+
+            await UploadOrder(order);
         }
 
         private async Task UploadOrder(Order order)
         {
             var error = false;
-            //ModalViewModelBase viewModel = null;
+            ModalViewModelBase viewModel = null;
 
             try
             {
@@ -197,10 +207,11 @@ namespace DepiBelleDepi.ViewModels
                     IsLoading = true;
 
                     Func<bool, Task> afterCloseModalFunction = OrderCompleted;
-                    //viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
+                    viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
                     var date = DateConverter.ShortDate(DateTime.Now);
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+                    var key = _configService.OrdersAttended;
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
 
                     await _ordersDataService.AddOrReplace(order);
 
@@ -216,11 +227,11 @@ namespace DepiBelleDepi.ViewModels
                 {
                     if (!error)
                     {
-                        //viewModel.CloseModalCommand.Execute(order);
+                        viewModel.CloseModalCommand.Execute(order);
                     }
                     else
                     {
-                        //viewModel.CloseModalCommand.Execute(null);
+                        viewModel.CloseModalCommand.Execute(null);
                     }
                 }
             }
@@ -231,7 +242,7 @@ namespace DepiBelleDepi.ViewModels
             if (!error)
             {
                 DependencyContainer.Refresh();
-                await NavigationService.NavigateToAsync<OrdersViewModel>();
+                await NavigationService.PopAsync();
             }
             else
             {

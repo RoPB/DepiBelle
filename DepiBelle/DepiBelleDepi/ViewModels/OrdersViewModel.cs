@@ -46,6 +46,7 @@ namespace DepiBelleDepi.ViewModels
 
         public ICommand AddPendingOrdersToMainListCommand { get; set; }
         public ICommand OpenOrderCommand { get; set; }
+        public ICommand NewOrderCommand { get; set; }
 
         public OrdersViewModel()
         {
@@ -55,7 +56,7 @@ namespace DepiBelleDepi.ViewModels
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());
             OpenOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem));
-
+            NewOrderCommand = new Command(async () => await NewOrder());
         }
 
         public override async Task InitializeAsync(object navigationData)
@@ -211,6 +212,11 @@ namespace DepiBelleDepi.ViewModels
             DependencyContainer.Refresh();
             var order = _dicOrders[orderItem.Id];
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>(order);
+        }
+
+        public async Task NewOrder()
+        {
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
         }
     }
 }

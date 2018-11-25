@@ -27,6 +27,9 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Text="+" Icon="ic_plus.png" Command="{Binding NewOrderCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource MainContainer}">
            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>

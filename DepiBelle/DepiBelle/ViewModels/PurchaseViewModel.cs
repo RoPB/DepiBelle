@@ -8,7 +8,6 @@ using DepiBelle.Services.Notification;
 using DepiBelle.Models;
 using DepiBelle.Services.Config;
 using DepiBelle.Services.Data;
-using DepiBelle.Services.Data.LocalData;
 using DepiBelle.Utilities;
 using DepiBelle.ViewModels.Modals;
 using Xamarin.Forms;
@@ -21,7 +20,6 @@ namespace DepiBelle.ViewModels
         private string _time;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
-        private ILocalDataService _localDataService;
 
         private ICartNotificationService<Promotion> _cartPromotionManager;
         private ICartNotificationService<Offer> _cartOfferManager;
@@ -71,7 +69,6 @@ namespace DepiBelle.ViewModels
 
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
-            _localDataService = _localDataService ?? DependencyContainer.Resolve<ILocalDataService>();
 
             _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();

@@ -9,6 +9,7 @@ using DepiBelleDepi.Services.Modal;
 using DepiBelleDepi.Services.Navigation;
 using DepiBelleDepi.Services.Notification.Cart;
 using DepiBelleDepi.ViewModels;
+using DepiBelleDepi.ViewModels.Modals;
 using Splat;
 
 namespace DepiBelleDepi
@@ -39,7 +40,7 @@ namespace DepiBelleDepi
 
 
             //ModalViewModels
-            //Locator.CurrentMutable.Register(() => new ConfirmationModalViewModel());
+            Locator.CurrentMutable.Register(() => new ConfirmationModalViewModel());
         }
 
         public static void Refresh()

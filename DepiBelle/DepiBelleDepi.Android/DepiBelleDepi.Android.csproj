@@ -118,6 +118,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_offer.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_cart.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_offer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_plus.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_plus.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_plus.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -150,6 +154,7 @@
     <AndroidAsset Include="Assets\fonts\Raleway-Medium.ttf" />
     <AndroidAsset Include="Assets\fonts\Raleway-Regular.ttf" />
     <AndroidAsset Include="Assets\fonts\Raleway-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\Loading.json" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

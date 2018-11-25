@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelle.Models;
+using DepiBelle.Utilities;
 using Xamarin.Forms;
 
 namespace DepiBelle.ViewModels
@@ -58,7 +59,7 @@ namespace DepiBelle.ViewModels
 
         private async Task Continue()
         {
-            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = CurrentTime.ToString(@"hh\:mm") };
+            var navParam = new HomeTabbedNavigationParam() { Name = Name, Time = DateConverter.ShortTime(CurrentTime) };
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
         }
     }
