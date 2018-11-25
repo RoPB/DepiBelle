@@ -216,6 +216,7 @@ namespace DepiBelleDepi.ViewModels
 
         public async Task NewOrder()
         {
+            DependencyContainer.Refresh();
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
         }
     }

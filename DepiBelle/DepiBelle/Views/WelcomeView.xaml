@@ -40,7 +40,7 @@
                                          HorizontalOptions="CenterAndExpand" >
                                  <TimePicker
                                     Time="{Binding CurrentTime,Mode=TwoWay}"
-                                    Format="HH:mm"
+                                    Format="hh:mm"
                                     FontSize="40" 
                                     TextColor="{StaticResource BlackColor}"
                                    />
