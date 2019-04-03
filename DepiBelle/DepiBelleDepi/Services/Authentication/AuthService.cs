@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DepiBelleDepi.Services.Authentication;
 using Firebase.Auth;
 
-namespace DepiBelleDepi.Droid.Services.GoogleFirebase.Authentication
+namespace DepiBelleDepi.Services.Authentication
 {
     public class AuthService : IAuthenticationService
     {

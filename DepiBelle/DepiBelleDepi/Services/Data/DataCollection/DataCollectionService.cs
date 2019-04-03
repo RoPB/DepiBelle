@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using DepiBelle.Models;
-using DepiBelle.Services.Data;
+using DepiBelleDepi.Models;
 using Firebase.Database;
 using Firebase.Database.Streaming;
 using Newtonsoft.Json;
 
-namespace DepiBelle.Droid.Services.GoogleFirebase.Data
+namespace DepiBelleDepi.Services.Data
 {
     public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase
     {
@@ -97,7 +95,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
         }
 
-        public virtual async Task<bool> AddOrReplace(T item, bool autoKey=true, string token = null)
+        public virtual async Task<bool> AddOrReplace(T item, bool autoKey = true, string token = null)
         {
             try
             {
@@ -160,9 +158,9 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
                     _subscriptor = client.Child(Key).AsObservable<T>().Subscribe(elem =>
                     {
-                        var type = elem.EventType.Equals(FirebaseEventType.Delete)?SubscriptionEventType.Delete: SubscriptionEventType.InsertOrUpdate;
+                        var type = elem.EventType.Equals(FirebaseEventType.Delete) ? SubscriptionEventType.Delete : SubscriptionEventType.InsertOrUpdate;
 
-                        action.Invoke(new ServiceSubscriberEventParam<T>(){ Item = GetItem(elem), Type= type });
+                        action.Invoke(new ServiceSubscriberEventParam<T>() { Item = GetItem(elem), Type = type });
                     });
                 }
 
@@ -179,12 +177,12 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
         {
             try
             {
-                if(_subscriptor!=null)
+                if (_subscriptor != null)
                 {
                     _subscriptor.Dispose();
                     _subscriptor = null;
                 }
-                    
+
                 return Task.Run(() => true);
             }
             catch (Exception ex)
@@ -204,5 +202,4 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
 
 
     }
-
 }

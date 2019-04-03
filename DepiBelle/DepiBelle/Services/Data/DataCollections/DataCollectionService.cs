@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DepiBelleDepi.Models;
-using DepiBelleDepi.Services.Data;
+using DepiBelle.Models;
 using Firebase.Database;
 using Firebase.Database.Streaming;
 using Newtonsoft.Json;
 
-namespace DepiBelleDepi.Droid.Services.GoogleFirebase.Data
+namespace DepiBelle.Services.Data
 {
     public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase
     {

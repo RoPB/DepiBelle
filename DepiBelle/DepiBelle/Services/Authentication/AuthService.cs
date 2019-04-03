@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DepiBelle.Services.Authentication;
 using Firebase.Auth;
 
-namespace DepiBelle.Droid.Services.GoogleFirebase.Authentication
+namespace DepiBelle.Services.Authentication
 {
     public class AuthService : IAuthenticationService
     {
@@ -55,7 +54,7 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Authentication
             {
                 IsServiceInitialized();
 
-                var firebaseAuth = new Firebase.Auth.FirebaseAuth(){RefreshToken= RefreshToken };
+                var firebaseAuth = new Firebase.Auth.FirebaseAuth() { RefreshToken = RefreshToken };
                 var response = await App.RefreshAuthAsync(firebaseAuth);
 
                 Token = response.FirebaseToken;

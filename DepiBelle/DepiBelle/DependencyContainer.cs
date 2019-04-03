@@ -11,6 +11,8 @@ using DepiBelle.Services.Navigation;
 using DepiBelle.ViewModels;
 using DepiBelle.ViewModels.Modals;
 using Splat;
+using DepiBelle.Services.Data;
+using DepiBelle.Services.Authentication;
 
 namespace DepiBelle
 {
@@ -19,15 +21,22 @@ namespace DepiBelle
         public static void RegisterDependencies()
         {
             //Services
-            Locator.CurrentMutable.RegisterConstant(new NavigationService(), typeof(INavigationService));
-            Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
-            Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
-            Locator.CurrentMutable.RegisterConstant(new DataQuerySecuredService<Config>(), typeof(IDataQueryService<Config>));
 #if PRODUCTION
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceProd(), typeof(IConfigService));
 #else
             Locator.CurrentMutable.RegisterConstant(new ConfigServiceDev(), typeof(IConfigService));
 #endif
+
+            Locator.CurrentMutable.RegisterConstant(new NavigationService(), typeof(INavigationService));
+            Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
+            Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
+
+            Locator.CurrentMutable.RegisterConstant(new AuthService(), typeof(IAuthenticationService));
+            //register not as singleton so you can change the configuration whenever you need
+            Locator.CurrentMutable.Register(() => new DataCollectionSecuredService<Offer>(), typeof(IDataCollectionService<Offer>));
+            Locator.CurrentMutable.Register(() => new DataCollectionSecuredService<Order>(), typeof(IDataCollectionService<Order>));
+            Locator.CurrentMutable.Register(() => new DataCollectionSecuredService<Promotion>(), typeof(IDataCollectionService<Promotion>));
+            Locator.CurrentMutable.RegisterConstant(new DataQuerySecuredService<Config>(), typeof(IDataQueryService<Config>));
             Locator.CurrentMutable.Register(() => new LocalDataService(), typeof(ILocalDataService));
 
             //ViewModels

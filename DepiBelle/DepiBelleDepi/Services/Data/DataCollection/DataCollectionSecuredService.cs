@@ -5,7 +5,7 @@ using DepiBelleDepi.Models;
 using DepiBelleDepi.Services.Authentication;
 using Firebase.Database;
 
-namespace DepiBelleDepi.Droid.Services.GoogleFirebase.Data
+namespace DepiBelleDepi.Services.Data
 {
     public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase
     {

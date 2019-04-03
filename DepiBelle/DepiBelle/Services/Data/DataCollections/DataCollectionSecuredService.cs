@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DepiBelle.Models;
 using DepiBelle.Services.Authentication;
 using Firebase.Database;
-using DepiBelle.Models;
 
-namespace DepiBelle.Droid.Services.GoogleFirebase.Data
+namespace DepiBelle.Services.Data
 {
     public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase
     {
@@ -218,7 +218,5 @@ namespace DepiBelle.Droid.Services.GoogleFirebase.Data
                 throw ex;
             }
         }
-
-
     }
 }

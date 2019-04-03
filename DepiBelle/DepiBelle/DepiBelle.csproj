@@ -27,13 +27,15 @@
     <PackageReference Include="Splat" Version="5.0.2" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.2.2" />
     <PackageReference Include="Plugin.Badge" Version="2.1.0-pre.2" />
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.6.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.1" />
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -69,6 +71,7 @@
     <Folder Include="Services\Notification\Cart\" />
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
+    <Folder Include="Services\Data\DataCollections\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />
