@@ -22,6 +22,9 @@ namespace DepiBelle.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AnimationViewRenderer.Init();
+
+            Plugin.CloudFirestore.CloudFirestore.Init(this);
+
             LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,
             //                                                               new UXDivers.Gorilla.Config("Good Gorilla")
