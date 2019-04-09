@@ -7,7 +7,7 @@ using Firebase.Database;
 
 namespace DepiBelle.Services.Data
 {
-    public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase
+    public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase, new()
     {
         private IAuthenticationService _authenticationService;
 

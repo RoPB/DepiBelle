@@ -207,8 +207,11 @@ namespace DepiBelle.ViewModels
                     Func<bool, Task> afterCloseModalFunction = OrderCompleted;
                     viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
-                    var date = DateConverter.ShortDate(DateTime.Now);
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+                    //TODO: REALDATABASE
+                    //var date = DateConverter.ShortDate(DateTime.Now);
+                    //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}" });
 
                     await _ordersDataService.AddOrReplace(order);
 

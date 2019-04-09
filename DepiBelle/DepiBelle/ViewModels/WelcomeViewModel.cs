@@ -48,7 +48,6 @@ namespace DepiBelle.ViewModels
                 CurrentTime = DateTime.Now.TimeOfDay;
                 Name = "";
                 CanContinue = false;
-                var dateNow = DateTime.Now;
 
             }
             catch (Exception ex)

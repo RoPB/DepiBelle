@@ -1,11 +1,13 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Plugin.CloudFirestore.Attributes;
 
 namespace DepiBelle.Models
 {
     //TODO entities must inherith from this class
     public class EntityBase
     {
+        [Id]
         [JsonIgnore]
         public string Id { get; set; }
 

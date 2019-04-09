@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace DepiBelle.Services.Data
 {
-    public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase
+    public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase, new()
     {
 
         private IDisposable _subscriptor;

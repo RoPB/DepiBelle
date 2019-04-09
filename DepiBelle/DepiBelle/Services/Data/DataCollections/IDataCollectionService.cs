@@ -5,7 +5,7 @@ using DepiBelle.Models;
 
 namespace DepiBelle.Services.Data
 {
-    public interface IDataCollectionService<T> where T : EntityBase
+    public interface IDataCollectionService<T> where T : EntityBase, new()
     {
         bool Initialize(DataServiceConfig config);
 
