@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using Plugin.CloudFirestore.Attributes;
 
 namespace DepiBelle.Models
 {
@@ -8,13 +9,15 @@ namespace DepiBelle.Models
     {
         private bool _isSelected = false;
 
+        [Ignored]
         [JsonIgnore]
         public bool IsSelected
         {
             get { return _isSelected; }
             set{ _isSelected = value; RaisePropertyChanged(); }
         }
-
+        [Ignored]
+        [JsonIgnore]
         public ICommand OnSelectedCommand
         {
             get;

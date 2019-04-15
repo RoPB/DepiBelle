@@ -6,6 +6,10 @@ using Plugin.CloudFirestore;
 using System.Linq;
 using Newtonsoft.Json;
 
+//Queries https://www.youtube.com/watch?v=sKFLI5FOOHs
+//Pagination https://firebase.google.com/docs/firestore/query-data/query-cursors
+//FirebaseCloudStore https://www.youtube.com/watch?v=v_hR4K4auoQ
+
 namespace DepiBelle.Services.Data
 {
     public class CFDataCollectionService<T> : IDataCollectionService<T> where T  : EntityBase, new()
@@ -23,13 +27,92 @@ namespace DepiBelle.Services.Data
             return true;
         }
 
-        public virtual async Task<List<T>> GetAll(string token = null)
+        public virtual async Task<List<T>> GetAll(string token = null, 
+                                                  int limit=20,
+                                                  object offset = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  QueryLike queryLike=null, 
+                                                  List<QueryWhere> querysWhere=null)
         {
             try
             {
-                var items = await CrossCloudFirestore.Current
-                                        .Instance.GetCollection(Key)
-                                        .GetDocumentsAsync();
+                //OFFSET CON START AFTER, LIKE CON START AT END AT
+
+                var collectionQuery = CrossCloudFirestore.Current
+                             .Instance.GetCollection(Key)
+                             .LimitTo(limit);
+              
+                if (querysOrderBy != null)
+                {
+                    //order by
+                    //si es coleccion del rut
+                    //tienen que estar creado los indices
+                    foreach(var queryOrderBy in querysOrderBy)
+                        collectionQuery = collectionQuery.OrderBy(queryOrderBy.OrderByField, queryOrderBy.IsDescending);
+
+                }
+
+                if (queryLike != null)
+                {
+                    if(querysOrderBy==null || !querysOrderBy.Any(q=>q.OrderByField.Equals(queryLike.LikeField)))
+                        collectionQuery = collectionQuery.OrderBy(queryLike.LikeField,false);
+
+                    collectionQuery = collectionQuery.StartAt(new List<object>() { queryLike.LikeValue });
+                }
+
+                if(querysWhere != null)
+                {
+                    foreach (var queryWhere in querysWhere)
+                    {
+                        switch (queryWhere.Type)
+                        {
+                            case QueryWhereEnum.Equals:
+                                {
+                                    collectionQuery = collectionQuery.WhereEqualsTo(queryWhere.WhereField,queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.GreaterThan:
+                                {
+                                    collectionQuery = collectionQuery.WhereGreaterThan(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.GreaterThanOrEquals:
+                                {
+                                    collectionQuery = collectionQuery.WhereGreaterThanOrEqualsTo(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+                            case QueryWhereEnum.LessThan:
+                                {
+                                    collectionQuery = collectionQuery.WhereLessThan(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.LessThanOrEquals:
+                                {
+                                    collectionQuery = collectionQuery.WhereLessThanOrEqualsTo(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                        }
+
+                    }
+
+                }
+
+                if (offset!=null)
+                {
+                    collectionQuery = collectionQuery.StartAfter(offset as IDocumentSnapshot);
+                }
+
+                var items = await collectionQuery.GetDocumentsAsync();
+              
 
                 return items.ToObjects<T>().ToList();
             }
@@ -62,25 +145,21 @@ namespace DepiBelle.Services.Data
             try
             {
                 //TODO
-
-                //IS ALWAYS ADDING AN AUTOKEY
-                //if (autoKey)
-                //    item.Id = string.Empty;
-
-                //GET ID OF CREATED ITEM?
+                //GET ID OF CREATED ITEM? NO SE PUEDE!! CONFIRMADO
 
                 if (string.IsNullOrEmpty(item.Id))
                 {
-                    await CrossCloudFirestore.Current
+   
+                        await CrossCloudFirestore.Current
                                         .Instance.GetCollection(Key)
                                         .AddDocumentAsync(item);
                 }
                 else
                 {
                     await CrossCloudFirestore.Current
-                                        .Instance.GetCollection(Key)
-                                        .GetDocument(item.Id)
-                                        .UpdateDataAsync(item);
+                                       .Instance.GetCollection(Key)
+                                       .GetDocument(item.Id)
+                                       .SetDataAsync(item);
                 }
 
                 return true;

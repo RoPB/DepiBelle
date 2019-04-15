@@ -9,7 +9,12 @@ namespace DepiBelle.Services.Data
     {
         bool Initialize(DataServiceConfig config);
 
-        Task<List<T>> GetAll(string token = null);
+        Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
+                                                  object offset = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryWhere> querysWhere = null);
 
         Task<T> Get(string id, string token = null);
 

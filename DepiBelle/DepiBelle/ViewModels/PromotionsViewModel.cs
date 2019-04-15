@@ -50,7 +50,15 @@ namespace DepiBelle.ViewModels
             try
             {
 
-                var promotions = await _promotionsDataService.GetAll();
+                var queryLike = new QueryLike();
+                queryLike.LikeField = typeof(Promotion)
+                                .GetProperty(nameof(Promotion.Name))
+                                .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+
+                queryLike.LikeValue = "Promo 1";
+
+                var promotions = await _promotionsDataService.GetAll(queryLike: queryLike);
+
                 promotions = promotions.OrderBy(p => p.Name).ToList();
 
                 Promotions = new ObservableCollection<PromotionItem>();

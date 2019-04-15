@@ -77,6 +77,7 @@
     <Folder Include="Services\Data\DataCollections\CloudFirestore\" />
     <Folder Include="Services\Data\DataQuery\RealDatabase\" />
     <Folder Include="Services\Data\DataQuery\CloudFirestore\" />
+    <Folder Include="Models\Query\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\HomeView.cs" />

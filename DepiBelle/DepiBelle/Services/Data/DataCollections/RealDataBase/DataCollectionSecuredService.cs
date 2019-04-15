@@ -18,7 +18,12 @@ namespace DepiBelle.Services.Data
         }
 
 
-        public override async Task<List<T>> GetAll(string token = null)
+        public override async Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
+                                                  object offset = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryWhere> querysWhere = null)
         {
             try
             {
