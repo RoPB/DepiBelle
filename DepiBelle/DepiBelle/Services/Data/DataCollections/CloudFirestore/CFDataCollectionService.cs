@@ -5,6 +5,7 @@ using DepiBelle.Models;
 using Plugin.CloudFirestore;
 using System.Linq;
 using Newtonsoft.Json;
+using Plugin.CloudFirestore.Extensions;
 
 //Queries https://www.youtube.com/watch?v=sKFLI5FOOHs
 //Pagination https://firebase.google.com/docs/firestore/query-data/query-cursors
@@ -54,8 +55,7 @@ namespace DepiBelle.Services.Data
 
                 if (queryLike != null)
                 {
-                    if(querysOrderBy==null || !querysOrderBy.Any(q=>q.OrderByField.Equals(queryLike.LikeField)))
-                        collectionQuery = collectionQuery.OrderBy(queryLike.LikeField,false);
+                    AddOrderBy(collectionQuery, queryLike.LikeField, querysOrderBy);
 
                     collectionQuery = collectionQuery.StartAt(new List<object>() { queryLike.LikeValue });
                 }
@@ -64,6 +64,9 @@ namespace DepiBelle.Services.Data
                 {
                     foreach (var queryWhere in querysWhere)
                     {
+                       //if(queryWhere.Type!=QueryWhereEnum.Equals)
+                       //     AddOrderBy(collectionQuery, queryWhere.WhereField, querysOrderBy);
+
                         switch (queryWhere.Type)
                         {
                             case QueryWhereEnum.Equals:
@@ -111,8 +114,18 @@ namespace DepiBelle.Services.Data
                     collectionQuery = collectionQuery.StartAfter(offset as IDocumentSnapshot);
                 }
 
+                /*
+                collectionQuery = CrossCloudFirestore.Current
+                             .Instance.GetCollection($"ordersInProcess/yHFyQIeV7UlkQjzEWcMw/offers")
+                             .LimitTo(limit)
+                             .OrderBy("price", false)
+                             .WhereGreaterThan("price", 50)
+                             .WhereLessThan("price", 120);
+                */                            
+                                          
+
                 var items = await collectionQuery.GetDocumentsAsync();
-              
+
 
                 return items.ToObjects<T>().ToList();
             }
@@ -122,6 +135,13 @@ namespace DepiBelle.Services.Data
             }
 
         }
+
+        private void AddOrderBy(IQuery collectionQuery, string orderByField, List<QueryOrderBy> querysOrderBy)
+        {
+            if (querysOrderBy == null || !querysOrderBy.Any(q => q.OrderByField.Equals(orderByField)))
+                collectionQuery = collectionQuery.OrderBy(orderByField, false);
+        }
+
 
         public virtual async Task<T> Get(string id, string token = null)
         {
@@ -149,8 +169,17 @@ namespace DepiBelle.Services.Data
 
                 if (string.IsNullOrEmpty(item.Id))
                 {
-   
-                        await CrossCloudFirestore.Current
+
+                    var reference = CrossCloudFirestore.Current
+                                        .Instance.GetCollection(Key);
+
+                    reference.ObserveRemoved().Subscribe(documentChange =>
+                    {
+                        var document = documentChange.Document;
+                    });
+
+
+                    await CrossCloudFirestore.Current
                                         .Instance.GetCollection(Key)
                                         .AddDocumentAsync(item);
                 }

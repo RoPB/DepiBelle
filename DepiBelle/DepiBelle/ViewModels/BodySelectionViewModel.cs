@@ -10,6 +10,7 @@ using DepiBelle.Services.Data;
 using DepiBelle.Services.Dialog;
 using DepiBelle.Services.Navigation;
 using Xamarin.Forms;
+using DepiBelle.Utilities;
 
 namespace DepiBelle.ViewModels
 {
@@ -80,7 +81,30 @@ namespace DepiBelle.ViewModels
 
                 ShowDiscount = Discount > 0;
 
+
+                var queryLike = new QueryLike();
+                queryLike.LikeField = typeof(Offer)
+                                .GetProperty(nameof(Offer.Name))
+                                .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+
+                queryLike.LikeValue = "B";
+                queryLike = null;
+
+                var queryOrderBy = new QueryOrderBy();
+                queryOrderBy.OrderByField = typeof(Offer)
+                                        .GetProperty(nameof(Offer.Name))
+                                        .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+
+                var queryWhere = new QueryWhere();
+                queryWhere.WhereField = typeof(Offer)
+                                        .GetProperty(nameof(Offer.Price))
+                                        .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+                queryWhere.Type = QueryWhereEnum.GreaterThan;
+                queryWhere.ValueField = 60;
+
+                // var offers = await _offersDataService.GetAll(querysOrderBy: new List<QueryOrderBy>() { queryOrderBy }, queryLike: queryLike, querysWhere:new List<QueryWhere>() { queryWhere });
                 var offers = await _offersDataService.GetAll();
+
                 await ClasificateOrders(offers);
             }
             catch (Exception ex)
