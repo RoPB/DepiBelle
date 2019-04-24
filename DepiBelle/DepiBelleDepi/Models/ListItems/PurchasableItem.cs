@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Plugin.CloudFirestore.Attributes;
 
 namespace DepiBelleDepi.Models
 {
@@ -34,12 +35,14 @@ namespace DepiBelleDepi.Models
         }
 
         [JsonProperty("sellPrice")]
+        [Ignored]
         public double SellPrice
         {
             get { return HasDiscount ? Price - ((double)Discount * Price / 100) : Price; }
         }
 
         [JsonIgnore]
+        [Ignored]
         public bool HasDiscount
         {
             get { return Discount > 0; }

@@ -1,0 +1,316 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DepiBelleDepi.Models;
+using Plugin.CloudFirestore;
+using System.Linq;
+using Newtonsoft.Json;
+using Plugin.CloudFirestore.Extensions;
+
+//Queries https://www.youtube.com/watch?v=sKFLI5FOOHs
+//Pagination https://firebase.google.com/docs/firestore/query-data/query-cursors
+//FirebaseCloudStore https://www.youtube.com/watch?v=v_hR4K4auoQ
+
+namespace DepiBelleDepi.Services.Data
+{
+    public class CFDataCollectionService<T> : IDataCollectionService<T> where T  : EntityBase, new()
+    {
+        private IDisposable _addSubscriptor;
+        private IDisposable _updateSubscriptor;
+        private IDisposable _deleteSubscriptor;
+        private DataServiceConfig Config { get; set; }
+        protected string Uri { get { return Config.Uri; } }
+        protected string Key { get { return Config.Key; } }
+
+        public virtual bool Initialize(DataServiceConfig config)
+        {
+            if (Config == null)
+                Config = config;
+
+            Task.Run(async () => await UnSubscribe());
+
+            return true;
+        }
+
+        public virtual async Task<List<T>> GetAll(string token = null, 
+                                                  int limit=20,
+                                                  object offset = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  List<QueryWhere> querysWhere=null)
+        {
+            try
+            {
+                //OFFSET CON START AFTER, LIKE CON START AT END AT
+
+                var collectionQuery = CrossCloudFirestore.Current
+                             .Instance.GetCollection(Key)
+                             .LimitTo(limit);
+              
+                if (querysOrderBy != null)
+                {
+                 
+                    foreach(var queryOrderBy in querysOrderBy)
+                        collectionQuery = collectionQuery.OrderBy(queryOrderBy.OrderByField, queryOrderBy.IsDescending);
+
+                }
+
+                if (queryLike != null)
+                {
+                    AddOrderBy(collectionQuery, queryLike.LikeField, querysOrderBy);
+
+                    collectionQuery = collectionQuery.StartAt(new List<object>() { queryLike.LikeValue });
+                }
+
+                if(querysWhere != null)
+                {
+                    foreach (var queryWhere in querysWhere)
+                    {
+                        switch (queryWhere.Type)
+                        {
+                            case QueryWhereEnum.Equals:
+                                {
+                                    collectionQuery = collectionQuery.WhereEqualsTo(queryWhere.WhereField,queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.GreaterThan:
+                                {
+                                    collectionQuery = collectionQuery.WhereGreaterThan(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.GreaterThanOrEquals:
+                                {
+                                    collectionQuery = collectionQuery.WhereGreaterThanOrEqualsTo(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+                            case QueryWhereEnum.LessThan:
+                                {
+                                    collectionQuery = collectionQuery.WhereLessThan(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                            case QueryWhereEnum.LessThanOrEquals:
+                                {
+                                    collectionQuery = collectionQuery.WhereLessThanOrEqualsTo(queryWhere.WhereField, queryWhere.ValueField);
+
+                                    break;
+                                }
+
+                        }
+
+                    }
+
+                }
+
+                if (offset!=null)
+                {
+                    collectionQuery = collectionQuery.StartAfter(offset as IDocumentSnapshot);
+                }
+
+                /*
+                collectionQuery = CrossCloudFirestore.Current
+                             .Instance.GetCollection($"ordersInProcess/yHFyQIeV7UlkQjzEWcMw/saracatanga")
+                             .LimitTo(limit)
+                             //.OrderBy("price",false)
+                             .WhereEqualsTo("keyvalues.petfriendly", true)
+                             .WhereEqualsTo("keyvalues.gayfriendly", true);
+                             //.WhereGreaterThan("price", 50)
+                             //.WhereLessThan("price", 120);
+                */                          
+                                          
+
+                var items = await collectionQuery.GetDocumentsAsync();
+
+                //var prueba = (await (items.Documents.First().Data["prueba"] as IDocumentReference).GetDocumentAsync()).ToObject<T>();
+
+                return items.ToObjects<T>().ToList();
+            }
+            catch(Exception ex)
+            {
+                throw ex; 
+            }
+
+        }
+
+        private void AddOrderBy(IQuery collectionQuery, string orderByField, List<QueryOrderBy> querysOrderBy)
+        {
+            if (querysOrderBy == null || !querysOrderBy.Any(q => q.OrderByField.Equals(orderByField)))
+                collectionQuery = collectionQuery.OrderBy(orderByField, false);
+        }
+
+
+        public virtual async Task<T> Get(string id, string token = null)
+        {
+            try
+            {
+                var item = await CrossCloudFirestore.Current
+                                        .Instance.GetCollection(Key)
+                                        .GetDocument(id)
+                                        .GetDocumentAsync();
+
+                return item.ToObject<T>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual async Task<bool> AddOrReplace(T item, bool autoKey = true, string token = null)
+        {
+            try
+            {
+                //TODO
+                //GET ID OF CREATED ITEM? NO SE PUEDE!! CONFIRMADO
+
+                if (string.IsNullOrEmpty(item.Id))
+                {
+
+                    await CrossCloudFirestore.Current
+                                        .Instance
+                                        .GetCollection(Key)
+                                        .AddDocumentAsync(item);
+                }
+                else
+                {
+                    await CrossCloudFirestore.Current
+                                       .Instance.GetCollection(Key)
+                                       .GetDocument(item.Id)
+                                       .SetDataAsync(item);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual async Task<bool> Remove(string id, string token = null)
+        {
+            try
+            {
+                await CrossCloudFirestore.Current
+                                        .Instance.GetCollection(Key)
+                                        .GetDocument(id)
+                                        .DeleteDocumentAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public virtual async Task<bool> RemoveAll(string token = null)
+        {
+            try
+            {
+                //TODO
+                //COMO BORRO TODOS?
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null)
+        {
+
+            try
+            {
+
+                if (_addSubscriptor == null)
+                {
+
+                    _addSubscriptor = CrossCloudFirestore.Current.Instance
+                                   .GetCollection(Key)
+                                   .ObserveAdded()
+                                   .Subscribe(elem =>
+                                   {
+                                       var type = SubscriptionEventType.InsertOrUpdate;
+
+                                       action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                   });
+                }
+
+                if (_updateSubscriptor == null)
+                {
+
+                    _updateSubscriptor = CrossCloudFirestore.Current.Instance
+                                  .GetCollection(Key)
+                                  .ObserveModified()
+                                  .Subscribe(elem =>
+                                  {
+                                      var type = SubscriptionEventType.InsertOrUpdate;
+
+                                      action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                  });
+                }
+
+                if (_deleteSubscriptor == null)
+                {
+
+                    _deleteSubscriptor = CrossCloudFirestore.Current.Instance
+                                   .GetCollection(Key)
+                                   .ObserveRemoved()
+                                   .Subscribe(elem =>
+                                   {
+                                       var type = SubscriptionEventType.Delete;
+
+                                       action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                   });
+                }
+
+                return Task.Run(() => true);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual Task<bool> UnSubscribe()
+        {
+            try
+            {
+                if (_addSubscriptor != null)
+                {
+                    _addSubscriptor.Dispose();
+                    _addSubscriptor = null;
+                }
+
+                if (_updateSubscriptor != null)
+                {
+                    _updateSubscriptor.Dispose();
+                    _updateSubscriptor = null;
+                }
+
+                if (_deleteSubscriptor != null)
+                {
+                    _deleteSubscriptor.Dispose();
+                    _deleteSubscriptor = null;
+                }
+
+                return Task.Run(() => true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
+}

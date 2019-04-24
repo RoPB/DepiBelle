@@ -7,7 +7,7 @@ using Firebase.Database;
 
 namespace DepiBelleDepi.Services.Data
 {
-    public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase
+    public class DataCollectionSecuredService<T> : DataCollectionService<T> where T : EntityBase, new()
     {
         private IAuthenticationService _authenticationService;
 
@@ -18,11 +18,17 @@ namespace DepiBelleDepi.Services.Data
         }
 
 
-        public override async Task<List<T>> GetAll(string token = null)
+        public override async Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
+                                                  object offset = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  List<QueryWhere> querysWhere = null)
         {
             try
             {
-                var items = await base.GetAll(_authenticationService.Token);
+                var items = await base.GetAll(_authenticationService.Token,
+                                              limit, offset, queryLike, querysOrderBy, querysWhere);
                 return items;
             }
             catch (FirebaseException fe)
@@ -51,6 +57,7 @@ namespace DepiBelleDepi.Services.Data
                 throw ex;
             }
         }
+
 
         public override async Task<T> Get(string id, string token = null)
         {

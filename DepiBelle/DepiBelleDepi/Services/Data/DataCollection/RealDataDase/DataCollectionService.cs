@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace DepiBelleDepi.Services.Data
 {
-    public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase
+    public class DataCollectionService<T> : IDataCollectionService<T> where T : EntityBase, new()
     {
 
         private IDisposable _subscriptor;
@@ -47,7 +47,12 @@ namespace DepiBelleDepi.Services.Data
             return new FirebaseClient(Uri, options);
         }
 
-        public virtual async Task<List<T>> GetAll(string token = null)
+        public virtual async Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
+                                                  object offset = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  List<QueryWhere> querysWhere = null)
         {
             try
             {

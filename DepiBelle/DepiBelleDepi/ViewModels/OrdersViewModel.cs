@@ -63,8 +63,11 @@ namespace DepiBelleDepi.ViewModels
         {
             await _applicationMananger.Login(_configService.User, _configService.Password);
 
-            var date = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+            //var date = DateConverter.ShortDate(DateTime.Now);
+            //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}" });
+
 
             await _ordersDataService.Subscribe(async (obj) =>
             {

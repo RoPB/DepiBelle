@@ -5,11 +5,16 @@ using DepiBelleDepi.Models;
 
 namespace DepiBelleDepi.Services.Data
 {
-    public interface IDataCollectionService<T> where T : EntityBase
+    public interface IDataCollectionService<T> where T : EntityBase, new()
     {
         bool Initialize(DataServiceConfig config);
 
-        Task<List<T>> GetAll(string token = null);
+        Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
+                                                  object offset = null,
+                                                  QueryLike queryLike = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
+                                                  List<QueryWhere> querysWhere = null);
 
         Task<T> Get(string id, string token = null);
 

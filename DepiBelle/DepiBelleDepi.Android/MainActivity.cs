@@ -9,6 +9,7 @@ using Android.OS;
 using Lottie.Forms.Droid;
 using Xamarin.Forms;
 using Plugin.Badge.Droid;
+using Acr.UserDialogs;
 
 [assembly: ExportRenderer(typeof(TabbedPage), typeof(BadgedTabbedPageRenderer))]
 namespace DepiBelleDepi.Droid
@@ -27,6 +28,9 @@ namespace DepiBelleDepi.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AnimationViewRenderer.Init();
+            UserDialogs.Init(this);
+            Plugin.CloudFirestore.CloudFirestore.Init(this);
+
             LoadApplication(new App());
         }
 

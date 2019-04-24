@@ -211,7 +211,8 @@ namespace DepiBelleDepi.ViewModels
 
                     var date = DateConverter.ShortDate(DateTime.Now);
                     var key = _configService.OrdersAttended;
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
+                    //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}" });
 
                     await _ordersDataService.AddOrReplace(order);
 
