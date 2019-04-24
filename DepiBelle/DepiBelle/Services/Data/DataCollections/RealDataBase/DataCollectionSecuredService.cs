@@ -21,13 +21,14 @@ namespace DepiBelle.Services.Data
         public override async Task<List<T>> GetAll(string token = null,
                                                   int limit = 20,
                                                   object offset = null,
-                                                  List<QueryOrderBy> querysOrderBy = null,
                                                   QueryLike queryLike = null,
+                                                  List<QueryOrderBy> querysOrderBy = null,
                                                   List<QueryWhere> querysWhere = null)
         {
             try
             {
-                var items = await base.GetAll(_authenticationService.Token);
+                var items = await base.GetAll(_authenticationService.Token,
+                                              limit,offset,queryLike,querysOrderBy,querysWhere);
                 return items;
             }
             catch (FirebaseException fe)

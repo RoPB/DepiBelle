@@ -31,8 +31,8 @@ namespace DepiBelle.Services.Data
         public virtual async Task<List<T>> GetAll(string token = null, 
                                                   int limit=20,
                                                   object offset = null,
+                                                  QueryLike queryLike = null,
                                                   List<QueryOrderBy> querysOrderBy = null,
-                                                  QueryLike queryLike=null, 
                                                   List<QueryWhere> querysWhere=null)
         {
             try
@@ -45,9 +45,7 @@ namespace DepiBelle.Services.Data
               
                 if (querysOrderBy != null)
                 {
-                    //order by
-                    //si es coleccion del rut
-                    //tienen que estar creado los indices
+                 
                     foreach(var queryOrderBy in querysOrderBy)
                         collectionQuery = collectionQuery.OrderBy(queryOrderBy.OrderByField, queryOrderBy.IsDescending);
 
@@ -64,9 +62,6 @@ namespace DepiBelle.Services.Data
                 {
                     foreach (var queryWhere in querysWhere)
                     {
-                       //if(queryWhere.Type!=QueryWhereEnum.Equals)
-                       //     AddOrderBy(collectionQuery, queryWhere.WhereField, querysOrderBy);
-
                         switch (queryWhere.Type)
                         {
                             case QueryWhereEnum.Equals:
@@ -116,16 +111,19 @@ namespace DepiBelle.Services.Data
 
                 /*
                 collectionQuery = CrossCloudFirestore.Current
-                             .Instance.GetCollection($"ordersInProcess/yHFyQIeV7UlkQjzEWcMw/offers")
+                             .Instance.GetCollection($"ordersInProcess/yHFyQIeV7UlkQjzEWcMw/saracatanga")
                              .LimitTo(limit)
-                             .OrderBy("price", false)
-                             .WhereGreaterThan("price", 50)
-                             .WhereLessThan("price", 120);
-                */                            
+                             //.OrderBy("price",false)
+                             .WhereEqualsTo("keyvalues.petfriendly", true)
+                             .WhereEqualsTo("keyvalues.gayfriendly", true);
+                             //.WhereGreaterThan("price", 50)
+                             //.WhereLessThan("price", 120);
+                */                          
                                           
 
                 var items = await collectionQuery.GetDocumentsAsync();
 
+                //var prueba = (await (items.Documents.First().Data["prueba"] as IDocumentReference).GetDocumentAsync()).ToObject<T>();
 
                 return items.ToObjects<T>().ToList();
             }
@@ -170,17 +168,9 @@ namespace DepiBelle.Services.Data
                 if (string.IsNullOrEmpty(item.Id))
                 {
 
-                    var reference = CrossCloudFirestore.Current
-                                        .Instance.GetCollection(Key);
-
-                    reference.ObserveRemoved().Subscribe(documentChange =>
-                    {
-                        var document = documentChange.Document;
-                    });
-
-
                     await CrossCloudFirestore.Current
-                                        .Instance.GetCollection(Key)
+                                        .Instance
+                                        .GetCollection(Key)
                                         .AddDocumentAsync(item);
                 }
                 else
