@@ -94,13 +94,14 @@ namespace DepiBelleDepi.ViewModels
 
         private void HandleDiscount(BodySelectionNavigationParam param)
         {
-            if (param.Config != null)
-            {
-                Discount = param.Config.Discount;
-            }
-            else if (param.OffersAdded != null && param.OffersAdded.Count > 0)
+
+            if (param.OffersAdded != null && param.OffersAdded.Count > 0)
             {
                 Discount = param.OffersAdded.First().Discount;
+            }
+            else if (param.Config != null)
+            {
+                Discount = param.Config.Discount;
             }
 
             ShowDiscount = Discount > 0;

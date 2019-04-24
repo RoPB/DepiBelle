@@ -43,16 +43,17 @@ namespace DepiBelleDepi.ViewModels
             List<PurchasableItem> promotionsItem = null;
             BodySelectionNavigationParam bodySelectionNavigationParameter = null;
             PurchaseNavigationParam purchaseNavigationParam = null;
+            var config = await _dataQueryConfigService.Get();
 
             if (order == null)
             {
-                var config = await _dataQueryConfigService.Get();
+
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config };
                 purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay) };
             }
             else
             {
-                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { OffersAdded = order.Offers };
+                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = order.Offers };
                 promotionsItem = order.Promotions;
                 purchaseNavigationParam = new PurchaseNavigationParam() {Time = order.Time, Name = order.Name };
             }
