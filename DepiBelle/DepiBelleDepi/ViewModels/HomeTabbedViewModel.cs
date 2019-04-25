@@ -7,6 +7,8 @@ using DepiBelleDepi.Services.Data.DataQuery;
 using System.Linq;
 using System.Collections.Generic;
 using DepiBelleDepi.Utilities;
+using DepiBelleDepi.Services;
+using DepiBelleDepi.Services.Data;
 
 namespace DepiBelleDepi.ViewModels
 {
@@ -14,6 +16,8 @@ namespace DepiBelleDepi.ViewModels
     {
         private IConfigService _configService;
         private IDataQueryService<Config> _dataQueryConfigService;
+        private IDeviceService _deviceService;
+        private IDataCollectionService<Order> _ordersDataService;
         private IApplicationManager _applicationMananger;
 
         private ViewModelBase _promotionsViewModel;
@@ -25,6 +29,8 @@ namespace DepiBelleDepi.ViewModels
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dataQueryConfigService = _dataQueryConfigService ?? DependencyContainer.Resolve<IDataQueryService<Config>>();
+            _deviceService = _deviceService ?? DependencyContainer.Resolve<IDeviceService>();
+            _ordersDataService = _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
 
             _promotionsViewModel = _promotionsViewModel ?? DependencyContainer.Resolve<PromotionsViewModel>();
@@ -39,23 +45,32 @@ namespace DepiBelleDepi.ViewModels
 
             _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Config });
 
-            var order = navigationData as Order;
+            var navParam = navigationData as HomeNavigationParam;
             List<PurchasableItem> promotionsItem = null;
             BodySelectionNavigationParam bodySelectionNavigationParameter = null;
             PurchaseNavigationParam purchaseNavigationParam = null;
             var config = await _dataQueryConfigService.Get();
 
-            if (order == null)
+            if (navParam == null)
             {
 
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config };
-                purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay) };
+                purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay), CanConfirm=true };
             }
             else
             {
-                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = order.Offers };
-                promotionsItem = order.Promotions;
-                purchaseNavigationParam = new PurchaseNavigationParam() {Time = order.Time, Name = order.Name };
+                bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = navParam.Order.Offers };
+                promotionsItem = navParam.Order.Promotions;
+                purchaseNavigationParam = new PurchaseNavigationParam() {Time = navParam.Order.Time, Name = navParam.Order.Name, CanConfirm = navParam.ToAttend};
+
+                if (navParam.ToAttend)
+                {
+                    navParam.Order.AttendedBy = _deviceService.DeviceId;
+                    var key = _configService.OrdersInProcess;
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{navParam.Order.Date}>" });
+                    await _ordersDataService.AddOrReplace(navParam.Order);
+                }
+            
             }
 
             await _purchaseViewModel.InitializeAsync(purchaseNavigationParam);

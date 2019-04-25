@@ -11,6 +11,10 @@ namespace DepiBelle.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [MapTo("date")]
+        [JsonProperty("date")]
+        public string Date { get; set; }
+
         [MapTo("time")]
         [JsonProperty("time")]
         public string Time { get; set; }

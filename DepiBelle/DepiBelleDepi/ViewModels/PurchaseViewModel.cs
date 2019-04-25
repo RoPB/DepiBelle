@@ -18,6 +18,7 @@ namespace DepiBelleDepi.ViewModels
     {
         private string _userName;
         private string _time;
+        private bool _canConfirm;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
 
@@ -39,11 +40,17 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _purchasableItems, value); }
         }
 
-
+        
         public double Total
         {
             get { return _total; }
             set { SetPropertyValue(ref _total, value); }
+        }
+
+        public bool CanConfirm
+        {
+            get { return _canConfirm; }
+            set { SetPropertyValue(ref _canConfirm, value); }
         }
 
         public bool ShowMainContent
@@ -86,6 +93,7 @@ namespace DepiBelleDepi.ViewModels
 
             _userName = purchaseNavigationParam.Name;
             _time = purchaseNavigationParam.Time;
+            CanConfirm = purchaseNavigationParam.CanConfirm;
 
             IsLoading = false;
         }
@@ -211,8 +219,10 @@ namespace DepiBelleDepi.ViewModels
 
                     var date = DateConverter.ShortDate(DateTime.Now);
                     var key = _configService.OrdersAttended;
+
+                    //TODO: REALDATABASE
                     //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{date}>" });
 
                     await _ordersDataService.AddOrReplace(order);
 

@@ -61,6 +61,7 @@
     <Folder Include="Services\Data\DataCollection\RealDataDase\" />
     <Folder Include="Services\Data\DataCollection\CloudFireStore\" />
     <Folder Include="Models\Query\" />
+    <Folder Include="Services\Device\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ListDataTemplate\OfferListDataTemplate.xaml.cs">

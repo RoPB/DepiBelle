@@ -12,10 +12,26 @@
         </Style>
     </ContentView.Resources>
     <ContentView.Content>
-        <FlexLayout Direction="Column" JustifyContent="Center" Style="{StaticResource ListContent}">
-            <Label Text="{Binding Time}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
-            <Label Text="{Binding Name}" FontSize="25" VerticalOptions="Center"/>
-             <FlexLayout.GestureRecognizers>
+        <FlexLayout Direction="Row" Style="{StaticResource ListContent}">
+            <StackLayout FlexLayout.Grow="0.5">
+                <Label Text="{Binding Time}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
+                <Label Text="{Binding Name}" FontSize="25" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout FlexLayout.Grow="0.5">
+                <Button Text="Atender" 
+                        BackgroundColor="{StaticResource PrimaryLightColor}" 
+                        TextColor="{StaticResource White}"
+                        CornerRadius="20"
+                        Command="{Binding OnAttendCommand}"
+                        CommandParameter="{Binding .}"/>
+                <Button Text="Bloquear"
+                        BackgroundColor="{StaticResource DarkGrey}" 
+                        TextColor="{StaticResource White}"
+                        CornerRadius="20"
+                        Command="{Binding OnBlockCommand}"
+                        CommandParameter="{Binding .}"/>
+            </StackLayout>
+            <FlexLayout.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding OnSelectedCommand}"
                     CommandParameter="{Binding .}"/>

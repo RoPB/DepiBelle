@@ -46,6 +46,8 @@ namespace DepiBelleDepi.ViewModels
 
         public ICommand AddPendingOrdersToMainListCommand { get; set; }
         public ICommand OpenOrderCommand { get; set; }
+        public ICommand BlockOrderCommand { get; set; }
+        public ICommand AttendOrderCommand { get; set; }
         public ICommand NewOrderCommand { get; set; }
 
         public OrdersViewModel()
@@ -56,6 +58,8 @@ namespace DepiBelleDepi.ViewModels
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());
             OpenOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem));
+            AttendOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem,true));
+            BlockOrderCommand = new Command<OrderItem>(async (orderItem) => await BlockOrder(orderItem));
             NewOrderCommand = new Command(async () => await NewOrder());
         }
 
@@ -63,10 +67,11 @@ namespace DepiBelleDepi.ViewModels
         {
             await _applicationMananger.Login(_configService.User, _configService.Password);
 
-            //var date = DateConverter.ShortDate(DateTime.Now);
+            var date = DateConverter.ShortDate(DateTime.Now);
+
             //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
 
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{date}>" });
 
 
             await _ordersDataService.Subscribe(async (obj) =>
@@ -74,9 +79,9 @@ namespace DepiBelleDepi.ViewModels
                 await OnOrderCollectionModified(obj);
             });
 
-            var orders = await _ordersDataService.GetAll();
-
-            await LoadOrders(orders);
+            //al subscribirse y emepezar a escuchar ya trae y lista
+            //var orders = await _ordersDataService.GetAll();
+            //await LoadOrders(orders);
 
             IsLoading = false;
         }
@@ -113,12 +118,20 @@ namespace DepiBelleDepi.ViewModels
 
         private void AddUpdateOrder(Order order)
         {
-            //ADD
-            if (!_dicOrders.ContainsKey(order.Id) && !_pendingOrders.Any(o => o.Id == order.Id))
+
+            if (_dicOrders.ContainsKey(order.Id)){
+
+                UpdateOrderInMainList(order);
+            }
+            else if(_pendingOrders.Any(o => o.Id == order.Id))
+            {
+                UpdateOrderInPendingList(order);
+            }
+            else
             {
                 AddOrderToPendingList(order);
             }
-            //THERE WONT BE UPDATES
+
         }
 
         private Task RemoveOrder(string id)
@@ -132,6 +145,7 @@ namespace DepiBelleDepi.ViewModels
             });
         }
 
+
         private void AddOrderToMainList(Order order)
         {
 
@@ -140,6 +154,18 @@ namespace DepiBelleDepi.ViewModels
                 _dicOrders.Add(order.Id, order);
                 Orders.Insert(0, GetOrderListItem(order));
             }
+        }
+
+        private void UpdateOrderInMainList(Order order)
+        {
+            _dicOrders[order.Id] = order;
+            var orderInMainList = Orders.Where(o => o.Id == order.Id).FirstOrDefault();
+            if (orderInMainList != null)
+            {
+                orderInMainList.Name = order.Name;
+                orderInMainList.Time = order.Time;
+            }
+                
         }
 
         private Task RemoveOrderFromMainList(string id)
@@ -163,6 +189,16 @@ namespace DepiBelleDepi.ViewModels
                 _pendingOrders.Add(order);
                 UpdatePendingCount();
             });
+        }
+
+        private void UpdateOrderInPendingList(Order order)
+        {
+            var orderInPendingList = _pendingOrders.Where(o => o.Id == order.Id).FirstOrDefault();
+            if (orderInPendingList != null)
+            {
+                orderInPendingList.Name = order.Name;
+                orderInPendingList.Time = order.Time;
+            }
         }
 
         private Task<bool> RemoveOrderFromPendingList(string id)
@@ -206,15 +242,21 @@ namespace DepiBelleDepi.ViewModels
 
         private OrderItem GetOrderListItem(Order order)
         {
-            return ListItemMapper.GetOrderListItem(order, OpenOrderCommand);
+            return ListItemMapper.GetOrderListItem(order, OpenOrderCommand, AttendOrderCommand, BlockOrderCommand);
         }
 
-        public async Task OpenOrder(OrderItem orderItem)
+        public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
         {
 
             DependencyContainer.Refresh();
             var order = _dicOrders[orderItem.Id];
-            await NavigationService.NavigateToAsync<HomeTabbedViewModel>(order);
+            var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
+        }
+
+        public async Task BlockOrder(OrderItem orderItem)
+        {
+
         }
 
         public async Task NewOrder()

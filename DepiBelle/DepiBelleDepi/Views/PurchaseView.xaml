@@ -88,7 +88,8 @@
                                 BackgroundColor="{StaticResource White}" 
                                 TextColor="{StaticResource PrimaryLightColor}"
                                 Command="{Binding ConfirmPurchaseCommand}"
-                                CornerRadius="20"/>
+                                CornerRadius="20"
+                                IsVisible="{Binding CanConfirm}"/>
                     </StackLayout>
                 </StackLayout>
                

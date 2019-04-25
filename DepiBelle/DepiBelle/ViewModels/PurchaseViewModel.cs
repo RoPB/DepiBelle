@@ -187,6 +187,7 @@ namespace DepiBelle.ViewModels
             order.Promotions = _promotions;
             order.Total = Total;
             order.Name = _userName;
+            order.Date = DateConverter.ShortDate(DateTime.Now);
             order.Time = _time;
 
             await UploadOrder(order);
@@ -208,10 +209,9 @@ namespace DepiBelle.ViewModels
                     viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
                     //TODO: REALDATABASE
-                    //var date = DateConverter.ShortDate(DateTime.Now);
-                    //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+                    //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{order.Date}" });
 
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{order.Date}>" });
 
                     await _ordersDataService.AddOrReplace(order);
 

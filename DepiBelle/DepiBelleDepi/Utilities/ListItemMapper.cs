@@ -34,7 +34,7 @@ namespace DepiBelleDepi.Utilities
             };
         }
 
-        public static OrderItem GetOrderListItem(Order order, ICommand onSelectedCommand)
+        public static OrderItem GetOrderListItem(Order order, ICommand onSelectedCommand, ICommand onAttendCommand, ICommand onBlockCommand)
         {
 
             return new OrderItem()
@@ -42,7 +42,9 @@ namespace DepiBelleDepi.Utilities
                 Id = order.Id,
                 Time = order.Time,
                 Name = order.Name,
-                OnSelectedCommand = onSelectedCommand
+                OnSelectedCommand = onSelectedCommand,
+                OnAttendCommand = onAttendCommand,
+                OnBlockCommand = onBlockCommand
             }; ;
 
         }

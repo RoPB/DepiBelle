@@ -11,6 +11,10 @@ namespace DepiBelleDepi.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [MapTo("date")]
+        [JsonProperty("date")]
+        public string Date { get; set; }
+
         [MapTo("time")]
         [JsonProperty("time")]
         public string Time { get; set; }
@@ -26,6 +30,10 @@ namespace DepiBelleDepi.Models
         [MapTo("total")]
         [JsonProperty("total")]
         public double Total { get; set; }
+
+        [MapTo("attendedBy")]
+        [JsonProperty("attendedBy")]
+        public string AttendedBy { get; set; }
 
     }
 }
