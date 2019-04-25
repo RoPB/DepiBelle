@@ -17,19 +17,17 @@
                 <Label Text="{Binding Time}" FontFamily="{StaticResource Museo-Bold}" FontSize="35"/>
                 <Label Text="{Binding Name}" FontSize="25" VerticalOptions="Center"/>
             </StackLayout>
-            <StackLayout FlexLayout.Grow="0.5">
+            <StackLayout FlexLayout.Grow="0.5" IsVisible="{Binding IsBeingAttended,Converter={StaticResource InverseBoolConverter}}">
                 <Button Text="Atender" 
                         BackgroundColor="{StaticResource PrimaryLightColor}" 
                         TextColor="{StaticResource White}"
                         CornerRadius="20"
                         Command="{Binding OnAttendCommand}"
                         CommandParameter="{Binding .}"/>
-                <Button Text="Bloquear"
-                        BackgroundColor="{StaticResource DarkGrey}" 
-                        TextColor="{StaticResource White}"
-                        CornerRadius="20"
-                        Command="{Binding OnBlockCommand}"
-                        CommandParameter="{Binding .}"/>
+            </StackLayout>
+            <StackLayout FlexLayout.Grow="0.5" IsVisible="{Binding IsBeingAttended}">
+                <Label Text="ATENDIENDOSE" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="(POR TI)" FontSize="12" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBeingAttendedByUser}"/>
             </StackLayout>
             <FlexLayout.GestureRecognizers>
                 <TapGestureRecognizer

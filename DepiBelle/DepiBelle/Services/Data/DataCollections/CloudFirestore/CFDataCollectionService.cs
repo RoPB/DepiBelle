@@ -22,8 +22,7 @@ namespace DepiBelle.Services.Data
 
         public virtual bool Initialize(DataServiceConfig config)
         {
-            if (Config == null)
-                Config = config;
+            Config = config;
 
             return true;
         }

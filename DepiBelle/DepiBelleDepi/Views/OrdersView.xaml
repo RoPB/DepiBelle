@@ -28,7 +28,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="+" Icon="ic_plus.png" Command="{Binding NewOrderCommand}"></ToolbarItem>
+        <ToolbarItem Order="Primary" Text="+" Icon="ic_plus.png" Command="{Binding NewOrderCommand}"
+                     IsEnabled="{Binding IsAttendingAnOrder, Converter={StaticResource InverseBoolConverter}}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <FlexLayout Style="{StaticResource MainContainer}">

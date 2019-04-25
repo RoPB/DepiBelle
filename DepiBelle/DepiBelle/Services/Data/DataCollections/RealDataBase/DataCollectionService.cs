@@ -19,8 +19,7 @@ namespace DepiBelle.Services.Data
 
         public bool Initialize(DataServiceConfig config)
         {
-            if (Config == null)
-                Config = config;
+            Config = config;
 
             Task.Run(async () => await UnSubscribe());
 

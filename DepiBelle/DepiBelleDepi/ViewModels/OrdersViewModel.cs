@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelleDepi.Managers.Application;
 using DepiBelleDepi.Models;
+using DepiBelleDepi.Services;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data;
 using DepiBelleDepi.Utilities;
@@ -18,11 +19,14 @@ namespace DepiBelleDepi.ViewModels
         private IConfigService _configService;
         private IApplicationManager _applicationMananger;
         private IDataCollectionService<Order> _ordersDataService;
+        private IDataCollectionService<Order> _ordersDataServiceToUpdate;
 
         private Dictionary<string, Order> _dicOrders = new Dictionary<string, Order>();
         private List<Order> _pendingOrders = new List<Order>();
         private int _pendingOrdersCount;
         private bool _showPendingOrders;
+        private bool _isAttendingAnOrder;
+        private string _deviceId;
 
         private ObservableCollection<OrderItem> _orders = new ObservableCollection<OrderItem>();
 
@@ -44,9 +48,14 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _showPendingOrders, value); }
         }
 
+        public bool IsAttendingAnOrder
+        {
+            get { return _isAttendingAnOrder; }
+            set { SetPropertyValue(ref _isAttendingAnOrder, value); }
+        }
+
         public ICommand AddPendingOrdersToMainListCommand { get; set; }
         public ICommand OpenOrderCommand { get; set; }
-        public ICommand BlockOrderCommand { get; set; }
         public ICommand AttendOrderCommand { get; set; }
         public ICommand NewOrderCommand { get; set; }
 
@@ -56,11 +65,12 @@ namespace DepiBelleDepi.ViewModels
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
+            _ordersDataServiceToUpdate = _ordersDataServiceToUpdate ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());
             OpenOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem));
             AttendOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem,true));
-            BlockOrderCommand = new Command<OrderItem>(async (orderItem) => await BlockOrder(orderItem));
             NewOrderCommand = new Command(async () => await NewOrder());
+            _deviceId = DependencyContainer.Resolve<IDeviceService>().DeviceId;
         }
 
         public override async Task InitializeAsync(object navigationData)
@@ -73,15 +83,8 @@ namespace DepiBelleDepi.ViewModels
 
             _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{date}>" });
 
-
-            await _ordersDataService.Subscribe(async (obj) =>
-            {
-                await OnOrderCollectionModified(obj);
-            });
-
-            //al subscribirse y emepezar a escuchar ya trae y lista
-            //var orders = await _ordersDataService.GetAll();
-            //await LoadOrders(orders);
+            var orders = await _ordersDataService.GetAll();
+            await LoadOrders(orders);
 
             IsLoading = false;
         }
@@ -93,6 +96,12 @@ namespace DepiBelleDepi.ViewModels
                 orders.ForEach(o =>
                 {
                     AddOrderToMainList(o);
+                });
+
+
+                _ordersDataService.Subscribe(async (obj) =>
+                {
+                    await OnOrderCollectionModified(obj);
                 });
             });
 
@@ -162,8 +171,7 @@ namespace DepiBelleDepi.ViewModels
             var orderInMainList = Orders.Where(o => o.Id == order.Id).FirstOrDefault();
             if (orderInMainList != null)
             {
-                orderInMainList.Name = order.Name;
-                orderInMainList.Time = order.Time;
+                UpdateOrderItem(orderInMainList, order);
             }
                 
         }
@@ -177,6 +185,8 @@ namespace DepiBelleDepi.ViewModels
                 {
                     Orders.Remove(orderToDelete);
                     _dicOrders.Remove(id);
+                    if (orderToDelete.IsBeingAttendedByUser)
+                        IsAttendingAnOrder = false;
                 }
             });
         }
@@ -196,8 +206,7 @@ namespace DepiBelleDepi.ViewModels
             var orderInPendingList = _pendingOrders.Where(o => o.Id == order.Id).FirstOrDefault();
             if (orderInPendingList != null)
             {
-                orderInPendingList.Name = order.Name;
-                orderInPendingList.Time = order.Time;
+                UpdateOrder(orderInPendingList, order);
             }
         }
 
@@ -234,6 +243,20 @@ namespace DepiBelleDepi.ViewModels
 
         }
 
+        private void UpdateOrder(Order orderToUpdate, Order order)
+        {
+            orderToUpdate.Name = order.Name;
+            orderToUpdate.Time = order.Time;
+            orderToUpdate.AttendedBy = order.AttendedBy;
+        }
+
+        private void UpdateOrderItem(OrderItem orderItem, Order order)
+        {
+            orderItem.Name = order.Name;
+            orderItem.Time = order.Time;
+            ChangeOrderIsBeignAttended(orderItem, order);
+        }
+
         private void UpdatePendingCount()
         {
             PendingOrdersCount = _pendingOrders.Count;
@@ -242,21 +265,42 @@ namespace DepiBelleDepi.ViewModels
 
         private OrderItem GetOrderListItem(Order order)
         {
-            return ListItemMapper.GetOrderListItem(order, OpenOrderCommand, AttendOrderCommand, BlockOrderCommand);
+            var orderItem = ListItemMapper.GetOrderListItem(order, OpenOrderCommand, AttendOrderCommand);
+
+            ChangeOrderIsBeignAttended(orderItem, order);
+
+            return orderItem;
+        }
+
+        private void ChangeOrderIsBeignAttended(OrderItem orderItem, Order order)
+        {
+            orderItem.IsBeingAttended = !string.IsNullOrEmpty(order.AttendedBy);
+            orderItem.IsBeingAttendedByUser = _deviceId.Equals(order.AttendedBy);
+
+            if(orderItem.IsBeingAttendedByUser)
+                IsAttendingAnOrder = true;
         }
 
         public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
         {
+            var order = _dicOrders[orderItem.Id];
+
+            if (toAttend)
+            {
+                order.AttendedBy = _deviceId;
+
+                var key = _configService.OrdersInProcess;
+                _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{order.Date}>" });
+                await _ordersDataServiceToUpdate.AddOrReplace(order);
+
+                ChangeOrderIsBeignAttended(orderItem, order);
+            }
+
+            toAttend = toAttend || !toAttend && orderItem.IsBeingAttendedByUser;
 
             DependencyContainer.Refresh();
-            var order = _dicOrders[orderItem.Id];
             var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
             await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
-        }
-
-        public async Task BlockOrder(OrderItem orderItem)
-        {
-
         }
 
         public async Task NewOrder()

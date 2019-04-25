@@ -16,6 +16,8 @@ namespace DepiBelleDepi.ViewModels
 {
     public class PurchaseViewModel : ViewModelBase
     {
+        private string _orderId;
+        private string _orderDate;
         private string _userName;
         private string _time;
         private bool _canConfirm;
@@ -91,6 +93,8 @@ namespace DepiBelleDepi.ViewModels
         {
             var purchaseNavigationParam = navigationData as PurchaseNavigationParam;
 
+            _orderId = purchaseNavigationParam.Id;
+            _orderDate = purchaseNavigationParam.Date;
             _userName = purchaseNavigationParam.Name;
             _time = purchaseNavigationParam.Time;
             CanConfirm = purchaseNavigationParam.CanConfirm;
@@ -217,13 +221,17 @@ namespace DepiBelleDepi.ViewModels
                     Func<bool, Task> afterCloseModalFunction = OrderCompleted;
                     viewModel = await ModalService.PushAsync<ConfirmationModalViewModel>(afterCloseModalFunction);
 
-                    var date = DateConverter.ShortDate(DateTime.Now);
-                    var key = _configService.OrdersAttended;
+                    if (!string.IsNullOrEmpty(_orderId))
+                    {
+                        _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{_orderDate}>" });
+                        await _ordersDataService.Remove(_orderId);
 
+                    }
+
+                    var date = DateConverter.ShortDate(DateTime.Now);
                     //TODO: REALDATABASE
                     //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{date}>" });
-
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersAttended}<{date}>" });
                     await _ordersDataService.AddOrReplace(order);
 
                 }

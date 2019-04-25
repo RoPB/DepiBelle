@@ -16,8 +16,6 @@ namespace DepiBelleDepi.ViewModels
     {
         private IConfigService _configService;
         private IDataQueryService<Config> _dataQueryConfigService;
-        private IDeviceService _deviceService;
-        private IDataCollectionService<Order> _ordersDataService;
         private IApplicationManager _applicationMananger;
 
         private ViewModelBase _promotionsViewModel;
@@ -29,8 +27,6 @@ namespace DepiBelleDepi.ViewModels
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dataQueryConfigService = _dataQueryConfigService ?? DependencyContainer.Resolve<IDataQueryService<Config>>();
-            _deviceService = _deviceService ?? DependencyContainer.Resolve<IDeviceService>();
-            _ordersDataService = _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
 
             _promotionsViewModel = _promotionsViewModel ?? DependencyContainer.Resolve<PromotionsViewModel>();
@@ -61,16 +57,7 @@ namespace DepiBelleDepi.ViewModels
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = navParam.Order.Offers };
                 promotionsItem = navParam.Order.Promotions;
-                purchaseNavigationParam = new PurchaseNavigationParam() {Time = navParam.Order.Time, Name = navParam.Order.Name, CanConfirm = navParam.ToAttend};
-
-                if (navParam.ToAttend)
-                {
-                    navParam.Order.AttendedBy = _deviceService.DeviceId;
-                    var key = _configService.OrdersInProcess;
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{navParam.Order.Date}>" });
-                    await _ordersDataService.AddOrReplace(navParam.Order);
-                }
-            
+                purchaseNavigationParam = new PurchaseNavigationParam() {Id=navParam.Order.Id, Date=navParam.Order.Date, Time = navParam.Order.Time, Name = navParam.Order.Name, CanConfirm = navParam.ToAttend};
             }
 
             await _purchaseViewModel.InitializeAsync(purchaseNavigationParam);

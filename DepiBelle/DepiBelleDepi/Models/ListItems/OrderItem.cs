@@ -9,6 +9,8 @@ namespace DepiBelleDepi.Models
     {
         private string _time;
         private string _name;
+        private bool _isBeingAttended;
+        private bool _isBeingAttendedByUser;
 
         public string Id
         {
@@ -31,20 +33,27 @@ namespace DepiBelleDepi.Models
 
         [JsonIgnore]
         [Ignored]
+        public bool IsBeingAttended
+        {
+            get { return _isBeingAttended; }
+            set { _isBeingAttended = value; RaisePropertyChanged(); }
+        }
+
+        [JsonIgnore]
+        [Ignored]
+        public bool IsBeingAttendedByUser
+        {
+            get { return _isBeingAttendedByUser; }
+            set { _isBeingAttendedByUser = value; RaisePropertyChanged(); }
+        }
+
+       [JsonIgnore]
+        [Ignored]
         public ICommand OnAttendCommand
         {
             get;
             set;
         }
-
-        [JsonIgnore]
-        [Ignored]
-        public ICommand OnBlockCommand
-        {
-            get;
-            set;
-        }
-
 
     }
 }
