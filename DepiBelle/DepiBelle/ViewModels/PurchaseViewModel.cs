@@ -211,7 +211,7 @@ namespace DepiBelle.ViewModels
                     //TODO: REALDATABASE
                     //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{order.Date}" });
 
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{order.Date}>" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{order.Date}" });
 
                     await _ordersDataService.AddOrReplace(order);
 

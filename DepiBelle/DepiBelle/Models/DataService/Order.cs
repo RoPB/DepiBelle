@@ -31,5 +31,9 @@ namespace DepiBelle.Models
         [JsonProperty("total")]
         public double Total { get; set; }
 
+        [MapTo("attendedBy")]
+        [JsonProperty("attendedBy")]
+        public string AttendedBy { get; set; }
+
     }
 }

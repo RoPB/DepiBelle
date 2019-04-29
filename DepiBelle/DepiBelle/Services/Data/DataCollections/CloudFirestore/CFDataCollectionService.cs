@@ -13,9 +13,11 @@ using Plugin.CloudFirestore.Extensions;
 
 namespace DepiBelle.Services.Data
 {
-    public class CFDataCollectionService<T> : IDataCollectionService<T> where T  : EntityBase, new()
+    public class CFDataCollectionService<T> : IDataCollectionService<T> where T : EntityBase, new()
     {
-
+        private IDisposable _addSubscriptor;
+        private IDisposable _updateSubscriptor;
+        private IDisposable _deleteSubscriptor;
         private DataServiceConfig Config { get; set; }
         protected string Uri { get { return Config.Uri; } }
         protected string Key { get { return Config.Key; } }
@@ -24,15 +26,17 @@ namespace DepiBelle.Services.Data
         {
             Config = config;
 
+            Task.Run(async () => await UnSubscribe());
+
             return true;
         }
 
-        public virtual async Task<List<T>> GetAll(string token = null, 
-                                                  int limit=20,
+        public virtual async Task<List<T>> GetAll(string token = null,
+                                                  int limit = 20,
                                                   object offset = null,
                                                   QueryLike queryLike = null,
                                                   List<QueryOrderBy> querysOrderBy = null,
-                                                  List<QueryWhere> querysWhere=null)
+                                                  List<QueryWhere> querysWhere = null)
         {
             try
             {
@@ -41,11 +45,11 @@ namespace DepiBelle.Services.Data
                 var collectionQuery = CrossCloudFirestore.Current
                              .Instance.GetCollection(Key)
                              .LimitTo(limit);
-              
+
                 if (querysOrderBy != null)
                 {
-                 
-                    foreach(var queryOrderBy in querysOrderBy)
+
+                    foreach (var queryOrderBy in querysOrderBy)
                         collectionQuery = collectionQuery.OrderBy(queryOrderBy.OrderByField, queryOrderBy.IsDescending);
 
                 }
@@ -57,7 +61,7 @@ namespace DepiBelle.Services.Data
                     collectionQuery = collectionQuery.StartAt(new List<object>() { queryLike.LikeValue });
                 }
 
-                if(querysWhere != null)
+                if (querysWhere != null)
                 {
                     foreach (var queryWhere in querysWhere)
                     {
@@ -65,7 +69,7 @@ namespace DepiBelle.Services.Data
                         {
                             case QueryWhereEnum.Equals:
                                 {
-                                    collectionQuery = collectionQuery.WhereEqualsTo(queryWhere.WhereField,queryWhere.ValueField);
+                                    collectionQuery = collectionQuery.WhereEqualsTo(queryWhere.WhereField, queryWhere.ValueField);
 
                                     break;
                                 }
@@ -103,7 +107,7 @@ namespace DepiBelle.Services.Data
 
                 }
 
-                if (offset!=null)
+                if (offset != null)
                 {
                     collectionQuery = collectionQuery.StartAfter(offset as IDocumentSnapshot);
                 }
@@ -117,8 +121,8 @@ namespace DepiBelle.Services.Data
                              .WhereEqualsTo("keyvalues.gayfriendly", true);
                              //.WhereGreaterThan("price", 50)
                              //.WhereLessThan("price", 120);
-                */                          
-                                          
+                */
+
 
                 var items = await collectionQuery.GetDocumentsAsync();
 
@@ -126,9 +130,9 @@ namespace DepiBelle.Services.Data
 
                 return items.ToObjects<T>().ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex; 
+                throw ex;
             }
 
         }
@@ -223,12 +227,89 @@ namespace DepiBelle.Services.Data
 
         public virtual Task<bool> Subscribe(Action<ServiceSubscriberEventParam<T>> action, string token = null)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+
+                if (_addSubscriptor == null)
+                {
+
+                    _addSubscriptor = CrossCloudFirestore.Current.Instance
+                                   .GetCollection(Key)
+                                   .ObserveAdded()
+                                   .Subscribe(elem =>
+                                   {
+                                       var type = SubscriptionEventType.InsertOrUpdate;
+
+                                       action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                   });
+                }
+
+                if (_updateSubscriptor == null)
+                {
+
+                    _updateSubscriptor = CrossCloudFirestore.Current.Instance
+                                  .GetCollection(Key)
+                                  .ObserveModified()
+                                  .Subscribe(elem =>
+                                  {
+                                      var type = SubscriptionEventType.InsertOrUpdate;
+
+                                      action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                  });
+                }
+
+                if (_deleteSubscriptor == null)
+                {
+
+                    _deleteSubscriptor = CrossCloudFirestore.Current.Instance
+                                   .GetCollection(Key)
+                                   .ObserveRemoved()
+                                   .Subscribe(elem =>
+                                   {
+                                       var type = SubscriptionEventType.Delete;
+
+                                       action.Invoke(new ServiceSubscriberEventParam<T>() { Item = elem.Document.ToObject<T>(), Type = type });
+                                   });
+                }
+
+                return Task.Run(() => true);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual Task<bool> UnSubscribe()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_addSubscriptor != null)
+                {
+                    _addSubscriptor.Dispose();
+                    _addSubscriptor = null;
+                }
+
+                if (_updateSubscriptor != null)
+                {
+                    _updateSubscriptor.Dispose();
+                    _updateSubscriptor = null;
+                }
+
+                if (_deleteSubscriptor != null)
+                {
+                    _deleteSubscriptor.Dispose();
+                    _deleteSubscriptor = null;
+                }
+
+                return Task.Run(() => true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

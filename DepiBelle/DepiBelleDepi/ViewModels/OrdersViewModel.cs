@@ -81,7 +81,7 @@ namespace DepiBelleDepi.ViewModels
 
             //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
 
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}<{date}>" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{date}" });
 
             var orders = await _ordersDataService.GetAll();
             await LoadOrders(orders);
@@ -289,8 +289,7 @@ namespace DepiBelleDepi.ViewModels
             {
                 order.AttendedBy = _deviceId;
 
-                var key = _configService.OrdersInProcess;
-                _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}<{order.Date}>" });
+                _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess }/{order.Date}" });
                 await _ordersDataServiceToUpdate.AddOrReplace(order);
 
                 ChangeOrderIsBeignAttended(orderItem, order);
