@@ -9,6 +9,7 @@ using DepiBelleDepi.Models;
 using DepiBelleDepi.Services;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data;
+using DepiBelleDepi.Services.Dialog;
 using DepiBelleDepi.Utilities;
 using Xamarin.Forms;
 
@@ -20,6 +21,7 @@ namespace DepiBelleDepi.ViewModels
         private IApplicationManager _applicationMananger;
         private IDataCollectionService<Order> _ordersDataService;
         private IDataCollectionService<Order> _ordersDataServiceToUpdate;
+        private IDialogService _dialogService;
 
         private Dictionary<string, Order> _dicOrders = new Dictionary<string, Order>();
         private List<Order> _pendingOrders = new List<Order>();
@@ -63,6 +65,7 @@ namespace DepiBelleDepi.ViewModels
         {
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
+            _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _ordersDataServiceToUpdate = _ordersDataServiceToUpdate ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
@@ -283,23 +286,31 @@ namespace DepiBelleDepi.ViewModels
 
         public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
         {
-            var order = _dicOrders[orderItem.Id];
+            try { 
 
-            if (toAttend)
-            {
-                order.AttendedBy = _deviceId;
+                var order = _dicOrders[orderItem.Id];
 
-                _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess }/{order.Date}" });
-                await _ordersDataServiceToUpdate.AddOrReplace(order);
+                if (toAttend)
+                {
+                    order.AttendedBy = _deviceId;
 
-                ChangeOrderIsBeignAttended(orderItem, order);
+                    _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess }/{order.Date}" });
+                    await _ordersDataServiceToUpdate.AddOrReplace(order);
+
+                    ChangeOrderIsBeignAttended(orderItem, order);
+                }
+
+                toAttend = toAttend || !toAttend && orderItem.IsBeingAttendedByUser;
+
+                DependencyContainer.Refresh();
+                var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
+                await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
+
             }
-
-            toAttend = toAttend || !toAttend && orderItem.IsBeingAttendedByUser;
-
-            DependencyContainer.Refresh();
-            var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
-            await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
+            catch(Exception ex)
+            {
+                await _dialogService.ShowAlertAsync("No pudo llegar a atender a la persona. Probablemente alguien se le anticipo", "ATENCION", "OK");
+            }
         }
 
         public async Task NewOrder()
