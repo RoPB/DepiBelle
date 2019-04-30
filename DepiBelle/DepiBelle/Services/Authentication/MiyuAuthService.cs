@@ -33,7 +33,7 @@ namespace DepiBelle.Services.Authentication
 
         public bool Initialize(string key)
         {
-            Auth = CrossFirebaseAuth.Current.GetInstance(key);
+            Auth = CrossFirebaseAuth.Current.Instance;//GetInstance(key);
             return true;
         }
 
