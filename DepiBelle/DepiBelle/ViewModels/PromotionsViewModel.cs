@@ -57,7 +57,21 @@ namespace DepiBelle.ViewModels
 
                 queryLike.LikeValue = "Promo 3";
 
+                var queryOrderByName = new QueryOrderBy();
+                queryOrderByName.OrderByField = typeof(Promotion)
+                                .GetProperty(nameof(Promotion.Name))
+                                .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+                queryOrderByName.IsDescending = false;
+                var queryOrderByPrice = new QueryOrderBy();
+                queryOrderByPrice.OrderByField = typeof(Promotion)
+                                .GetProperty(nameof(Promotion.Price))
+                                .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
+
+                queryOrderByPrice.IsDescending = false;
+
                 //var promotions = await _promotionsDataService.GetAll(queryLike: queryLike);
+
+                //var promotions = await _promotionsDataService.GetAll(querysOrderBy: new List<QueryOrderBy>() { queryOrderByPrice, queryOrderByName });
 
                 var promotions = await _promotionsDataService.GetAll();
 

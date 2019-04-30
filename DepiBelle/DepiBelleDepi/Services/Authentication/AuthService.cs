@@ -12,10 +12,10 @@ namespace DepiBelleDepi.Services.Authentication
         private string RefreshToken { get; set; }
 
 
-        public bool Initialize(string token)
+        public bool Initialize(string key)
         {
             if (App == null)
-                App = new FirebaseAuthProvider(new FirebaseConfig(token));
+                App = new FirebaseAuthProvider(new FirebaseConfig(key));
 
             return true;
         }

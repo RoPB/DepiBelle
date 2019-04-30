@@ -24,7 +24,9 @@ namespace DepiBelle.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             AnimationViewRenderer.Init();
             UserDialogs.Init(this);
+
             Plugin.CloudFirestore.CloudFirestore.Init(this);
+            Plugin.FirebaseAuth.FirebaseAuth.Init(this);
 
             LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(this,

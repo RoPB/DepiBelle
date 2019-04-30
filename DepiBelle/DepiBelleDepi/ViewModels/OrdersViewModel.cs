@@ -78,18 +78,27 @@ namespace DepiBelleDepi.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            await _applicationMananger.Login(_configService.User, _configService.Password);
+            try
+            {
+                await _applicationMananger.Login(_configService.User, _configService.Password);
 
-            var date = DateConverter.ShortDate(DateTime.Now);
+                var date = DateConverter.ShortDate(DateTime.Now);
 
-            //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
+                //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{date}" });
 
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{date}" });
+                _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{date}" });
 
-            var orders = await _ordersDataService.GetAll();
-            await LoadOrders(orders);
-
-            IsLoading = false;
+                var orders = await _ordersDataService.GetAll();
+                await LoadOrders(orders);
+            }
+            catch (Exception ex)
+            {
+                await _dialogService.ShowAlertAsync(ex.Message, "ERROR", "OK");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private Task LoadOrders(List<Order> orders)

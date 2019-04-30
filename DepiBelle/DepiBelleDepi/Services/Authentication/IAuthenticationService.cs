@@ -5,7 +5,7 @@ namespace DepiBelleDepi.Services.Authentication
 {
     public interface IAuthenticationService
     {
-        bool Initialize(string token);
+        bool Initialize(string key);
 
         string Token { get; }
 
