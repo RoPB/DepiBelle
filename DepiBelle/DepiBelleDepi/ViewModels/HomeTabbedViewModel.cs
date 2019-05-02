@@ -16,7 +16,6 @@ namespace DepiBelleDepi.ViewModels
     {
         private IConfigService _configService;
         private IDataQueryService<Config> _dataQueryConfigService;
-        private IApplicationManager _applicationMananger;
 
         private ViewModelBase _promotionsViewModel;
         private ViewModelBase _bodySelectionViewModel;
@@ -27,7 +26,6 @@ namespace DepiBelleDepi.ViewModels
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dataQueryConfigService = _dataQueryConfigService ?? DependencyContainer.Resolve<IDataQueryService<Config>>();
-            _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
 
             _promotionsViewModel = _promotionsViewModel ?? DependencyContainer.Resolve<PromotionsViewModel>();
             _bodySelectionViewModel = _bodySelectionViewModel ?? DependencyContainer.Resolve<BodySelectionViewModel>();
@@ -37,8 +35,6 @@ namespace DepiBelleDepi.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            await _applicationMananger.Login(_configService.User, _configService.Password);
-
             _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.ConfigUri, Key = _configService.Config });
 
             var navParam = navigationData as HomeNavigationParam;
