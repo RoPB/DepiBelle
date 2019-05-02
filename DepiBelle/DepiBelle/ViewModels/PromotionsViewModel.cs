@@ -50,6 +50,7 @@ namespace DepiBelle.ViewModels
             try
             {
 
+                /*
                 var queryLike = new QueryLike();
                 queryLike.LikeField = typeof(Promotion)
                                 .GetProperty(nameof(Promotion.Name))
@@ -68,6 +69,7 @@ namespace DepiBelle.ViewModels
                                 .GetPropertyAttribute((Plugin.CloudFirestore.Attributes.MapToAttribute dna) => dna.Mapping);
 
                 queryOrderByPrice.IsDescending = false;
+                */               
 
                 //var promotions = await _promotionsDataService.GetAll(queryLike: queryLike);
 
