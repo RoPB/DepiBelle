@@ -31,7 +31,7 @@ namespace DepiBelle
             Locator.CurrentMutable.RegisterConstant(new ModalService(), typeof(IModalService));
             Locator.CurrentMutable.RegisterConstant(new DialogService(), typeof(IDialogService));
 
-            Locator.CurrentMutable.RegisterConstant(new AuthService(), typeof(IAuthenticationService));//new AuthService(), typeof(IAuthenticationService));
+            Locator.CurrentMutable.RegisterConstant(new MiyuAuthService(), typeof(IAuthenticationService));//new AuthService(), typeof(IAuthenticationService));
             //register not as singleton so you can change the configuration whenever you need
             Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<Offer>(), typeof(IDataCollectionService<Offer>));//new DataCollectionSecuredService<Offer>(), typeof(IDataCollectionService<Offer>));
             Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<Order>(), typeof(IDataCollectionService<Order>));//new DataCollectionSecuredService<Order>(), typeof(IDataCollectionService<Order>));

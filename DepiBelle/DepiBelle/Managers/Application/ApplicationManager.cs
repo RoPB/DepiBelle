@@ -16,14 +16,16 @@ namespace DepiBelle.Managers.Application
         {
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _authenticationService = _authenticationService ?? DependencyContainer.Resolve<IAuthenticationService>();
-            _authenticationService.Initialize(_configService.AppToken);
-            //_authenticationService.Initialize(_configService.AppName);
+
         }
 
         public async Task Login(string user, string password)
         {
             try
             {
+                //_authenticationService.Initialize(_configService.AppToken);
+                _authenticationService.Initialize();
+
                 await _authenticationService.Authenticate(user, password);
             }
             catch (Exception ex)

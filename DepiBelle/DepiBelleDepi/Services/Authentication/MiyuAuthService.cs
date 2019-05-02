@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Plugin.FirebaseAuth;
 
-namespace DepiBelle.Services.Authentication
+namespace DepiBelleDepi.Services.Authentication
 {
     public class MiyuAuthService : IAuthenticationService
     {

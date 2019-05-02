@@ -1,15 +1,31 @@
 ﻿service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read: if true;//request.auth!=null;
+  match /databases/
+  { database }
+  /documents {
+    match /
+    { document=** }
+    {
+      allow read,
+      write: if
+      request.auth!=null;
     }
-    match /orders/ordersInProcess/{document=**} {
-        allow create, delete: if true;
-        allow update: if request.resource.data.attendedBy!=null && resource.data.attendedBy==null;                               
-    } 
-        match /orders/ordersAttended/{document=**}{
-        allow create: if true;
-    } 
+    match /orders/ordersInProcess/
+    { document=** }
+    {
+      allow create,
+      delete: if
+      true; allow
+      update: if
+      request.resource.data.attendedBy!=null &&
+      resource.data.attendedBy==null;
+    }
+    match /orders/ordersAttended/
+    { document=** }
+    {
+      allow
+      create: if
+      true;
+    }
   }
-  
+
 }

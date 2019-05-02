@@ -72,6 +72,9 @@
     <PackageReference Include="Plugin.CloudFirestore">
       <Version>1.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.FirebaseAuth">
+      <Version>1.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
