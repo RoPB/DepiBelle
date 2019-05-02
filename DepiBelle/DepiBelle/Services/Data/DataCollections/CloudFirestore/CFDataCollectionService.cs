@@ -20,7 +20,7 @@ namespace DepiBelle.Services.Data
         private IDisposable _deleteSubscriptor;
         private DataServiceConfig Config { get; set; }
         protected string Uri { get { return Config.Uri; } }
-        protected string Key { get { return Config.Key; } }
+        protected string Key { get { return $"{Uri}{Config.Key}"; } }
 
         public virtual bool Initialize(DataServiceConfig config)
         {

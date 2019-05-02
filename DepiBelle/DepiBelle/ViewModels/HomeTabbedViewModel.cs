@@ -40,7 +40,7 @@ namespace DepiBelle.ViewModels
 
                 await _applicationMananger.Login(_configService.User, _configService.Password);
 
-                _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Config });
+                _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.ConfigUri, Key = _configService.Config });
                 var config = await _dataQueryConfigService.Get();
 
                 await _purchaseViewModel.InitializeAsync(navigationData);

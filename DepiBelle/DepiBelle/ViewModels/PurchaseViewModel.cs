@@ -211,7 +211,7 @@ namespace DepiBelle.ViewModels
                     //TODO: REALDATABASE
                     //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{order.Date}" });
 
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{order.Date}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{order.Date}" });
 
                     await _ordersDataService.AddOrReplace(order);
 
@@ -256,7 +256,7 @@ namespace DepiBelle.ViewModels
         private async Task GetOrders()
         {
             var key = DateConverter.ShortDate(DateTime.Now);
-            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.OrdersInProcess}/{key}" });
+            _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.OrdersInProcess}/{key}" });
             var orders = await _ordersDataService.GetAll();
         }
 

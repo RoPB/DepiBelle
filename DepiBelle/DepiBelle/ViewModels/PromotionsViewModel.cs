@@ -39,7 +39,7 @@ namespace DepiBelle.ViewModels
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _promotionsDataService = _promotionsDataService ?? DependencyContainer.Resolve<IDataCollectionService<Promotion>>();
-            _promotionsDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Promotions });
+            _promotionsDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = _configService.Promotions });
 
             _cartPromotionManager = _cartPromotionManager ?? DependencyContainer.Resolve<ICartNotificationService<Promotion>>();
             _cartPromotionManager.ItemRemoved += PromotionRemovedHandler;

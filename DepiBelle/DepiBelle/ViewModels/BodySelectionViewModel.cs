@@ -56,7 +56,7 @@ namespace DepiBelle.ViewModels
             _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
             _offersDataService = _offersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Offer>>();
-            _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = _configService.Offers });
+            _offersDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = _configService.Offers });
 
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
             _cartOfferManager.ItemRemoved += OfferRemovedHandler;

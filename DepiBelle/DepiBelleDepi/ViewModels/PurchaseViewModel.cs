@@ -223,7 +223,7 @@ namespace DepiBelleDepi.ViewModels
 
                     if (!string.IsNullOrEmpty(_orderId))
                     {
-                        _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{_orderDate}" });
+                        _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess}/{_orderDate}" });
                         await _ordersDataService.Remove(_orderId);
 
                     }
@@ -231,7 +231,7 @@ namespace DepiBelleDepi.ViewModels
                     var date = DateConverter.ShortDate(DateTime.Now);
                     //TODO: REALDATABASE
                     //_ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{key}/{date}" });
-                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.Uri, Key = $"{_configService.Orders}/{_configService.OrdersAttended}/{date}" });
+                    _ordersDataService.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.Orders}/{_configService.OrdersAttended}/{date}" });
                     await _ordersDataService.AddOrReplace(order);
 
                 }
