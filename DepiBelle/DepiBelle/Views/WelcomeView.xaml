@@ -22,11 +22,7 @@
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         
                         <StackLayout Spacing="10" FlexLayout.AlignSelf="Center" BackgroundColor="Transparent">
-                            <controls:SvgImage Source="logo" WidthRequest="400" HeightRequest="200"/>
-                            <Label Text="Te damos la Bienvenida" 
-                                   FontSize="30" 
-                                   TextColor="{StaticResource PrimaryDarkColor}" 
-                                   HorizontalOptions="Center"/>
+                            <controls:SvgImage Source="logo" WidthRequest="250" HeightRequest="125"/>
                         </StackLayout>
                         <StackLayout Spacing="20">
                             <Label Text="Indique su nombre" FontSize="20"/>

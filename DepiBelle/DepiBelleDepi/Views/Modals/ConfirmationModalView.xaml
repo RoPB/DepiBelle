@@ -15,7 +15,7 @@
     </popup:PopupPage.Resources>
     <popup:PopupPage.Content>
         <FlexLayout JustifyContent="Center" Direction="Column" BackgroundColor="#F0242A30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="75,75">
+            <Frame CornerRadius="30" BackgroundColor="{StaticResource White}" Margin="50,50">
                 <FlexLayout JustifyContent="SpaceAround" 
                             Direction="Column"
                             BackgroundColor="Transparent"
@@ -26,7 +26,7 @@
                                     Animation="Loading.json"
                                     IsVisible="true"
                                     PlayCommand="{Binding PlayAnimationCommand}"
-                                    WidthRequest="150" HeightRequest="150"
+                                    WidthRequest="80" HeightRequest="80"
                                     FlexLayout.AlignSelf="Center"/>
                                 <Label IsVisible="{Binding Processing}" Text="Procesando orden" FontSize="20" TextColor="{StaticResource PrimaryDarkColor}" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>

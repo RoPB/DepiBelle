@@ -203,6 +203,16 @@ namespace DepiBelleDepi.ViewModels
             });
         }
 
+        private OrderItem GetOrderListItem(Order order)
+        {
+            var orderItem = ListItemMapper.GetOrderListItem(order, OpenOrderCommand, AttendOrderCommand);
+
+            ChangeOrderIsBeignAttended(orderItem, order);
+
+            return orderItem;
+        }
+
+       
         private Task AddOrderToPendingList(Order order)
         {
             return Task.Run(() =>
@@ -240,6 +250,7 @@ namespace DepiBelleDepi.ViewModels
             });
         }
 
+       
         private Task AddPendingOrdersToMainList()
         {
             return Task.Run(() =>
@@ -255,6 +266,7 @@ namespace DepiBelleDepi.ViewModels
 
         }
 
+       
         private void UpdateOrder(Order orderToUpdate, Order order)
         {
             orderToUpdate.Name = order.Name;
@@ -275,24 +287,17 @@ namespace DepiBelleDepi.ViewModels
             ShowPendingOrders = PendingOrdersCount > 0;
         }
 
-        private OrderItem GetOrderListItem(Order order)
-        {
-            var orderItem = ListItemMapper.GetOrderListItem(order, OpenOrderCommand, AttendOrderCommand);
-
-            ChangeOrderIsBeignAttended(orderItem, order);
-
-            return orderItem;
-        }
-
         private void ChangeOrderIsBeignAttended(OrderItem orderItem, Order order)
         {
             orderItem.IsBeingAttended = !string.IsNullOrEmpty(order.AttendedBy);
             orderItem.IsBeingAttendedByUser = _deviceId.Equals(order.AttendedBy);
 
-            if(orderItem.IsBeingAttendedByUser)
+            if (orderItem.IsBeingAttendedByUser)
                 IsAttendingAnOrder = true;
         }
 
+
+       
         public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
         {
             try { 

@@ -4,6 +4,7 @@
              viewModelBase:ViewModelAutoWire.AutoWireViewModel="true"
              xmlns:viewModelBase="clr-namespace:DepiBelle.ViewModels;assembly=DepiBelle" 
              xmlns:converters="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
+             xmlns:controls="clr-namespace:DepiBelle.Extensions;assembly=DepiBelle" 
              xmlns:local="clr-namespace:DepiBelle;assembly=DepiBelle" 
              NavigationPage.HasNavigationBar="false"
              x:Class="DepiBelle.Views.BodySelectionView">
@@ -27,8 +28,8 @@
         <FlexLayout Style="{StaticResource MainContainer}">
            <ActivityIndicator FlexLayout.AlignSelf="Center" IsVisible="{Binding IsLoading}" IsRunning="true"/>
            <AbsoluteLayout  Style="{StaticResource MainContent}">
-                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,-1,-1">
-                    <Image Source="body.png" HeightRequest="900"/>
+                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,0,0.6,1">
+                    <controls:ResizableImage Source="body.png" HeigthFactor="0.36" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
                 <FlexLayout Direction="Column" JustifyContent="Start" AlignItems="Start"  BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                     <!--<Frame  Margin="10,20,0,10" Padding="30" CornerRadius="80" BackgroundColor="#80FFFFFF" WidthRequest="220" HeightRequest="150">
