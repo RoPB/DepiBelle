@@ -48,13 +48,13 @@ namespace DepiBelleDepi.ViewModels
             if (navParam == null)
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, ToAttend=true };
-                promotionNavigationParam = new PromotionsNavigationParam() { ShowAddRemoveButtons = true };
+                promotionNavigationParam = new PromotionsNavigationParam() { ShowButtonsCancelConfirm = true };
                 purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay), ShowButtonsCancelConfirm=true };
             }
             else
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = navParam.Order.Offers, ToAttend= navParam.ToAttend };
-                promotionNavigationParam = new PromotionsNavigationParam() { PromotionsAdded = navParam.Order.Promotions, ShowAddRemoveButtons = navParam.ToAttend };
+                promotionNavigationParam = new PromotionsNavigationParam() { PromotionsAdded = navParam.Order.Promotions, ShowButtonsCancelConfirm = navParam.ToAttend };
                 purchaseNavigationParam = new PurchaseNavigationParam() {Id=navParam.Order.Id, Date=navParam.Order.Date, Time = navParam.Order.Time, Name = navParam.Order.Name, ShowButtonsCancelConfirm = navParam.ToAttend};
             }
 

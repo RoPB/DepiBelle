@@ -160,7 +160,7 @@ namespace DepiBelleDepi.ViewModels
                 Offers = offersList,
                 Discount = _discount,
                 Title = title,
-                ShowAddRemoveBUttons = _toAttend
+                ShowButtonsCancelConfirm = _toAttend
             };
 
             await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);

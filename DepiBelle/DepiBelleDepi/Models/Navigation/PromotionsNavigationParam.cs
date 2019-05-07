@@ -7,6 +7,6 @@ namespace DepiBelleDepi.Models
     {
         public List<PurchasableItem> PromotionsAdded { get; set; }
 
-        public bool ShowAddRemoveButtons { get; set; }
+        public bool ShowButtonsCancelConfirm { get; set; }
     }
 }

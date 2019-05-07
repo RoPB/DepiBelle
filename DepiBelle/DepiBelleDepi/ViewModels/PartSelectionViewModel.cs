@@ -15,7 +15,7 @@ namespace DepiBelleDepi.ViewModels
         private ICartNotificationService<Offer> _cartOfferManager;
         private ObservableCollection<OfferItem> _offers;
         private string _title;
-        private bool _showAddRemoveButtons;
+        private bool _showButtonsCancelConfirm;
 
         public ObservableCollection<OfferItem> Offers
         {
@@ -31,10 +31,10 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _title, value); }
         }
 
-        public bool ShowAddRemoveButtons
+        public bool ShowButtonsCancelConfirm
         {
-            get { return _showAddRemoveButtons; }
-            set { SetPropertyValue(ref _showAddRemoveButtons, value); }
+            get { return _showButtonsCancelConfirm; }
+            set { SetPropertyValue(ref _showButtonsCancelConfirm, value); }
         }
 
         public PartSelectionViewModel()
@@ -51,7 +51,7 @@ namespace DepiBelleDepi.ViewModels
                 IsLoading = true;
 
                 var param = navigationData as PartSelectionNavigationParam;
-                ShowAddRemoveButtons = param.ShowAddRemoveBUttons;
+                ShowButtonsCancelConfirm = param.ShowButtonsCancelConfirm;
                 var _selectedOffers = param.SelectedOffers;
                 var offers = param.Offers;
                 var discount = param.Discount;

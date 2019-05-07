@@ -19,7 +19,7 @@ namespace DepiBelleDepi.ViewModels
         private IConfigService _configService;
         private IDataCollectionService<Promotion> _promotionsDataService;
         private IDialogService _dialogService;
-        private bool _showAddRemoveButtons;
+        private bool _showButtonsCancelConfirm;
 
         private ICartNotificationService<Promotion> _cartPromotionManager;
 
@@ -31,10 +31,10 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _promotions, value); }
         }
 
-        public bool ShowAddRemoveButtons
+        public bool ShowButtonsCancelConfirm
         {
-            get { return _showAddRemoveButtons; }
-            set { SetPropertyValue(ref _showAddRemoveButtons, value); }
+            get { return _showButtonsCancelConfirm; }
+            set { SetPropertyValue(ref _showButtonsCancelConfirm, value); }
         }
 
         public ICommand PromotionSelectedCommand { get; set; }
@@ -42,7 +42,7 @@ namespace DepiBelleDepi.ViewModels
         public PromotionsViewModel()
         {
             IsLoading = true;
-            ShowAddRemoveButtons = false;
+            ShowButtonsCancelConfirm = false;
             PromotionSelectedCommand = new Command<PromotionItem>(async (promotion) => await PromotionSelected(promotion));
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
@@ -58,7 +58,7 @@ namespace DepiBelleDepi.ViewModels
             try
             {
                 var param = navigationData as PromotionsNavigationParam;
-                ShowAddRemoveButtons = param.ShowAddRemoveButtons;
+                ShowButtonsCancelConfirm = param.ShowButtonsCancelConfirm;
                 var promotions = await _promotionsDataService.GetAll();
                 promotions = promotions.OrderBy(p => p.Name).ToList();
 

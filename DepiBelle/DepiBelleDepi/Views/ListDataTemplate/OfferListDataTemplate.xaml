@@ -33,7 +33,7 @@
                         </Label.FormattedText>
                     </Label>
                 </AbsoluteLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Path=Parent.ParentBindingContext.ShowAddRemoveButtons, Source={x:Reference OfferTemplate}}">
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Path=Parent.ParentBindingContext.ShowButtonsCancelConfirm, Source={x:Reference OfferTemplate}}">
                     <Button Text="AGREGAR" 
                         IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
                         BackgroundColor="{StaticResource PrimaryLightColor}" 

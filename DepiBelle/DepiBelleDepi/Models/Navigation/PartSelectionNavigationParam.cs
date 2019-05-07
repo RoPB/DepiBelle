@@ -14,6 +14,6 @@ namespace DepiBelleDepi.Models
 
         public string Title { get; set; }
 
-        public bool ShowAddRemoveBUttons { get; set; }
+        public bool ShowButtonsCancelConfirm { get; set; }
     }
 }
