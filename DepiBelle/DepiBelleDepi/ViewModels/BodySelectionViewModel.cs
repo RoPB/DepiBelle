@@ -31,6 +31,7 @@ namespace DepiBelleDepi.ViewModels
 
         private bool _showDiscount;
         private int _discount;
+        private bool _toAttend;
 
         public bool ShowDiscount
         {
@@ -42,6 +43,7 @@ namespace DepiBelleDepi.ViewModels
             get { return _discount; }
             set { SetPropertyValue(ref _discount, value); }
         }
+
 
         public ICommand BodyPartSelectionCommand { get; set; }
 
@@ -73,7 +75,7 @@ namespace DepiBelleDepi.ViewModels
                 var param = navigationData as BodySelectionNavigationParam;
 
                 HandleDiscount(param);
-
+                _toAttend = param.ToAttend;
                 var offersAdded = param.OffersAdded;
                 var offers = await _offersDataService.GetAll();
                 await ClasificateOrders(offers);
@@ -157,7 +159,8 @@ namespace DepiBelleDepi.ViewModels
                 SelectedOffers = _selectedOffers,
                 Offers = offersList,
                 Discount = _discount,
-                Title = title
+                Title = title,
+                ShowAddRemoveBUttons = _toAttend
             };
 
             await _navigationService.NavigateToAsync<PartSelectionViewModel>(navigationParam);

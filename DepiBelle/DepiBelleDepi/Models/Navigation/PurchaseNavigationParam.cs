@@ -11,6 +11,6 @@ namespace DepiBelleDepi.Models
 
         public string Time { get; set; }
 
-        public bool CanConfirm { get; set; }
+        public bool ShowButtonsCancelConfirm { get; set; }
     }
 }

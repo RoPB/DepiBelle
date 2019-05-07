@@ -8,16 +8,19 @@ namespace DepiBelleDepi.Views.ListDataTemplate
     {
         public DataTemplate OfferDataTemplate { get; set; }
         public DataTemplate PromotionDataTemplate { get; set; }
-        public DataTemplate OrdersDataTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
+            DataTemplate selectedDataTemplate ;
+
             if (item is OfferItem)
-                return OfferDataTemplate;
-            else if (item is PromotionItem)
-                return PromotionDataTemplate;
+                selectedDataTemplate =  OfferDataTemplate;
             else
-                return OrdersDataTemplate;
+                selectedDataTemplate =  PromotionDataTemplate;
+
+            selectedDataTemplate.SetValue(ViewCellTemplateBase.ParentBindingContextProperty, container.BindingContext);
+
+            return selectedDataTemplate;
         }
     }
 }

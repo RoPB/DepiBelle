@@ -61,9 +61,9 @@
                 <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Orders}">
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
-                                <controls:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference OrdersPage}}">
+                                <listDataTemplate:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference OrdersPage}}">
                                     <listDataTemplate:OrderListDataTemplate/>
-                                </controls:ViewCellTemplateBase>
+                                </listDataTemplate:ViewCellTemplateBase>
                         </DataTemplate>
                      </controls:CustomListView.ItemTemplate>
                 </controls:CustomListView>

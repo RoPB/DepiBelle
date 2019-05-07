@@ -19,6 +19,7 @@ namespace DepiBelleDepi.ViewModels
         private IConfigService _configService;
         private IDataCollectionService<Promotion> _promotionsDataService;
         private IDialogService _dialogService;
+        private bool _showAddRemoveButtons;
 
         private ICartNotificationService<Promotion> _cartPromotionManager;
 
@@ -30,11 +31,18 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _promotions, value); }
         }
 
+        public bool ShowAddRemoveButtons
+        {
+            get { return _showAddRemoveButtons; }
+            set { SetPropertyValue(ref _showAddRemoveButtons, value); }
+        }
+
         public ICommand PromotionSelectedCommand { get; set; }
 
         public PromotionsViewModel()
         {
             IsLoading = true;
+            ShowAddRemoveButtons = false;
             PromotionSelectedCommand = new Command<PromotionItem>(async (promotion) => await PromotionSelected(promotion));
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
@@ -49,6 +57,8 @@ namespace DepiBelleDepi.ViewModels
         {
             try
             {
+                var param = navigationData as PromotionsNavigationParam;
+                ShowAddRemoveButtons = param.ShowAddRemoveButtons;
                 var promotions = await _promotionsDataService.GetAll();
                 promotions = promotions.OrderBy(p => p.Name).ToList();
 
@@ -56,7 +66,7 @@ namespace DepiBelleDepi.ViewModels
 
                 promotions.ForEach(p => Promotions.Add(ListItemMapper.GetPromotionListItem(p, false, PromotionSelectedCommand)));
 
-                HandlePromotionsAdded(navigationData as List<PurchasableItem>);
+                HandlePromotionsAdded(param.PromotionsAdded as List<PurchasableItem>);
 
             }
             catch (Exception ex)

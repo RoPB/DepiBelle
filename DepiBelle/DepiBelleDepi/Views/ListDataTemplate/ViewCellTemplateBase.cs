@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace DepiBelleDepi.Extensions
+namespace DepiBelleDepi.Views.ListDataTemplate
 {
     public class ViewCellTemplateBase:ViewCell
     {

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
-             x:Class="DepiBelleDepi.Views.ListDataTemplate.OfferListDataTemplate">
+             x:Class="DepiBelleDepi.Views.ListDataTemplate.OfferListDataTemplate"
+             x:Name="OfferTemplate">
     <ContentView.Resources>
         <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <Style x:Key="ListContent" TargetType="FlexLayout">
@@ -32,22 +33,24 @@
                         </Label.FormattedText>
                     </Label>
                 </AbsoluteLayout>
-                <Button Text="AGREGAR" 
-                    IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
-                    BackgroundColor="{StaticResource PrimaryLightColor}" 
-                    TextColor="{StaticResource White}"
-                    CornerRadius="20"
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding OnSelectedCommand}"
-                    CommandParameter="{Binding .}"/>
-                <Button Text="QUITAR" 
-                    IsVisible="{Binding IsSelected}"
-                    BackgroundColor="{StaticResource DarkGrey}" 
-                    TextColor="{StaticResource White}"
-                    CornerRadius="20"
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding OnSelectedCommand}"
-                    CommandParameter="{Binding .}"/>
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Path=Parent.ParentBindingContext.ShowAddRemoveButtons, Source={x:Reference OfferTemplate}}">
+                    <Button Text="AGREGAR" 
+                        IsVisible="{Binding IsSelected,Converter={StaticResource InverseBoolConverter}}"
+                        BackgroundColor="{StaticResource PrimaryLightColor}" 
+                        TextColor="{StaticResource White}"
+                        CornerRadius="20"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{Binding OnSelectedCommand}"
+                        CommandParameter="{Binding .}"/>
+                    <Button Text="QUITAR" 
+                        IsVisible="{Binding IsSelected}"
+                        BackgroundColor="{StaticResource DarkGrey}" 
+                        TextColor="{StaticResource White}"
+                        CornerRadius="20"
+                        HorizontalOptions="EndAndExpand"
+                        Command="{Binding OnSelectedCommand}"
+                        CommandParameter="{Binding .}"/>
+                </StackLayout>
             </StackLayout>
         </FlexLayout>
    </ContentView.Content>

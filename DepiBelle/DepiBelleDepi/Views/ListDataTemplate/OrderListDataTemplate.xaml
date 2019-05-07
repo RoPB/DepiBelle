@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.ListDataTemplate.OrderListDataTemplate"
-             x:Name="OrderContainer">
+             x:Name="OrderTemplate">
     <ContentView.Resources>
         <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
         <Style x:Key="ListContent" TargetType="FlexLayout">
@@ -23,7 +23,7 @@
                         BackgroundColor="{StaticResource PrimaryLightColor}" 
                         TextColor="{StaticResource White}"
                         CornerRadius="20"
-                        IsVisible="{Binding Path=Parent.ParentBindingContext.IsAttendingAnOrder, Source={x:Reference OrderContainer} ,Converter={StaticResource InverseBoolConverter}}"
+                        IsVisible="{Binding Path=Parent.ParentBindingContext.IsAttendingAnOrder, Source={x:Reference OrderTemplate} ,Converter={StaticResource InverseBoolConverter}}"
                         Command="{Binding OnAttendCommand}"
                         CommandParameter="{Binding .}"/>
             </StackLayout>

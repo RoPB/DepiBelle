@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.PromotionsView"
-             x:Name="Promotions">
+             x:Name="PromotionsPage">
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
@@ -38,9 +38,9 @@
                     </controls:CustomListView.Header>
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
-                                <ViewCell>
+                                <listDataTemplate:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference PromotionsPage}}">
                                     <listDataTemplate:PromotionListDataTemplate/>
-                                </ViewCell>
+                                </listDataTemplate:ViewCellTemplateBase>
                         </DataTemplate>
                      </controls:CustomListView.ItemTemplate>
                 </controls:CustomListView>

@@ -80,7 +80,7 @@ namespace DepiBelleDepi.ViewModels
         {
             try
             {
-                await _applicationMananger.Login(_configService.User, _configService.Password);
+                //await _applicationMananger.Login(_configService.User, _configService.Password);
 
                 var date = DateConverter.ShortDate(DateTime.Now);
 

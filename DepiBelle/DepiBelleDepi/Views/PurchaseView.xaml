@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
-             x:Class="DepiBelleDepi.Views.PurchaseView">
+             x:Class="DepiBelleDepi.Views.PurchaseView"
+             x:Name="PurchasesPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
@@ -32,14 +33,14 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
             <DataTemplate x:Key="offerDataTemplate">
-                <ViewCell>
+                <listDataTemplate:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference PurchasesPage}}">
                     <listDataTemplate:OfferListDataTemplate />
-                </ViewCell>
+                </listDataTemplate:ViewCellTemplateBase>
             </DataTemplate>
             <DataTemplate x:Key="promotionDataTemplate">
-                <ViewCell>
+                <listDataTemplate:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference PurchasesPage}}">
                     <listDataTemplate:PromotionListDataTemplate />
-                </ViewCell>
+                </listDataTemplate:ViewCellTemplateBase>
             </DataTemplate>
             <listDataTemplate:PurchasableDataTemplateSelector x:Key="purchasableDataTemplateSelector" OfferDataTemplate="{StaticResource offerDataTemplate}" PromotionDataTemplate="{StaticResource promotionDataTemplate}" />
         </ResourceDictionary>
@@ -89,7 +90,7 @@
                                 TextColor="{StaticResource PrimaryLightColor}"
                                 Command="{Binding ConfirmPurchaseCommand}"
                                 CornerRadius="20"
-                                IsVisible="{Binding CanConfirm}"/>
+                                IsVisible="{Binding ShowButtonsCancelConfirm}"/>
                     </StackLayout>
                 </StackLayout>
                

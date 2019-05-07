@@ -13,5 +13,7 @@ namespace DepiBelleDepi.Models
         public int Discount { get; set; }
 
         public string Title { get; set; }
+
+        public bool ShowAddRemoveBUttons { get; set; }
     }
 }

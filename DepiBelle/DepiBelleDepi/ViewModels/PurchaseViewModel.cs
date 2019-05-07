@@ -20,7 +20,7 @@ namespace DepiBelleDepi.ViewModels
         private string _orderDate;
         private string _userName;
         private string _time;
-        private bool _canConfirm;
+        private bool _showButtonsCancelConfirm;
         private IConfigService _configService;
         private IDataCollectionService<Order> _ordersDataService;
 
@@ -49,10 +49,10 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _total, value); }
         }
 
-        public bool CanConfirm
+        public bool ShowButtonsCancelConfirm
         {
-            get { return _canConfirm; }
-            set { SetPropertyValue(ref _canConfirm, value); }
+            get { return _showButtonsCancelConfirm; }
+            set { SetPropertyValue(ref _showButtonsCancelConfirm, value); }
         }
 
         public bool ShowMainContent
@@ -97,7 +97,7 @@ namespace DepiBelleDepi.ViewModels
             _orderDate = purchaseNavigationParam.Date;
             _userName = purchaseNavigationParam.Name;
             _time = purchaseNavigationParam.Time;
-            CanConfirm = purchaseNavigationParam.CanConfirm;
+            ShowButtonsCancelConfirm = purchaseNavigationParam.ShowButtonsCancelConfirm;
 
             IsLoading = false;
         }
@@ -174,23 +174,30 @@ namespace DepiBelleDepi.ViewModels
 
         private void LoadPurchasableItems()
         {
-            PurchasableItems.Clear();
+            try
+            {
+                PurchasableItems.Clear();
 
-            _promotions = _promotions.OrderBy(p => p.Name).ToList();
-            _offers = _offers.OrderBy(o => o.Name).ToList();
+                _promotions = _promotions.OrderBy(p => p.Name).ToList();
+                _offers = _offers.OrderBy(o => o.Name).ToList();
 
-            if (_promotions.Count > 0)
-                PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
-            if (_offers.Count > 0)
-                PurchasableItems.Add(new CartItemsGrouped("Cuerpo", _offers));
+                if (_promotions.Count > 0)
+                    PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
+                if (_offers.Count > 0)
+                    PurchasableItems.Add(new CartItemsGrouped("Cuerpo", _offers));
 
 
-            Total = 0;
+                Total = 0;
 
-            _promotions.ForEach(p => Total += p.SellPrice);
-            _offers.ForEach(o => Total += o.SellPrice);
+                _promotions.ForEach(p => Total += p.SellPrice);
+                _offers.ForEach(o => Total += o.SellPrice);
 
-            ShowMainContent = PurchasableItems.Count > 0;
+                ShowMainContent = PurchasableItems.Count > 0;
+            }
+            catch(Exception ex)
+            {
+
+            }
 
         }
 
