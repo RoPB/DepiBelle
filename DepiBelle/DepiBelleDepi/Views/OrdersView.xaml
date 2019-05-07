@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:converters="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
-             x:Class="DepiBelleDepi.Views.OrdersView">
+             x:Class="DepiBelleDepi.Views.OrdersView"
+             x:Name="OrdersPage">
     <ContentPage.Resources>
         <ResourceDictionary>
           <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
@@ -56,15 +57,17 @@
                             Command="{Binding AddPendingOrdersToMainListCommand}"
                             CornerRadius="20"/>
                 </StackLayout>
+
                 <controls:CustomListView Style="{StaticResource List}" ItemsSource="{Binding Orders}">
                      <controls:CustomListView.ItemTemplate>
                         <DataTemplate>
-                                <ViewCell>
+                                <controls:ViewCellTemplateBase ParentBindingContext="{Binding BindingContext, Source={x:Reference OrdersPage}}">
                                     <listDataTemplate:OrderListDataTemplate/>
-                                </ViewCell>
+                                </controls:ViewCellTemplateBase>
                         </DataTemplate>
                      </controls:CustomListView.ItemTemplate>
                 </controls:CustomListView>
+               
            </StackLayout>
         </FlexLayout>
     </ContentPage.Content>
