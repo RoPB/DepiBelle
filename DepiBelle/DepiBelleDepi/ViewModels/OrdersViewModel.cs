@@ -300,9 +300,9 @@ namespace DepiBelleDepi.ViewModels
        
         public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
         {
-            try { 
+            var order = _dicOrders[orderItem.Id];
 
-                var order = _dicOrders[orderItem.Id];
+            try { 
 
                 if (toAttend)
                 {
