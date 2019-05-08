@@ -5,15 +5,14 @@
     match /
     { document=** }
     {
-      allow read,
-      write: if
+      allow
+      read: if
       request.auth!=null;
     }
     match /environment/dev
     {
       match /orders/ordersInProcess/
-      { date }
-      / { orderId }
+      { document=** }
       {
         allow create,
         delete: if
@@ -33,8 +32,7 @@
     match /environment/production
     {
       match /orders/ordersInProcess/
-      { date }
-      / { orderId }
+      { document=** }
       {
         allow create,
         delete: if
@@ -53,10 +51,7 @@
     }
   }
 
-}
-
-
-{
+} {
   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
     ".read": "auth!=null",
