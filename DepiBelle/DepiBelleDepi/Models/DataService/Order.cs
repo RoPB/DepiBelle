@@ -5,7 +5,7 @@ using Plugin.CloudFirestore.Attributes;
 
 namespace DepiBelleDepi.Models
 {
-    public class Order : EntityBase
+    public class Order : EntityBase, ICloneable
     {
         [MapTo("name")]
         [JsonProperty("name")]
@@ -35,5 +35,9 @@ namespace DepiBelleDepi.Models
         [JsonProperty("attendedBy")]
         public string AttendedBy { get; set; }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

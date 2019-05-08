@@ -12,15 +12,17 @@
                 <Label Text="Depi Belle" TextColor="{StaticResource White}"/>
             </NavigationPage.TitleView>
             
+            <views:PurchaseView Title="Compra"  
+                            Icon="ic_cart.png"
+                            plugin:TabBadge.BadgeText="{Binding StrItemsAdded}"
+                            />
+    
             <views:PromotionsView Title="Promos" 
                             Icon="ic_offer.png"
                             />
             <views:BodySelectionView Title="Cuerpo" 
                             Icon="ic_body.png"
                             />
-            <views:PurchaseView Title="Compra"  
-                            Icon="ic_cart.png"
-                            plugin:TabBadge.BadgeText="{Binding StrItemsAdded}"
-                            />
+            
           
 </TabbedPage>

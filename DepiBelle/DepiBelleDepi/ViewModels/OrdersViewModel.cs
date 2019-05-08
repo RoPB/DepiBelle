@@ -80,7 +80,7 @@ namespace DepiBelleDepi.ViewModels
         {
             try
             {
-                await _applicationMananger.Login(_configService.User, _configService.Password);
+                //await _applicationMananger.Login(_configService.User, _configService.Password);
 
                 var date = DateConverter.ShortDate(DateTime.Now);
 
@@ -291,30 +291,30 @@ namespace DepiBelleDepi.ViewModels
         {
             orderItem.IsBeingAttended = !string.IsNullOrEmpty(order.AttendedBy);
             orderItem.IsBeingAttendedByUser = _deviceId.Equals(order.AttendedBy);
-
-            if (orderItem.IsBeingAttendedByUser)
-                IsAttendingAnOrder = true;
         }
 
 
        
-        public async Task OpenOrder(OrderItem orderItem, bool toAttend = false)
+        public async Task OpenOrder(OrderItem orderItem, bool attendOrder = false)
         {
             var order = _dicOrders[orderItem.Id];
 
             try { 
 
-                if (toAttend)
+                if (attendOrder)
                 {
-                    order.AttendedBy = _deviceId;
+                    IsAttendingAnOrder = true;//if we get an error, trycatch revert this
+                    var orderCloned = (Order)order.Clone();
+                    orderCloned.AttendedBy = _deviceId;
 
-                    _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess }/{order.Date}" });
-                    await _ordersDataServiceToUpdate.AddOrReplace(order);
+                    _ordersDataServiceToUpdate.Initialize(new DataServiceConfig() { Uri = _configService.ServiceUri, Key = $"{_configService.Orders}/{_configService.OrdersInProcess }/{orderCloned.Date}" });
+                    await _ordersDataServiceToUpdate.AddOrReplace(orderCloned);
 
+                    order.AttendedBy = orderCloned.AttendedBy;
                     ChangeOrderIsBeignAttended(orderItem, order);
                 }
 
-                toAttend = toAttend || !toAttend && orderItem.IsBeingAttendedByUser;
+                var toAttend = attendOrder || !attendOrder && orderItem.IsBeingAttendedByUser;
 
                 DependencyContainer.Refresh();
                 var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
@@ -323,6 +323,8 @@ namespace DepiBelleDepi.ViewModels
             }
             catch(Exception ex)
             {
+                if(attendOrder)
+                    IsAttendingAnOrder = false;
                 await _dialogService.ShowAlertAsync("No pudo llegar a atender a la persona. Probablemente alguien se le anticipo", "ATENCION", "OK");
             }
         }

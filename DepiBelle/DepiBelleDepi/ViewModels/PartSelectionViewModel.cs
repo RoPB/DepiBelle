@@ -41,6 +41,7 @@ namespace DepiBelleDepi.ViewModels
         {
             OfferSelectedCommand = new Command<OfferItem>(async (offer) => await OfferSelected(offer));
             IsLoading = true;
+            ShowButtonsCancelConfirm = false;
             _cartOfferManager = _cartOfferManager ?? DependencyContainer.Resolve<ICartNotificationService<Offer>>();
         }
 

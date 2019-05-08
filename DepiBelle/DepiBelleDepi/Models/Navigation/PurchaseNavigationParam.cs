@@ -12,5 +12,7 @@ namespace DepiBelleDepi.Models
         public string Time { get; set; }
 
         public bool ShowButtonsCancelConfirm { get; set; }
+
+        public int CantItemsAdded { get; set; }
     }
 }

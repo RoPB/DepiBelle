@@ -55,7 +55,12 @@ namespace DepiBelleDepi.ViewModels
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = navParam.Order.Offers, ToAttend= navParam.ToAttend };
                 promotionNavigationParam = new PromotionsNavigationParam() { PromotionsAdded = navParam.Order.Promotions, ShowButtonsCancelConfirm = navParam.ToAttend };
-                purchaseNavigationParam = new PurchaseNavigationParam() {Id=navParam.Order.Id, Date=navParam.Order.Date, Time = navParam.Order.Time, Name = navParam.Order.Name, ShowButtonsCancelConfirm = navParam.ToAttend};
+                purchaseNavigationParam = new PurchaseNavigationParam() {Id=navParam.Order.Id, 
+                                                                        Date=navParam.Order.Date, 
+                                                                        Time = navParam.Order.Time, 
+                                                                        Name = navParam.Order.Name, 
+                                                                        ShowButtonsCancelConfirm = navParam.ToAttend,
+                                                                        CantItemsAdded=navParam.Order.Offers.Count+navParam.Order.Promotions.Count};
             }
 
             await _purchaseViewModel.InitializeAsync(purchaseNavigationParam);

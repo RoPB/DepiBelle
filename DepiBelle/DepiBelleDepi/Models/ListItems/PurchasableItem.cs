@@ -4,7 +4,7 @@ using Plugin.CloudFirestore.Attributes;
 
 namespace DepiBelleDepi.Models
 {
-    public class PurchasableItem : BaseListItem
+    public class PurchasableItem : BaseListItem, ICloneable
     {
         [JsonProperty("id")]
         public string Id
@@ -46,6 +46,11 @@ namespace DepiBelleDepi.Models
         public bool HasDiscount
         {
             get { return Discount > 0; }
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
