@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace DepiBelleDepi.Managers.Application
 {
-    public interface IApplicationManager
+    public interface IAuthenticableApplicationManager
     {
         Task Login(string email, string password);
     }

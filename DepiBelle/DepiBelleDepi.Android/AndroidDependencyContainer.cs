@@ -1,9 +1,7 @@
-﻿using System;
-using DepiBelleDepi.Droid.Services;
-using DepiBelleDepi.Models;
+﻿using DepiBelleDepi.Droid.Services;
+using DepiBelleDepi.Droid.Services.PushNotifications;
 using DepiBelleDepi.Services;
-using DepiBelleDepi.Services.Authentication;
-using DepiBelleDepi.Services.Data;
+using DepiBelleDepi.Services.PushNotifications;
 using Splat;
 
 namespace DepiBelleDepi.Droid
@@ -13,6 +11,7 @@ namespace DepiBelleDepi.Droid
         public static void RegisterDependencies()
         {
             Locator.CurrentMutable.RegisterConstant(new DeviceService(), typeof(IDeviceService));
+            Locator.CurrentMutable.Register(() => new PushNotificationsService(), typeof(IPushNotificationsService));
         }
     }
 }

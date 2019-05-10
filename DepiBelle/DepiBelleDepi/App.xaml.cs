@@ -1,5 +1,5 @@
-﻿using System;
-using DepiBelleDepi.Services.Navigation;
+﻿using DepiBelleDepi.Managers.Application;
+using DepiBelleDepi.Models.PushNotifications;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,13 +8,13 @@ namespace DepiBelleDepi
 {
     public partial class App : Application
     {
-        private INavigationService _navigationService;
+        private IPushNotificableApplicationManager _applicationManager;
 
-        public App()
+        public App(PushNotification pushNotification=null)
         {
             InitializeComponent();
-            _navigationService = _navigationService ?? DependencyContainer.Resolve<INavigationService>();
-            _navigationService.InitializeAsync();
+            _applicationManager = _applicationManager ?? DependencyContainer.Resolve<IPushNotificableApplicationManager>();
+            _applicationManager.Initialize(pushNotification);
         }
 
         protected override void OnStart()

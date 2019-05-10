@@ -18,7 +18,7 @@ namespace DepiBelleDepi.ViewModels
     public class OrdersViewModel : ViewModelBase
     {
         private IConfigService _configService;
-        private IApplicationManager _applicationMananger;
+        private IAuthenticableApplicationManager _applicationMananger;
         private IDataCollectionService<Order> _ordersDataService;
         private IDataCollectionService<Order> _ordersDataServiceToUpdate;
         private IDialogService _dialogService;
@@ -66,7 +66,7 @@ namespace DepiBelleDepi.ViewModels
             IsLoading = true;
             _configService = _configService ?? DependencyContainer.Resolve<IConfigService>();
             _dialogService = _dialogService ?? DependencyContainer.Resolve<IDialogService>();
-            _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IApplicationManager>();
+            _applicationMananger = _applicationMananger ?? DependencyContainer.Resolve<IAuthenticableApplicationManager>();
             _ordersDataService = _ordersDataService ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             _ordersDataServiceToUpdate = _ordersDataServiceToUpdate ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());

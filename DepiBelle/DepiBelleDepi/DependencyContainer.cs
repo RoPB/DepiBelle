@@ -46,8 +46,10 @@ namespace DepiBelleDepi
 
             //Managers
             RegisterRefreshableManagersDependencies();
-            Locator.CurrentMutable.RegisterConstant(new ApplicationManager(), typeof(IApplicationManager));
 
+            var applicationManager = new ApplicationManager();
+            Locator.CurrentMutable.RegisterConstant(applicationManager, typeof(IAuthenticableApplicationManager));
+            Locator.CurrentMutable.RegisterConstant(applicationManager, typeof(IPushNotificableApplicationManager));
 
             //ModalViewModels
             Locator.CurrentMutable.Register(() => new ConfirmationModalViewModel());
