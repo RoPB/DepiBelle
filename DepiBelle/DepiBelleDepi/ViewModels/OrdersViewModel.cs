@@ -71,7 +71,7 @@ namespace DepiBelleDepi.ViewModels
             _ordersDataServiceToUpdate = _ordersDataServiceToUpdate ?? DependencyContainer.Resolve<IDataCollectionService<Order>>();
             AddPendingOrdersToMainListCommand = new Command(async () => await AddPendingOrdersToMainList());
             OpenOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem));
-            AttendOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem,true));
+            AttendOrderCommand = new Command<OrderItem>(async (orderItem) => await OpenOrder(orderItem, true));
             NewOrderCommand = new Command(async () => await NewOrder());
             _deviceId = DependencyContainer.Resolve<IDeviceService>().DeviceId;
         }
@@ -142,11 +142,12 @@ namespace DepiBelleDepi.ViewModels
         private void AddUpdateOrder(Order order)
         {
 
-            if (_dicOrders.ContainsKey(order.Id)){
+            if (_dicOrders.ContainsKey(order.Id))
+            {
 
                 UpdateOrderInMainList(order);
             }
-            else if(_pendingOrders.Any(o => o.Id == order.Id))
+            else if (_pendingOrders.Any(o => o.Id == order.Id))
             {
                 UpdateOrderInPendingList(order);
             }
@@ -187,7 +188,7 @@ namespace DepiBelleDepi.ViewModels
             {
                 UpdateOrderItem(orderInMainList, order);
             }
-                
+
         }
 
         private Task RemoveOrderFromMainList(string id)
@@ -214,7 +215,7 @@ namespace DepiBelleDepi.ViewModels
             return orderItem;
         }
 
-       
+
         private Task AddOrderToPendingList(Order order)
         {
             return Task.Run(() =>
@@ -252,7 +253,7 @@ namespace DepiBelleDepi.ViewModels
             });
         }
 
-       
+
         private Task AddPendingOrdersToMainList()
         {
             return Task.Run(() =>
@@ -268,7 +269,7 @@ namespace DepiBelleDepi.ViewModels
 
         }
 
-       
+
         private void UpdateOrder(Order orderToUpdate, Order order)
         {
             orderToUpdate.Name = order.Name;
@@ -296,12 +297,13 @@ namespace DepiBelleDepi.ViewModels
         }
 
 
-       
+
         public async Task OpenOrder(OrderItem orderItem, bool attendOrder = false)
         {
             var order = _dicOrders[orderItem.Id];
 
-            try { 
+            try
+            {
 
                 if (attendOrder)
                 {
@@ -319,13 +321,22 @@ namespace DepiBelleDepi.ViewModels
                 var toAttend = attendOrder || !attendOrder && orderItem.IsBeingAttendedByUser;
 
                 DependencyContainer.Refresh();
-                var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
-                await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
+                if (toAttend)
+                {
+                    var navParam = new HomeNavigationParam() { Order = order, ToAttend = toAttend };
+                    await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
+                }
+                else
+                {
+
+                    var navParam = new PurchaseNavigationParam() { Order = order, ToAttend = toAttend };
+                    await NavigationService.NavigateToAsync<PurchaseViewModel>(navParam);
+                }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                if(attendOrder)
+                if (attendOrder)
                     IsAttendingAnOrder = false;
                 await _dialogService.ShowAlertAsync("No pudo llegar a atender a la persona. Probablemente alguien se le anticipo", "ATENCION", "OK");
             }
@@ -334,7 +345,9 @@ namespace DepiBelleDepi.ViewModels
         public async Task NewOrder()
         {
             DependencyContainer.Refresh();
-            await NavigationService.NavigateToAsync<HomeTabbedViewModel>();
+            var order = new Order() { Name = "Sin reserva", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay) };
+            var navParam = new HomeNavigationParam() { Order = order, ToAttend = true };
+            await NavigationService.NavigateToAsync<HomeTabbedViewModel>(navParam);
         }
     }
 }

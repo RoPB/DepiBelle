@@ -35,6 +35,7 @@ namespace DepiBelleDepi.ViewModels
         private List<PurchasableItem> _offers = new List<PurchasableItem>();
         private bool _showMainContent = false;
         private double _total;
+        private string _title;
 
         private ObservableCollection<CartItemsGrouped> _purchasableItems = new ObservableCollection<CartItemsGrouped>();
         public ObservableCollection<CartItemsGrouped> PurchasableItems
@@ -43,7 +44,12 @@ namespace DepiBelleDepi.ViewModels
             set { SetPropertyValue(ref _purchasableItems, value); }
         }
 
-        
+        public string Title
+        {
+            get { return _title; }
+            set { SetPropertyValue(ref _title, value); }
+        }
+
         public double Total
         {
             get { return _total; }
@@ -94,14 +100,28 @@ namespace DepiBelleDepi.ViewModels
         {
             var purchaseNavigationParam = navigationData as PurchaseNavigationParam;
 
-            _orderId = purchaseNavigationParam.Id;
-            _orderDate = purchaseNavigationParam.Date;
-            _userName = purchaseNavigationParam.Name;
-            _time = purchaseNavigationParam.Time;
-            ShowButtonsCancelConfirm = purchaseNavigationParam.ShowButtonsCancelConfirm;
-            _cantItemsToBuy =  purchaseNavigationParam.CantItemsAdded;
+            _orderId = purchaseNavigationParam.Order.Id;
+            _orderDate = purchaseNavigationParam.Order.Date;
+            _userName = purchaseNavigationParam.Order.Name;
+            _time = purchaseNavigationParam.Order.Time;
+            _cantItemsToBuy = purchaseNavigationParam.CantItemsAdded;
 
-            IsLoading = !(_cantItemsToBuy == 0);
+            Title = $"{purchaseNavigationParam.Order.Name}";
+
+            if (purchaseNavigationParam.ToAttend)
+            {
+                ShowButtonsCancelConfirm = true;
+                IsLoading = !(_cantItemsToBuy == 0);
+
+            }
+            else
+            {
+                //ACA HAY QUE USAR LISTITEMMAPPER
+                _offers = purchaseNavigationParam.Order.Offers.Select(o=>(PurchasableItem)o).ToList();
+                _promotions = purchaseNavigationParam.Order.Promotions.Select(p=>(PurchasableItem)p).ToList();
+                LoadPurchasableItems();
+                IsLoading = false;
+            }
 
         }
 
@@ -127,7 +147,6 @@ namespace DepiBelleDepi.ViewModels
             }
 
         }
-
 
         public void OfferAddedHandler(object sender, CartItem<Offer> itemAdded)
         {
@@ -180,19 +199,16 @@ namespace DepiBelleDepi.ViewModels
             }
         }
 
+
         private void LoadPurchasableItems()
         {
 
             PurchasableItems.Clear();
 
-            _promotions = _promotions.OrderBy(p => p.Name).ToList();
-            _offers = _offers.OrderBy(o => o.Name).ToList();
-
             if (_promotions.Count > 0)
                 PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
             if (_offers.Count > 0)
                 PurchasableItems.Add(new CartItemsGrouped("Cuerpo", _offers));
-
 
             Total = 0;
 
@@ -206,8 +222,8 @@ namespace DepiBelleDepi.ViewModels
         private async Task ConfirmPurchase()
         {
             var order = new Order();
-            order.Offers = _offers;
-            order.Promotions = _promotions;
+            order.Offers = _offers.Select(o=>(OfferItem)o).ToList();
+            order.Promotions = _promotions.Select(p => (PromotionItem)p).ToList(); ;
             order.Total = Total;
             order.Name = _userName;
             order.Time = _time;

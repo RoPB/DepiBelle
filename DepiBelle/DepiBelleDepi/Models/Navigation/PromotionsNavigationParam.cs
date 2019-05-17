@@ -5,7 +5,7 @@ namespace DepiBelleDepi.Models
 {
     public class PromotionsNavigationParam
     {
-        public List<PurchasableItem> PromotionsAdded { get; set; }
+        public List<PromotionItem> PromotionsAdded { get; set; }
 
         public bool ShowButtonsCancelConfirm { get; set; }
     }

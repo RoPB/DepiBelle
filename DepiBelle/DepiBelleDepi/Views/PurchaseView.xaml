@@ -8,7 +8,8 @@
              xmlns:controls="clr-namespace:DepiBelleDepi.Extensions;assembly=DepiBelleDepi" 
              xmlns:listDataTemplate="clr-namespace:DepiBelleDepi.Views.ListDataTemplate;assembly=DepiBelleDepi" 
              x:Class="DepiBelleDepi.Views.PurchaseView"
-             x:Name="PurchasesPage">
+             x:Name="PurchasesPage"
+             Title="{Binding Title}" >
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />

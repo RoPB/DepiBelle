@@ -21,11 +21,11 @@ namespace DepiBelleDepi.Models
 
         [MapTo("offers")]
         [JsonProperty("offers")]
-        public List<PurchasableItem> Offers { get; set; } = new List<PurchasableItem>();
+        public List<OfferItem> Offers { get; set; } = new List<OfferItem>();
 
         [MapTo("promotions")]
         [JsonProperty("promotions")]
-        public List<PurchasableItem> Promotions { get; set; } = new List<PurchasableItem>();
+        public List<PromotionItem> Promotions { get; set; } = new List<PromotionItem>();
 
         [MapTo("total")]
         [JsonProperty("total")]

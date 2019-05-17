@@ -18,6 +18,13 @@ namespace DepiBelle.ViewModels
         private ViewModelBase _promotionsViewModel;
         private ViewModelBase _bodySelectionViewModel;
         private ViewModelBase _purchaseViewModel;
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetPropertyValue(ref _title, value); }
+        }
 
         public HomeTabbedViewModel()
         {
@@ -37,6 +44,8 @@ namespace DepiBelle.ViewModels
         {
             try
             {
+                var navParam = navigationData as HomeTabbedNavigationParam;
+                Title = navParam.Name;
 
                 await _applicationMananger.Login(_configService.User, _configService.Password);
 

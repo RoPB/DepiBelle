@@ -7,7 +7,7 @@ namespace DepiBelleDepi.Models
     {
         public Config Config { get; set; }
 
-        public List<PurchasableItem> OffersAdded { get; set; }
+        public List<OfferItem> OffersAdded { get; set; }
 
         public bool ToAttend { get; set; }
     }

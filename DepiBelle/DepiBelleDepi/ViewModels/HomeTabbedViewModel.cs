@@ -20,6 +20,13 @@ namespace DepiBelleDepi.ViewModels
         private ViewModelBase _promotionsViewModel;
         private ViewModelBase _bodySelectionViewModel;
         private ViewModelBase _purchaseViewModel;
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetPropertyValue(ref _title, value); }
+        }
 
         public HomeTabbedViewModel()
         {
@@ -35,32 +42,30 @@ namespace DepiBelleDepi.ViewModels
 
         public override async Task InitializeAsync(object navigationData)
         {
-            _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.ConfigUri, Key = _configService.Config });
-
             var navParam = navigationData as HomeNavigationParam;
-            BodySelectionNavigationParam bodySelectionNavigationParameter = null;
-            PurchaseNavigationParam purchaseNavigationParam = null;
-            PromotionsNavigationParam promotionNavigationParam = null;
+
+            Title = navParam.Order.Name;
+
+            _dataQueryConfigService.Initialize(new DataServiceConfig() { Uri = _configService.ConfigUri, Key = _configService.Config });
             var config = await _dataQueryConfigService.Get();
 
 
+            BodySelectionNavigationParam bodySelectionNavigationParameter = null;
+            PurchaseNavigationParam purchaseNavigationParam = null;
+            PromotionsNavigationParam promotionNavigationParam = null;
 
-            if (navParam == null)
+
+            if (navParam.IsNewOrder)
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, ToAttend=true };
                 promotionNavigationParam = new PromotionsNavigationParam() { ShowButtonsCancelConfirm = true };
-                purchaseNavigationParam = new PurchaseNavigationParam() { Name = "SIN HORA", Time = DateConverter.ShortTime(DateTime.Now.TimeOfDay), ShowButtonsCancelConfirm=true };
+                purchaseNavigationParam = new PurchaseNavigationParam() {Order= navParam.Order, ToAttend=true };
             }
             else
             {
                 bodySelectionNavigationParameter = new BodySelectionNavigationParam() { Config = config, OffersAdded = navParam.Order.Offers, ToAttend= navParam.ToAttend };
                 promotionNavigationParam = new PromotionsNavigationParam() { PromotionsAdded = navParam.Order.Promotions, ShowButtonsCancelConfirm = navParam.ToAttend };
-                purchaseNavigationParam = new PurchaseNavigationParam() {Id=navParam.Order.Id, 
-                                                                        Date=navParam.Order.Date, 
-                                                                        Time = navParam.Order.Time, 
-                                                                        Name = navParam.Order.Name, 
-                                                                        ShowButtonsCancelConfirm = navParam.ToAttend,
-                                                                        CantItemsAdded=navParam.Order.Offers.Count+navParam.Order.Promotions.Count};
+                purchaseNavigationParam = new PurchaseNavigationParam(){Order = navParam.Order,ToAttend = navParam.ToAttend};
             }
 
             await _purchaseViewModel.InitializeAsync(purchaseNavigationParam);

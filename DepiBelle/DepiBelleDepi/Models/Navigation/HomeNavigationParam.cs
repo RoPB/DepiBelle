@@ -5,5 +5,6 @@ namespace DepiBelleDepi.Models
     {
         public Order Order { get; set; }
         public bool ToAttend { get; set; }
+        public bool IsNewOrder { get { return string.IsNullOrEmpty(Order.Id); } }
     }
 }

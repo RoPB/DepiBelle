@@ -7,11 +7,11 @@
             xmlns:plugin="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions" 
             x:Class="DepiBelleDepi.Views.HomeTabbedView"
             x:Name="HomeTabbedPage">
-    
-            <NavigationPage.TitleView>
-                <Label Text="Depi Belle" TextColor="{StaticResource White}"/>
-            </NavigationPage.TitleView>
             
+            <NavigationPage.TitleView>
+                <Label Text="{Binding Title}" TextColor="{StaticResource White}"/>
+            </NavigationPage.TitleView>
+    
             <views:PurchaseView Title="Compra"  
                             Icon="ic_cart.png"
                             plugin:TabBadge.BadgeText="{Binding StrItemsAdded}"

@@ -3,16 +3,10 @@ namespace DepiBelleDepi.Models
 {
     public class PurchaseNavigationParam
     {
-        public string Id { get; set; }
+        public Order Order { get; set; }
 
-        public string Date { get; set; }
+        public bool ToAttend { get; set; }
 
-        public string Name { get; set; }
-
-        public string Time { get; set; }
-
-        public bool ShowButtonsCancelConfirm { get; set; }
-
-        public int CantItemsAdded { get; set; }
+        public int CantItemsAdded { get { return Order.Promotions.Count + Order.Offers.Count; } }
     }
 }

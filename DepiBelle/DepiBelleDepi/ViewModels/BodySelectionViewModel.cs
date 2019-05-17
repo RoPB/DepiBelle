@@ -178,7 +178,7 @@ namespace DepiBelleDepi.ViewModels
             _selectedOffers.Remove(offerId);
         }
 
-        public void HandleOffersAdded(List<Offer> offers, List<PurchasableItem> offersAdded)
+        public void HandleOffersAdded(List<Offer> offers, List<OfferItem> offersAdded)
         {
             if (offersAdded != null)
             {

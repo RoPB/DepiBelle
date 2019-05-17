@@ -162,9 +162,6 @@ namespace DepiBelle.ViewModels
         {
             PurchasableItems.Clear();
 
-            _promotions = _promotions.OrderBy(p => p.Name).ToList();
-            _offers = _offers.OrderBy(o => o.Name).ToList();
-
             if (_promotions.Count > 0)
                 PurchasableItems.Add(new CartItemsGrouped("Promociones", _promotions));
             if (_offers.Count > 0)

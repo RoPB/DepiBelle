@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace DepiBelleDepi.Models
 {
-    public class CartItemsGrouped:ObservableCollection<PurchasableItem>
+    public class CartItemsGrouped : ObservableCollection<PurchasableItem>
     {
         public string Name { get; set; }
 

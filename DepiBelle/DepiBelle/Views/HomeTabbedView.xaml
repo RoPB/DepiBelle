@@ -9,7 +9,7 @@
             x:Name="HomeTabbedPage">
     
             <NavigationPage.TitleView>
-                <Label Text="Depi Belle" TextColor="{StaticResource White}"/>
+                <Label Text="{Binding Title}" TextColor="{StaticResource White}"/>
             </NavigationPage.TitleView>
             
             <views:PromotionsView Title="Promos" 

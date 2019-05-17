@@ -66,7 +66,7 @@ namespace DepiBelleDepi.ViewModels
 
                 promotions.ForEach(p => Promotions.Add(ListItemMapper.GetPromotionListItem(p, false, PromotionSelectedCommand)));
 
-                HandlePromotionsAdded(param.PromotionsAdded as List<PurchasableItem>);
+                await HandlePromotionsAdded(param.PromotionsAdded);
 
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace DepiBelleDepi.ViewModels
 
         }
 
-        public async Task HandlePromotionsAdded(List<PurchasableItem> promotionsAdded)
+        public async Task HandlePromotionsAdded(List<PromotionItem> promotionsAdded)
         {
             if (promotionsAdded != null)
             {
