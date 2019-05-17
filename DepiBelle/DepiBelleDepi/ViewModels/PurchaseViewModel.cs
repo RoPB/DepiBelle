@@ -77,6 +77,7 @@ namespace DepiBelleDepi.ViewModels
         public PurchaseViewModel()
         {
             IsLoading = true;
+            ShowButtonsCancelConfirm = false;
             ShowMainContent = PurchasableItems.Count > 0;
             _uploadingOrder = false;
             PromotionSelectedCommand = new Command<PromotionItem>(PromotionSelected);
@@ -116,10 +117,10 @@ namespace DepiBelleDepi.ViewModels
             }
             else
             {
-                //ACA HAY QUE USAR LISTITEMMAPPER
                 _offers = purchaseNavigationParam.Order.Offers.Select(o=>(PurchasableItem)o).ToList();
                 _promotions = purchaseNavigationParam.Order.Promotions.Select(p=>(PurchasableItem)p).ToList();
                 LoadPurchasableItems();
+                await Task.Delay(1000);
                 IsLoading = false;
             }
 
