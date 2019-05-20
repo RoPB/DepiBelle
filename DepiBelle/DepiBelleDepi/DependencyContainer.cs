@@ -36,6 +36,7 @@ namespace DepiBelleDepi
             Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<Offer>(), typeof(IDataCollectionService<Offer>));
             Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<Order>(), typeof(IDataCollectionService<Order>));
             Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<Promotion>(), typeof(IDataCollectionService<Promotion>));
+            Locator.CurrentMutable.Register(() => new CFDataCollectionSecuredService<User>(), typeof(IDataCollectionService<User>));
 
             Locator.CurrentMutable.RegisterConstant(new DataQuerySecuredService<Config>(), typeof(IDataQueryService<Config>));
             Locator.CurrentMutable.Register(() => new LocalDataService(), typeof(ILocalDataService));

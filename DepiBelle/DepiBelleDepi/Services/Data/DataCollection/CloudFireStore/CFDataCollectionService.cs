@@ -188,6 +188,7 @@ namespace DepiBelleDepi.Services.Data
             }
             catch (Exception ex)
             {
+                var message = ex.Message;
                 throw ex;
             }
         }

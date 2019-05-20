@@ -11,42 +11,59 @@
     }
     match /environment/dev
     {
+      match /depiladoras/
+      { depId }
+      {
+        allow create,
+        update: if
+        request.auth!=null;
+      }
       match /orders/ordersInProcess/
-      { document=** }
+      { date }
+      / { order }
       {
         allow create,
         delete: if
-        true; allow
+        request.auth!=null; allow
         update: if
-        request.resource.data.attendedBy!=null &&
-        resource.data.attendedBy==null;
+        request.auth!=null &&request.resource.data.attendedBy!=null
+        && resource.data.attendedBy==null;
       }
       match /orders/ordersAttended/
       { document=** }
       {
         allow
         create: if
-        true;
+        request.auth!=null;
       }
     }
     match /environment/production
     {
+      match /depiladoras/
+      { depId }
+      {
+        allow create,
+        update: if
+        request.auth!=null;
+      }
       match /orders/ordersInProcess/
-      { document=** }
+      { date }
+      / { order }
       {
         allow create,
         delete: if
-        true; allow
+        request.auth!=null; allow
         update: if
-        request.resource.data.attendedBy!=null &&
-        resource.data.attendedBy==null;
+        request.auth!=null &&request.resource.data.attendedBy!=null
+        && resource.data.attendedBy==null;
       }
       match /orders/ordersAttended/
-      { document=** }
+      { date }
+      / { order }
       {
         allow
         create: if
-        true;
+        request.auth!=null;
       }
     }
   }
