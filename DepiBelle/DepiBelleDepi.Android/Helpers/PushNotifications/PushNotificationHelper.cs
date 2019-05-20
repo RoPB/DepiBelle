@@ -30,15 +30,11 @@ namespace DepiBelleDepi.Droid.Helpers.PushNotifications
             if (message.Data != null && message.Data.ContainsKey(PushNotificationDataFlags.Flag))
             {
                 var badge = 0;
-                var type=PushNotificationType.Unknown;
                 var title = "";
                 var body = "";
 
                 if (message.Data.ContainsKey(PushNotificationDataFlags.Badge))
                     Int32.TryParse(message.Data[PushNotificationDataFlags.Badge], out badge);
-
-                if (message.Data.ContainsKey(PushNotificationDataFlags.Type))
-                    Enum.TryParse<PushNotificationType>(message.Data[PushNotificationDataFlags.Type], out type);
 
                 if (message.Data.ContainsKey(PushNotificationDataFlags.Title))
                     title = message.Data[PushNotificationDataFlags.Title];
@@ -46,11 +42,10 @@ namespace DepiBelleDepi.Droid.Helpers.PushNotifications
                 if (message.Data.ContainsKey(PushNotificationDataFlags.Body))
                     body = message.Data[PushNotificationDataFlags.Body];
 
-                pushNotification = new PushNotification() { Title = title, Body = body, Badge = badge, Type = type};
+                pushNotification = new PushNotification() { Title = title, Body = body, Badge = badge};
 
-                //Add Data
                 if (message.Data.ContainsKey(PushNotificationDataFlags.Item))
-                    pushNotification.Data.Add(PushNotificationDataFlags.Item, message.Data[PushNotificationDataFlags.Item]);
+                    pushNotification.Item = message.Data[PushNotificationDataFlags.Item];
             }
 
             return pushNotification;

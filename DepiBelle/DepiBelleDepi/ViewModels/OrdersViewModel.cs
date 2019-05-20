@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DepiBelleDepi.Managers.Application;
 using DepiBelleDepi.Models;
+using DepiBelleDepi.Models.PushNotifications;
 using DepiBelleDepi.Services;
 using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data;
@@ -90,6 +91,18 @@ namespace DepiBelleDepi.ViewModels
 
                 var orders = await _ordersDataService.GetAll();
                 await LoadOrders(orders);
+
+                if(navigationData is NewOrder)
+                {
+                    await AddPendingOrdersToMainList();
+
+                    var newOrder = navigationData as NewOrder;
+
+                    var orderItem = Orders.Where(o => o.Id.Equals(newOrder.OrderId)).FirstOrDefault();
+
+                    await OpenOrder(orderItem);
+
+                }
             }
             catch (Exception ex)
             {

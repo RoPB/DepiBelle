@@ -20,6 +20,11 @@ namespace DepiBelleDepi.Services.Navigation
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
         }
 
+        public Task NavigateToAsync(Type vm, object parameter = null)
+        {
+            return InternalNavigateToAsync(vm, parameter);
+        }
+
         public async Task PopAsync()
         {
             var navigationPage = Application.Current.MainPage as CustomNavigationView;

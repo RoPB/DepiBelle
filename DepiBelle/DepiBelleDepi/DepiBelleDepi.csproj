@@ -65,6 +65,9 @@
     <Folder Include="Services\Device\" />
     <Folder Include="Models\PushNotifications\" />
     <Folder Include="Services\PushNotifications\" />
+    <Folder Include="Models\Linkeable\" />
+    <Folder Include="Models\Linkeable\Params\" />
+    <Folder Include="Models\Linkeable\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ListDataTemplate\OfferListDataTemplate.xaml.cs">

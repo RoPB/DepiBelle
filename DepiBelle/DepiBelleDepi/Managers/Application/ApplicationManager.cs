@@ -7,6 +7,7 @@ using DepiBelleDepi.Services.Config;
 using DepiBelleDepi.Services.Data;
 using DepiBelleDepi.Services.Navigation;
 using DepiBelleDepi.Services.PushNotifications;
+using Newtonsoft.Json;
 
 namespace DepiBelleDepi.Managers.Application
 {
@@ -32,11 +33,30 @@ namespace DepiBelleDepi.Managers.Application
 
         public async Task Initialize(PushNotification pushNotification=null)
         {
-            await _navigationService.InitializeAsync();
+
+            if (pushNotification != null)
+            {
+                await HandlePushNotification(true,true, pushNotification);
+            }
+            else
+            {
+                await _navigationService.InitializeAsync();
+            }
+                
         }
 
         public async Task HandlePushNotification(bool openedByTouchNotification, bool isAppInBackground, PushNotification pushNotification)
         {
+            if (openedByTouchNotification)
+            {
+                if(pushNotification.Item != null)
+                {
+                    var linkeableItem = JsonConvert.DeserializeObject<LinkeableItem>(pushNotification.Item);
+
+                    await LinkeableItemsHelper.HandleLink(_navigationService, linkeableItem);
+                }
+
+            }
 
         }
 

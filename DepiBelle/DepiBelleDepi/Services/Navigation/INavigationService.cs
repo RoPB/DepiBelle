@@ -8,6 +8,7 @@ namespace DepiBelleDepi.Services.Navigation
     {
         Task InitializeAsync();
         Task<ViewModelBase> NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : ViewModelBase;
+        Task NavigateToAsync(Type vm, object parameter = null);
         Task PopAsync();
     }
 }
