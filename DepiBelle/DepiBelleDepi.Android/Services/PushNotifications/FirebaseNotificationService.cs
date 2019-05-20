@@ -45,7 +45,9 @@ namespace DepiBelleDepi.Droid.Services.PushNotifications
             var jsonPushNotification = JsonConvert.SerializeObject(pushNotification);
             intent.PutExtra(PushNotificationDataFlags.Flag, jsonPushNotification);
 
-            var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var uniqueid = (int)((DateTime.Now.Ticks / 1000L) % Int32.MaxValue);
+
+            var pendingIntent = PendingIntent.GetActivity(this, uniqueid, intent, PendingIntentFlags.Immutable);
 
             var notificationBuilder = new NotificationCompat.Builder(this)
                 .SetSmallIcon(Resource.Drawable.ic_cart)
@@ -57,7 +59,7 @@ namespace DepiBelleDepi.Droid.Services.PushNotifications
                 .SetAutoCancel(true);
 
             var notificationManager = NotificationManager.FromContext(this);
-            var uniqueid = (int)((DateTime.Now.Ticks / 1000L) % Int32.MaxValue);
+
             notificationManager.Notify(uniqueid, notificationBuilder.Build());
 
 
