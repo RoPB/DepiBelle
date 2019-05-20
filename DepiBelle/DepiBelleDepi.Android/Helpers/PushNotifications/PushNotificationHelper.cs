@@ -44,8 +44,8 @@ namespace DepiBelleDepi.Droid.Helpers.PushNotifications
 
                 pushNotification = new PushNotification() { Title = title, Body = body, Badge = badge};
 
-                if (message.Data.ContainsKey(PushNotificationDataFlags.Item))
-                    pushNotification.Item = message.Data[PushNotificationDataFlags.Item];
+                if (message.Data.ContainsKey(PushNotificationDataFlags.LinkeableItem))
+                    pushNotification.LinkeableItem = message.Data[PushNotificationDataFlags.LinkeableItem];
             }
 
             return pushNotification;

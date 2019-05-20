@@ -49,9 +49,9 @@ namespace DepiBelleDepi.Managers.Application
         {
             if (openedByTouchNotification)
             {
-                if(pushNotification.Item != null)
+                if(pushNotification.LinkeableItem != null)
                 {
-                    var linkeableItem = JsonConvert.DeserializeObject<LinkeableItem>(pushNotification.Item);
+                    var linkeableItem = JsonConvert.DeserializeObject<LinkeableItem>(pushNotification.LinkeableItem);
 
                     await LinkeableItemsHelper.HandleLink(_navigationService, linkeableItem);
                 }

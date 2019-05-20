@@ -9,6 +9,6 @@ namespace DepiBelleDepi.Models.PushNotifications
         public string Body { get; set; }
         public int Badge { get; set; }
         public bool IsContentAvailablePresent { get; set; }
-        public string Item { get; set; }
+        public string LinkeableItem { get; set; }
     }
 }
