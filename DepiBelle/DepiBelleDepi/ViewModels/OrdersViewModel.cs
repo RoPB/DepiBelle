@@ -192,8 +192,18 @@ namespace DepiBelleDepi.ViewModels
             if (!_dicOrders.ContainsKey(order.Id))
             {
                 _dicOrders.Add(order.Id, order);
-                Orders.Insert(0, GetOrderListItem(order));
+                var orderItem = GetOrderListItem(order);
+                InsertOrdered(orderItem);
             }
+        }
+
+        private void InsertOrdered(OrderItem orderItem)
+        {
+            var i = 0;
+            while (i < Orders.Count && string.Compare(orderItem.Time, Orders[i].Time) >= 0)
+                i++;
+
+            Orders.Insert(i, orderItem);
         }
 
         private void UpdateOrderInMainList(Order order)
