@@ -1,0 +1,2038 @@
+{
+  "dev" : {
+    "config" : {
+      "discount" : 30
+    },
+    "offers" : {
+      "A" : {
+        "category" : "cabeza",
+        "name" : "Bozo",
+        "price" : 90
+      },
+      "B" : {
+        "category" : "cabeza",
+        "name" : "Ceja",
+        "price" : 130
+      },
+      "C" : {
+        "category" : "cabeza",
+        "name" : "Entrecejas",
+        "price" : 50
+      },
+      "D" : {
+        "category" : "cabeza",
+        "name" : "Narinas",
+        "price" : 90
+      },
+      "E" : {
+        "category" : "cabeza",
+        "name" : "Patillas",
+        "price" : 90
+      },
+      "F" : {
+        "category" : "cabeza",
+        "name" : "Menton",
+        "price" : 90
+      },
+      "G" : {
+        "category" : "brazo/torso",
+        "name" : "Axilas",
+        "price" : 140
+      },
+      "H" : {
+        "category" : "pelvis",
+        "name" : "Bikini",
+        "price" : 150
+      },
+      "I" : {
+        "category" : "pelvis",
+        "name" : "Cavado completo (s tira)",
+        "price" : 320
+      },
+      "J" : {
+        "category" : "pelvis",
+        "name" : "Tira de ano",
+        "price" : 140
+      },
+      "K" : {
+        "category" : "pelvis",
+        "name" : "Gluteos",
+        "price" : 150
+      },
+      "L" : {
+        "category" : "pierna",
+        "name" : "Media pierna",
+        "price" : 260
+      },
+      "M" : {
+        "category" : "pierna",
+        "name" : "Pierna entera (c bikini)",
+        "price" : 390
+      },
+      "N" : {
+        "category" : "brazo",
+        "name" : "Brazo completo",
+        "price" : 250
+      },
+      "O" : {
+        "category" : "brazo",
+        "name" : "Medio brazo",
+        "price" : 200
+      },
+      "P" : {
+        "category" : "torso",
+        "name" : "Tira ombligo",
+        "price" : 140
+      },
+      "Q" : {
+        "category" : "torso",
+        "name" : "Abdomen completo",
+        "price" : 230
+      },
+      "R" : {
+        "category" : "torso",
+        "name" : "Baja espalda",
+        "price" : 150
+      },
+      "S" : {
+        "category" : "torso",
+        "name" : "Espalda completa",
+        "price" : 230
+      },
+      "T" : {
+        "category" : "pierna",
+        "name" : "Empeine",
+        "price" : 100
+      }
+    },
+    "ordersAttended" : {
+      "04-03-2019" : {
+        "-LbZ_U5HRSYbxwe2kZo5" : {
+          "name" : "SIN HORA",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "time" : "19:03",
+          "total" : 840.0
+        },
+        "-LbZajWmY_EIDb45PoWb" : {
+          "name" : "Rocko",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "Q",
+            "name" : "Abdomen completo",
+            "price" : 230.0,
+            "sellPrice" : 161.0
+          }, {
+            "discount" : 30,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 98.0
+          } ],
+          "time" : "18:53",
+          "total" : 259.0
+        }
+      },
+      "04-06-2019" : {
+        "-Lboz513Q2h0gt5NASVx" : {
+          "name" : "Carina",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 63.0
+          } ],
+          "time" : "22:11",
+          "total" : 63.0
+        },
+        "-LbozA_xYBxrADqkEZK9" : {
+          "name" : "Rocko",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "22:07",
+          "total" : 450.0
+        }
+      },
+      "11-24-2018" : {
+        "-LS70HARvN3zfV06KxTu" : {
+          "name" : "Viviii",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "04:20",
+          "total" : 1176.0
+        },
+        "-LS73901Ba1WRYhT0XZt" : {
+          "name" : "Viviii",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "04:20",
+          "total" : 1104.0
+        },
+        "-LS7C9MOIiwdMJatjJQu" : {
+          "name" : "Viviii",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "time" : "04:20",
+          "total" : 1566.0
+        },
+        "-LS7CStPcUXrZlahQhb3" : {
+          "name" : "Miriam",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          }, {
+            "discount" : 20,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 40.0
+          }, {
+            "discount" : 20,
+            "id" : "F",
+            "name" : "Menton",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "time" : "16:30",
+          "total" : 1678.0
+        },
+        "-LS7CgwkWS30m5TjxGrN" : {
+          "name" : "Rodr",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          }, {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          }, {
+            "discount" : 20,
+            "id" : "M",
+            "name" : "Pierna entera (c bikini)",
+            "price" : 390.0,
+            "sellPrice" : 312.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "16:15",
+          "total" : 1170.0
+        },
+        "-LS7H3ormhSXYu3SZnRX" : {
+          "name" : "SIN HORA",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 63.0
+          }, {
+            "discount" : 30,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 91.0
+          }, {
+            "discount" : 30,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 35.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "18:32",
+          "total" : 639.0
+        },
+        "-LS7NG5dQ7nQc7IUJ8aB" : {
+          "name" : "SIN HORA",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "Q",
+            "name" : "Abdomen completo",
+            "price" : 230.0,
+            "sellPrice" : 161.0
+          }, {
+            "discount" : 30,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 98.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "18:59",
+          "total" : 1259.0
+        },
+        "-LS7NWuQODcaUPMoUzbn" : {
+          "name" : "SIN HORA",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "I",
+            "name" : "Cavado completo (s tira)",
+            "price" : 320.0,
+            "sellPrice" : 224.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "19:00",
+          "total" : 674.0
+        },
+        "-LS7PXtDv-T0qwpLzYac" : {
+          "name" : "SIN HORA",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "19:09",
+          "total" : 1000.0
+        }
+      },
+      "11-25-2018" : {
+        "-LSCpb8Bieil1B89KYLm" : {
+          "name" : "SIN HORA",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 91.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "20:25",
+          "total" : 541.0
+        }
+      }
+    },
+    "ordersInProcess" : {
+      "02-12-2019" : {
+        "-LYZFA0KeSGIQAtIpe9U" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "Q",
+            "name" : "Abdomen completo",
+            "price" : 230.0,
+            "sellPrice" : 161.0
+          }, {
+            "discount" : 30,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 98.0
+          } ],
+          "promotions" : [ {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "time" : "17:26",
+          "total" : 649.0
+        }
+      },
+      "04-03-2019" : {
+        "-LbZYLLAD7CYXJyYZnWp" : {
+          "name" : "Rocko",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "Q",
+            "name" : "Abdomen completo",
+            "price" : 230.0,
+            "sellPrice" : 161.0
+          }, {
+            "discount" : 30,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 98.0
+          } ],
+          "time" : "18:53",
+          "total" : 259.0
+        }
+      },
+      "04-06-2019" : {
+        "-LbogUPTrkCBFzrR6gR-" : {
+          "name" : "Rocko",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "22:07",
+          "total" : 450.0
+        },
+        "-LbohL79QIyuux1z0EgQ" : {
+          "name" : "Carina",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 63.0
+          } ],
+          "time" : "22:11",
+          "total" : 63.0
+        }
+      },
+      "10-23-2018" : {
+        "-LPW2fFmBERABhxVSCrE" : {
+          "name" : "lu",
+          "number" : 0,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "T",
+            "name" : "Empeine",
+            "price" : 100.0,
+            "sellPrice" : 80.0
+          }, {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1288.0
+        },
+        "-LPW3QMf8yQXM0QQ4L4_" : {
+          "name" : "ro",
+          "number" : 1,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          }, {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          }, {
+            "discount" : 20,
+            "id" : "T",
+            "name" : "Empeine",
+            "price" : 100.0,
+            "sellPrice" : 80.0
+          }, {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          }, {
+            "discount" : 20,
+            "id" : "M",
+            "name" : "Pierna entera (c bikini)",
+            "price" : 390.0,
+            "sellPrice" : 312.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "total" : 1852.0
+        },
+        "-LPW3_2n_OM7Nu-h-vje" : {
+          "name" : "lu",
+          "number" : 2,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1000.0
+        },
+        "-LPWQcXUTiWAKoC2p_Jz" : {
+          "name" : "lulu",
+          "number" : 3,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          }, {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 762.0
+        },
+        "-LPWQrSOZEJDtbwpgxL4" : {
+          "name" : "lulu",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1112.0
+        },
+        "-LPWRHt18GM20OWGJBeO" : {
+          "name" : "ri",
+          "number" : 5,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 758.0
+        },
+        "-LPWTpQoSW_4C4hhQI6S" : {
+          "name" : "ro",
+          "number" : 6,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWTuH-H_PWijr2pCau" : {
+          "name" : "lu",
+          "number" : 7,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWTyqpQgukunapa3j_" : {
+          "name" : "iu",
+          "number" : 8,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWUJdQxXLJ8Ek4qQtI" : {
+          "name" : "uy",
+          "number" : 9,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWVBKXB-GRBN8l087P" : {
+          "name" : "ro",
+          "number" : 10,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWVIV9QsIrHcUTh3QW" : {
+          "name" : "lili",
+          "number" : 11,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWVQUkFkfL57JgPsoc" : {
+          "name" : "uyi",
+          "number" : 12,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "T",
+            "name" : "Empeine",
+            "price" : 100.0,
+            "sellPrice" : 80.0
+          }, {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1288.0
+        },
+        "-LPWk9ML5B62vggR2XkI" : {
+          "name" : "pelu",
+          "number" : 15,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1000.0
+        },
+        "-LPWkELQvnz6wccFifGC" : {
+          "name" : "lulu",
+          "number" : 16,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1000.0
+        },
+        "-LPWkZlwXwoKS13D01vH" : {
+          "name" : "lulilo",
+          "number" : 17,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "total" : 940.0
+        },
+        "-LPWluZdgZ2HbmdQfYnx" : {
+          "name" : "vi",
+          "number" : 18,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        },
+        "-LPWlzBOwSOG1dsPvuWz" : {
+          "name" : "ri",
+          "number" : 19,
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "total" : 450.0
+        }
+      },
+      "10-26-2018" : {
+        "-LPm_a6WiRXF5vFRIRGJ" : {
+          "name" : "ro",
+          "number" : 0,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "K",
+            "name" : "Gluteos",
+            "price" : 150.0,
+            "sellPrice" : 120.0
+          }, {
+            "discount" : 20,
+            "id" : "J",
+            "name" : "Tira de ano",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "total" : 1232.0
+        },
+        "-LPn5kao7kPKgli9eEB5" : {
+          "name" : "Rodrigo",
+          "number" : 1,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          }, {
+            "discount" : 20,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 40.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:50",
+          "total" : 1344.0
+        },
+        "-LPn6Gnq9MGZ7tswaeYs" : {
+          "name" : "Laura",
+          "number" : 2,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          }, {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "09:00",
+          "total" : 862.0
+        },
+        "-LPn7dPuIxbZP5_grhHd" : {
+          "name" : "Vivi",
+          "number" : 3,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "H",
+            "name" : "Bikini",
+            "price" : 150.0,
+            "sellPrice" : 120.0
+          }, {
+            "discount" : 20,
+            "id" : "I",
+            "name" : "Cavado completo (s tira)",
+            "price" : 320.0,
+            "sellPrice" : 256.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "15:30",
+          "total" : 826.0
+        },
+        "-LPn7m2JJfLioZeG_Xfg" : {
+          "name" : "Popo",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          }, {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:40",
+          "total" : 1312.0
+        }
+      },
+      "11-15-2018" : {
+        "-LROd9AFrm2Ct06Xexd1" : {
+          "name" : "Vivi",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:30",
+          "total" : 726.0
+        },
+        "-LROdYgFKMnCpYYL3hRk" : {
+          "name" : "Carla",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "N",
+            "name" : "Brazo completo",
+            "price" : 250.0,
+            "sellPrice" : 200.0
+          }, {
+            "discount" : 20,
+            "id" : "F",
+            "name" : "Menton",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          } ],
+          "promotions" : [ {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          }, {
+            "description" : "Cuerpo Entero",
+            "discount" : 0,
+            "id" : "P4",
+            "name" : "Promo 4",
+            "price" : 850.0,
+            "sellPrice" : 850.0
+          } ],
+          "time" : "23:30",
+          "total" : 1584.0
+        },
+        "-LROdeh4_F3MkIdNa--K" : {
+          "name" : "Luca",
+          "number" : 4,
+          "promotions" : [ {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          }, {
+            "description" : "Cuerpo Entero",
+            "discount" : 0,
+            "id" : "P4",
+            "name" : "Promo 4",
+            "price" : 850.0,
+            "sellPrice" : 850.0
+          } ],
+          "time" : "15:30",
+          "total" : 1240.0
+        },
+        "-LROdyFr3LvzEjo148NN" : {
+          "name" : "Berta",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "Q",
+            "name" : "Abdomen completo",
+            "price" : 230.0,
+            "sellPrice" : 184.0
+          }, {
+            "discount" : 20,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 112.0
+          }, {
+            "discount" : 20,
+            "id" : "R",
+            "name" : "Baja espalda",
+            "price" : 150.0,
+            "sellPrice" : 120.0
+          }, {
+            "discount" : 20,
+            "id" : "H",
+            "name" : "Bikini",
+            "price" : 150.0,
+            "sellPrice" : 120.0
+          }, {
+            "discount" : 20,
+            "id" : "I",
+            "name" : "Cavado completo (s tira)",
+            "price" : 320.0,
+            "sellPrice" : 256.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          }, {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          } ],
+          "time" : "09:30",
+          "total" : 2182.0
+        },
+        "-LROeAkWtBFnN8N8LHbd" : {
+          "name" : "Uru",
+          "number" : 4,
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "20:30",
+          "total" : 1176.0
+        }
+      },
+      "11-16-2018" : {
+        "-LRTbtJalGj6j1rw-v_a" : {
+          "name" : "Vivi",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          }, {
+            "discount" : 20,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 40.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:30",
+          "total" : 1144.0
+        },
+        "-LRTcBrf2HBOOFFPvgAh" : {
+          "name" : "Carla",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:40",
+          "total" : 726.0
+        },
+        "-LRTcoqtPKxI2kyhZZgc" : {
+          "name" : "Vi",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Media Pierna + Bikini",
+            "discount" : 0,
+            "id" : "P3",
+            "name" : "Promo 3",
+            "price" : 390.0,
+            "sellPrice" : 390.0
+          }, {
+            "description" : "Cuerpo Entero",
+            "discount" : 0,
+            "id" : "P4",
+            "name" : "Promo 4",
+            "price" : 850.0,
+            "sellPrice" : 850.0
+          } ],
+          "time" : "15:40",
+          "total" : 1416.0
+        },
+        "-LRTdTVW9YIeWhR3cVuV" : {
+          "name" : "Vi",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "F",
+            "name" : "Menton",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:40",
+          "total" : 622.0
+        },
+        "-LRTfDMpD0b4lwYqNZT3" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "16:00",
+          "total" : 522.0
+        },
+        "-LRTfPDqC2cYjeDkOkOO" : {
+          "name" : "Ka",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:30",
+          "total" : 1000.0
+        },
+        "-LRU1bR18JHs_U-PBpEG" : {
+          "name" : "Lucas",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:20",
+          "total" : 1000.0
+        },
+        "-LRU1qWdyv7iNBDzBPpS" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "O",
+            "name" : "Medio brazo",
+            "price" : 200.0,
+            "sellPrice" : 160.0
+          }, {
+            "discount" : 20,
+            "id" : "M",
+            "name" : "Pierna entera (c bikini)",
+            "price" : 390.0,
+            "sellPrice" : 312.0
+          } ],
+          "time" : "15:05",
+          "total" : 472.0
+        },
+        "-LRU2E0zvL6uB0hScCwS" : {
+          "name" : "Vivi",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "15:30",
+          "total" : 1176.0
+        },
+        "-LRU2W-MeeFtZ2rNoMZo" : {
+          "name" : "Miriam",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "15:30",
+          "total" : 450.0
+        },
+        "-LRU5l8v33XsLiCpVF6P" : {
+          "name" : "Maca",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "15:20",
+          "total" : 626.0
+        },
+        "-LRUMqAuXphg5cv-a1tp" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "19:20:00",
+          "total" : 522.0
+        }
+      },
+      "11-24-2018" : {
+        "-LS6ELzsUkgW9sLH4STD" : {
+          "name" : "Monky",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "13:55:00",
+          "total" : 554.0
+        },
+        "-LS6E_OAmz5VDUrwN54F" : {
+          "name" : "Ro",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "13:41:19.1036830",
+          "total" : 1000.0
+        },
+        "-LS6FhFhR-0PYH6WrdTp" : {
+          "name" : "Vivi",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "I",
+            "name" : "Cavado completo (s tira)",
+            "price" : 320.0,
+            "sellPrice" : 256.0
+          }, {
+            "discount" : 20,
+            "id" : "K",
+            "name" : "Gluteos",
+            "price" : 150.0,
+            "sellPrice" : 120.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "13:00:00",
+          "total" : 1376.0
+        },
+        "-LS6L9dj9rpGK6CG-v_v" : {
+          "name" : "Ro",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "14:10",
+          "total" : 1000.0
+        },
+        "-LS6LILjZK8DwTai5rcr" : {
+          "name" : "Rodri",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "14:11",
+          "total" : 1000.0
+        },
+        "-LS6jho_H-jSIUcpOP9q" : {
+          "name" : "Rodr",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "L",
+            "name" : "Media pierna",
+            "price" : 260.0,
+            "sellPrice" : 208.0
+          }, {
+            "discount" : 20,
+            "id" : "M",
+            "name" : "Pierna entera (c bikini)",
+            "price" : 390.0,
+            "sellPrice" : 312.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "16:15",
+          "total" : 970.0
+        },
+        "-LS6nRMMOXw7ToNbG2SV" : {
+          "name" : "Miriam",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          } ],
+          "time" : "16:30",
+          "total" : 626.0
+        },
+        "-LS6z194p2DUJuVeamS9" : {
+          "name" : "Viviii",
+          "offers" : [ {
+            "discount" : 20,
+            "id" : "A",
+            "name" : "Bozo",
+            "price" : 90.0,
+            "sellPrice" : 72.0
+          }, {
+            "discount" : 20,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 104.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "04:20",
+          "total" : 1176.0
+        },
+        "-LS7HeCuDlSK_LxQl0ix" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 91.0
+          }, {
+            "discount" : 30,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 35.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "18:34",
+          "total" : 1126.0
+        },
+        "-LS7MaX67jGO2Zdmq-t-" : {
+          "name" : "Ro",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "B",
+            "name" : "Ceja",
+            "price" : 130.0,
+            "sellPrice" : 91.0
+          }, {
+            "discount" : 30,
+            "id" : "C",
+            "name" : "Entrecejas",
+            "price" : 50.0,
+            "sellPrice" : 35.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "18:55",
+          "total" : 1126.0
+        },
+        "-LS7OaYMHeaScM81A0HE" : {
+          "name" : "Ro",
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "19:15",
+          "total" : 1000.0
+        }
+      },
+      "11-25-2018" : {
+        "-LSCpF9uVxxmDP-ea3-Y" : {
+          "name" : "Rodrigo",
+          "offers" : [ {
+            "discount" : 30,
+            "id" : "G",
+            "name" : "Axilas",
+            "price" : 140.0,
+            "sellPrice" : 98.0
+          } ],
+          "promotions" : [ {
+            "description" : "Pierna Entera + Cavado",
+            "discount" : 0,
+            "id" : "P1",
+            "name" : "Promo 1",
+            "price" : 450.0,
+            "sellPrice" : 450.0
+          }, {
+            "description" : "Pierna Entera + Cavado + Tiro de Cola",
+            "discount" : 0,
+            "id" : "P2",
+            "name" : "Promo 2",
+            "price" : 550.0,
+            "sellPrice" : 550.0
+          } ],
+          "time" : "20:30",
+          "total" : 1098.0
+        }
+      }
+    },
+    "promotions" : {
+      "P1" : {
+        "description" : "Pierna Entera + Cavado",
+        "name" : "Promo 1",
+        "price" : 450
+      },
+      "P2" : {
+        "description" : "Pierna Entera + Cavado + Tiro de Cola",
+        "name" : "Promo 2",
+        "price" : 550
+      },
+      "P3" : {
+        "description" : "Media Pierna + Bikini",
+        "name" : "Promo 3",
+        "price" : 390
+      },
+      "P4" : {
+        "description" : "Cuerpo Entero",
+        "name" : "Promo 4",
+        "price" : 850
+      }
+    }
+  },
+  "production" : {
+    "config" : {
+      "discount" : 0
+    },
+    "offers" : {
+      "A" : {
+        "category" : "cabeza",
+        "name" : "Bozo",
+        "price" : 90
+      },
+      "B" : {
+        "category" : "cabeza",
+        "name" : "Ceja",
+        "price" : 130
+      },
+      "C" : {
+        "category" : "cabeza",
+        "name" : "Entrecejas",
+        "price" : 50
+      },
+      "D" : {
+        "category" : "cabeza",
+        "name" : "Narinas",
+        "price" : 90
+      },
+      "E" : {
+        "category" : "cabeza",
+        "name" : "Patillas",
+        "price" : 90
+      },
+      "F" : {
+        "category" : "cabeza",
+        "name" : "Menton",
+        "price" : 90
+      },
+      "G" : {
+        "category" : "brazo/torso",
+        "name" : "Axilas",
+        "price" : 140
+      },
+      "H" : {
+        "category" : "pelvis",
+        "name" : "Bikini",
+        "price" : 150
+      },
+      "I" : {
+        "category" : "pelvis",
+        "name" : "Cavado completo (s tira)",
+        "price" : 320
+      },
+      "J" : {
+        "category" : "pelvis",
+        "name" : "Tira de ano",
+        "price" : 140
+      },
+      "K" : {
+        "category" : "pelvis",
+        "name" : "Gluteos",
+        "price" : 150
+      },
+      "L" : {
+        "category" : "pierna",
+        "name" : "Media pierna",
+        "price" : 260
+      },
+      "M" : {
+        "category" : "pierna",
+        "name" : "Pierna entera (c bikini)",
+        "price" : 390
+      },
+      "N" : {
+        "category" : "brazo",
+        "name" : "Brazo completo",
+        "price" : 250
+      },
+      "O" : {
+        "category" : "brazo",
+        "name" : "Medio brazo",
+        "price" : 200
+      },
+      "P" : {
+        "category" : "torso",
+        "name" : "Tira ombligo",
+        "price" : 140
+      },
+      "Q" : {
+        "category" : "torso",
+        "name" : "Abdomen completo",
+        "price" : 230
+      },
+      "R" : {
+        "category" : "torso",
+        "name" : "Baja espalda",
+        "price" : 150
+      },
+      "S" : {
+        "category" : "torso",
+        "name" : "Espalda completa",
+        "price" : 230
+      },
+      "T" : {
+        "category" : "pierna",
+        "name" : "Empeine",
+        "price" : 100
+      }
+    },
+    "promotions" : {
+      "P1" : {
+        "description" : "Pierna Entera + Cavado",
+        "name" : "Promo 1",
+        "price" : 450
+      },
+      "P2" : {
+        "description" : "Pierna Entera + Cavado + Tiro de Cola",
+        "name" : "Promo 2",
+        "price" : 550
+      },
+      "P3" : {
+        "description" : "Media Pierna + Bikini",
+        "name" : "Promo 3",
+        "price" : 390
+      },
+      "P4" : {
+        "description" : "Cuerpo Entero",
+        "name" : "Promo 4",
+        "price" : 850
+      }
+    }
+  }
+}

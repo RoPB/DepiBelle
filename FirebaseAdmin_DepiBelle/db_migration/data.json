@@ -1,0 +1,151 @@
+{
+  "offers" : 
+  [
+    {
+      "id":"A",
+      "category" : "cabeza",
+      "name" : "Bozo",
+      "price" : 90
+    },
+    {
+      "id":"B",
+      "category" : "cabeza",
+      "name" : "Ceja",
+      "price" : 130
+    },
+    {
+      "id":"C",
+      "category" : "cabeza",
+      "name" : "Entrecejas",
+      "price" : 50
+    },
+    {
+      "id":"D",
+      "category" : "cabeza",
+      "name" : "Narinas",
+      "price" : 90
+    },
+    {
+      "id":"E",
+      "category" : "cabeza",
+      "name" : "Patillas",
+      "price" : 90
+    },
+    {
+      "id":"F",
+      "category" : "cabeza",
+      "name" : "Menton",
+      "price" : 90
+    },
+    {
+      "id":"G",
+      "category" : "brazo/torso",
+      "name" : "Axilas",
+      "price" : 140
+    },
+    {
+      "id":"H",
+      "category" : "pelvis",
+      "name" : "Bikini",
+      "price" : 150
+    },
+    {
+      "id":"I",
+      "category" : "pelvis",
+      "name" : "Cavado completo (s tira)",
+      "price" : 320
+    },
+    {
+      "id":"J",
+      "category" : "pelvis",
+      "name" : "Tira de ano",
+      "price" : 140
+    },
+    {
+      "id":"K",
+      "category" : "pelvis",
+      "name" : "Gluteos",
+      "price" : 150
+    },
+    {
+      "id":"L",
+      "category" : "pierna",
+      "name" : "Media pierna",
+      "price" : 260
+    },
+    {
+      "id":"M",
+      "category" : "pierna",
+      "name" : "Pierna entera (c bikini)",
+      "price" : 390
+    },
+    {
+      "id":"N",
+      "category" : "brazo",
+      "name" : "Brazo completo",
+      "price" : 250
+    },
+    {
+      "id":"O",
+      "category" : "brazo",
+      "name" : "Medio brazo",
+      "price" : 200
+    },
+    {
+      "id":"P",
+      "category" : "torso",
+      "name" : "Tira ombligo",
+      "price" : 140
+    },
+    {
+      "id":"Q",
+      "category" : "torso",
+      "name" : "Abdomen completo",
+      "price" : 230
+    },
+    {
+      "id":"R",
+      "category" : "torso",
+      "name" : "Baja espalda",
+      "price" : 150
+    },
+    {
+      "id":"S",
+      "category" : "torso",
+      "name" : "Espalda completa",
+      "price" : 230
+    },
+    {
+      "id":"T",
+      "category" : "pierna",
+      "name" : "Empeine",
+      "price" : 100
+    }
+  ],
+  "promotions":[
+    {
+      "id":"P1",
+      "description" : "Pierna Entera + Cavado",
+      "name" : "Promo 1",
+      "price" : 450
+    },
+    {
+      "id":"P2",
+      "description" : "Pierna Entera + Cavado + Tiro de Cola",
+      "name" : "Promo 2",
+      "price" : 550
+    },
+    {
+      "id":"P3",
+      "description" : "Media Pierna + Bikini",
+      "name" : "Promo 3",
+      "price" : 390
+    },
+    {
+      "id":"P4",
+      "description" : "Cuerpo Entero",
+      "name" : "Promo 4",
+      "price" : 850
+    }
+  ]
+}
