@@ -92,6 +92,8 @@ namespace DepiBelleDepi.ViewModels
                 var orders = await _ordersDataService.GetAll();
                 await LoadOrders(orders);
 
+                /*
+                //por el momento que lo rediriga aqui ya alcanza               
                 if(navigationData is NewOrder)
                 {
                     await AddPendingOrdersToMainList();
@@ -103,6 +105,7 @@ namespace DepiBelleDepi.ViewModels
                     await OpenOrder(orderItem);
 
                 }
+                */               
             }
             catch (Exception ex)
             {
