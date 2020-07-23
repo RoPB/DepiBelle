@@ -1,74 +1,41 @@
-﻿service cloud.firestore {
-  match /databases/
-  { database }
-  /documents {
-    match /
-    { document=** }
-    {
-      allow
-      read: if
-      request.auth!=null;
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if request.auth!=null;
     }
-    match /environment/dev
-    {
-      match /depiladoras/
-      { depId }
-      {
-        allow create,
-        update: if
-        request.auth!=null;
+    match /environment/dev{
+      match /depiladoras/{depId}{
+				allow create,update: if request.auth!=null;
       }
-      match /orders/ordersInProcess/
-      { date }
-      / { order }
-      {
-        allow create,
-        delete: if
-        request.auth!=null; allow
-        update: if
-        request.auth!=null &&request.resource.data.attendedBy!=null
-        && resource.data.attendedBy==null;
-      }
-      match /orders/ordersAttended/
-      { document=** }
-      {
-        allow
-        create: if
-        request.auth!=null;
-      }
+      match /orders/ordersInProcess/{date}/{order}{
+        allow create, delete: if request.auth!=null;
+        allow update: if request.auth!=null
+        								 &&request.resource.data.attendedBy!=null 
+                         && resource.data.attendedBy==null;						 
+      } 
+      match /orders/ordersAttended/{document=**}{
+        allow create: if request.auth!=null;
+      } 
     }
-    match /environment/production
-    {
-      match /depiladoras/
-      { depId }
-      {
-        allow create,
-        update: if
-        request.auth!=null;
+    match /environment/production{
+    	match /depiladoras/{depId}{
+				allow create,update: if request.auth!=null;
       }
-      match /orders/ordersInProcess/
-      { date }
-      / { order }
-      {
-        allow create,
-        delete: if
-        request.auth!=null; allow
-        update: if
-        request.auth!=null &&request.resource.data.attendedBy!=null
-        && resource.data.attendedBy==null;
-      }
-      match /orders/ordersAttended/
-      { date }
-      / { order }
-      {
-        allow
-        create: if
-        request.auth!=null;
-      }
+      match /orders/ordersInProcess/{date}/{order}{
+        allow create, delete: if request.auth!=null;
+        allow update: 	if request.auth!=null
+        								 &&request.resource.data.attendedBy!=null 
+                         && resource.data.attendedBy==null;						 
+      } 
+      match /orders/ordersAttended/{date}/{order}{
+        allow create: if request.auth!=null;
+      } 
     }
   }
+  
+}
 
-} {
+{
   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
     ".read": "auth!=null",
